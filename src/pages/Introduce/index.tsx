@@ -17,7 +17,11 @@ import { Banner } from '../../assets/Banner/Banner';
 import YellowBanner from '../../assets/Banner/YellowBanner.png';
 import { memberList } from '../../apis/pageData/MemberList';
 import MemberCardModal from '../../components/common/Modal/MemberCardModal';
-import { AnimatePresence, AnimateSharedLayout } from 'framer-motion';
+import {
+  AnimatePresence,
+  AnimateSharedLayout,
+  LayoutGroup,
+} from 'framer-motion';
 import { memberDataType } from '../../types/member';
 
 const Introduce = () => {
@@ -44,7 +48,7 @@ const Introduce = () => {
             GDSC와 함께 성장하는 팀원 {memberList.length}명을 소개합니다.
           </MainText>
           <TopMargin />
-          <AnimateSharedLayout>
+          <LayoutGroup>
             <CardList variants={listAnimate}>
               {memberList.map((memberInfo, id) => (
                 <AnimatePresence key={id + 1}>
@@ -72,7 +76,7 @@ const Introduce = () => {
                 />
               )}
             </AnimatePresence>
-          </AnimateSharedLayout>
+          </LayoutGroup>
           <TopMargin />
         </ContainerInner>
       </LayoutContainer>

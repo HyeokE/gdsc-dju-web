@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
-import { AnimatePresence, AnimateSharedLayout, motion } from 'framer-motion';
+import { AnimatePresence, LayoutGroup, motion } from 'framer-motion';
 
 const MemberCardContainer = styled(motion.div)`
   position: relative;
@@ -92,7 +92,7 @@ const MemberCard = (props: { image: string; id: number }) => {
   const [isClicked, setIsClicked] = useState(false);
   return (
     <AnimatePresence>
-      <AnimateSharedLayout>
+      <LayoutGroup>
         <MemberCardContainer
           onClick={() => setIsClicked(!isClicked)}
           variants={memberCardAnimate}
@@ -138,7 +138,7 @@ const MemberCard = (props: { image: string; id: number }) => {
             </MemberCardInner>
           )}
         </MemberCardContainer>
-      </AnimateSharedLayout>
+      </LayoutGroup>
     </AnimatePresence>
   );
 };
