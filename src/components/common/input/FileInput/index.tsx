@@ -1,4 +1,4 @@
-import React, {forwardRef, ForwardRefRenderFunction, useState} from 'react';
+import React, { forwardRef, ForwardRefRenderFunction, useState } from 'react';
 import Folder from '../../../../assets/Folder';
 import {
   InputImageWrapper,
@@ -44,4 +44,6 @@ const FileInput = (props: Iprops, ref: React.RefObject<HTMLInputElement>) => {
   );
 };
 
-export default forwardRef(FileInput as ForwardRefRenderFunction<HTMLInputElement, Iprops>);
+export default forwardRef(
+  FileInput as ForwardRefRenderFunction<HTMLInputElement, Iprops>,
+);
