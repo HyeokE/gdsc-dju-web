@@ -14,10 +14,11 @@
     "serve": "webpack serve"
   },
   "dependencies": {
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
     "@types/lodash": "^4.14.181",
-    "@types/styled-components": "^5.1.25",
     "@types/react": "^18.0.5",
     "@types/react-dom": "^18.0.1",
+    "@types/styled-components": "^5.1.25",
     "axios": "^0.26.1",
     "clean-webpack-plugin": "^4.0.0",
     "file-loader": "^6.2.0",
@@ -47,10 +48,17 @@
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
     "@babel/preset-typescript": "^7.16.7",
+    "@typescript-eslint/eslint-plugin": "^5.3.1",
+    "@typescript-eslint/parser": "^5.3.1",
     "@webpack-cli/generators": "^2.4.2",
     "autoprefixer": "^10.4.4",
     "babel-loader": "^8.2.4",
     "css-loader": "^6.7.1",
+    "eslint": "^8.2.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.26.1",
     "fork-ts-checker-webpack-plugin": "^7.2.6",
     "html-webpack-plugin": "^5.5.0",
     "postcss": "^8.4.12",
@@ -63,13 +71,6 @@
     "webpack": "^5.72.0",
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.8.1",
-    "workbox-webpack-plugin": "^6.5.3",
-    "@typescript-eslint/eslint-plugin": "^5.3.1",
-    "@typescript-eslint/parser": "^5.3.1",
-    "eslint": "^8.2.0",
-    "eslint-config-airbnb": "^19.0.4",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-react": "^7.26.1"
+    "workbox-webpack-plugin": "^6.5.3"
   }
 }

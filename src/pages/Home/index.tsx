@@ -20,14 +20,14 @@ const Home = () => {
   return (
     <HomeContainer>
       <HomePage />
-      <Parallax speed={-10}>
-        <SectionIntroduce />
-      </Parallax>
-      <SectionGoal />
-      <SectionTimeLine />
-      <Parallax speed={10}>
-        <SectionManager />
-      </Parallax>
+      {/*<Parallax speed={-10}>*/}
+      {/*  <SectionIntroduce />*/}
+      {/*</Parallax>*/}
+      {/*<SectionGoal />*/}
+      {/*<SectionTimeLine />*/}
+      {/*<Parallax speed={10}>*/}
+      {/*  <SectionManager />*/}
+      {/*</Parallax>*/}
     </HomeContainer>
   );
 };
