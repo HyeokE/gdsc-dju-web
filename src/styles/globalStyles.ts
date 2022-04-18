@@ -1,7 +1,6 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
-const GlobalStyles = createGlobalStyle
-    `
+const GlobalStyles = createGlobalStyle`
   * {
     font-family: 'Google Sans Display','spoqa-han-sans', sans-serif;
     font-style: normal;

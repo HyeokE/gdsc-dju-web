@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const HomeWrapper = styled(motion.main)`
   position: relative;
@@ -7,29 +7,29 @@ export const HomeWrapper = styled(motion.main)`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: calc(100vh + 70px);
-  top: -70px;
+  height: calc(100vh + 7rem);
+  top: -7rem;
   overflow-x: hidden;
 `;
 export const StyledRecruitmentButton = styled.button<{ disable?: boolean }>`
-  width: 220px;
-  height: 60px;
-  border-radius: 75px;
+  width: 22rem;
+  height: 6rem;
+  border-radius: 7.5rem;
   border-style: solid;
-  background: ${(props) => props.theme.colors.tossBlueActive};
+  background: ${({ theme }) => theme.colors.tossBlueActive};
   border-width: 0;
   color: white;
   font-size: 1.6rem;
   cursor: pointer;
-  ${(props) =>
-    props.disable &&
-    `
-    background: ${props.theme.colors.tossBlue200};
-    cursor: not-allowed;
+  ${({ disable }) =>
+    disable &&
+    css`
+      background: ${({ theme }) => theme.colors.tossBlue200};
+      cursor: not-allowed;
     `};
-  @media (max-width: ${(props) => props.theme.windowSize.tablet}px) {
-    width: 180px;
-    height: 55px;
+  @media (max-width: ${({ theme }) => theme.windowSize.tablet}px) {
+    width: 18rem;
+    height: 5.5rem;
     font-size: 1.5rem;
   }
   @media (max-width: 500px) {
@@ -74,12 +74,11 @@ export const LeftColorLinesWrapper = styled(motion.div)`
   position: absolute;
   max-width: 500px;
   width: 40%;
-
   left: -200px;
-  @media (max-width: ${(props) => props.theme.windowSize.desk}px) {
+  @media (max-width: ${({ theme }) => theme.windowSize.desk}px) {
     width: 45%;
   }
-  @media (max-width: ${(props) => props.theme.windowSize.tablet}px) {
+  @media (max-width: ${({ theme }) => theme.windowSize.tablet}px) {
     bottom: 100px;
     width: 300px;
     left: -100px;
@@ -88,33 +87,33 @@ export const LeftColorLinesWrapper = styled(motion.div)`
 export const RightColorLinesWrapper = styled(motion.div)`
   z-index: 1;
   position: absolute;
-  max-width: 500px;
+  max-width: 50rem;
   width: 40%;
-  right: -200px;
-  @media (max-width: ${(props) => props.theme.windowSize.desk}px) {
+  right: -20rem;
+  @media (max-width: ${({ theme }) => theme.windowSize.desk}px) {
     width: 45%;
   }
-  @media (max-width: ${(props) => props.theme.windowSize.tablet}px) {
+  @media (max-width: ${({ theme }) => theme.windowSize.tablet}px) {
     top: 200px;
-    width: 300px;
-    right: -100px;
+    width: 30rem;
+    right: -10rem;
   }
   @media (max-width: 760px) {
-    top: -50px;
+    top: -5rem;
   }
 `;
 
 export const ButtonWrapper = styled(motion.div)`
-  margin-top: 50px;
+  margin-top: 5rem;
 `;
 export const MainBannerText = styled(motion.p)`
-  margin-top: 30px;
+  margin-top: 3rem;
   display: flex;
   align-items: center;
   text-align: center;
   font-size: 1.8rem;
-  color: ${(props) => props.theme.colors.grey500};
-  @media (max-width: ${(props) => props.theme.windowSize.tablet}px) {
+  color: ${({ theme }) => theme.colors.grey500};
+  @media (max-width: ${({ theme }) => theme.windowSize.tablet}px) {
     font-size: 1.5rem;
   }
   @media (max-width: 320px) {
@@ -123,7 +122,7 @@ export const MainBannerText = styled(motion.p)`
 `;
 export const DownArrowWrapper = styled(motion.div)`
   position: absolute;
-  bottom: 90px;
+  bottom: 9rem;
   display: flex;
   width: 100vw;
   justify-content: center;
