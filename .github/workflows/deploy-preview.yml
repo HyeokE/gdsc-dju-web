@@ -4,7 +4,6 @@ on:
   push:
   pull_request:
 jobs:
-
   build_and_preview:
     runs-on: ubuntu-latest
     steps:
@@ -28,10 +27,9 @@ jobs:
         with:
           body: | 
             ${{job.status}}
-            ${{job.result}}
-            ${{job.result.site}}
-            ${{job.result.url}}
-            ${{job.output}}
-            ${{job.output.title}}
-            ${{job.output.summary}}
+            ${{steps.run_firebase_preview.outputs.result}}
+            ${{steps.run_firebase_preview.outputs.result.details_url}}
+            ${{steps.run_firebase_preview.outputs.result.output}}
+            ${{steps.run_firebase_preview.outputs.result.output.title}}
+            ${{steps.run_firebase_preview.outputs.result.output.summary}}
   
