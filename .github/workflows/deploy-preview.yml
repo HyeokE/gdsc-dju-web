@@ -26,5 +26,5 @@ jobs:
         uses: peter-evans/commit-comment@v2.0.0
         with:
           body: | 
-            ${{job.status}}
-            ${{job.result}}
+            ${{steps.FirebaseExtended/action-hosting-deploy@v0.status}}
+            ${{steps.FirebaseExtended/action-hosting-deploy@v0.result}}
