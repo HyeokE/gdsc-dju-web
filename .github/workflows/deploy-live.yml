@@ -13,8 +13,8 @@ jobs:
       - run: 'yarn && yarn build'
         env:
           CI: ""
-      - name: action-hosting-deploy@v0
-        uses: FirebaseExtended/action-hosting-deploy@v0
+
+      - uses: FirebaseExtended/action-hosting-deploy@v0
         id: run_firebase_deploy
         run: './node_modules/.bin/firebase deploy --only hosting --project gdsc-dju --token ${{ secrets.FIREBASE_SERVICE_ACCOUNT_GDSC_DJU }}'
       - name: Commit Comment
