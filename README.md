@@ -44,9 +44,6 @@ yarn run
 ├── fonts
 ├── hooks
 ├── pages
-├── react-app-env.d.ts
-├── sitemapGenerator.js
-├── sitemapRoutes.js
 ├── store
 ├── styles
 ├── types
@@ -54,6 +51,11 @@ yarn run
 ├── App.tsx
 ├── index.tsx
 ├── tsconfig.json
+├── react-app-env.d.ts
+├── sitemapGenerator.js
+├── sitemapRoutes.js
+├── webpack.config.js
+├── .babelrc
 └── yarn.lock
 ```
 ## Preview
