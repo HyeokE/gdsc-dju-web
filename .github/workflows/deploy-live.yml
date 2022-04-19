@@ -18,10 +18,10 @@ jobs:
     environment: Production
     steps:
       - uses: FirebaseExtended/action-hosting-deploy@v0
-        id: run_firebase_deploy
         with:
-          repoToken: "${{ secrets.GITHUB_TOKEN }}"
-          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}"
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_GDSC_DJU }}'
+          channelId: live
           projectId: gdsc-dju
 
       - name: Commit Comment
