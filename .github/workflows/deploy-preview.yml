@@ -28,4 +28,9 @@ jobs:
           args: ${{ steps.run_firebase_preview.outputs.result }}
           body: | 
             ${{steps.run_firebase_preview.conclusion}}
-            ${{steps.run_firebase_preview.outputs.result}}  
+            ${{steps.run_firebase_preview.urls}}
+            ${{steps.run_firebase_preview.outputs.urls}}
+            ${{steps.run_firebase_preview.expire_time}}
+            ${{steps.run_firebase_preview.outputs.expire_time}}
+            ${{steps.run_firebase_preview.details_url}}
+            ${{steps.run_firebase_preview.outputs.details_url}}
