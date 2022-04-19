@@ -25,12 +25,10 @@ jobs:
       - name: Commit Comment
         uses: peter-evans/commit-comment@v2.0.0
         with:
-          args: ${{ steps.run_firebase_preview.outputs.result }}
-          body: | 
-            ${{steps.run_firebase_preview.conclusion}}
-            ${{steps.run_firebase_preview.urls}}
-            ${{steps.run_firebase_preview.outputs.urls}}
-            ${{steps.run_firebase_preview.expire_time}}
-            ${{steps.run_firebase_preview.outputs.expire_time}}
-            ${{steps.run_firebase_preview.details_url}}
-            ${{steps.run_firebase_preview.outputs.details_url}}
+          body: |
+            Deployed to preview channel.
+            이벤트 명: ${{github.event_name}}
+            작업자: ${{github.actor}}
+            빌드여부: ${{steps.run_firebase_preview.conclusion}}
+            프리뷰 링크: ${{steps.run_firebase_preview.outputs.details_url}}
+            빌드 시간: ${{steps.run_firebase_preview.outputs.expire_time}}
