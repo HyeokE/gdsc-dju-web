@@ -5,7 +5,7 @@ on:
     branches:
       - master
 jobs:
-  build_and_preview:
+  build_and_deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -13,20 +13,10 @@ jobs:
         env:
           CI: ""
       # Add additional build steps here
-  Deploy_preview_channel:
+  Deploy_Live_channel:
     runs-on: ubuntu-latest
     environment: Production
     steps:
       - uses: FirebaseExtended/action-hosting-deploy@v0
         id: run_firebase_deploy
         run: './node_modules/.bin/firebase deploy --only hosting --project gdsc-dju --token ${{ secrets.FIREBASE_SERVICE_ACCOUNT_GDSC_DJU }}'
-      - name: Commit Comment
-        uses: peter-evans/commit-comment@v2.0.0
-        with:
-          body: |
-            Deployed to Live channel.
-            이벤트 명: ${{github.event_name}}
-            작업자: ${{github.actor}}
-            빌드여부: ${{steps.run_firebase_deploy.conclusion}}
-            URL : ${{steps.run_firebase_deploy.outputs.details_url}}
-            빌드 시간: ${{steps.run_firebase_deploy.outputs.expire_time}}
