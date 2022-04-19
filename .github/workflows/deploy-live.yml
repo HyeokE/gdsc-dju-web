@@ -25,6 +25,7 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_GDSC_DJU }}'
           channelId: live
           projectId: gdsc-dju
+          entrypoint: '/firebase.json'
   Commit_Comment:
     needs: Deploy_Live_channel
     runs-on: ubuntu-latest

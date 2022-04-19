@@ -33,7 +33,7 @@ jobs:
         env:
           FIREBASE_CLI_PREVIEWS: hostingchannels
   Commit_Comment:
-    needs: Deploy_Live_channel
+    needs: Deploy_preview_channel
     runs-on: ubuntu-latest
     steps:
       - name: Commit Comment
