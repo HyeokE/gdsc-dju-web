@@ -27,7 +27,17 @@ jobs:
         uses: peter-evans/commit-comment@v2.0.0
         with:
           body: | 
-            ${{steps.run_firebase_preview.conclusion}}
-            ${{steps.run_firebase_preview.status}}
             ${{job.status}}
-          fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
+            ${{job.result}}
+            ${{job.result.site}}
+            ${{job.result.url}}
+            ${{job.output}}
+            ${{job.output.title}}
+            ${{job.output.summary}}
+            ${{repo}}
+            ${{message}}
+            ${{commit}}
+            ${{author}}
+            ${{action}}
+            ${{eventName}}
+            ${{job}}
