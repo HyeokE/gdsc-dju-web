@@ -33,25 +33,25 @@ const Alert = () => {
       clearTimeout(alertTimer);
     }, 4000);
   }, []);
-  console.log(alert.alertHandle);
+
   return (
-      <AnimatePresence>
-    <AlertWrapper>
-      {alert.alertHandle &&
+    <AnimatePresence>
+      <AlertWrapper>
+        {alert.alertHandle && (
           <AlertInner
-              variants={variants}
-              exit={'unActive'}
-              animate={'active'}
-              initial={{opacity: 0, scale: 0}}
-              transition={{duration: 0.5}}
+            variants={variants}
+            exit={'unActive'}
+            animate={'active'}
+            initial={{ opacity: 0, scale: 0 }}
+            transition={{ duration: 0.5 }}
           >
             <AlertInnerWrapper className={alert.alertStatus}>
               <AlertText>{alert.alertMessage}</AlertText>
             </AlertInnerWrapper>
           </AlertInner>
-      }
-    </AlertWrapper>
-      </AnimatePresence>
+        )}
+      </AlertWrapper>
+    </AnimatePresence>
   );
 };
 

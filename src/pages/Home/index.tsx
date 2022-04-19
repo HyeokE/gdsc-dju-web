@@ -23,8 +23,16 @@ const Home = () => {
       {/*<Parallax speed={-10}>*/}
       {/*  <SectionIntroduce />*/}
       {/*</Parallax>*/}
+<<<<<<< HEAD
       {/*<SectionGoal />*/}
       {/*<SectionTimeLine />*/}
+=======
+
+      {/*<SectionGoal />*/}
+
+      {/*<SectionTimeLine />*/}
+
+>>>>>>> 2c1bde41c74e21dc9e16957bb0825fae78618927
       {/*<Parallax speed={10}>*/}
       {/*  <SectionManager />*/}
       {/*</Parallax>*/}

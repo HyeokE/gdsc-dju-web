@@ -9,12 +9,12 @@ import { useRecoilState } from 'recoil';
 import { localUserState } from '../../store/localUser';
 import { useLocation } from 'react-router';
 import { recruitmentSelector } from '../../store/recruitHandler';
+import API from '../../apis/index';
 
 const Admin = () => {
   const [adminUser, setAdminUser] = useRecoilState(localUserState);
   const navigate = useNavigate();
   const location = useLocation();
-
   const checkAdminUser = async () => {
     await authService.onAuthStateChanged((user: any) => {
       if (user) {
@@ -23,6 +23,7 @@ const Admin = () => {
           uid: user.uid,
         });
         try {
+          API.getAdminUser(user.uid).then((res) => console.log(res.data));
           dbService
             .collection('adminUsers')
             .doc(user.uid)
