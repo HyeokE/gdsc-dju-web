@@ -34,10 +34,4 @@ jobs:
             ${{job.output}}
             ${{job.output.title}}
             ${{job.output.summary}}
-            ${{repository}}
-            ${{message}}
-            ${{commit}}
-            ${{author}}
-            ${{action}}
-            ${{eventName}}
-            ${{job}}
+  
