@@ -2,7 +2,11 @@ name: Deploy to Preview Channel
 
 on:
   push:
+    branches-ignore:
+      - master
   pull_request:
+    branches-ignore:
+      - master
 jobs:
   build_and_preview:
     runs-on: ubuntu-latest
@@ -12,6 +16,10 @@ jobs:
         env:
           CI: ""
       # Add additional build steps here
+  Deploy_preview_channel:
+    runs-on: ubuntu-latest
+    environment: Preview
+    steps:
       - uses: FirebaseExtended/action-hosting-deploy@v0
         id: run_firebase_preview
         with:
@@ -30,5 +38,5 @@ jobs:
             이벤트 명: ${{github.event_name}}
             작업자: ${{github.actor}}
             빌드여부: ${{steps.run_firebase_preview.conclusion}}
-            프리뷰 링크: ${{steps.run_firebase_preview.outputs.details_url}}
+            URL : ${{steps.run_firebase_preview.outputs.details_url}}
             빌드 시간: ${{steps.run_firebase_preview.outputs.expire_time}}
