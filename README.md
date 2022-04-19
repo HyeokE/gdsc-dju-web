@@ -56,6 +56,8 @@ yarn run
 ├── sitemapRoutes.js
 ├── webpack.config.js
 ├── .babelrc
+├── .eslintrc.json
+├── .prettierrc
 └── yarn.lock
 ```
 ## Preview
