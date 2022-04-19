@@ -28,9 +28,6 @@ jobs:
         with:
           body: | 
             ${{steps.run_firebase_preview.conclusion}}
-            ${{steps.run_firebase_preview.output}}
-            ${{steps.run_firebase_preview.title}}
-            ${{steps.run_firebase_preview.output.title}}
-            ${{steps.run_firebase_preview.summary}}
-            ${{steps.run_firebase_preview.output.summary}}
-        
+            ${{steps.run_firebase_preview.status}}
+            ${{job.status}}
+          fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
