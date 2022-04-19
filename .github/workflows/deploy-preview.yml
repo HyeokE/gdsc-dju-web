@@ -27,5 +27,6 @@ jobs:
         uses: peter-evans/commit-comment@v2.0.0
         with:
           body: | 
-            ${{steps.run_firebase_preview.status}}
-            ${{steps.run_firebase_preview.result}}
+            ${{steps.run_firebase_preview.conclusion}}
+            ${{steps.run_firebase_preview.output.summary}}
+            ${{steps.run_firebase_preview.details_url}}
