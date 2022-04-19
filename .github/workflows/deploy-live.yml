@@ -6,6 +6,7 @@ on:
       - master
 jobs:
   build_and_deploy:
+    name: Build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -14,6 +15,7 @@ jobs:
           CI: ""
       # Add additional build steps here
   Deploy_Live_channel:
+    needs: Build
     runs-on: ubuntu-latest
     environment: Production
     steps:
