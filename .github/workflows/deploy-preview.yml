@@ -25,11 +25,7 @@ jobs:
       - name: Commit Comment
         uses: peter-evans/commit-comment@v2.0.0
         with:
+          args: ${{ steps.run_firebase_preview.outputs.result }}
           body: | 
-            ${{job.status}}
-            ${{steps.run_firebase_preview.conclusion.result}}
-            ${{steps.run_firebase_preview.details_url}}
-            ${{steps.run_firebase_preview.output}}
-            ${{steps.run_firebase_preview.output.title}}
-            ${{steps.run_firebase_preview.output.summary}}
-  
+            ${{steps.run_firebase_preview.conclusion}}
+            ${{steps.run_firebase_preview.outputs.result}}  
