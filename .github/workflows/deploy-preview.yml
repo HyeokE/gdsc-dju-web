@@ -8,7 +8,7 @@ on:
     branches-ignore:
       - master
 jobs:
-  build_and_preview:
+  build:
     name: Build
     runs-on: ubuntu-latest
     steps:
@@ -18,7 +18,7 @@ jobs:
           CI: ""
       # Add additional build steps here
   Deploy_preview_channel:
-    needs: Build
+    needs: build
     runs-on: ubuntu-latest
     environment: Preview
     steps:
@@ -32,6 +32,10 @@ jobs:
           channelId: preview
         env:
           FIREBASE_CLI_PREVIEWS: hostingchannels
+  Commit_Comment:
+    needs: Deploy_Live_channel
+    runs-on: ubuntu-latest
+    steps:
       - name: Commit Comment
         uses: peter-evans/commit-comment@v2.0.0
         with:

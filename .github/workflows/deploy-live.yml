@@ -5,7 +5,7 @@ on:
     branches:
       - master
 jobs:
-  build_and_deploy:
+  build:
     name: Build
     runs-on: ubuntu-latest
     steps:
@@ -15,7 +15,7 @@ jobs:
           CI: ""
       # Add additional build steps here
   Deploy_Live_channel:
-    needs: Build
+    needs: build
     runs-on: ubuntu-latest
     environment: Production
     steps:
@@ -25,7 +25,10 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_GDSC_DJU }}'
           channelId: live
           projectId: gdsc-dju
-
+  Commit_Comment:
+    needs: Deploy_Live_channel
+    runs-on: ubuntu-latest
+    steps:
       - name: Commit Comment
         uses: peter-evans/commit-comment@v2.0.0
         with:
