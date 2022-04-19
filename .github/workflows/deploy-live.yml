@@ -19,4 +19,4 @@ jobs:
     steps:
       - uses: FirebaseExtended/action-hosting-deploy@v0
         id: run_firebase_deploy
-        run: './node_modules/.bin/firebase deploy --only hosting --project gdsc-dju --token ${{ secrets.FIREBASE_SERVICE_ACCOUNT_GDSC_DJU }}'
+      - run: './node_modules/.bin/firebase deploy --only hosting --project gdsc-dju --token ${{ secrets.FIREBASE_SERVICE_ACCOUNT_GDSC_DJU }}'
