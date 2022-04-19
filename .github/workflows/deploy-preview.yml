@@ -28,5 +28,7 @@ jobs:
         with:
           body: | 
             ${{steps.run_firebase_preview.conclusion}}
+            ${{steps.run_firebase_preview.output.title}}
             ${{steps.run_firebase_preview.output.summary}}
-            ${{steps.run_firebase_preview.details_url}}
+            ${{steps.run_firebase_preview.status}}
+            ${{steps.run_firebase_preview.result}}
