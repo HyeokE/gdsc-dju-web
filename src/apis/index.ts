@@ -12,8 +12,11 @@ import { memberWarning } from '../types/admin';
 
 export class GDSCApi {
   private API: string;
+  private FIREBASE_API: string;
   constructor() {
     this.API = 'https://gdsc-dju.com';
+    this.FIREBASE_API =
+      'https://firestore.googleapis.com/v1/projects/gdsc-dju/databases/(default)';
   }
   getMemberNickname = () => {
     return axios.get<nickNameDataType>(
@@ -48,6 +51,9 @@ export class GDSCApi {
       `${this.API}/api/admin/v1/update/role`,
       payload,
     );
+  };
+  getAdminUser = (id: string | null) => {
+    return axios.get(`${this.FIREBASE_API}/documents/adminUsers/${id}`);
   };
 }
 export default new GDSCApi();

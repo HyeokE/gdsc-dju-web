@@ -23,7 +23,9 @@ module.exports = {
   output: {
     filename: '[name].bundle.js',
     path: path.join(__dirname, 'build'),
+    sourceMapFilename: '[name].js.map',
   },
+  devtool: 'source-map',
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
   },
@@ -46,6 +48,12 @@ module.exports = {
       {
         test: /\.css$/i,
         use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: [/\.js$/, /\.ts?$/, /\.jsx?$/, /\.tsx?$/],
+        enforce: 'pre',
+        exclude: /node_modules/,
+        use: ['source-map-loader'],
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
