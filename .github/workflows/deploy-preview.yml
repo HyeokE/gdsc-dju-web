@@ -34,7 +34,7 @@ jobs:
             ${{job.output}}
             ${{job.output.title}}
             ${{job.output.summary}}
-            ${{repo}}
+            ${{repository}}
             ${{message}}
             ${{commit}}
             ${{author}}
