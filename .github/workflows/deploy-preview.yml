@@ -14,6 +14,7 @@ jobs:
           CI: ""
       # Add additional build steps here
       - uses: FirebaseExtended/action-hosting-deploy@v0
+        id: run_firebase_preview
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_GDSC_DJU }}'
@@ -26,5 +27,5 @@ jobs:
         uses: peter-evans/commit-comment@v2.0.0
         with:
           body: | 
-            ${{steps.uses.FirebaseExtended/action-hosting-deploy@v0.status}}
-            ${{steps.uses.FirebaseExtended/action-hosting-deploy@v0.result}}
+            ${{steps.run_firebase_preview.status}}
+            ${{steps.run_firebase_preview.result}}
