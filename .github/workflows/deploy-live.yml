@@ -5,31 +5,24 @@ on:
     branches:
       - master
 jobs:
-  build:
+  Deploy_Live_channel:
     name: Build
     runs-on: ubuntu-latest
+    environment:
+      name: Production
+      url: ${{ steps.run_firebase_deploy.outputs.details_url }}
     steps:
       - uses: actions/checkout@v2
       - run: 'yarn && yarn build'
         env:
           CI: ""
       # Add additional build steps here
-  Deploy_Live_channel:
-    needs: build
-    runs-on: ubuntu-latest
-    environment: Production
-    steps:
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_GDSC_DJU }}'
           channelId: live
           projectId: gdsc-dju
-
-  Commit_Comment:
-    needs: Deploy_Live_channel
-    runs-on: ubuntu-latest
-    steps:
       - name: Commit Comment
         uses: peter-evans/commit-comment@v2.0.0
         with:
