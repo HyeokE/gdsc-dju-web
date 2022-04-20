@@ -26,9 +26,9 @@ jobs:
         uses: peter-evans/commit-comment@v2.0.0
         with:
           body: |
-            Deployed to Live channel.
-            이벤트 명: ${{github.event_name}}
-            작업자: ${{github.actor}}
-            빌드여부: ${{steps.run_firebase_deploy.conclusion}}
-            URL : ${{steps.run_firebase_deploy.outputs.details_url}}
-            빌드 시간: ${{steps.run_firebase_deploy.outputs.expire_time}}
+            ## Deployed ${{github.event_name}} to Live channel.
+            > Contributor: ${{github.actor}}
+            
+            - Status: ${{steps.run_firebase_deploy.conclusion}}
+            - URL: ${{steps.run_firebase_deploy.outputs.details_url}}
+            - Build Time: ${{steps.run_firebase_deploy.outputs.expire_time}}
