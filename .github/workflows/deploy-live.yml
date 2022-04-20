@@ -17,6 +17,7 @@ jobs:
           CI: ""
       # Add additional build steps here
       - uses: FirebaseExtended/action-hosting-deploy@v0
+        id: run_firebase_deploy
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_GDSC_DJU }}'
