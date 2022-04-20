@@ -6,7 +6,6 @@ on:
       - master
 jobs:
   Deploy_Live_channel:
-    name: Build
     runs-on: ubuntu-latest
     environment:
       name: Production

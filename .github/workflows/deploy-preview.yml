@@ -9,7 +9,6 @@ on:
       - master
 jobs:
   Deploy_preview_channel:
-    needs: build
     runs-on: ubuntu-latest
     environment:
       name: Preview
@@ -17,8 +16,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: 'yarn && yarn build'
-      env:
-        CI: ""
+        env:
+          CI: ""
         # Add additional build steps here
       - uses: FirebaseExtended/action-hosting-deploy@v0
         id: run_firebase_preview
