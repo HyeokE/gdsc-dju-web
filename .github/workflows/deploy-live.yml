@@ -4,6 +4,11 @@ on:
   push:
     branches:
       - master
+
+  pull_request:
+    branches:
+      - main
+    types: [ closed ]
 jobs:
   Deploy_Live_channel:
     runs-on: ubuntu-latest
@@ -13,10 +18,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: 'yarn && yarn build'
+        if: github.event.pull_request.merged == 'true'
         env:
           CI: ""
       # Add additional build steps here
       - uses: FirebaseExtended/action-hosting-deploy@v0
+        if: github.event.pull_request.merged == 'true'
         id: run_firebase_deploy
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
@@ -24,6 +31,7 @@ jobs:
           channelId: live
           projectId: gdsc-dju
       - name: Commit Comment
+        if: github.event.pull_request.merged == 'true'
         uses: peter-evans/commit-comment@v2.0.0
         with:
           body: |
