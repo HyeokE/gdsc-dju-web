@@ -33,9 +33,9 @@ jobs:
         uses: peter-evans/commit-comment@v2.0.0
         with:
           body: |
-            ## Deployed ${{github.event_name}} to preview channel.
+            ## Deployed ${{steps.run_firebase_preview.conclusion}} to preview channel.
             > Contributor: ${{github.actor}}
             
-            - Status: ${{steps.run_firebase_preview.conclusion}}
+            - Event Status: ${{github.event_name}}
             - URL: ${{steps.run_firebase_preview.outputs.details_url}}
             - Build Time: ${{steps.run_firebase_preview.outputs.expire_time}}
