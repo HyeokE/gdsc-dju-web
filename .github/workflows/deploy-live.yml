@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: Production
-      url: ${{ steps.run_firebase_deploy.outputs.details_url }}
+      url: https://gdsc-dju.web.app
     steps:
       - uses: actions/checkout@v2
       - run: 'yarn && yarn build'
@@ -39,5 +39,5 @@ jobs:
             > Contributor: ${{github.actor}}
             
             - Event Status: ${{github.event_name}}
-            - URL: https://gdsc-dju.web.app/
+            - URL: https://gdsc-dju.web.app
             - Build Time: ${{steps.run_firebase_deploy.outputs.expire_time}}
