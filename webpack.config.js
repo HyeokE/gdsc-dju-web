@@ -3,8 +3,14 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin'); //폴더 비우는 플러그인
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
-const mode = process.env.NODE_ENV || 'development';
+const PROJECT_ROOT = path.resolve(__dirname);
+const PUBLIC_INDEX = path.resolve(PROJECT_ROOT, 'public', 'index.html');
+const SRC_PATH = path.resolve(__dirname, 'src');
+const BUILD_PATH = path.resolve(PROJECT_ROOT, 'dist');
 
+const mode = process.env.NODE_ENV || 'development';
+const isEnvDevelopment = mode === 'development';
+const isEnvProduction = mode === 'production';
 module.exports = {
   mode,
   devServer: {
@@ -17,15 +23,17 @@ module.exports = {
     open: true,
     historyApiFallback: true,
   },
-  entry: {
-    app: path.join(__dirname, 'src', 'index.tsx'),
-  },
+  entry: path.resolve(SRC_PATH, 'index.tsx'),
   output: {
-    filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist'),
-    sourceMapFilename: '[name].js.map',
+    path: BUILD_PATH,
+    filename: isEnvDevelopment
+      ? 'js/[name].[contenthash:8].js'
+      : 'js/bundle.js',
   },
   devtool: 'source-map',
+  cache: {
+    type: isEnvDevelopment ? 'memory' : 'filesystem',
+  },
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
   },
@@ -74,15 +82,14 @@ module.exports = {
       template: './public/index.html',
       filename: './index.html',
       templateParameters: {
-        env: process.env.NODE_ENV === 'production' ? '' : '[DEV]',
+        env: isEnvProduction ? '' : '[DEV]',
       },
-      minify:
-        process.env.NODE_ENV === 'production'
-          ? {
-              collapseWhitespace: true,
-              removeComments: true,
-            }
-          : false,
+      minify: isEnvProduction
+        ? {
+            collapseWhitespace: true,
+            removeComments: true,
+          }
+        : false,
     }),
     new CleanWebpackPlugin(),
     new ForkTsCheckerWebpackPlugin(),
