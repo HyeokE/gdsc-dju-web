@@ -9,7 +9,6 @@ on:
     types: [ closed ]
 jobs:
   Deploy_Live_channel:
-    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     environment:
       name: Production
@@ -17,11 +16,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: 'yarn && yarn build'
-        if: github.event.pull_request.merged == 'true'
+        if: github.event.pull_request.merged == 'true' || github.event_name == 'push'
         env:
           CI: ""
       - uses: FirebaseExtended/action-hosting-deploy@v0
         id: run_firebase_deploy
+        if: github.event.pull_request.merged == 'true' || github.event_name == 'push'
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_GDSC_DJU }}'
