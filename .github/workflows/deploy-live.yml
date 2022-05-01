@@ -4,39 +4,40 @@ on:
   push:
     branches:
       - master
+
+  pull_request:
+    branches:
+      - master
+    types: [ closed ]
 jobs:
-  build:
-    name: Build
+  Deploy_Live_channel:
     runs-on: ubuntu-latest
+    environment:
+      name: Production
+      url: https://gdsc-dju.web.app
     steps:
       - uses: actions/checkout@v2
       - run: 'yarn && yarn build'
+        if: github.event.pull_request.merged == 'true'
         env:
           CI: ""
       # Add additional build steps here
-  Deploy_Live_channel:
-    needs: build
-    runs-on: ubuntu-latest
-    environment: Production
-    steps:
       - uses: FirebaseExtended/action-hosting-deploy@v0
+        if: github.event.pull_request.merged == 'true'
+        id: run_firebase_deploy
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_GDSC_DJU }}'
           channelId: live
           projectId: gdsc-dju
-
-  Commit_Comment:
-    needs: Deploy_Live_channel
-    runs-on: ubuntu-latest
-    steps:
       - name: Commit Comment
+        if: github.event.pull_request.merged == 'true'
         uses: peter-evans/commit-comment@v2.0.0
         with:
           body: |
-            Deployed to Live channel.
-            이벤트 명: ${{github.event_name}}
-            작업자: ${{github.actor}}
-            빌드여부: ${{steps.run_firebase_deploy.conclusion}}
-            URL : ${{steps.run_firebase_deploy.outputs.details_url}}
-            빌드 시간: ${{steps.run_firebase_deploy.outputs.expire_time}}
+            ## Deployed ${{steps.run_firebase_preview.conclusion}} to Live channel.
+            > Contributor: ${{github.actor}}
+            
+            - Event Status: ${{github.event_name}}
+            - URL: https://gdsc-dju.web.app
+            - Build Time: ${{steps.run_firebase_deploy.outputs.expire_time}}
