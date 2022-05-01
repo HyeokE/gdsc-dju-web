@@ -22,7 +22,7 @@ module.exports = {
   },
   output: {
     filename: '[name].bundle.js',
-    path: path.resolve(__dirname, '/dist'),
+    path: path.resolve(__dirname, 'dist'),
     sourceMapFilename: '[name].js.map',
   },
   devtool: 'source-map',
