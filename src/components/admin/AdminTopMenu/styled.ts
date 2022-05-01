@@ -32,6 +32,7 @@ export const StyledLabel = styled.div`
   z-index: 1;
   background: transparent;
   color: #737d89;
+  font-size: ${({ theme }) => theme.fontSize.body2};
 `;
 export const StyledLi = styled.li`
   background: transparent;

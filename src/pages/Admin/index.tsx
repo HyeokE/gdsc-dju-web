@@ -10,6 +10,7 @@ import { localUserState } from '../../store/localUser';
 import { useLocation } from 'react-router';
 import { recruitmentSelector } from '../../store/recruitHandler';
 import API from '../../apis/index';
+import AdminEmail from './AdminEmail';
 
 const Admin = () => {
   const [adminUser, setAdminUser] = useRecoilState(localUserState);
@@ -63,6 +64,7 @@ const Admin = () => {
         <Route path={'/*'} element={<AdminHome />} />
         <Route path={'/member'} element={<AdminMember />} />
         <Route path={'/recruit'} element={<AdminSetting />} />
+        <Route path={'/email'} element={<AdminEmail />} />
       </Routes>
     </>
   );
