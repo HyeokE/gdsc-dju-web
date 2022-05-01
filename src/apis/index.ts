@@ -31,7 +31,7 @@ export class GDSCApi {
   };
   getRecruitStatus = () => {
     return axios.get<getRecruitmentInfoDataType>(
-      `${this.API}/api/admin/v1/support/limit`,
+      `${this.API}/api/support/limit`,
     );
   };
   putRecruitStatus = (payload: recruitmentInfoDataType) => {
