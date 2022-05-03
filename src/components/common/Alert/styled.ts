@@ -1,16 +1,21 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { motion } from 'framer-motion';
 
-export const AlertInnerWrapper = styled.div`
+export const AlertInnerWrapper = styled.div<{ alertColor: string }>`
   display: flex;
   align-items: center;
   flex-direction: row;
-  padding: 15px 0px;
+  padding: 15px 0;
   justify-content: center;
   text-align: center;
   width: 100%;
   opacity: 80%;
   z-index: 3;
+  ${({ alertColor }) =>
+    alertColor &&
+    css`
+      background: ${alertColor};
+    `}
 `;
 export const AlertText = styled.div`
   font-size: ${(props) => props.theme.fontSize.h7};

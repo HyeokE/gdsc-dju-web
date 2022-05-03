@@ -33,6 +33,11 @@ const Alert = () => {
       clearTimeout(alertTimer);
     }, 4000);
   }, []);
+  const alertStatusColor = {
+    success: '#55af7a',
+    error: '#f44336',
+    warning: '#ffa50e',
+  };
 
   return (
     <AnimatePresence>
@@ -45,7 +50,7 @@ const Alert = () => {
             initial={{ opacity: 0, scale: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <AlertInnerWrapper className={alert.alertStatus}>
+            <AlertInnerWrapper alertColor={alertStatusColor[alert.alertStatus]}>
               <AlertText>{alert.alertMessage}</AlertText>
             </AlertInnerWrapper>
           </AlertInner>
