@@ -15,7 +15,7 @@ jobs:
       url: https://gdsc-dju.web.app
     steps:
       - uses: actions/checkout@v2
-      - run: yarn && vite build
+      - run: yarn && yarn build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         id: run_firebase_deploy
         with:
