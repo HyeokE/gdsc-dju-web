@@ -7,7 +7,6 @@ import {
   AlertWrapper,
 } from './styled';
 import { alertState } from '../../../store/alert';
-import './Alert.css';
 import { AnimatePresence } from 'framer-motion';
 
 const variants = {
