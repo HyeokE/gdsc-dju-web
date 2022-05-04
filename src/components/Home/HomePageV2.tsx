@@ -5,11 +5,9 @@ import {
   MainBannerText,
   RecruitingWrapper,
 } from '../../pages/Home/styled';
-import Line1 from '../../assets/HomeAssets/Line1';
-import Line2 from '../../assets/HomeAssets/Line2';
-import Line3 from '../../assets/HomeAssets/Line3';
 import { bannerItemAnimate } from '../common/Variants/Variants';
 import Recruiting from '../../assets/Recruiting';
+import SolarSystem from '../../components/Home/SolorSystem';
 
 const HomePageV2 = () => {
   return (
@@ -19,7 +17,7 @@ const HomePageV2 = () => {
         <RecruitingWrapper variants={bannerItemAnimate}>
           <Recruiting />
           <MainBannerText variants={bannerItemAnimate}>
-            <>상상의 시작은 GDSC로부터.</>
+            상상을 현실로
           </MainBannerText>
           <MainBannerText variants={bannerItemAnimate}>
             11. 22 ~ 12. 19
@@ -27,15 +25,6 @@ const HomePageV2 = () => {
         </RecruitingWrapper>
       </BannerTitleWrapper>
     </HomeWrapper>
-  );
-};
-const SolarSystem = () => {
-  return (
-    <div>
-      <Line3 />
-      <Line1 />
-      <Line2 />
-    </div>
   );
 };
 

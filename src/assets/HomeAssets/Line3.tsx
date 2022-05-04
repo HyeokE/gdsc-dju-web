@@ -21,6 +21,8 @@ const Line3 = () => {
       </svg>
       <Planet line={3} />
       <Planet line={3} />
+      <Planet line={3} />
+      <Planet line={3} />
     </LineContainer>
   );
 };
