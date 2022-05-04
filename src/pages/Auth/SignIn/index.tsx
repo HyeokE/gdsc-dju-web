@@ -20,13 +20,10 @@ import {
   OAuthText,
 } from './styled';
 import GDSCImage from '../../../assets/GDSCLogo.svg';
-import officeImage from '../../../assets/auth/AuthBackground.jpg';
-import officeImage1 from '../../../assets/auth/AuthBackground1.jpg';
 import GoogleLogo from '../../../assets/GoogleLogo.svg';
 import GithubLogo from '../../../assets/GithubLogo.svg';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
-import { modalState } from '../../../store/modal';
 import { authService, dbService } from '../../../firebase/firebase';
 import { localUserState } from '../../../store/localUser';
 import { loaderState } from '../../../store/loader';
@@ -107,7 +104,7 @@ const SignIn = () => {
 
   return (
     <>
-      <AuthBackground route={officeImage1}>
+      <AuthBackground>
         <AuthBoxWrapper>
           <AuthBoxInner>
             <AuthElementWrapper align={'center'}>
