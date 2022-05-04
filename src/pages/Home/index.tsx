@@ -14,6 +14,9 @@ const HomeContainer = styled.div`
     height: calc(100vh);
     scroll-snap-type: y mandatory;
     overflow-y: scroll;
+    @media (max-width: 500px) {
+      scroll-snap-type: none;
+    }
   }
   .container::-webkit-scrollbar {
     width: 0;
