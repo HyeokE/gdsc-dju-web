@@ -63,6 +63,11 @@ export const FooterWrapper = styled.div<{ display?: string }>`
   backdrop-filter: blur(10px);
   @media (max-width: ${(props) => props.theme.windowSize.mobile}px) {
     padding: 30px 20px;
+    ${({ display }) =>
+      display === 'fixed' &&
+      css`
+        display: none;
+      `}
   }
 `;
 export const FooterLogo = styled.div`

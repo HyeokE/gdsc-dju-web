@@ -32,7 +32,7 @@ const Home = () => {
         {/*<HomePageV2 />*/}
         <HomePage />
         <SectionIntroduce />
-        <SectionGoal />
+        {/*<SectionGoal />*/}
         {/*<SectionTimeLine />*/}
         <SectionManager />
       </div>

@@ -25,6 +25,8 @@ import Recruiting from '../../assets/Recruiting';
 import DownArrow from '../../assets/DownArrow';
 
 const HomePage = () => {
+  const [recruit] = useRecoilState(recruitmentState);
+
   return (
     <HomeWrapper variants={homeBannerAnimate} initial={'start'} animate={'end'}>
       <BackgroundLine />
@@ -32,7 +34,11 @@ const HomePage = () => {
         <RecruitingWrapper variants={bannerItemAnimate}>
           <Recruiting />
           <MainBannerText variants={bannerItemAnimate}>
-            GDSC Daejin Univ. 에서 새로운 식구들을 모집하고 있습니다.
+            {recruit.home ? (
+              <>GDSC Daejin Univ. 에서 새로운 식구들을 모집하고 있습니다.</>
+            ) : (
+              <>상상의 시작은 GDSC로부터.</>
+            )}
           </MainBannerText>
           <HomeRecruitmentButton />
           <MainBannerText variants={bannerItemAnimate}>

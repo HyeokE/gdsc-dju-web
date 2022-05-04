@@ -7,7 +7,7 @@ export const HomeWrapper = styled(motion.div)`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - 7rem);
+  height: 100vh;
   overflow: hidden;
 `;
 export const StyledRecruitmentButton = styled.button<{ disable?: boolean }>`
@@ -62,6 +62,7 @@ export const RecruitingWrapper = styled(motion.div)`
   position: static;
   z-index: 50;
   max-width: 600px;
+  width: 400px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -111,6 +112,7 @@ export const MainBannerText = styled(motion.p)`
   align-items: center;
   text-align: center;
   font-size: 1.8rem;
+
   color: ${({ theme }) => theme.colors.grey500};
   @media (max-width: ${({ theme }) => theme.windowSize.tablet}px) {
     font-size: 1.5rem;
