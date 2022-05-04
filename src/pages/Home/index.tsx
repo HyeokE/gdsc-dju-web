@@ -5,6 +5,7 @@ import SectionManager from '../../components/Home/SectionManager';
 import SectionTimeLine from '../../components/Home/SectionTimeLine';
 import SectionIntroduce from '../../components/Home/SectionIntroduce';
 import SectionGoal from '../../components/Home/SectionGoal';
+import HomePageV2 from '../../components/Home/HomePageV2';
 
 const HomeContainer = styled.div`
   overflow-y: auto;
@@ -28,6 +29,7 @@ const Home = () => {
   return (
     <HomeContainer>
       <div className={'container'}>
+        {/*<HomePageV2 />*/}
         <HomePage />
         <SectionIntroduce />
         <SectionGoal />

@@ -24,7 +24,7 @@ import ColorLines from '../../assets/ColorLines';
 import Recruiting from '../../assets/Recruiting';
 import DownArrow from '../../assets/DownArrow';
 
-const HomePage = () => {
+const HomePageV2 = () => {
   return (
     <HomeWrapper variants={homeBannerAnimate} initial={'start'} animate={'end'}>
       <BackgroundLine />
@@ -90,4 +90,4 @@ const HomeRecruitmentButton = () => {
   );
 };
 
-export default HomePage;
+export default HomePageV2;
