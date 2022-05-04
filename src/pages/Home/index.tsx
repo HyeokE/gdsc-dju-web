@@ -29,8 +29,8 @@ const Home = () => {
   return (
     <HomeContainer>
       <div className={'container'}>
-        {/*<HomePageV2 />*/}
-        <HomePage />
+        <HomePageV2 />
+        {/*<HomePage />*/}
         <SectionIntroduce />
         {/*<SectionGoal />*/}
         {/*<SectionTimeLine />*/}
