@@ -13,9 +13,15 @@ export const Footer = () => {
   const location = useLocation();
   const locate = location.pathname;
   const navigate = useNavigate();
-
+  const display = () => {
+    if (locate === '/') {
+      return 'fixed';
+    } else {
+      return 'static';
+    }
+  };
   return (
-    <FooterWrapper className={locate === '/onboarding' ? 'none' : ''}>
+    <FooterWrapper display={display()}>
       <FooterLogo>
         <FooterText google={true} href={'https://developers.google.com/'}>
           Google

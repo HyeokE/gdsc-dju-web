@@ -6,7 +6,7 @@ export const NavDesign = styled(motion.nav)<{
   background?: boolean;
   disable?: boolean;
 }>`
-  position: sticky;
+  position: fixed;
   top: 0;
   z-index: 90;
   height: 70px;

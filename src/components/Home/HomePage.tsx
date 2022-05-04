@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import {
   BannerTitleWrapper,
   ButtonWrapper,
@@ -26,8 +26,23 @@ import { recruitmentState } from '../../store/recruitHandler';
 
 const HomePage = () => {
   const [recruit] = useRecoilState(recruitmentState);
+  const HomeWrapperRef = useRef<HTMLDivElement>(null);
+  const HomeWrapperCurrent = HomeWrapperRef.current as HTMLDivElement;
+  // const onMouseMove = (e: any) => {
+  //   const width = HomeWrapperCurrent.clientWidth;
+  //   const height = HomeWrapperCurrent.clientHeight;
+  //   const offsetX = (e.nativeEvent.offsetX / width) * 100;
+  //   const offsetY = (e.nativeEvent.offsetY / height) * 100;
+  //   console.log(offsetX, offsetY);
+  // };
   return (
-    <HomeWrapper variants={homeBannerAnimate} initial={'start'} animate={'end'}>
+    <HomeWrapper
+      variants={homeBannerAnimate}
+      initial={'start'}
+      animate={'end'}
+      // onMouseMove={onMouseMove}
+      ref={HomeWrapperRef}
+    >
       <StyledMainBanner
         variants={titleAnimate}
         initial={'start'}

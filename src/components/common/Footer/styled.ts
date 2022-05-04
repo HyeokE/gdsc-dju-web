@@ -46,12 +46,21 @@ export const FooterCopyRight = styled.span`
     font-size: ${(props) => props.theme.fontSize.body4};
   }
 `;
-export const FooterWrapper = styled.footer`
+export const FooterWrapper = styled.div<{ display?: string }>`
+  ${({ display }) =>
+    display &&
+    css`
+      position: ${display};
+    `}
   display: flex;
   bottom: 0;
   padding: 30px 40px;
   justify-content: space-between;
+  width: 100vw;
+  box-sizing: border-box;
   align-items: flex-end;
+  background-color: rgba(0, 0, 0, 0.01);
+  backdrop-filter: blur(10px);
   @media (max-width: ${(props) => props.theme.windowSize.mobile}px) {
     padding: 30px 20px;
   }

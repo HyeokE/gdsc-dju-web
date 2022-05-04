@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import styled, { css } from 'styled-components';
 
-export const HomeWrapper = styled(motion.main)`
+export const HomeWrapper = styled(motion.div)`
   position: relative;
   display: flex;
   flex-direction: column;
