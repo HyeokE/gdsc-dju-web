@@ -16,12 +16,15 @@ const SolarSystemWrapper = styled.div`
   display: flex;
   flex-direction: column;
   position: absolute;
-  left: 90%;
-  top: 60%;
+  left: 50%;
+  top: 5%;
   transform: translate(-50%, -50%);
+  transform: scale(1.5, 1.5);
+
   @media (max-width: 500px) {
     left: 100%;
-    transform: scale(0.5, 0.5);
+    top: 60%;
+    transform: scale(0.6, 0.6);
   }
 `;
 const SolarSystem = () => {
