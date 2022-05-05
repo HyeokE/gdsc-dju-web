@@ -3,8 +3,8 @@ import React, { memo, useState } from 'react';
 import styled, { css } from 'styled-components';
 
 const Planet = ({ line }: { line: number }) => {
-  const delay = Math.round(Math.random() * 20);
-  const randomSize = Math.round(Math.random() * (100 - 20) + 20);
+  const delay = Math.round(Math.random() * 15);
+  const randomSize = Math.round(Math.random() * (90 - 20) + 20);
   const randomStartPoint = Math.round(Math.random() * 100);
   const randomColors = ['#4285F4', '#EA4335', '#FBBC04', '#34A853'];
   const randomColor =

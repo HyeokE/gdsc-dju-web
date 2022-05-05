@@ -4,7 +4,7 @@ import Line1 from '../../assets/HomeAssets/Line1';
 import Line2 from '../../assets/HomeAssets/Line2';
 import Line3 from '../../assets/HomeAssets/Line3';
 
-const SolarSystemWrapper = styled.div`
+const SolarSystemLineWrapper = styled.div`
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -12,19 +12,31 @@ const SolarSystemWrapper = styled.div`
   top: 50%;
   transform: translate(-50%, -50%);
 `;
+const SolarSystemWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  left: 90%;
+  top: 60%;
+  transform: translate(-50%, -50%);
+  @media (max-width: 500px) {
+    left: 100%;
+    transform: scale(0.5, 0.5);
+  }
+`;
 const SolarSystem = () => {
   return (
-    <>
-      <SolarSystemWrapper>
+    <SolarSystemWrapper>
+      <SolarSystemLineWrapper>
         <Line1 />
-      </SolarSystemWrapper>
-      <SolarSystemWrapper>
+      </SolarSystemLineWrapper>
+      <SolarSystemLineWrapper>
         <Line2 />
-      </SolarSystemWrapper>
-      <SolarSystemWrapper>
+      </SolarSystemLineWrapper>
+      <SolarSystemLineWrapper>
         <Line3 />
-      </SolarSystemWrapper>
-    </>
+      </SolarSystemLineWrapper>
+    </SolarSystemWrapper>
   );
 };
 

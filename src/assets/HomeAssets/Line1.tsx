@@ -26,7 +26,6 @@ const Line1 = () => {
       <Planet line={1} />
       <Planet line={1} />
       <Planet line={1} />
-      <Planet line={1} />
     </LineContainer>
   );
 };
