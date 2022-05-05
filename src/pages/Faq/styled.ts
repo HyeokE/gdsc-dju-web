@@ -19,6 +19,9 @@ export const QuestionInner = styled.div`
   display: flex;
   align-items: center;
   flex-direction: row;
+  @media (max-width: 500px) {
+    font-size: ${({ theme }) => theme.fontSize.body1};
+  }
 `;
 export const AnswerWrapper = styled(motion.div)`
   box-sizing: border-box;
@@ -28,6 +31,9 @@ export const AnswerWrapper = styled(motion.div)`
 `;
 export const AnswerText = styled.div`
   font-size: ${({ theme }) => theme.fontSize.body1};
+  @media (max-width: 500px) {
+    font-size: ${({ theme }) => theme.fontSize.body2};
+  }
 `;
 export const QuestionBr = styled.div`
   border-top: 1px solid ${({ theme }) => theme.colors.grey200};

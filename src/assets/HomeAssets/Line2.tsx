@@ -23,6 +23,7 @@ const Line2 = () => {
       <Planet line={2} />
       <Planet line={2} />
       <Planet line={2} />
+      <Planet line={2} />
     </LineContainer>
   );
 };
