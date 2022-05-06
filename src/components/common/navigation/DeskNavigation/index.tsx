@@ -22,10 +22,6 @@ import MobileMenu from '../MobileMenu';
 
 export const ROUTES = [
   {
-    route: '/',
-    title: 'Home',
-  },
-  {
     route: '/introduce',
     title: 'Introduce',
   },
