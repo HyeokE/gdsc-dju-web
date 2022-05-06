@@ -2,16 +2,14 @@ import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
 export const MobileNavBackGround = styled(motion.div)`
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   background: #fff;
   z-index: 900;
-  display: inline-block;
   border-style: solid;
+  display: flex;
+
+  justify-content: center;
   border-width: 0;
   border-left-width: 1px;
   border-color: ${(props) => props.theme.colors.grey200};

@@ -14,8 +14,8 @@ import {
   IntroduceWrapper,
   JoinInner,
   JoinWrapper,
-  MoblieBottomElementWrapper,
-  MoblieTopElementWrapper,
+  MobileBottomElementWrapper,
+  MobileTopElementWrapper,
   SectionWrapper,
 } from './styled';
 import { recruitDefaultText } from '../../../apis/pageData/recruitDefaultText';
@@ -37,12 +37,12 @@ const RecruitmentDetail: React.FC = () => {
             <TopMargin />
             <Title>{aboutTeam?.name}</Title>
             <TopMargin />
-            <MoblieTopElementWrapper>
+            <MobileTopElementWrapper>
               <JoinInner>
                 <InformationBar name={aboutTeam.name} />
                 <TopMargin />
               </JoinInner>
-            </MoblieTopElementWrapper>
+            </MobileTopElementWrapper>
             <MainText>열정적인 동료를 얻기 위해 이 자리에 모였습니다.</MainText>
             <MainText>
               우리는 함께 고민을 나누고 도전하며 목표를 향해 달리고 있습니다.
@@ -92,9 +92,9 @@ const RecruitmentDetail: React.FC = () => {
                 </JoinInner>
               </JoinWrapper>
             </SectionWrapper>
-            <MoblieBottomElementWrapper>
+            <MobileBottomElementWrapper>
               <RecruitFaqButton name={id as string} />
-            </MoblieBottomElementWrapper>
+            </MobileBottomElementWrapper>
           </ContainerInner>
         </LayoutContainer>
       )}

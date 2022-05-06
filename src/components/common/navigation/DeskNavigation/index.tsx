@@ -67,8 +67,8 @@ export const Navigation: React.FC = () => {
             <MenuToggleIcon />
           </NavInner>
         </NavWrapper>
+        <MobileMenu />
       </NavDesign>
-      <MobileMenu />
     </>
   );
 };

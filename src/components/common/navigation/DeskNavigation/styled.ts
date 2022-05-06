@@ -10,7 +10,7 @@ export const NavDesign = styled(motion.nav)<{
   top: 0;
   z-index: 90;
   height: 70px;
-  width: 100%;
+  width: 100vw;
   display: flex;
   ${(props) =>
     props.background
@@ -91,16 +91,15 @@ export const WideNavigation = styled.div`
     display: none;
   }
 `;
-export const NavigationWrapper = styled.div`
-  position: sticky;
-`;
+
 export const ShortNavigation = styled(motion.nav)`
-  position: sticky;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
   top: 0;
-  right: 0;
-  bottom: 0;
+  right: 100vw;
   z-index: 91;
-  @media (min-width: 560px) {
+  @media (min-width: 500px) {
     display: none;
   }
 `;
@@ -114,7 +113,7 @@ export const StyledLink = styled(motion.div)<{ isRoute?: boolean }>`
   border-radius: 8px;
   transition-duration: 0.3s;
   transition-timing-function: ease;
-  font-size: 1.4rem;
+  font-size: ${({ theme }) => theme.fontSize.body1};
   transition-delay: 0s;
   ${({ isRoute }) =>
     isRoute &&

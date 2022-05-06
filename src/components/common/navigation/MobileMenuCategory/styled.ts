@@ -1,25 +1,18 @@
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
-export const Menu = styled.div`
-  top: 0px;
-  position: fixed;
-  background: #fff;
-  width: 100%;
+export const MenuWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  z-index: 99;
 `;
 export const MenuInner = styled(motion.div)`
+  margin-top: 70px;
   padding: 25px;
-  position: absolute;
-  top: 100px;
-  right: 0px;
   width: 200px;
   z-index: 999;
 `;
 
-export const MenuWrapper = styled(motion.div)`
+export const MenuRouteWrapper = styled(motion.div)`
   list-style: none;
   margin-bottom: 20px;
   display: flex;

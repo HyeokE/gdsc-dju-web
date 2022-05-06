@@ -10,15 +10,8 @@ import { MobileNavBackGround } from './styled';
 
 const MobileMenu = () => {
   const [menu, setMenu] = useRecoilState(menuState);
-  const containerRef = useRef(null);
-  const height = '100vh';
   return (
-    <ShortNavigation
-      initial={false}
-      animate={menu.appMenu ? 'open' : 'closed'}
-      custom={height}
-      ref={containerRef}
-    >
+    <ShortNavigation initial={false} animate={menu.appMenu ? 'open' : 'closed'}>
       <MobileNavBackGround variants={sidebar}>
         <MobileMenuCategory />
       </MobileNavBackGround>

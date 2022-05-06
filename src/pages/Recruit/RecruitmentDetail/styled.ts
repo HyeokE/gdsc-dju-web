@@ -44,7 +44,7 @@ export const JoinInner = styled.div`
   }
 `;
 
-export const MoblieTopElementWrapper = styled.div`
+export const MobileTopElementWrapper = styled.div`
   display: none;
   @media (max-width: 500px) {
     display: flex;
@@ -53,7 +53,7 @@ export const MoblieTopElementWrapper = styled.div`
     bottom: 10px;
   }
 `;
-export const MoblieBottomElementWrapper = styled.div`
+export const MobileBottomElementWrapper = styled.div`
   display: none;
   background: -webkit-linear-gradient(
     bottom,
@@ -65,6 +65,6 @@ export const MoblieBottomElementWrapper = styled.div`
     display: flex;
     flex-direction: column;
     position: sticky;
-    bottom: 0px;
+    bottom: 0;
   }
 `;
