@@ -33,8 +33,7 @@ export const sidebar = {
     },
   }),
   closed: (height: number) => ({
-    // y: `-${height}vh`,
-    x: '100vw',
+    x: '-100%',
     transition: {
       duration: 0.5,
     },
