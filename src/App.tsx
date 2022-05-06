@@ -9,6 +9,7 @@ import { Footer } from './components/common/Footer';
 import { useRecoilValue } from 'recoil';
 import { loaderState } from './store/loader';
 import GlobalStyles from './styles/globalStyles';
+import MobileMenu from './components/common/navigation/MobileMenu';
 
 function App() {
   const loading = useRecoilValue(loaderState);
