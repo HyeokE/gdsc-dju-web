@@ -30,7 +30,7 @@ jobs:
           webhook_token: ${{ secrets.WEBHOOK_TOKEN }}
           color: "#4285f4"
           args: |
-            gdsc-blog-fe has been deployed to Live channel
+            gdsc-dju-web has been deployed to Live channel
             `Contributor` ${{github.actor}}
             `Event Status` ${{github.event_name}}
             `URL` https://gdsc-dju.web.app
