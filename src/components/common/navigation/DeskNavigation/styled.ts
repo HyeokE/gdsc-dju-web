@@ -97,6 +97,7 @@ export const ShortNavigation = styled(motion.nav)`
   width: 100vw;
   height: 100vh;
   top: 0;
+  right: 100vw;
   z-index: 91;
   @media (min-width: 500px) {
     display: none;

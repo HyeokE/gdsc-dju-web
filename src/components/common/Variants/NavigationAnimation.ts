@@ -27,13 +27,13 @@ export const navigationItemAnimate = {
 };
 export const sidebar = {
   open: (height: number) => ({
-    x: 0,
+    x: '100vw',
     transition: {
       duration: 0.5,
     },
   }),
   closed: (height: number) => ({
-    x: '-100%',
+    x: '-100vw',
     transition: {
       duration: 0.5,
     },
