@@ -2,7 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
   * {
-    font-family: 'Google Sans Display','spoqa-han-sans', sans-serif;
+    font-family: 'Spoqa Han Sans Neo', 'Spoqa Han Sans JP', sans-serif;
     font-style: normal;
     margin: 0;
     word-break: keep-all;
