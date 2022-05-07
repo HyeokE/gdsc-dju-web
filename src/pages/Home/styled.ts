@@ -56,7 +56,7 @@ export const BannerTitleWrapper = styled(motion.section)`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 80%;
+  width: 70%;
 `;
 export const RecruitingWrapper = styled(motion.div)`
   position: static;

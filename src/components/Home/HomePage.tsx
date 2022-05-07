@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import {
   bannerItemAnimate,
   homeBannerAnimate,
@@ -22,7 +22,7 @@ import { useRecoilState } from 'recoil';
 import { recruitmentState } from '../../store/recruitHandler';
 import ColorLines from '../../assets/ColorLines';
 import Recruiting from '../../assets/Recruiting';
-import DownArrow from '../../assets/DownArrow';
+import DownArrowIcon from '../../assets/DownArrow';
 
 const HomePage = () => {
   const [recruit] = useRecoilState(recruitmentState);
@@ -58,7 +58,7 @@ const HomePage = () => {
           repeat: Infinity,
         }}
       >
-        <DownArrow />
+        <DownArrowIcon />
       </DownArrowWrapper>
     </HomeWrapper>
   );

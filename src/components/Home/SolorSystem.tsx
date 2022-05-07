@@ -23,7 +23,7 @@ const SolarSystemWrapper = styled.div`
 
   @media (max-width: 500px) {
     left: 100%;
-    top: 60%;
+    top: 50%;
     transform: scale(0.6, 0.6);
   }
 `;

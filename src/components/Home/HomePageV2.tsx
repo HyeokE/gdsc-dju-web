@@ -12,6 +12,7 @@ import Recruiting from '../../assets/Recruiting';
 import SolarSystem from '../../components/Home/SolorSystem';
 import { useRecoilState } from 'recoil';
 import { recruitmentState } from '../../store/recruitHandler';
+import DownArrow from '../common/DownArrow';
 
 const HomePageV2 = () => {
   return (
@@ -29,6 +30,7 @@ const HomePageV2 = () => {
           {/*</MainBannerText>*/}
         </RecruitingWrapper>
       </BannerTitleWrapper>
+      <DownArrow />
     </HomeWrapper>
   );
 };
