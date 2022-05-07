@@ -14,13 +14,11 @@ const Line2 = () => {
         xmlns="http://www.w3.org/2000/svg"
       >
         <motion.path
-          opacity="0.23"
+          opacity="1"
           d="M493 985.5C765 985.5 985.5 765 985.5 493C985.5 221 765 0.5 493 0.5C221 0.5 0.5 221 0.5 493C0.5 765 221 985.5 493 985.5Z"
-          stroke="black"
+          stroke="#e7e7e7"
         />
       </svg>
-      <Planet line={2} />
-      <Planet line={2} />
       <Planet line={2} />
       <Planet line={2} />
       <Planet line={2} />

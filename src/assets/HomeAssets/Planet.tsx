@@ -4,11 +4,11 @@ import styled, { css } from 'styled-components';
 
 const Planet = ({ line }: { line: number }) => {
   const delay = Math.round(Math.random() * (30 - 10) + 10);
-  const randomSize = Math.round(Math.random() * (80 - 20) + 20);
-  const randomStartPoint = Math.round(Math.random() * 100);
-  const randomColors = ['#4285F4', '#EA4335', '#FBBC04', '#34A853'];
+  const randomSize = Math.round(Math.random() * (70 - 20) + 20);
+  const randomStartPoint = Math.round(Math.random() * (100 - 20) + 20);
+  const googleColors = ['#4285F4', '#EA4335', '#FBBC04', '#34A853'];
   const randomColor =
-    randomColors[Math.floor(Math.random() * randomColors.length)];
+    googleColors[Math.floor(Math.random() * googleColors.length)];
   return (
     <PlanetInner
       path={line}
