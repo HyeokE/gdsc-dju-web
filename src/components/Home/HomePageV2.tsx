@@ -2,6 +2,7 @@ import React from 'react';
 import {
   BannerTitleWrapper,
   ButtonWrapper,
+  HomeSolarSystemWrapper,
   HomeWrapper,
   MainBannerText,
   RecruitingWrapper,
@@ -17,7 +18,9 @@ import DownArrow from '../common/DownArrow';
 const HomePageV2 = () => {
   return (
     <HomeWrapper>
-      <SolarSystem />
+      <HomeSolarSystemWrapper>
+        <SolarSystem />
+      </HomeSolarSystemWrapper>
       <BannerTitleWrapper>
         <RecruitingWrapper variants={bannerItemAnimate}>
           <Recruiting />

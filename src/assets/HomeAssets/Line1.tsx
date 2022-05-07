@@ -3,9 +3,7 @@ import React from 'react';
 import Planet from './Planet';
 import styled from 'styled-components';
 
-export const LineContainer = styled.div`
-  position: relative;
-`;
+export const LineContainer = styled.div``;
 
 const Line1 = () => {
   return (

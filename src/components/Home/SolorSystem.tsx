@@ -12,24 +12,10 @@ const SolarSystemLineWrapper = styled.div`
   top: 50%;
   transform: translate(-50%, -50%);
 `;
-const SolarSystemWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  left: 50%;
-  top: -8%;
-  transform: translate(-50%, -50%);
-  transform: scale(1.5, 1.5);
 
-  @media (max-width: 500px) {
-    left: 100%;
-    top: 50%;
-    transform: scale(0.6, 0.6);
-  }
-`;
 const SolarSystem = () => {
   return (
-    <SolarSystemWrapper>
+    <>
       <SolarSystemLineWrapper>
         <Line1 />
       </SolarSystemLineWrapper>
@@ -39,7 +25,7 @@ const SolarSystem = () => {
       <SolarSystemLineWrapper>
         <Line3 />
       </SolarSystemLineWrapper>
-    </SolarSystemWrapper>
+    </>
   );
 };
 

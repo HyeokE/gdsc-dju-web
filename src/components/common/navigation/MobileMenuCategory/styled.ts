@@ -4,12 +4,17 @@ import styled from 'styled-components';
 export const MenuWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  margin-top: 100px;
+  align-items: center;
 `;
 export const MenuInner = styled(motion.div)`
-  margin-top: 70px;
+  margin-top: 50px;
   padding: 25px;
   width: 200px;
   z-index: 999;
+`;
+export const MenuLogo = styled.img`
+  width: 100px;
 `;
 
 export const MenuRouteWrapper = styled(motion.div)`
