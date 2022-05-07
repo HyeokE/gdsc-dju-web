@@ -113,7 +113,8 @@ export const StyledLink = styled(motion.div)<{ isRoute?: boolean }>`
   border-radius: 8px;
   transition-duration: 0.3s;
   transition-timing-function: ease;
-  font-size: ${({ theme }) => theme.fontSize.body1};
+  font-size: ${({ theme }) => theme.fontSize.body2};
+  font-weight: 400;
   transition-delay: 0s;
   ${({ isRoute }) =>
     isRoute &&
