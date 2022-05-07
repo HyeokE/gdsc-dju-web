@@ -1,11 +1,12 @@
-import React from 'react';
-import SectionIntroduce from '../../components/Home/SectionIntroduce';
-import SectionTimeLine from '../../components/Home/SectionTimeLine';
-import SectionManager from '../../components/Home/SectionManager';
-import SectionGoal from '../../components/Home/SectionGoal';
+import React, { lazy, Suspense } from 'react';
 import styled from 'styled-components';
-import HomePage from '../../components/Home/HomePage';
-import { Parallax } from 'react-scroll-parallax';
+import GoogleSpinner from '../../components/Lottie/GoogleSpinner';
+
+const HomePage = lazy(() =>
+  import('../../components/Home/HomePage').then((module) => ({
+    default: module.default,
+  })),
+);
 
 const HomeContainer = styled.div`
   overflow-y: auto;
@@ -19,7 +20,9 @@ const HomeContainer = styled.div`
 const Home = () => {
   return (
     <HomeContainer>
-      <HomePage />
+      <Suspense fallback={<GoogleSpinner />}>
+        <HomePage />
+      </Suspense>
       {/*<SectionIntroduce />*/}
       {/*<SectionGoal />*/}
       {/*<SectionTimeLine />*/}

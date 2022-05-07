@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import GDSCLogo from '../../../../assets/GDSCLogo.svg';
 
 import { useLocation } from 'react-router';
-import './Navigation.css';
+
 import MenuToggleIcon from '../../MenuToggleIcon';
 import {
   NavDesign,
