@@ -6,7 +6,7 @@ export const NavDesign = styled(motion.nav)<{
   background?: boolean;
   disable?: boolean;
 }>`
-  position: fixed;
+  position: sticky;
   top: 0;
   z-index: 90;
   height: 70px;
@@ -115,7 +115,6 @@ export const StyledLink = styled(motion.div)<{ isRoute?: boolean }>`
   transition-timing-function: ease;
   font-size: ${({ theme }) => theme.fontSize.body2};
   font-weight: 400;
-  transition-delay: 0s;
   ${({ isRoute }) =>
     isRoute &&
     css`

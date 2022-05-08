@@ -49,7 +49,7 @@ yarn run
 ├── types
 ├── utils
 ├── App.tsx
-├── index.tsx
+├── MemberCardSection.tsx
 ├── tsconfig.json
 ├── react-app-env.d.ts
 ├── sitemapGenerator.js

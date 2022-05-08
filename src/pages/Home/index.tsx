@@ -1,17 +1,20 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import styled from 'styled-components';
-import HomePage from '../../components/Home/HomePage';
 import SectionManager from '../../components/Home/SectionManager';
-import SectionTimeLine from '../../components/Home/SectionTimeLine';
 import SectionIntroduce from '../../components/Home/SectionIntroduce';
-import SectionGoal from '../../components/Home/SectionGoal';
-import HomePageV2 from '../../components/Home/HomePageV2';
+import GoogleSpinner from '../../components/Lottie/GoogleSpinner';
+
+const HomePageV2 = lazy(() =>
+  import('../../components/Home/HomePageV2').then((module) => ({
+    default: module.default,
+  })),
+);
 
 const HomeContainer = styled.div`
   overflow-y: auto;
   .container {
     scroll-behavior: smooth;
-    height: calc(100vh);
+    height: 100vh;
     scroll-snap-type: y mandatory;
     overflow-y: scroll;
     @media (max-width: 500px) {
@@ -31,14 +34,14 @@ const HomeContainer = styled.div`
 const Home = () => {
   return (
     <HomeContainer>
-      <div className={'container'}>
-        <HomePageV2 />
-        {/*<HomePage />*/}
-        <SectionIntroduce />
-        {/*<SectionGoal />*/}
-        {/*<SectionTimeLine />*/}
-        <SectionManager />
-      </div>
+      <Suspense fallback={<GoogleSpinner />}>
+        <div className={'container'}>
+          <HomePageV2 />
+          <SectionIntroduce />
+          {/*<SectionGoal />*/}
+          <SectionManager />
+        </div>
+      </Suspense>
     </HomeContainer>
   );
 };
