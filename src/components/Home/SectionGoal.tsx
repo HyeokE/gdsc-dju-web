@@ -61,7 +61,7 @@ const missionAnimation = {
     },
   },
 };
-const SectionGoal = () => {
+const SectionWork = () => {
   return (
     <HomeSectionContainer color={'grey900'}>
       <HomeSectionContainerInner>
@@ -84,4 +84,4 @@ const SectionGoal = () => {
   );
 };
 
-export default SectionGoal;
+export default SectionWork;

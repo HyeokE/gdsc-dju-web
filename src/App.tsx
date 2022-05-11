@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { theme } from './styles/theme';
 import Layout from './Layout';
@@ -6,13 +6,19 @@ import GoogleSpinner from './components/Lottie/GoogleSpinner';
 import Alert from './components/common/Alert';
 import Navigation from './components/common/navigation/DeskNavigation';
 import { Footer } from './components/common/Footer';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { loaderState } from './store/loader';
 import GlobalStyles from './styles/globalStyles';
-import MobileMenu from './components/common/navigation/MobileMenu';
+import { useLocation } from 'react-router';
 
 function App() {
   const loading = useRecoilValue(loaderState);
+  const [footer, setFooter] = useState(true);
+  const location = useLocation();
+  useEffect(() => {
+    location.pathname === '/' && setFooter(false);
+  }, [location.pathname]);
+
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
@@ -20,7 +26,7 @@ function App() {
       <Alert />
       <Navigation />
       <Layout />
-      <Footer />
+      {footer && <Footer />}
     </ThemeProvider>
   );
 }

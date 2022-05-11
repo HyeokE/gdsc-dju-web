@@ -1,13 +1,13 @@
 import { motion } from 'framer-motion';
 import styled, { css } from 'styled-components';
 
-export const HomeWrapper = styled(motion.main)`
+export const HomeWrapper = styled(motion.div)`
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - 7rem);
+  height: 100vh;
   overflow: hidden;
 `;
 export const StyledRecruitmentButton = styled.button<{ disable?: boolean }>`
@@ -56,12 +56,13 @@ export const BannerTitleWrapper = styled(motion.section)`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 80%;
+  width: 70%;
 `;
 export const RecruitingWrapper = styled(motion.div)`
   position: static;
   z-index: 50;
   max-width: 600px;
+  width: 400px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -111,6 +112,7 @@ export const MainBannerText = styled(motion.p)`
   align-items: center;
   text-align: center;
   font-size: 1.8rem;
+
   color: ${({ theme }) => theme.colors.grey500};
   @media (max-width: ${({ theme }) => theme.windowSize.tablet}px) {
     font-size: 1.5rem;
@@ -126,4 +128,20 @@ export const DownArrowWrapper = styled(motion.div)`
   width: 100vw;
   justify-content: center;
   opacity: 50;
+`;
+
+export const HomeSolarSystemWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  left: 50%;
+  top: -8%;
+  transform: translate(-50%, -50%);
+  transform: scale(1.5, 1.5);
+
+  @media (max-width: 500px) {
+    left: 100%;
+    top: 50%;
+    transform: scale(0.6, 0.6);
+  }
 `;

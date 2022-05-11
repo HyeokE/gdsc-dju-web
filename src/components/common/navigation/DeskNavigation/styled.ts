@@ -6,7 +6,7 @@ export const NavDesign = styled(motion.nav)<{
   background?: boolean;
   disable?: boolean;
 }>`
-  position: sticky;
+  position: fixed;
   top: 0;
   z-index: 90;
   height: 70px;
@@ -57,32 +57,21 @@ export const StyledLogo = styled.div`
   margin-right: 5px;
   font-weight: bold;
   font-size: 2rem;
-
-  //@media (max-width: 600px) {
-  //  display: none;
-  //}
 `;
 export const SchoolNameUni = styled.div`
   color: ${(props) => props.theme.colors.grey600};
   font-size: ${(props) => props.theme.fontSize.body3};
-  margin-top: 6px;
+  margin-top: 4px;
   margin-right: 5px;
   font-weight: 500;
-
-  //@media (max-width: 740px) {
-  //  display: none;
-  //}
 `;
 export const SchoolName = styled.div`
   color: ${(props) => props.theme.colors.grey600};
   font-size: ${(props) => props.theme.fontSize.body3};
-  margin-top: 6px;
-  margin-right: 5px;
+  margin-top: 4px;
+  margin-right: 3px;
   display: flex;
   font-weight: 500;
-  //@media (max-width: 670px) {
-  //  display: none;
-  //}
 `;
 export const WideNavigation = styled.div`
   z-index: 999;
@@ -113,7 +102,7 @@ export const StyledLink = styled(motion.div)<{ isRoute?: boolean }>`
   border-radius: 8px;
   transition-duration: 0.3s;
   transition-timing-function: ease;
-  font-size: ${({ theme }) => theme.fontSize.body1};
+  font-size: ${({ theme }) => theme.fontSize.body2};
   transition-delay: 0s;
   ${({ isRoute }) =>
     isRoute &&
