@@ -14,7 +14,7 @@ import API from '../../../apis/index';
 import { useSearchParams } from 'react-router-dom';
 import { useLocation } from 'react-router';
 
-const AdminSetting = () => {
+const AdminApplicants = () => {
   const [recruit, setRecruit] = useRecoilState(recruitmentState);
   const [searchParams, setSearchParams] = useSearchParams();
   const location = useLocation();
@@ -114,4 +114,4 @@ const AdminSetting = () => {
   );
 };
 
-export default AdminSetting;
+export default AdminApplicants;

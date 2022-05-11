@@ -3,7 +3,7 @@ import { Route, Routes, useNavigate } from 'react-router-dom';
 import AdminHeader from '../../components/admin/AdminHeader';
 import AdminHome from './AdminHome';
 import AdminMember from './AdminMember';
-import AdminSetting from './AdminSetting';
+import AdminApplicants from './AdminApplicants';
 import { authService, dbService } from '../../firebase/firebase';
 import { useRecoilState } from 'recoil';
 import { localUserState } from '../../store/localUser';
@@ -63,7 +63,7 @@ const Admin = () => {
       <Routes>
         <Route path={'/*'} element={<AdminHome />} />
         <Route path={'/member'} element={<AdminMember />} />
-        <Route path={'/recruit'} element={<AdminSetting />} />
+        <Route path={'/recruit'} element={<AdminApplicants />} />
         <Route path={'/email'} element={<AdminEmail />} />
       </Routes>
     </>
