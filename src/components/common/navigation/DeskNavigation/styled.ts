@@ -6,7 +6,7 @@ export const NavDesign = styled(motion.nav)<{
   background?: boolean;
   disable?: boolean;
 }>`
-  position: sticky;
+  position: fixed;
   top: 0;
   z-index: 90;
   height: 70px;
@@ -61,14 +61,14 @@ export const StyledLogo = styled.div`
 export const SchoolNameUni = styled.div`
   color: ${(props) => props.theme.colors.grey600};
   font-size: ${(props) => props.theme.fontSize.body3};
-  margin-top: 3px;
+  margin-top: 4px;
   margin-right: 5px;
   font-weight: 500;
 `;
 export const SchoolName = styled.div`
   color: ${(props) => props.theme.colors.grey600};
   font-size: ${(props) => props.theme.fontSize.body3};
-  margin-top: 3px;
+  margin-top: 4px;
   margin-right: 3px;
   display: flex;
   font-weight: 500;

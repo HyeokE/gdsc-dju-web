@@ -49,27 +49,25 @@ export const Navigation: React.FC = () => {
   };
 
   return (
-    <>
-      <NavDesign background={checkLocation} disable={disableNavigation()}>
-        <NavWrapper>
-          <NavInner>
-            <NavTaskWrapper>
-              <NavTask>
-                <StyledLogoWrapper to={'/'}>
-                  <StyledImg src={GDSCLogo} alt="GDSC-Chapter-Logo" />
-                  <StyledLogo>GDSC </StyledLogo>
-                  <SchoolName>Daejin</SchoolName>
-                  <SchoolNameUni>Univ.</SchoolNameUni>
-                </StyledLogoWrapper>
-                <DeskNavCategory />
-              </NavTask>
-            </NavTaskWrapper>
-            <MenuToggleIcon />
-          </NavInner>
-        </NavWrapper>
-        <MobileMenu />
-      </NavDesign>
-    </>
+    <NavDesign background={checkLocation} disable={disableNavigation()}>
+      <NavWrapper>
+        <NavInner>
+          <NavTaskWrapper>
+            <NavTask>
+              <StyledLogoWrapper to={'/'}>
+                <StyledImg src={GDSCLogo} alt="GDSC-Chapter-Logo" />
+                <StyledLogo>GDSC </StyledLogo>
+                <SchoolName>Daejin</SchoolName>
+                <SchoolNameUni>Univ.</SchoolNameUni>
+              </StyledLogoWrapper>
+              <DeskNavCategory />
+            </NavTask>
+          </NavTaskWrapper>
+          <MenuToggleIcon />
+        </NavInner>
+      </NavWrapper>
+      <MobileMenu />
+    </NavDesign>
   );
 };
 

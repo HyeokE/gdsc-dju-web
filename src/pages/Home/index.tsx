@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import SectionManager from '../../components/Home/SectionManager';
 import SectionIntroduce from '../../components/Home/SectionIntroduce';
 import GoogleSpinner from '../../components/Lottie/GoogleSpinner';
+import { Footer } from '../../components/common/Footer';
 
 const HomePageV2 = lazy(() =>
   import('../../components/Home/HomePageV2').then((module) => ({
@@ -40,6 +41,7 @@ const Home = () => {
           <SectionIntroduce />
           {/*<SectionGoal />*/}
           <SectionManager />
+          <Footer />
         </div>
       </Suspense>
     </HomeContainer>
