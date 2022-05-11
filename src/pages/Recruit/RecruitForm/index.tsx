@@ -154,6 +154,7 @@ const RecruitForm = () => {
       <LayoutContainer>
         <ContainerInner>
           <FormMargin />
+          <FormMargin />
           <FormikProvider value={recruitFormik}>
             <RecruitFormWrapper>
               <RecruitFormInner>
