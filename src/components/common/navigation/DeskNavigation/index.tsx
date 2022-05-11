@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import GDSCLogo from '../../../../assets/GDSCLogo.svg';
 
 import { useLocation } from 'react-router';
-import './Navigation.css';
+
 import MenuToggleIcon from '../../MenuToggleIcon';
 import {
   NavDesign,
@@ -49,27 +49,25 @@ export const Navigation: React.FC = () => {
   };
 
   return (
-    <>
-      <NavDesign background={checkLocation} disable={disableNavigation()}>
-        <NavWrapper>
-          <NavInner>
-            <NavTaskWrapper>
-              <NavTask>
-                <StyledLogoWrapper to={'/'}>
-                  <StyledImg src={GDSCLogo} alt="GDSC-Chapter-Logo" />
-                  <StyledLogo>GDSC </StyledLogo>
-                  <SchoolName>Daejin</SchoolName>
-                  <SchoolNameUni>Univ.</SchoolNameUni>
-                </StyledLogoWrapper>
-                <DeskNavCategory />
-              </NavTask>
-            </NavTaskWrapper>
-            <MenuToggleIcon />
-          </NavInner>
-        </NavWrapper>
-        <MobileMenu />
-      </NavDesign>
-    </>
+    <NavDesign background={checkLocation} disable={disableNavigation()}>
+      <NavWrapper>
+        <NavInner>
+          <NavTaskWrapper>
+            <NavTask>
+              <StyledLogoWrapper to={'/'}>
+                <StyledImg src={GDSCLogo} alt="GDSC-Chapter-Logo" />
+                <StyledLogo>GDSC </StyledLogo>
+                <SchoolName>Daejin</SchoolName>
+                <SchoolNameUni>Univ.</SchoolNameUni>
+              </StyledLogoWrapper>
+              <DeskNavCategory />
+            </NavTask>
+          </NavTaskWrapper>
+          <MenuToggleIcon />
+        </NavInner>
+      </NavWrapper>
+      <MobileMenu />
+    </NavDesign>
   );
 };
 
