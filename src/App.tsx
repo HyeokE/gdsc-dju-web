@@ -10,6 +10,7 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { loaderState } from './store/loader';
 import GlobalStyles from './styles/globalStyles';
 import { useLocation } from 'react-router';
+import axios from 'axios';
 
 function App() {
   const loading = useRecoilValue(loaderState);
@@ -32,5 +33,3 @@ function App() {
 }
 
 export default App;
-
-
