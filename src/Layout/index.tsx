@@ -21,7 +21,6 @@ const Layout = () => {
           <Routes>
             <Route path={'/*'} element={<Pages />} />
             <Route path={'/admin/*'} element={<Admin />} />
-            {/*<Route path={'/onboard/*'} element={<OnBoard />} />*/}
             <Route path={'/auth/*'} element={<Auth />} />
           </Routes>
         </Suspense>
@@ -31,5 +30,3 @@ const Layout = () => {
 };
 
 export default Layout;
-
-

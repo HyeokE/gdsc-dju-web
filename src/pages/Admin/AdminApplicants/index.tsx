@@ -1,10 +1,7 @@
 import React, { useEffect } from 'react';
 import {
   AdminSectionWrapper,
-  AdminSidebar,
   Handle,
-  RecruitCard,
-  RecruitCardWrapper,
   Switch,
   ToggleButtonSection,
 } from './styled';
@@ -13,12 +10,12 @@ import { recruitmentState } from '../../../store/recruitHandler';
 import API from '../../../apis/index';
 import { useSearchParams } from 'react-router-dom';
 import { useLocation } from 'react-router';
+import AdminApplicantsSidebar from '../../../components/admin/AdminApplicantsSidebar';
 
 const AdminApplicants = () => {
   const [recruit, setRecruit] = useRecoilState(recruitmentState);
   const [searchParams, setSearchParams] = useSearchParams();
   const location = useLocation();
-  console.log(recruit);
   useEffect(() => {
     API.putRecruitStatus(recruit);
   }, [recruit]);
@@ -29,10 +26,6 @@ const AdminApplicants = () => {
       });
   }, [location.pathname]);
   const currentParam = searchParams.get('type') as string;
-  const setParams = (key: string) => {
-    setSearchParams({ type: key });
-  };
-  // const keyTyped = name as keyof typeof recruit;
   const toggleSwitch = (key: string) => {
     switch (key) {
       case 'frontend':
@@ -77,29 +70,10 @@ const AdminApplicants = () => {
     stiffness: 700,
     damping: 30,
   };
-  const position = {
-    frontend: 'Frontend Developer',
-    backend: 'Backend Developer',
-    android: 'Android Developer',
-    beginner: 'Beginner',
-    design: 'Designer',
-    ml: 'Machine Learning',
-    home: 'Home',
-  };
 
   return (
     <AdminSectionWrapper>
-      <AdminSidebar>
-        {Object.keys(recruit).map((key, id) => (
-          <RecruitCardWrapper
-            key={id}
-            isActive={key == currentParam}
-            onClick={() => setParams(key)}
-          >
-            <RecruitCard>{position[key as keyof typeof position]}</RecruitCard>
-          </RecruitCardWrapper>
-        ))}
-      </AdminSidebar>
+      <AdminApplicantsSidebar />
       {currentParam && (
         <ToggleButtonSection>
           <Switch

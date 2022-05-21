@@ -17,31 +17,28 @@ const AdminTopMenu = ({
   const navigate = useNavigate();
 
   return (
-    <>
-      <nav>
-        <StyledUl>
-          {tabs.map((item) => (
-            <StyledLi
-              key={item.label}
-              onClick={() => {
-                setSelectedCategory(item.route);
-                navigate(item.route);
-              }}
+    <nav>
+      <StyledUl>
+        {tabs.map((item) => (
+          <StyledLi
+            key={item.label}
+            onClick={() => {
+              setSelectedCategory(item.route);
+              navigate(item.route);
+            }}
+          >
+            <StyledLabel
+              className={item.route === selectedCategory ? 'selected' : ''}
             >
-              <StyledLabel
-                className={item.route === selectedCategory ? 'selected' : ''}
-              >
-                {item.label}
-              </StyledLabel>
-              {item.route === selectedCategory && (
-                <motion.div className="underline" layoutId="underline" />
-              )}
-            </StyledLi>
-          ))}
-        </StyledUl>
-      </nav>
-      {/*<StyledLine />*/}
-    </>
+              {item.label}
+            </StyledLabel>
+            {item.route === selectedCategory && (
+              <motion.div className="underline" layoutId="underline" />
+            )}
+          </StyledLi>
+        ))}
+      </StyledUl>
+    </nav>
   );
 };
 
