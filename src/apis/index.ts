@@ -59,6 +59,9 @@ export class GDSCApi {
   getAdminUser = (id: string | null) => {
     return axios.get(`${this.FIREBASE_API}/documents/adminUsers/${id}`);
   };
+  getApplicants = () => {
+    return axios.get(`${this.FIREBASE_API}/documents/applicants`);
+  };
   getChapterEvents = () => {
     return axios.get(`https://gdsc.community.dev/api/event/?chapter=1833`);
   };

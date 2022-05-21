@@ -18,6 +18,10 @@ const AdminApplicants = () => {
   const location = useLocation();
   useEffect(() => {
     API.putRecruitStatus(recruit);
+    API.getApplicants().then((data) => {
+      const applicants = data.data.documents;
+      console.log(applicants);
+    });
   }, [recruit]);
   useEffect(() => {
     !searchParams.get('type') &&

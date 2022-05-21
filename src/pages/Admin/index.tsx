@@ -4,7 +4,7 @@ import AdminHeader from '../../components/admin/AdminHeader';
 import AdminHome from './AdminHome';
 import AdminMember from './AdminMember';
 import AdminApplicants from './AdminApplicants';
-import { authService, dbService } from '../../firebase/firebase';
+import { authService } from '../../firebase/firebase';
 import { useRecoilState } from 'recoil';
 import { localUserState } from '../../store/localUser';
 import { useLocation } from 'react-router';
@@ -14,35 +14,31 @@ import AdminEmail from './AdminEmail';
 
 const Admin = () => {
   const [adminUser, setAdminUser] = useRecoilState(localUserState);
+  const [selector, setSelector] = useRecoilState(recruitmentSelector);
   const navigate = useNavigate();
   const location = useLocation();
   const checkAdminUser = async () => {
-    await authService.onAuthStateChanged((user: any) => {
+    await authService.onAuthStateChanged((user) => {
       if (user) {
         setAdminUser({
           ...adminUser,
           uid: user.uid,
         });
         try {
-          API.getAdminUser(user.uid).then((res) => console.log(res.data));
-          dbService
-            .collection('adminUsers')
-            .doc(user.uid)
-            .get()
-            .then((data) => {
-              const userData = data.data();
-              setAdminUser({
-                ...adminUser,
-                uid: user.uid,
-                nickname: userData?.nickname,
-                name: userData?.name,
-                phoneNumber: userData?.phoneNumber,
-              });
-              location.pathname.includes('/admin') ? null : navigate('/admin');
+          API.getAdminUser(user.uid).then((data) => {
+            const userData = data.data.fields;
+            setAdminUser({
+              ...adminUser,
+              uid: user.uid,
+              nickname: userData?.nickname.stringValue,
+              name: userData?.name.stringValue,
+              phoneNumber: userData?.phoneNumber.stringValue,
             });
-        } catch (e: any) {
+            location.pathname.includes('/admin') ? null : navigate('/admin');
+          });
+        } catch (error) {
           navigate('/');
-          console.log(e.message);
+          error instanceof Error && console.log(error);
         }
       } else {
         navigate('/');
@@ -51,7 +47,6 @@ const Admin = () => {
     });
   };
 
-  const [selector, setSelector] = useRecoilState(recruitmentSelector);
   useEffect(() => {
     setSelector(selector);
     checkAdminUser();

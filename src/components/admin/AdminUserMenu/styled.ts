@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 export const AdminUserMenuWrapper = styled(motion.div)`
   position: fixed;
-  right: 10px;
+  right: 3%;
   top: 60px;
   justify-content: center;
   display: flex;

@@ -13,30 +13,31 @@ const AdminUserMenu = (props: {
   const { isOpen, setIsOpen } = props;
   const [modal, setModal] = useRecoilState(modalState);
   const navigate = useNavigate();
+  const userMenuRef = useRef<HTMLDivElement>(null);
+
   const hoverMotion = {
     cursor: 'pointer',
     backgroundColor: '#E5E8EB',
   };
-  const userMenuRef = useRef<HTMLDivElement>(null);
+
   const handleClickOutside = useCallback(
     (e: Event) => {
       const target = e.target as Node;
       const username = document.getElementsByClassName('username')[0];
       if (isOpen && target.contains(username || target)) {
         setIsOpen(false);
-        console.log(`removeEventListener`);
         document.removeEventListener('click', handleClickOutside);
       }
     },
     [isOpen],
   );
+
   useEffect(() => {
     if (isOpen) {
-      setTimeout(() => {
-        document.addEventListener('click', handleClickOutside);
-        console.log('open');
-      }, 0);
-      // window.addEventListener('click', handleClickOutside);
+      setTimeout(
+        () => document.addEventListener('click', handleClickOutside),
+        0,
+      );
     }
   }, [isOpen]);
 

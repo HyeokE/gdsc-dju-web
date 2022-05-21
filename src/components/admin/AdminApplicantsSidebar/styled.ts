@@ -2,14 +2,13 @@ import styled, { css } from 'styled-components';
 
 export const RecruitCard = styled.div`
   width: 100%;
-  padding: 20px 30px;
+  padding: 20px 40px;
   border-bottom: 1px solid ${(props) => props.theme.colors.grey300};
   box-sizing: border-box;
   font-size: ${(props) => props.theme.fontSize.body1};
   cursor: pointer;
 `;
 export const RecruitCardWrapper = styled.div<{ isActive: boolean }>`
-  margin-bottom: 10px;
   ${({ isActive }) =>
     isActive &&
     css`
