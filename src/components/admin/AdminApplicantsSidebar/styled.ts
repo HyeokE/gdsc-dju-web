@@ -22,6 +22,8 @@ export const AdminSidebar = styled.aside`
   flex-direction: column;
   flex-wrap: wrap;
   row-gap: 10px;
+  width: 100%;
+  max-width: 200px;
 `;
 export const StatusCircle = styled.div<{ status: boolean }>`
   position: relative;

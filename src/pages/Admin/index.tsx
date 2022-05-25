@@ -4,7 +4,7 @@ import AdminHeader from '../../components/admin/AdminHeader';
 import AdminHome from './AdminHome';
 import AdminMember from './AdminMember';
 import AdminApplicants from './AdminApplicants';
-import { authService } from '../../firebase/firebase';
+import { authService, dbService } from '../../firebase/firebase';
 import { useRecoilState } from 'recoil';
 import { localUserState } from '../../store/localUser';
 import { useLocation } from 'react-router';
@@ -25,6 +25,13 @@ const Admin = () => {
           uid: user.uid,
         });
         try {
+          dbService
+            .collection('adminUsers')
+            .doc(`${user.uid}`)
+            .get()
+            .then((doc) => {
+              console.log(doc.data());
+            });
           API.getAdminUser(user.uid).then((data) => {
             const userData = data.data.fields;
             setAdminUser({

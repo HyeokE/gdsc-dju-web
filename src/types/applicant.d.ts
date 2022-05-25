@@ -1,4 +1,5 @@
 export interface IApplicantType {
+  status: 'DOCS' | 'INTERVIEW' | 'REJECTED' | 'HIRED';
   email: string;
   fileURL: string;
   link0: string;
@@ -10,4 +11,7 @@ export interface IApplicantType {
   recommender: string;
   studentID: string;
   uploadDate: string;
+}
+export interface IApplicantTypeWithID extends IApplicantType {
+  id: string;
 }
