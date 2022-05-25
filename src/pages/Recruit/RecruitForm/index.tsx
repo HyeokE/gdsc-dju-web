@@ -47,6 +47,7 @@ const RecruitForm = () => {
 
   const recruitItem = {
     uploadDate: new Date(),
+    status: 'DOCS',
     name: '',
     phoneNumber: '',
     email: '',
