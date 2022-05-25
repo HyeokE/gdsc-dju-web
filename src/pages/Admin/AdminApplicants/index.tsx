@@ -78,6 +78,7 @@ const AdminApplicants = () => {
   return (
     <AdminSectionWrapper>
       <AdminApplicantsSidebar />
+      <AdminApplicants />
       {currentParam && (
         <ToggleButtonSection>
           <Switch

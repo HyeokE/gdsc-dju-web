@@ -1,23 +1,42 @@
 import styled, { css } from 'styled-components';
 
-export const RecruitCard = styled.div`
+export const RecruitCard = styled.p`
   width: 100%;
-  padding: 20px 40px;
-  border-bottom: 1px solid ${(props) => props.theme.colors.grey300};
   box-sizing: border-box;
   font-size: ${(props) => props.theme.fontSize.body1};
   cursor: pointer;
 `;
-export const RecruitCardWrapper = styled.div<{ isActive: boolean }>`
-  ${({ isActive }) =>
-    isActive &&
-    css`
-      background-color: ${({ theme }) => theme.colors.tossBlue};
-      color: white;
-    `}
+export const RecruitCardWrapper = styled.div`
+  padding: 14px 20px;
+  display: flex;
+  flex-direction: row;
+
+  background: ${({ theme }) => theme.colors.white};
+  border: 1px solid ${({ theme }) => theme.colors.grey300};
+  border-radius: 10px;
+  box-shadow: 0 2px 4px ${({ theme }) => theme.colors.grey300};
 `;
-export const AdminSidebar = styled.div`
-  width: 250px;
-  height: 100vh;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+export const AdminSidebar = styled.aside`
+  background: ${({ theme }) => theme.colors.grey100};
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  row-gap: 10px;
+`;
+export const StatusCircle = styled.div<{ status: boolean }>`
+  position: relative;
+  top: -4px;
+  left: -9px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  ${({ status }) =>
+    status
+      ? css`
+          background: ${({ theme }) => theme.colors.googleGreen};
+        `
+      : css`
+          background: ${({ theme }) => theme.colors.googleRed};
+        `}
 `;

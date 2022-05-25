@@ -47,6 +47,12 @@ export const ToggleButtonSection = styled.section`
 `;
 
 export const AdminSectionWrapper = styled.div`
+  position: relative;
   display: flex;
   flex-direction: row;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  min-width: 320px;
+  flex: 1;
 `;
