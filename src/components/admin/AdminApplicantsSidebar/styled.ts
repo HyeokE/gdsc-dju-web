@@ -4,13 +4,12 @@ export const RecruitCard = styled.p`
   width: 100%;
   box-sizing: border-box;
   font-size: ${(props) => props.theme.fontSize.body1};
-  cursor: pointer;
 `;
 export const RecruitCardWrapper = styled.div`
   padding: 14px 20px;
   display: flex;
   flex-direction: row;
-
+  cursor: pointer;
   background: ${({ theme }) => theme.colors.white};
   border: 1px solid ${({ theme }) => theme.colors.grey300};
   border-radius: 10px;
