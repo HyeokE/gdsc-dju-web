@@ -190,7 +190,7 @@ export const applicantMock = [
     major: 'string',
     name: '정준혁',
     phoneNumber: '01025441586',
-    position: 'Frontend',
+    position: 'Frontend ',
     recommender: 'Jason',
     studentID: '20191422',
     uploadDate: 'string',

@@ -9,8 +9,9 @@ export const ApplicantCardWrapper = styled.div`
   box-shadow: 0 2px 12px 0 ${({ theme }) => theme.colors.grey300};
   border-radius: 10px;
   box-sizing: border-box;
+  align-items: center;
   cursor: pointer;
 `;
 export const ApplicantText = styled.div`
-  font-size: ${({ theme }) => theme.fontSize.body1};
+  font-size: ${({ theme }) => theme.fontSize.body2};
 `;

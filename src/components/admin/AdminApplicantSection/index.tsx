@@ -35,7 +35,12 @@ const AdminApplicantSection = () => {
             return { id: doc.id, ...(doc.data() as IApplicantType) };
           },
         );
-        tempDoc && setApplicants(tempDoc);
+        tempDoc &&
+          setApplicants(
+            tempDoc.filter((data) =>
+              data.position.toLowerCase().includes(currentParam),
+            ),
+          );
       });
   }, []);
   const toggleSwitch = (key: string) => {
@@ -99,7 +104,7 @@ const AdminApplicantSection = () => {
       </InformationHeader>
       {applicants && (
         <ApplicantCardSection>
-          {applicantMock.map((applicant) => (
+          {applicants.map((applicant) => (
             <ApplicantCardWrapper key={applicant.id}>
               <ApplicantCard {...applicant} />
             </ApplicantCardWrapper>

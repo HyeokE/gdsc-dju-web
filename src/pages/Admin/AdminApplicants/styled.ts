@@ -35,6 +35,7 @@ export const InformationHeader = styled.div`
 `;
 export const ApplicantsStatus = styled.div`
   font-size: ${({ theme }) => theme.fontSize.body1};
+  color: ${({ theme }) => theme.colors.grey700};
 `;
 
 export const ToggleButton = styled.div`

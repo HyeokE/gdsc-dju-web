@@ -1,6 +1,7 @@
 import React from 'react';
 import { ApplicantCardWrapper, ApplicantText } from './styled';
 import { IApplicantTypeWithID } from '../../../types/applicant';
+import StatusBadge from '../Statusbadge';
 
 const ApplicantCard: React.FC<IApplicantTypeWithID> = ({
   name,
@@ -12,9 +13,10 @@ const ApplicantCard: React.FC<IApplicantTypeWithID> = ({
   return (
     <ApplicantCardWrapper>
       <ApplicantText>{name}</ApplicantText>
-      <ApplicantText>{position}</ApplicantText>
+      <ApplicantText>{position.split(' ')[0]}</ApplicantText>
       <ApplicantText>{email}</ApplicantText>
-      <ApplicantText>{status}</ApplicantText>
+
+      <StatusBadge status={status} />
     </ApplicantCardWrapper>
   );
 };
