@@ -18,6 +18,7 @@ import { useSearchParams } from 'react-router-dom';
 import { dbService } from '../../../firebase/firebase';
 import { IApplicantType, IApplicantTypeWithID } from '../../../types/applicant';
 import { applicantMock } from '../../../apis/Mocks/applicantMock';
+import { position } from '../AdminApplicantsSidebar';
 
 const AdminApplicantSection = () => {
   const [recruit, setRecruit] = useRecoilState(recruitmentState);
@@ -35,14 +36,21 @@ const AdminApplicantSection = () => {
             return { id: doc.id, ...(doc.data() as IApplicantType) };
           },
         );
-        tempDoc &&
-          setApplicants(
-            tempDoc.filter((data) =>
-              data.position.toLowerCase().includes(currentParam),
-            ),
-          );
+        const filteredApplicants =
+          currentParam !== 'home'
+            ? tempDoc.filter((data) =>
+                data.position
+                  .toLowerCase()
+                  .includes(
+                    position[
+                      currentParam as keyof typeof position
+                    ].toLowerCase(),
+                  ),
+              )
+            : tempDoc;
+        tempDoc && setApplicants(filteredApplicants);
       });
-  }, []);
+  }, [currentParam]);
   const toggleSwitch = (key: string) => {
     switch (key) {
       case 'frontend':

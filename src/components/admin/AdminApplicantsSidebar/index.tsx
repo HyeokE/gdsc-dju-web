@@ -9,7 +9,7 @@ import {
   StatusCircle,
 } from './styled';
 
-const position = {
+export const position = {
   home: 'Home',
   frontend: 'Frontend Developer',
   backend: 'Backend Developer',
