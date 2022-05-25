@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import styled, { css } from 'styled-components';
+import { theme } from '../../../styles/theme';
 
 export const Switch = styled.div`
   width: 40px;
@@ -27,23 +28,19 @@ export const StyledPosition = styled.div`
   font-size: 1.5rem;
   margin-right: 10px;
 `;
-export const ToggleButtonWrapper = styled.div`
-  width: 33.333%;
+export const InformationHeader = styled.div`
   display: flex;
-  flex-direction: row;
+  width: 100%;
   align-items: center;
-  margin-bottom: 30px;
 `;
-export const ToggleButtonInner = styled.div`
-  width: 350px;
+export const ApplicantsStatus = styled.div`
+  font-size: ${({ theme }) => theme.fontSize.body1};
+`;
+
+export const ToggleButton = styled.div`
   display: flex;
   flex-direction: row;
-  margin-bottom: 10px;
-`;
-export const ToggleButtonSection = styled.section`
-  flex-wrap: wrap;
-  display: flex;
-  flex-direction: row;
+  margin: 10px 20px;
 `;
 
 export const AdminSectionWrapper = styled.div`

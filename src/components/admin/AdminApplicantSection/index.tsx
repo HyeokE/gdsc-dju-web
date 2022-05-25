@@ -6,15 +6,16 @@ import {
   ApplicantSection,
 } from './styled';
 import {
+  ApplicantsStatus,
   Handle,
+  InformationHeader,
   Switch,
-  ToggleButtonSection,
+  ToggleButton,
 } from '../../../pages/Admin/AdminApplicants/styled';
 import { useRecoilState } from 'recoil';
 import { recruitmentState } from '../../../store/recruitHandler';
 import { useSearchParams } from 'react-router-dom';
 import { dbService } from '../../../firebase/firebase';
-import API from '../../../apis';
 import { IApplicantType, IApplicantTypeWithID } from '../../../types/applicant';
 import { applicantMock } from '../../../apis/Mocks/applicantMock';
 
@@ -83,16 +84,19 @@ const AdminApplicantSection = () => {
 
   return (
     <ApplicantSection>
-      {currentParam && (
-        <ToggleButtonSection>
-          <Switch
-            data-ison={isOn(currentParam)}
-            onClick={() => toggleSwitch(currentParam)}
-          >
-            <Handle layout transition={spring} />
-          </Switch>
-        </ToggleButtonSection>
-      )}
+      <InformationHeader>
+        {currentParam && (
+          <ToggleButton>
+            <Switch
+              data-ison={isOn(currentParam)}
+              onClick={() => toggleSwitch(currentParam)}
+            >
+              <Handle layout transition={spring} />
+            </Switch>
+          </ToggleButton>
+        )}
+        <ApplicantsStatus>Total - {applicants?.length}</ApplicantsStatus>
+      </InformationHeader>
       {applicants && (
         <ApplicantCardSection>
           {applicantMock.map((applicant) => (
