@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import ApplicantCard from '../ApplicantCard';
-import { ApplicantCardWrapper, ApplicantSection } from './styled';
+import {
+  ApplicantCardSection,
+  ApplicantCardWrapper,
+  ApplicantSection,
+} from './styled';
 import {
   Handle,
   Switch,
@@ -12,6 +16,7 @@ import { useSearchParams } from 'react-router-dom';
 import { dbService } from '../../../firebase/firebase';
 import API from '../../../apis';
 import { IApplicantType, IApplicantTypeWithID } from '../../../types/applicant';
+import { applicantMock } from '../../../apis/Mocks/applicantMock';
 
 const AdminApplicantSection = () => {
   const [recruit, setRecruit] = useRecoilState(recruitmentState);
@@ -77,7 +82,7 @@ const AdminApplicantSection = () => {
   };
 
   return (
-    <>
+    <ApplicantSection>
       {currentParam && (
         <ToggleButtonSection>
           <Switch
@@ -89,15 +94,15 @@ const AdminApplicantSection = () => {
         </ToggleButtonSection>
       )}
       {applicants && (
-        <ApplicantSection>
-          {applicants.map((applicant) => (
+        <ApplicantCardSection>
+          {applicantMock.map((applicant) => (
             <ApplicantCardWrapper key={applicant.id}>
               <ApplicantCard {...applicant} />
             </ApplicantCardWrapper>
           ))}
-        </ApplicantSection>
+        </ApplicantCardSection>
       )}
-    </>
+    </ApplicantSection>
   );
 };
 
