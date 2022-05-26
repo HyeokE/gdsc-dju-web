@@ -29,6 +29,7 @@ import {
 import { modalVariants } from '../../common/Variants/modalVariants';
 
 import StatusBadge from '../Statusbadge';
+import OutsideClickHandler from '../../../utils/OutsideClickHandler';
 
 const ApplicantModal = () => {
   const [applicantData, setApplicantData] = useState<IApplicantTypeWithID>();
@@ -62,33 +63,35 @@ const ApplicantModal = () => {
   };
   return (
     <ApplicantModalWrapper>
-      <ApplicantModalInner
-        variants={modalVariants}
-        layoutId={`card-${modal.selectedId}`}
-      >
-        {applicantData && (
-          <ApplicantInfoWrapper>
-            <ApplicantInfo applicantData={applicantData} />
-            <ApplicantInfoState
-              applicantData={applicantData}
-              setApplicantData={setApplicantData}
+      <OutsideClickHandler outsideClick={closeModal}>
+        <ApplicantModalInner
+          variants={modalVariants}
+          layoutId={`card-${modal.selectedId}`}
+        >
+          {applicantData && (
+            <ApplicantInfoWrapper>
+              <ApplicantInfo applicantData={applicantData} />
+              <ApplicantInfoState
+                applicantData={applicantData}
+                setApplicantData={setApplicantData}
+              />
+            </ApplicantInfoWrapper>
+          )}
+          <ApplicantInfoSection>
+            <ApplicantInfoHeader>
+              {/*<LeftArrowButton onClick={closeModal} />*/}
+              {/*<RightArrowButton onClick={closeModal} />*/}
+              <ClearButton onClick={closeModal} />
+            </ApplicantInfoHeader>
+            <object
+              type="text/html"
+              data={applicantData?.fileURL}
+              width="700px"
+              height="100%"
             />
-          </ApplicantInfoWrapper>
-        )}
-        <ApplicantInfoSection>
-          <ApplicantInfoHeader>
-            <LeftArrowButton onClick={closeModal} />
-            <RightArrowButton onClick={closeModal} />
-            <ClearButton onClick={closeModal} />
-          </ApplicantInfoHeader>
-          <object
-            type="text/html"
-            data={applicantData?.fileURL}
-            width="700px"
-            height="100%"
-          />
-        </ApplicantInfoSection>
-      </ApplicantModalInner>
+          </ApplicantInfoSection>
+        </ApplicantModalInner>
+      </OutsideClickHandler>
     </ApplicantModalWrapper>
   );
 };

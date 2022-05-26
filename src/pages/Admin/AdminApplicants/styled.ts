@@ -30,8 +30,10 @@ export const StyledPosition = styled.div`
 `;
 export const InformationHeader = styled.div`
   display: flex;
+  justify-content: flex-end;
   width: 100%;
-  align-items: center;
+  padding: 10px 3%;
+  box-sizing: border-box;
 `;
 export const ApplicantsStatusWrapper = styled.div`
   display: flex;

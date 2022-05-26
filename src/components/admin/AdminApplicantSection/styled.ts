@@ -5,11 +5,17 @@ export const ApplicantCardWrapper = styled.div`
   justify-content: center;
   width: 50%;
   margin-bottom: 1%;
+  @media (max-width: 2450px) {
+    width: 25%;
+  }
   @media (max-width: 1950px) {
     width: 33.33%;
   }
   @media (max-width: 1525px) {
     width: 50%;
+  }
+  @media (max-width: 1100px) {
+    width: 100%;
   }
 `;
 

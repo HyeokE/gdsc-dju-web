@@ -19,7 +19,9 @@ const ModalButton = styled.button`
   }
 `;
 
-const ModalButtonIcon = styled.img``;
+const ModalButtonIcon = styled.img`
+  height: 16px;
+`;
 
 interface IButtonProps {
   onClick: () => void;
