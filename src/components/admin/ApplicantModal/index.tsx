@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { memo, useCallback, useEffect, useState } from 'react';
 import {
   ApplicantInfoHeader,
   ApplicantInfoInner,
@@ -100,29 +100,44 @@ const ApplicantInfoState: React.FC<{
   setApplicantData: (data: IApplicantTypeWithID) => void;
 }> = ({ applicantData, setApplicantData }) => {
   const applicantRef = dbService.collection('applicants').doc(applicantData.id);
-  const updateStatus = async (status: statusType) => {
-    await applicantRef.update({
-      status: status,
-    });
-    setApplicantData({
-      ...applicantData,
-      status: status,
-    });
-  };
+  const updateStatus = useCallback(
+    async (status: statusType) => {
+      await applicantRef.update({
+        status: status,
+      });
+      setApplicantData({
+        ...applicantData,
+        status: status,
+      });
+    },
+    [applicantData],
+  );
 
   return (
     <ApplicantInfoStateWrapper>
       <div onClick={() => updateStatus('DOCS')}>
-        <StatusBadge status={'DOCS'} />
+        <StatusBadge
+          status={'DOCS'}
+          disable={applicantData.status !== 'DOCS'}
+        />
       </div>
       <div onClick={() => updateStatus('INTERVIEW')}>
-        <StatusBadge status={'INTERVIEW'} />
+        <StatusBadge
+          status={'INTERVIEW'}
+          disable={applicantData.status !== 'INTERVIEW'}
+        />
       </div>
       <div onClick={() => updateStatus('HIRED')}>
-        <StatusBadge status={'HIRED'} />
+        <StatusBadge
+          status={'HIRED'}
+          disable={applicantData.status !== 'HIRED'}
+        />
       </div>
       <div onClick={() => updateStatus('REJECTED')}>
-        <StatusBadge status={'REJECTED'} />
+        <StatusBadge
+          status={'REJECTED'}
+          disable={applicantData.status !== 'REJECTED'}
+        />
       </div>
     </ApplicantInfoStateWrapper>
   );
@@ -186,4 +201,4 @@ const ApplicantInfo: React.FC<{
   );
 };
 
-export default ApplicantModal;
+export default memo(ApplicantModal);

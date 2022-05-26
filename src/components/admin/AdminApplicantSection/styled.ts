@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const ApplicantCardWrapper = styled.div`
   display: flex;
   justify-content: center;
-  width: 50%;
+  width: 25%;
   margin-bottom: 1%;
   @media (max-width: 2450px) {
     width: 25%;
