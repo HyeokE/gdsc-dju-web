@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
 export const ApplicantModalWrapper = styled.div`
@@ -12,7 +13,7 @@ export const ApplicantModalWrapper = styled.div`
   justify-content: center;
   background: rgba(0, 0, 0, 0.7);
 `;
-export const ApplicantModalInner = styled.div`
+export const ApplicantModalInner = styled(motion.div)`
   background: ${({ theme }) => theme.colors.white};
   display: flex;
   align-items: center;
@@ -29,6 +30,22 @@ export const ApplicantInfoWrapper = styled.div`
   box-sizing: border-box;
   border-radius: 20px 0 0 20px;
 `;
+export const ApplicantInfoSection = styled.div`
+  width: 100%;
+  display: flex;
+  height: 100%;
+`;
+export const ApplicantInfoHeader = styled.div`
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 20px;
+  flex-wrap: wrap;
+  gap: 5px;
+`;
+
 export const ApplicantInfoInner = styled.div`
   padding: 20px 18px;
   display: flex;
@@ -56,4 +73,18 @@ export const ApplicantInfoText = styled.p`
   font-size: ${({ theme }) => theme.fontSize.body3};
   color: ${({ theme }) => theme.colors.grey900};
   min-width: 60px;
+  max-width: 150px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+`;
+export const ApplicantInfoLink = styled.a`
+  font-size: ${({ theme }) => theme.fontSize.body3};
+  color: ${({ theme }) => theme.colors.grey900};
+  min-width: 60px;
+  max-width: 150px;
+  text-decoration: none;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 `;

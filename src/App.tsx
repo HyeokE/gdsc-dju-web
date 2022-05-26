@@ -11,6 +11,7 @@ import { loaderState } from './store/loader';
 import GlobalStyles from './styles/globalStyles';
 import { useLocation } from 'react-router';
 import axios from 'axios';
+import Modal from './components/common/Modal';
 
 function App() {
   const loading = useRecoilValue(loaderState);
@@ -25,6 +26,7 @@ function App() {
       <GlobalStyles />
       {loading.load && <GoogleSpinner background={true} />}
       <Alert />
+      <Modal />
       <Navigation />
       <Layout />
       {footer && <Footer />}

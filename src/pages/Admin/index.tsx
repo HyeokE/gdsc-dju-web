@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import AdminHeader from '../../components/admin/AdminHeader';
 import AdminHome from './AdminHome';
-import AdminMember from './AdminMember';
 import AdminApplicants from './AdminApplicants';
 import { authService, dbService } from '../../firebase/firebase';
 import { useRecoilState } from 'recoil';
@@ -17,7 +16,7 @@ const Admin = () => {
   const [adminUser, setAdminUser] = useRecoilState(localUserState);
   const [selector, setSelector] = useRecoilState(recruitmentSelector);
   const navigate = useNavigate();
-  const location = useLocation();
+
   const checkAdminUser = async () => {
     await authService.onAuthStateChanged((user) => {
       if (user) {
@@ -61,7 +60,6 @@ const Admin = () => {
 
   return (
     <>
-      {/*<ApplicantModal />*/}
       <AdminHeader />
       <Routes>
         <Route path={'/*'} element={<AdminHome />} />

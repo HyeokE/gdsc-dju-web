@@ -24,8 +24,10 @@ import {
 } from '../../../types/applicant';
 import { position } from '../AdminApplicantsSidebar';
 import StatusBadge from '../Statusbadge';
+import { modalState, MODAL_KEY } from '../../../store/modal';
 
 const AdminApplicantSection = () => {
+  const [modal, setModal] = useRecoilState(modalState);
   const [applicants, setApplicants] = useState<IApplicantTypeWithID[]>();
   const [applicantCount, setApplicantCount] = useState<IApplicantCountType>({
     isDOCS: 0,
@@ -36,7 +38,13 @@ const AdminApplicantSection = () => {
   const [searchParams] = useSearchParams();
 
   const currentParam = searchParams.get('type') as string;
-
+  const openModal = (id: string) => {
+    setModal({
+      ...modal,
+      [MODAL_KEY.ADMIN_APPLICANT]: true,
+      selectedId: id,
+    });
+  };
   useEffect(() => {
     dbService
       .collection('applicants')
@@ -91,7 +99,10 @@ const AdminApplicantSection = () => {
       {applicants && (
         <ApplicantCardSection>
           {applicants.map((applicant) => (
-            <ApplicantCardWrapper key={applicant.id}>
+            <ApplicantCardWrapper
+              key={applicant.id}
+              onClick={() => openModal(applicant.id)}
+            >
               <ApplicantCard {...applicant} />
             </ApplicantCardWrapper>
           ))}
