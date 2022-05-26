@@ -15,3 +15,9 @@ export interface IApplicantType {
 export interface IApplicantTypeWithID extends IApplicantType {
   id: string;
 }
+export interface IApplicantCountType {
+  isDOCS: number;
+  isINTERVIEW: number;
+  isREJECTED: number;
+  isHIRED: number;
+}

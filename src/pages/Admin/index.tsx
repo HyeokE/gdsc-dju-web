@@ -11,6 +11,7 @@ import { useLocation } from 'react-router';
 import { recruitmentSelector } from '../../store/recruitHandler';
 import API from '../../apis/index';
 import AdminEmail from './AdminEmail';
+import ApplicantModal from '../../components/admin/ApplicantModal';
 
 const Admin = () => {
   const [adminUser, setAdminUser] = useRecoilState(localUserState);
@@ -41,7 +42,6 @@ const Admin = () => {
               name: userData?.name.stringValue,
               phoneNumber: userData?.phoneNumber.stringValue,
             });
-            location.pathname.includes('/admin') ? null : navigate('/admin');
           });
         } catch (error) {
           navigate('/');
@@ -61,6 +61,7 @@ const Admin = () => {
 
   return (
     <>
+      {/*<ApplicantModal />*/}
       <AdminHeader />
       <Routes>
         <Route path={'/*'} element={<AdminHome />} />

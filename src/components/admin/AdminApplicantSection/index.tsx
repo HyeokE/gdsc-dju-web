@@ -6,7 +6,7 @@ import {
   ApplicantSection,
 } from './styled';
 import {
-  ApplicantsStatus,
+  ApplicantsBadgeWrapper,
   ApplicantsStatusWrapper,
   Handle,
   InformationHeader,
@@ -17,13 +17,17 @@ import { useRecoilState } from 'recoil';
 import { recruitmentState } from '../../../store/recruitHandler';
 import { useSearchParams } from 'react-router-dom';
 import { dbService } from '../../../firebase/firebase';
-import { IApplicantType, IApplicantTypeWithID } from '../../../types/applicant';
+import {
+  IApplicantCountType,
+  IApplicantType,
+  IApplicantTypeWithID,
+} from '../../../types/applicant';
 import { position } from '../AdminApplicantsSidebar';
 import StatusBadge from '../Statusbadge';
 
 const AdminApplicantSection = () => {
   const [applicants, setApplicants] = useState<IApplicantTypeWithID[]>();
-  const [applicantCount, setApplicantCount] = useState({
+  const [applicantCount, setApplicantCount] = useState<IApplicantCountType>({
     isDOCS: 0,
     isINTERVIEW: 0,
     isREJECTED: 0,
@@ -32,6 +36,7 @@ const AdminApplicantSection = () => {
   const [searchParams] = useSearchParams();
 
   const currentParam = searchParams.get('type') as string;
+
   useEffect(() => {
     dbService
       .collection('applicants')
@@ -42,7 +47,7 @@ const AdminApplicantSection = () => {
             return { id: doc.id, ...(doc.data() as IApplicantType) };
           },
         );
-        const filteredApplicants =
+        const filteredApplicantsByPosition =
           currentParam !== 'home'
             ? tempDoc.filter((data) =>
                 data.position
@@ -54,8 +59,8 @@ const AdminApplicantSection = () => {
                   ),
               )
             : tempDoc;
-        tempDoc && setApplicants(filteredApplicants);
-        countApplicantsHandler(filteredApplicants);
+        tempDoc && setApplicants(filteredApplicantsByPosition);
+        countApplicantsHandler(filteredApplicantsByPosition);
       });
   }, [currentParam]);
   const countApplicantsHandler = (
@@ -81,20 +86,7 @@ const AdminApplicantSection = () => {
     <ApplicantSection>
       <InformationHeader>
         <AnnouncementToggle currentParam={currentParam} />
-        <ApplicantsStatus>
-          <ApplicantsStatusWrapper>
-            <StatusBadge status={'DOCS'} /> {applicantCount.isDOCS}
-          </ApplicantsStatusWrapper>
-          <ApplicantsStatusWrapper>
-            <StatusBadge status={'INTERVIEW'} /> {applicantCount.isINTERVIEW}
-          </ApplicantsStatusWrapper>
-          <ApplicantsStatusWrapper>
-            <StatusBadge status={'REJECTED'} /> {applicantCount.isREJECTED}
-          </ApplicantsStatusWrapper>
-          <ApplicantsStatusWrapper>
-            <StatusBadge status={'HIRED'} /> {applicantCount.isHIRED}
-          </ApplicantsStatusWrapper>
-        </ApplicantsStatus>
+        <ApplicantStatus {...applicantCount} />
       </InformationHeader>
       {applicants && (
         <ApplicantCardSection>
@@ -106,6 +98,30 @@ const AdminApplicantSection = () => {
         </ApplicantCardSection>
       )}
     </ApplicantSection>
+  );
+};
+
+const ApplicantStatus: React.FC<IApplicantCountType> = ({
+  isDOCS,
+  isINTERVIEW,
+  isREJECTED,
+  isHIRED,
+}) => {
+  return (
+    <ApplicantsStatusWrapper>
+      <ApplicantsBadgeWrapper>
+        <StatusBadge status={'DOCS'} /> {isDOCS}
+      </ApplicantsBadgeWrapper>
+      <ApplicantsBadgeWrapper>
+        <StatusBadge status={'INTERVIEW'} /> {isINTERVIEW}
+      </ApplicantsBadgeWrapper>
+      <ApplicantsBadgeWrapper>
+        <StatusBadge status={'REJECTED'} /> {isREJECTED}
+      </ApplicantsBadgeWrapper>
+      <ApplicantsBadgeWrapper>
+        <StatusBadge status={'HIRED'} /> {isHIRED}
+      </ApplicantsBadgeWrapper>
+    </ApplicantsStatusWrapper>
   );
 };
 

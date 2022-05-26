@@ -124,9 +124,7 @@ const RecruitForm = () => {
     }
   };
   const onSubmit = async () => {
-    {
-      input.current && (await uploadFiles(input.current));
-    }
+    input.current && (await uploadFiles(input.current));
   };
 
   const requiredSchema = !!(

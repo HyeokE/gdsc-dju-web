@@ -33,11 +33,11 @@ export const InformationHeader = styled.div`
   width: 100%;
   align-items: center;
 `;
-export const ApplicantsStatus = styled.div`
+export const ApplicantsStatusWrapper = styled.div`
   display: flex;
   align-items: center;
 `;
-export const ApplicantsStatusWrapper = styled.div`
+export const ApplicantsBadgeWrapper = styled.div`
   font-size: ${({ theme }) => theme.fontSize.body2};
   color: ${({ theme }) => theme.colors.grey700};
   display: flex;

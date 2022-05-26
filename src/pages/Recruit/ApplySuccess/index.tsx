@@ -24,6 +24,7 @@ const ApplySuccess = () => {
           <RecruitFormWrapper>
             <RecruitFormInner>
               <ApplyMargin />
+              <ApplyMargin />
               <ApplyTitle>지원해주셔서 감사합니다.</ApplyTitle>
               <SubTitle>{position}</SubTitle>
               <ApplyMargin />
