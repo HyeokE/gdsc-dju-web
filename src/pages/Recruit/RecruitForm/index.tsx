@@ -58,6 +58,7 @@ const RecruitForm = () => {
     link1: '',
     fileURL: '',
     recommender: '',
+    generation: 2,
   };
   const recruitFormik = useFormik({
     initialValues: recruitItem,

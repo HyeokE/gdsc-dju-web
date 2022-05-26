@@ -10,12 +10,14 @@ export interface IApplicantType {
   position: string;
   recommender: string;
   studentID: string;
+  generation: number;
   uploadDate: {
     seconds: number;
     nanoseconds: number;
   };
 }
 export type statusType = 'DOCS' | 'INTERVIEW' | 'REJECTED' | 'HIRED';
+
 export interface IApplicantTypeWithID extends IApplicantType {
   id: string;
 }
