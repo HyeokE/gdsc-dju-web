@@ -177,16 +177,18 @@ const ApplicantInfo: React.FC<{
       </ApplicantInfoTextWrapper>
       <ApplicantInfoTextWrapper>
         <ApplicantInfoText>Link1</ApplicantInfoText>
-        <ApplicantInfoLink href={applicantData.link0}>
+        <ApplicantInfoLink href={applicantData.link0} target={'_blank'}>
           {removeHttp(applicantData.link0)}
         </ApplicantInfoLink>
       </ApplicantInfoTextWrapper>
-      <ApplicantInfoTextWrapper>
-        <ApplicantInfoText>Link2</ApplicantInfoText>
-        <ApplicantInfoLink href={applicantData.link1}>
-          {removeHttp(applicantData.link1)}
-        </ApplicantInfoLink>
-      </ApplicantInfoTextWrapper>
+      {applicantData.link1 !== '' && (
+        <ApplicantInfoTextWrapper>
+          <ApplicantInfoText>Link2</ApplicantInfoText>
+          <ApplicantInfoLink href={applicantData.link1} target={'_blank'}>
+            {removeHttp(applicantData.link1)}
+          </ApplicantInfoLink>
+        </ApplicantInfoTextWrapper>
+      )}
       <ApplicantInfoTextWrapper>
         <ApplicantInfoText>추천인</ApplicantInfoText>
         <ApplicantInfoText>
