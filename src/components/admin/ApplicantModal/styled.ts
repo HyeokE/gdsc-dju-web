@@ -45,9 +45,10 @@ export const ApplicantInfoHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding: 0 20px;
+  padding: 0 14px;
   flex-wrap: wrap;
   gap: 5px;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.grey300};
 `;
 
 export const ApplicantInfoInner = styled.div`

@@ -3,8 +3,8 @@ import styled, { css } from 'styled-components';
 import { theme } from '../../../styles/theme';
 
 export const Switch = styled.div`
-  width: 40px;
-  height: 20px;
+  width: 36px;
+  height: 18px;
   background-color: ${(props) => props.theme.colors.grey700};
   display: flex;
   justify-content: flex-start;
@@ -19,15 +19,12 @@ export const Switch = styled.div`
   }
 `;
 export const Handle = styled(motion.div)`
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   background-color: white;
   border-radius: 40px;
 `;
-export const StyledPosition = styled.div`
-  font-size: 1.5rem;
-  margin-right: 10px;
-`;
+
 export const InformationHeader = styled.div`
   display: flex;
   justify-content: flex-end;
@@ -52,7 +49,7 @@ export const ApplicantsBadgeWrapper = styled.div`
 export const ToggleButton = styled.div`
   display: flex;
   flex-direction: row;
-  margin: 10px 20px;
+  margin: 10px 10px;
 `;
 
 export const AdminSectionWrapper = styled.div`

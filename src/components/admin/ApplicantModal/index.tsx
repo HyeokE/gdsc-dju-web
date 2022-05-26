@@ -30,7 +30,7 @@ import { modalVariants } from '../../common/Variants/modalVariants';
 
 import StatusBadge from '../Statusbadge';
 import OutsideClickHandler from '../../../utils/OutsideClickHandler';
-import ApplicantChat from '../ApplicantChat';
+import ApplicantChat from '../ApplicantChatSection';
 
 const ApplicantModal = () => {
   const [applicantData, setApplicantData] = useState<IApplicantTypeWithID>();
