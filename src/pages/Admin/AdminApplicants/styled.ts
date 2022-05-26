@@ -34,8 +34,17 @@ export const InformationHeader = styled.div`
   align-items: center;
 `;
 export const ApplicantsStatus = styled.div`
-  font-size: ${({ theme }) => theme.fontSize.body1};
+  display: flex;
+  align-items: center;
+`;
+export const ApplicantsStatusWrapper = styled.div`
+  font-size: ${({ theme }) => theme.fontSize.body2};
   color: ${({ theme }) => theme.colors.grey700};
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  flex-wrap: wrap;
+  gap: 0 5px;
 `;
 
 export const ToggleButton = styled.div`

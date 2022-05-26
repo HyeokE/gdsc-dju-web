@@ -7,6 +7,7 @@ import {
 } from './styled';
 import {
   ApplicantsStatus,
+  ApplicantsStatusWrapper,
   Handle,
   InformationHeader,
   Switch,
@@ -17,13 +18,18 @@ import { recruitmentState } from '../../../store/recruitHandler';
 import { useSearchParams } from 'react-router-dom';
 import { dbService } from '../../../firebase/firebase';
 import { IApplicantType, IApplicantTypeWithID } from '../../../types/applicant';
-import { applicantMock } from '../../../apis/Mocks/applicantMock';
 import { position } from '../AdminApplicantsSidebar';
+import StatusBadge from '../Statusbadge';
 
 const AdminApplicantSection = () => {
-  const [recruit, setRecruit] = useRecoilState(recruitmentState);
-  const [searchParams, setSearchParams] = useSearchParams();
   const [applicants, setApplicants] = useState<IApplicantTypeWithID[]>();
+  const [applicantCount, setApplicantCount] = useState({
+    isDOCS: 0,
+    isINTERVIEW: 0,
+    isREJECTED: 0,
+    isHIRED: 0,
+  });
+  const [searchParams] = useSearchParams();
 
   const currentParam = searchParams.get('type') as string;
   useEffect(() => {
@@ -49,66 +55,46 @@ const AdminApplicantSection = () => {
               )
             : tempDoc;
         tempDoc && setApplicants(filteredApplicants);
+        countApplicantsHandler(filteredApplicants);
       });
   }, [currentParam]);
-  const toggleSwitch = (key: string) => {
-    switch (key) {
-      case 'frontend':
-        return setRecruit({ ...recruit, frontend: !recruit.frontend });
-      case 'backend':
-        return setRecruit({ ...recruit, backend: !recruit.backend });
-      case 'android':
-        return setRecruit({ ...recruit, android: !recruit.android });
-      case 'beginner':
-        return setRecruit({ ...recruit, beginner: !recruit.beginner });
-      case 'design':
-        return setRecruit({ ...recruit, design: !recruit.design });
-      case 'ml':
-        return setRecruit({ ...recruit, ml: !recruit.ml });
-      case 'home':
-        return setRecruit({ ...recruit, home: !recruit.home });
-      default:
-        return console.log('error');
-    }
-  };
-  const isOn = (key: string) => {
-    switch (key) {
-      case 'frontend':
-        return recruit.frontend;
-      case 'backend':
-        return recruit.backend;
-      case 'android':
-        return recruit.android;
-      case 'beginner':
-        return recruit.beginner;
-      case 'design':
-        return recruit.design;
-      case 'ml':
-        return recruit.ml;
-      case 'home':
-        return recruit.home;
-    }
-  };
-  const spring = {
-    type: 'spring',
-    stiffness: 700,
-    damping: 30,
+  const countApplicantsHandler = (
+    filteredApplicants: IApplicantTypeWithID[],
+  ) => {
+    const DOCS = filteredApplicants.filter((data) => data.status === 'DOCS');
+    const INTERVIEW = filteredApplicants.filter(
+      (data) => data.status === 'INTERVIEW',
+    );
+    const REJECTED = filteredApplicants.filter(
+      (data) => data.status === 'REJECTED',
+    );
+    const HIRED = filteredApplicants.filter((data) => data.status === 'HIRED');
+    setApplicantCount({
+      isDOCS: DOCS.length,
+      isINTERVIEW: INTERVIEW.length,
+      isREJECTED: REJECTED.length,
+      isHIRED: HIRED.length,
+    });
   };
 
   return (
     <ApplicantSection>
       <InformationHeader>
-        {currentParam && (
-          <ToggleButton>
-            <Switch
-              data-ison={isOn(currentParam)}
-              onClick={() => toggleSwitch(currentParam)}
-            >
-              <Handle layout transition={spring} />
-            </Switch>
-          </ToggleButton>
-        )}
-        <ApplicantsStatus>Total - {applicants?.length}</ApplicantsStatus>
+        <AnnouncementToggle currentParam={currentParam} />
+        <ApplicantsStatus>
+          <ApplicantsStatusWrapper>
+            <StatusBadge status={'DOCS'} /> {applicantCount.isDOCS}
+          </ApplicantsStatusWrapper>
+          <ApplicantsStatusWrapper>
+            <StatusBadge status={'INTERVIEW'} /> {applicantCount.isINTERVIEW}
+          </ApplicantsStatusWrapper>
+          <ApplicantsStatusWrapper>
+            <StatusBadge status={'REJECTED'} /> {applicantCount.isREJECTED}
+          </ApplicantsStatusWrapper>
+          <ApplicantsStatusWrapper>
+            <StatusBadge status={'HIRED'} /> {applicantCount.isHIRED}
+          </ApplicantsStatusWrapper>
+        </ApplicantsStatus>
       </InformationHeader>
       {applicants && (
         <ApplicantCardSection>
@@ -120,6 +106,32 @@ const AdminApplicantSection = () => {
         </ApplicantCardSection>
       )}
     </ApplicantSection>
+  );
+};
+
+const AnnouncementToggle = ({ currentParam }: { currentParam: string }) => {
+  const [recruit, setRecruit] = useRecoilState(recruitmentState);
+
+  const switchHandler = (key: keyof typeof recruit) => {
+    return setRecruit({ ...recruit, [key]: !recruit[key] });
+  };
+  const isOn = (key: keyof typeof recruit) => {
+    return recruit[key];
+  };
+  const spring = {
+    type: 'spring',
+    stiffness: 700,
+    damping: 30,
+  };
+  return (
+    <ToggleButton>
+      <Switch
+        data-ison={isOn(currentParam as keyof typeof recruit)}
+        onClick={() => switchHandler(currentParam as keyof typeof recruit)}
+      >
+        <Handle layout transition={spring} />
+      </Switch>
+    </ToggleButton>
   );
 };
 
