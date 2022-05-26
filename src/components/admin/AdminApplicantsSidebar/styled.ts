@@ -29,8 +29,8 @@ export const StatusCircle = styled.div<{ status: boolean }>`
   position: relative;
   top: -4px;
   left: -9px;
-  width: 10px;
-  height: 10px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   ${({ status }) =>
     status
