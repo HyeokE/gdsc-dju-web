@@ -43,9 +43,8 @@ const ApplicantModal = () => {
     return;
   };
   useEffect(() => {
-    applicantHandler('ubzYtfm60pSsH14p9BZx');
-    // applicantHandler(modal.selectedId);
-  }, []);
+    applicantHandler(modal.selectedId);
+  }, [modal.selectedId]);
   const closeModal = () => {
     setModal({
       ...modal,
