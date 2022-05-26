@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from 'react';
+import React, { memo, useCallback, useEffect, useState } from 'react';
 import ApplicantCard from '../ApplicantCard';
 import {
   ApplicantCardSection,
@@ -57,40 +57,39 @@ const AdminApplicantSection = () => {
             return { id: doc.id, ...(doc.data() as IApplicantType) };
           },
         );
+        const currentPosition =
+          position[currentParam as keyof typeof position].toLowerCase();
         const filteredApplicantsByPosition =
           currentParam !== 'home'
             ? tempDoc.filter((data) =>
-                data.position
-                  .toLowerCase()
-                  .includes(
-                    position[
-                      currentParam as keyof typeof position
-                    ].toLowerCase(),
-                  ),
+                data.position.toLowerCase().includes(currentPosition),
               )
             : tempDoc;
         tempDoc && setApplicants(filteredApplicantsByPosition);
         countApplicantsHandler(filteredApplicantsByPosition);
       });
   }, [currentParam, modal.selectedId]);
-  const countApplicantsHandler = (
-    filteredApplicants: IApplicantTypeWithID[],
-  ) => {
-    const DOCS = filteredApplicants.filter((data) => data.status === 'DOCS');
-    const INTERVIEW = filteredApplicants.filter(
-      (data) => data.status === 'INTERVIEW',
-    );
-    const REJECTED = filteredApplicants.filter(
-      (data) => data.status === 'REJECTED',
-    );
-    const HIRED = filteredApplicants.filter((data) => data.status === 'HIRED');
-    setApplicantCount({
-      isDOCS: DOCS.length,
-      isINTERVIEW: INTERVIEW.length,
-      isREJECTED: REJECTED.length,
-      isHIRED: HIRED.length,
-    });
-  };
+  const countApplicantsHandler = useCallback(
+    (filteredApplicants: IApplicantTypeWithID[]) => {
+      const DOCS = filteredApplicants.filter((data) => data.status === 'DOCS');
+      const INTERVIEW = filteredApplicants.filter(
+        (data) => data.status === 'INTERVIEW',
+      );
+      const REJECTED = filteredApplicants.filter(
+        (data) => data.status === 'REJECTED',
+      );
+      const HIRED = filteredApplicants.filter(
+        (data) => data.status === 'HIRED',
+      );
+      setApplicantCount({
+        isDOCS: DOCS.length,
+        isINTERVIEW: INTERVIEW.length,
+        isREJECTED: REJECTED.length,
+        isHIRED: HIRED.length,
+      });
+    },
+    [currentParam],
+  );
 
   return (
     <AnimatePresence>

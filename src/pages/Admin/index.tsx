@@ -16,32 +16,28 @@ const Admin = () => {
   const [adminUser, setAdminUser] = useRecoilState(localUserState);
   const [selector, setSelector] = useRecoilState(recruitmentSelector);
   const navigate = useNavigate();
+  const getAdminUser = (uid: string) => {
+    dbService
+      .collection('adminUsers')
+      .doc(uid)
+      .get()
+      .then((doc) => {
+        const userData = doc.data();
+        setAdminUser({
+          ...adminUser,
+          uid: uid,
+          nickname: userData?.nickname,
+          name: userData?.name,
+          phoneNumber: userData?.phoneNumber,
+        });
+      });
+  };
 
   const checkAdminUser = async () => {
     await authService.onAuthStateChanged((user) => {
       if (user) {
-        setAdminUser({
-          ...adminUser,
-          uid: user.uid,
-        });
         try {
-          dbService
-            .collection('adminUsers')
-            .doc(`${user.uid}`)
-            .get()
-            .then((doc) => {
-              console.log(doc.data());
-            });
-          API.getAdminUser(user.uid).then((data) => {
-            const userData = data.data.fields;
-            setAdminUser({
-              ...adminUser,
-              uid: user.uid,
-              nickname: userData?.nickname.stringValue,
-              name: userData?.name.stringValue,
-              phoneNumber: userData?.phoneNumber.stringValue,
-            });
-          });
+          getAdminUser(user.uid);
         } catch (error) {
           navigate('/');
           error instanceof Error && console.log(error);

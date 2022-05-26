@@ -31,7 +31,6 @@ const AdminHeader = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>(
     location.pathname,
   );
-
   const tabs = [
     { label: '홈', route: '/admin' },
     // { label: '멤버 관리', route: '/admin/member' },
@@ -65,13 +64,12 @@ const AdminHeader = () => {
               isOpen={adminMenuHandler}
               setIsOpen={setAdminMenuHandler}
             />
-            {adminUser.nickname.length > 0 && (
-              <StyledUserName
-                onClick={() => setAdminMenuHandler(!adminMenuHandler)}
-              >
-                Hi {adminUser.nickname}
-              </StyledUserName>
-            )}
+
+            <StyledUserName
+              onClick={() => setAdminMenuHandler(!adminMenuHandler)}
+            >
+              Hi {adminUser.nickname}
+            </StyledUserName>
           </AdminNavCategoryWrapper>
         </NavInner>
       </NavWrapper>

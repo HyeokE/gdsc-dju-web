@@ -30,30 +30,23 @@ import { modalVariants } from '../../common/Variants/modalVariants';
 
 import StatusBadge from '../Statusbadge';
 import OutsideClickHandler from '../../../utils/OutsideClickHandler';
+import ApplicantChat from '../ApplicantChat';
 
 const ApplicantModal = () => {
   const [applicantData, setApplicantData] = useState<IApplicantTypeWithID>();
   const [modal, setModal] = useRecoilState(modalState);
 
-  const getApplicant = async (id: string) => {
-    let applicant;
-    await dbService
+  const getApplicant = (id: string) => {
+    dbService
       .collection('applicants')
       .doc(id)
       .get()
       .then((doc) => {
-        applicant = { ...doc.data(), id: doc.id };
+        const data = { ...doc.data(), id: doc.id };
+        setApplicantData(data as IApplicantTypeWithID);
       });
-    return applicant;
   };
-  const applicantHandler = async (id: string) => {
-    const applicant = await getApplicant(id);
-    applicant && setApplicantData(applicant);
-    return;
-  };
-  useEffect(() => {
-    applicantHandler(modal.selectedId);
-  }, [modal.selectedId, applicantData]);
+
   const closeModal = () => {
     setModal({
       ...modal,
@@ -61,6 +54,10 @@ const ApplicantModal = () => {
       selectedId: '',
     });
   };
+  useEffect(() => {
+    getApplicant(modal.selectedId);
+  }, []);
+
   return (
     <ApplicantModalWrapper>
       <OutsideClickHandler outsideClick={closeModal}>
@@ -79,8 +76,6 @@ const ApplicantModal = () => {
           )}
           <ApplicantInfoSection>
             <ApplicantInfoHeader>
-              {/*<LeftArrowButton onClick={closeModal} />*/}
-              {/*<RightArrowButton onClick={closeModal} />*/}
               <ClearButton onClick={closeModal} />
             </ApplicantInfoHeader>
             <object
@@ -89,6 +84,7 @@ const ApplicantModal = () => {
               width="700px"
               height="100%"
             />
+            <ApplicantChat />
           </ApplicantInfoSection>
         </ApplicantModalInner>
       </OutsideClickHandler>
