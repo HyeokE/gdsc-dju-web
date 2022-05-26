@@ -72,7 +72,7 @@ const AdminApplicantSection = () => {
         tempDoc && setApplicants(filteredApplicantsByPosition);
         countApplicantsHandler(filteredApplicantsByPosition);
       });
-  }, [currentParam]);
+  }, [currentParam, modal.selectedId]);
   const countApplicantsHandler = (
     filteredApplicants: IApplicantTypeWithID[],
   ) => {

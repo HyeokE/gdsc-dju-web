@@ -7,6 +7,7 @@ const StatusBadgeWrapper = styled.div<{ color: keyof typeof theme.colors }>`
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
   ${({ color }) =>
     color &&
     css`

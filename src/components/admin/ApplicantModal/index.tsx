@@ -4,6 +4,7 @@ import {
   ApplicantInfoInner,
   ApplicantInfoLink,
   ApplicantInfoSection,
+  ApplicantInfoStateWrapper,
   ApplicantInfoText,
   ApplicantInfoTextWrapper,
   ApplicantInfoWrapper,
@@ -13,7 +14,11 @@ import {
   ApplicantNameWrapper,
 } from './styled';
 import { dbService } from '../../../firebase/firebase';
-import { IApplicantTypeWithID } from '../../../types/applicant';
+import {
+  IApplicantType,
+  IApplicantTypeWithID,
+  statusType,
+} from '../../../types/applicant';
 import { useRecoilState } from 'recoil';
 import { MODAL_KEY, modalState } from '../../../store/modal';
 import {
@@ -22,7 +27,7 @@ import {
   RightArrowButton,
 } from '../../common/ModalButton';
 import { modalVariants } from '../../common/Variants/modalVariants';
-// import { Document, Page, pdfjs } from 'react-pdf';
+
 import StatusBadge from '../Statusbadge';
 
 const ApplicantModal = () => {
@@ -47,7 +52,7 @@ const ApplicantModal = () => {
   };
   useEffect(() => {
     applicantHandler(modal.selectedId);
-  }, [modal.selectedId]);
+  }, [modal.selectedId, applicantData]);
   const closeModal = () => {
     setModal({
       ...modal,
@@ -61,10 +66,15 @@ const ApplicantModal = () => {
         variants={modalVariants}
         layoutId={`card-${modal.selectedId}`}
       >
-        <ApplicantInfoWrapper>
-          {applicantData && <ApplicantInfo applicantData={applicantData} />}
-          <ApplicantInfoState id={modal.selectedId} />
-        </ApplicantInfoWrapper>
+        {applicantData && (
+          <ApplicantInfoWrapper>
+            <ApplicantInfo applicantData={applicantData} />
+            <ApplicantInfoState
+              applicantData={applicantData}
+              setApplicantData={setApplicantData}
+            />
+          </ApplicantInfoWrapper>
+        )}
         <ApplicantInfoSection>
           <ApplicantInfoHeader>
             <LeftArrowButton onClick={closeModal} />
@@ -82,22 +92,36 @@ const ApplicantModal = () => {
     </ApplicantModalWrapper>
   );
 };
-const ApplicantInfoState = ({ id }: { id: string }) => {
-  const applicantRef = dbService.collection('applicants').doc(id);
-  const updateStatus = async (status: string) => {
+const ApplicantInfoState: React.FC<{
+  applicantData: IApplicantTypeWithID;
+  setApplicantData: (data: IApplicantTypeWithID) => void;
+}> = ({ applicantData, setApplicantData }) => {
+  const applicantRef = dbService.collection('applicants').doc(applicantData.id);
+  const updateStatus = async (status: statusType) => {
     await applicantRef.update({
       status: status,
     });
+    setApplicantData({
+      ...applicantData,
+      status: status,
+    });
   };
-  //
-  // const res = cityRef.update({ status: 'DOCS' });
+
   return (
-    <>
-      <StatusBadge status={'DOCS'} />
-      <StatusBadge status={'INTERVIEW'} />
-      <StatusBadge status={'HIRED'} />
-      <StatusBadge status={'REJECTED'} />
-    </>
+    <ApplicantInfoStateWrapper>
+      <div onClick={() => updateStatus('DOCS')}>
+        <StatusBadge status={'DOCS'} />
+      </div>
+      <div onClick={() => updateStatus('INTERVIEW')}>
+        <StatusBadge status={'INTERVIEW'} />
+      </div>
+      <div onClick={() => updateStatus('HIRED')}>
+        <StatusBadge status={'HIRED'} />
+      </div>
+      <div onClick={() => updateStatus('REJECTED')}>
+        <StatusBadge status={'REJECTED'} />
+      </div>
+    </ApplicantInfoStateWrapper>
   );
 };
 
@@ -115,6 +139,7 @@ const ApplicantInfo: React.FC<{
     <ApplicantInfoInner>
       <ApplicantNameWrapper>
         <ApplicantName>{applicantData.name}</ApplicantName>
+        <StatusBadge status={applicantData.status} />
       </ApplicantNameWrapper>
       <ApplicantInfoTextWrapper>
         <ApplicantInfoText>이메일</ApplicantInfoText>
@@ -143,6 +168,12 @@ const ApplicantInfo: React.FC<{
         <ApplicantInfoLink href={applicantData.link1}>
           {removeHttp(applicantData.link1)}
         </ApplicantInfoLink>
+      </ApplicantInfoTextWrapper>
+      <ApplicantInfoTextWrapper>
+        <ApplicantInfoText>추천인</ApplicantInfoText>
+        <ApplicantInfoText>
+          {applicantData.recommender == '' ? '없음' : applicantData.recommender}
+        </ApplicantInfoText>
       </ApplicantInfoTextWrapper>
       <ApplicantInfoTextWrapper>
         <ApplicantInfoText>지원 일자</ApplicantInfoText>

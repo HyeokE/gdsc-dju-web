@@ -29,6 +29,10 @@ export const ApplicantInfoWrapper = styled.div`
   padding: 10px 10px;
   box-sizing: border-box;
   border-radius: 20px 0 0 20px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 10px;
 `;
 export const ApplicantInfoSection = styled.div`
   width: 100%;
@@ -59,6 +63,10 @@ export const ApplicantInfoInner = styled.div`
 `;
 export const ApplicantNameWrapper = styled.div`
   width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
 `;
 export const ApplicantName = styled(motion.p)`
   font-size: ${({ theme }) => theme.fontSize.body1};
@@ -80,11 +88,19 @@ export const ApplicantInfoText = styled(motion.p)`
 `;
 export const ApplicantInfoLink = styled.a`
   font-size: ${({ theme }) => theme.fontSize.body3};
-  color: ${({ theme }) => theme.colors.grey900};
+  color: ${({ theme }) => theme.colors.tossBlue};
   min-width: 60px;
   max-width: 150px;
   text-decoration: none;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+`;
+export const ApplicantInfoStateWrapper = styled.section`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 6px;
 `;

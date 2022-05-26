@@ -1,5 +1,5 @@
 export interface IApplicantType {
-  status: 'DOCS' | 'INTERVIEW' | 'REJECTED' | 'HIRED';
+  status: statusType;
   email: string;
   fileURL: string;
   link0: string;
@@ -15,6 +15,7 @@ export interface IApplicantType {
     nanoseconds: number;
   };
 }
+export type statusType = 'DOCS' | 'INTERVIEW' | 'REJECTED' | 'HIRED';
 export interface IApplicantTypeWithID extends IApplicantType {
   id: string;
 }
