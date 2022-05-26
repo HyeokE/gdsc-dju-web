@@ -24,7 +24,9 @@ import {
 } from '../../../types/applicant';
 import { position } from '../AdminApplicantsSidebar';
 import StatusBadge from '../Statusbadge';
-import { modalState, MODAL_KEY } from '../../../store/modal';
+import { MODAL_KEY, modalState } from '../../../store/modal';
+import ApplicantModal from '../ApplicantModal';
+import { AnimatePresence, LayoutGroup } from 'framer-motion';
 
 const AdminApplicantSection = () => {
   const [modal, setModal] = useRecoilState(modalState);
@@ -91,24 +93,29 @@ const AdminApplicantSection = () => {
   };
 
   return (
-    <ApplicantSection>
-      <InformationHeader>
-        <AnnouncementToggle currentParam={currentParam} />
-        <ApplicantStatus {...applicantCount} />
-      </InformationHeader>
-      {applicants && (
-        <ApplicantCardSection>
-          {applicants.map((applicant) => (
-            <ApplicantCardWrapper
-              key={applicant.id}
-              onClick={() => openModal(applicant.id)}
-            >
-              <ApplicantCard {...applicant} />
-            </ApplicantCardWrapper>
-          ))}
-        </ApplicantCardSection>
-      )}
-    </ApplicantSection>
+    <AnimatePresence>
+      <LayoutGroup>
+        {modal.adminApplicant && <ApplicantModal />}
+        <ApplicantSection>
+          <InformationHeader>
+            <AnnouncementToggle currentParam={currentParam} />
+            <ApplicantStatus {...applicantCount} />
+          </InformationHeader>
+          {applicants && (
+            <ApplicantCardSection>
+              {applicants.map((applicant) => (
+                <ApplicantCardWrapper
+                  key={applicant.id}
+                  onClick={() => openModal(applicant.id)}
+                >
+                  <ApplicantCard {...applicant} />
+                </ApplicantCardWrapper>
+              ))}
+            </ApplicantCardSection>
+          )}
+        </ApplicantSection>
+      </LayoutGroup>
+    </AnimatePresence>
   );
 };
 

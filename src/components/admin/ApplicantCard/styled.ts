@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
-export const ApplicantCardWrapper = styled.div`
+export const ApplicantCardWrapper = styled(motion.div)`
   display: flex;
   flex-direction: row;
   padding: 17px 30px;
@@ -12,6 +13,6 @@ export const ApplicantCardWrapper = styled.div`
   align-items: center;
   cursor: pointer;
 `;
-export const ApplicantText = styled.div`
+export const ApplicantText = styled(motion.div)`
   font-size: ${({ theme }) => theme.fontSize.body2};
 `;

@@ -10,7 +10,10 @@ export interface IApplicantType {
   position: string;
   recommender: string;
   studentID: string;
-  uploadDate: string;
+  uploadDate: {
+    seconds: number;
+    nanoseconds: number;
+  };
 }
 export interface IApplicantTypeWithID extends IApplicantType {
   id: string;

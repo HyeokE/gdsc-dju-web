@@ -9,7 +9,6 @@ const Modal = () => {
   const [modal, setModal] = useRecoilState(modalState);
   return (
     <AnimatePresence>
-      {modal.adminApplicant && <ApplicantModal />}
       {/*{modal.applyCheck && <ApplyModal />}*/}
     </AnimatePresence>
   );

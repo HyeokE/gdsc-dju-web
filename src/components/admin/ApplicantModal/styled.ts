@@ -60,7 +60,7 @@ export const ApplicantInfoInner = styled.div`
 export const ApplicantNameWrapper = styled.div`
   width: 100%;
 `;
-export const ApplicantName = styled.p`
+export const ApplicantName = styled(motion.p)`
   font-size: ${({ theme }) => theme.fontSize.body1};
   color: ${({ theme }) => theme.colors.grey900};
   font-weight: bold;
@@ -69,7 +69,7 @@ export const ApplicantInfoTextWrapper = styled.div`
   display: flex;
   flex-direction: row;
 `;
-export const ApplicantInfoText = styled.p`
+export const ApplicantInfoText = styled(motion.p)`
   font-size: ${({ theme }) => theme.fontSize.body3};
   color: ${({ theme }) => theme.colors.grey900};
   min-width: 60px;

@@ -21,6 +21,8 @@ import {
   LeftArrowButton,
   RightArrowButton,
 } from '../../common/ModalButton';
+import { modalVariants } from '../../common/Variants/modalVariants';
+import { AnimatePresence } from 'framer-motion';
 
 const ApplicantModal = () => {
   const [applicantData, setApplicantData] = useState<IApplicantTypeWithID>();
@@ -54,7 +56,10 @@ const ApplicantModal = () => {
   };
   return (
     <ApplicantModalWrapper>
-      <ApplicantModalInner>
+      <ApplicantModalInner
+        variants={modalVariants}
+        layoutId={`card-${modal.selectedId}`}
+      >
         <ApplicantInfoWrapper>
           {applicantData && <ApplicantInfo applicantData={applicantData} />}
         </ApplicantInfoWrapper>
@@ -76,6 +81,10 @@ const ApplicantInfo: React.FC<{
   function removeHttp(address: string) {
     return address.replace(/^(https?:\/\/)?(www\.)?/, '');
   }
+
+  const uploadDate = new Date(
+    applicantData.uploadDate.seconds * 1000,
+  ).toString();
   return (
     <ApplicantInfoInner>
       <ApplicantNameWrapper>
@@ -108,6 +117,10 @@ const ApplicantInfo: React.FC<{
         <ApplicantInfoLink href={applicantData.link1}>
           {removeHttp(applicantData.link1)}
         </ApplicantInfoLink>
+      </ApplicantInfoTextWrapper>
+      <ApplicantInfoTextWrapper>
+        <ApplicantInfoText>지원 일자</ApplicantInfoText>
+        <ApplicantInfoText>{uploadDate}</ApplicantInfoText>
       </ApplicantInfoTextWrapper>
     </ApplicantInfoInner>
   );

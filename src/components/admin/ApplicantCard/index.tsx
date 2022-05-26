@@ -8,14 +8,13 @@ const ApplicantCard: React.FC<IApplicantTypeWithID> = ({
   email,
   position,
   status,
-  studentID,
+  id,
 }) => {
   return (
-    <ApplicantCardWrapper>
+    <ApplicantCardWrapper layoutId={`card-${id}`}>
       <ApplicantText>{name}</ApplicantText>
       <ApplicantText>{position.split(' ')[0]}</ApplicantText>
       <ApplicantText>{email}</ApplicantText>
-
       <StatusBadge status={status} />
     </ApplicantCardWrapper>
   );
