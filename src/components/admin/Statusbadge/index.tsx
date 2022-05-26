@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { theme } from '../../../styles/theme';
 
 const StatusBadgeWrapper = styled.div<{ color: keyof typeof theme.colors }>`
@@ -7,11 +7,16 @@ const StatusBadgeWrapper = styled.div<{ color: keyof typeof theme.colors }>`
   display: flex;
   align-items: center;
   justify-content: center;
+  ${({ color }) =>
+    color &&
+    css`
+      color: ${theme.colors[color]};
+      background: ${theme.colors.white};
+      border: 1px solid ${theme.colors[color]};
+    `}
   font-size: ${({ theme }) => theme.fontSize.body3};
-  border: 1px solid ${({ color }) => theme.colors[color]};
+  width: fit-content;
   border-radius: 4px;
-  color: ${({ color }) => theme.colors[color]};
-  background: fade(${({ color }) => theme.colors[color]}, 20%);
 `;
 const statusData = {
   DOCS: {
@@ -31,13 +36,17 @@ const statusData = {
     text: '최종합격',
   },
 };
-const StatusBadge = ({ status }: { status: keyof typeof statusData }) => {
+const StatusBadge = ({ status }: { status?: keyof typeof statusData }) => {
   return (
-    <StatusBadgeWrapper
-      color={statusData[status].color as keyof typeof theme.colors}
-    >
-      {statusData[status].text}
-    </StatusBadgeWrapper>
+    <>
+      {status && (
+        <StatusBadgeWrapper
+          color={statusData[status].color as keyof typeof theme.colors}
+        >
+          {statusData[status].text}
+        </StatusBadgeWrapper>
+      )}
+    </>
   );
 };
 

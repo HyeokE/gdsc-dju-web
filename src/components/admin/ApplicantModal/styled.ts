@@ -33,10 +33,10 @@ export const ApplicantInfoWrapper = styled.div`
 export const ApplicantInfoSection = styled.div`
   width: 100%;
   display: flex;
+  flex-direction: column;
   height: 100%;
 `;
 export const ApplicantInfoHeader = styled.div`
-  width: 100%;
   height: 40px;
   display: flex;
   align-items: center;

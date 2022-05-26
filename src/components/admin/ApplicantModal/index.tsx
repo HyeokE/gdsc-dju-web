@@ -22,7 +22,8 @@ import {
   RightArrowButton,
 } from '../../common/ModalButton';
 import { modalVariants } from '../../common/Variants/modalVariants';
-import { AnimatePresence } from 'framer-motion';
+// import { Document, Page, pdfjs } from 'react-pdf';
+import StatusBadge from '../Statusbadge';
 
 const ApplicantModal = () => {
   const [applicantData, setApplicantData] = useState<IApplicantTypeWithID>();
@@ -62,6 +63,7 @@ const ApplicantModal = () => {
       >
         <ApplicantInfoWrapper>
           {applicantData && <ApplicantInfo applicantData={applicantData} />}
+          <ApplicantInfoState id={modal.selectedId} />
         </ApplicantInfoWrapper>
         <ApplicantInfoSection>
           <ApplicantInfoHeader>
@@ -69,9 +71,33 @@ const ApplicantModal = () => {
             <RightArrowButton onClick={closeModal} />
             <ClearButton onClick={closeModal} />
           </ApplicantInfoHeader>
+          <object
+            type="text/html"
+            data={applicantData?.fileURL}
+            width="700px"
+            height="100%"
+          />
         </ApplicantInfoSection>
       </ApplicantModalInner>
     </ApplicantModalWrapper>
+  );
+};
+const ApplicantInfoState = ({ id }: { id: string }) => {
+  const applicantRef = dbService.collection('applicants').doc(id);
+  const updateStatus = async (status: string) => {
+    await applicantRef.update({
+      status: status,
+    });
+  };
+  //
+  // const res = cityRef.update({ status: 'DOCS' });
+  return (
+    <>
+      <StatusBadge status={'DOCS'} />
+      <StatusBadge status={'INTERVIEW'} />
+      <StatusBadge status={'HIRED'} />
+      <StatusBadge status={'REJECTED'} />
+    </>
   );
 };
 
