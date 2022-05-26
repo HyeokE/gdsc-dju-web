@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import ApplicantCard from '../ApplicantCard';
 import {
   ApplicantCardSection,
@@ -169,4 +169,4 @@ const AnnouncementToggle = ({ currentParam }: { currentParam: string }) => {
   );
 };
 
-export default AdminApplicantSection;
+export default memo(AdminApplicantSection);

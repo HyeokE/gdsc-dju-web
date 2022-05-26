@@ -18,7 +18,7 @@ const AdminApplicants = () => {
   useEffect(() => {
     !searchParams.get('type') &&
       setSearchParams({
-        type: 'frontend',
+        type: 'home',
       });
   }, [location.pathname]);
 

@@ -24,7 +24,7 @@ const AdminApplicantsSidebar = () => {
 
   return (
     <AdminSidebar>
-      {Object.keys(recruit).map((data, id) => (
+      {Object.keys(position).map((data, id) => (
         <AnnouncementCard
           data={data}
           status={recruit[data as keyof typeof recruit]}
