@@ -4,6 +4,7 @@ import React, {
   PropsWithChildren,
   RefObject,
   useCallback,
+  useEffect,
   useRef,
   useState,
 } from 'react';
@@ -12,6 +13,14 @@ import { useFirestoreQuery } from '../../../hooks/useFirebaseQuery';
 import { useRecoilValue } from 'recoil';
 import { adminUserState } from '../../../store/localUser';
 import { IApplicantChatType } from '../../../types/applicant';
+import ChatCard from '../ChatCard';
+import {
+  ApplicantChatBottomBar,
+  ApplicantChatInput,
+  ApplicantChatList,
+  ApplicantChatSectionWrapper,
+  ApplicantChatSendButton,
+} from './styled';
 
 interface IApplicantChatProps {
   newMessages: IApplicantChatType[];
@@ -20,7 +29,18 @@ const ApplicantChat = forwardRef<
   HTMLDivElement,
   PropsWithChildren<IApplicantChatProps>
 >((props, ref) => {
-  return <div ref={ref as RefObject<HTMLDivElement>}>asds</div>;
+  const { newMessages } = props;
+  const reversedMessages = [...newMessages].reverse();
+
+  return (
+    <ApplicantChatList>
+      {reversedMessages.map((message) => (
+        <div ref={ref} key={message.id}>
+          <ChatCard {...message} />
+        </div>
+      ))}
+    </ApplicantChatList>
+  );
 });
 ApplicantChat.displayName = 'ApplicantChat';
 
@@ -31,14 +51,14 @@ interface IApplicantChatSectionProps {
 const ApplicantChatSection: React.FC<IApplicantChatSectionProps> = ({
   applicantId,
 }) => {
-  const chatRef = dbService.collection(`chats-${applicantId}`);
+  const [newMessage, setNewMessage] = useState('');
   const chatSectionRef = useRef<HTMLDivElement>(null);
+  const adminUser = useRecoilValue(adminUserState);
+  const chatRef = dbService.collection(`chats-${applicantId}`);
+
   const newMessages = useFirestoreQuery(
     chatRef.orderBy('createdAt', 'desc').limit(1000),
   );
-  console.log(newMessages);
-  const [newMessage, setNewMessage] = useState('');
-  const adminUser = useRecoilValue(adminUserState);
 
   const newMessageHandler = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -55,28 +75,45 @@ const ApplicantChatSection: React.FC<IApplicantChatSectionProps> = ({
         text: trimmedMessage,
         createdAt: Date.now(),
         uid: adminUser.uid,
-        displayName: adminUser.name,
+        displayName: adminUser.nickname,
         isRead: false,
       });
 
       // Clear input field
       setNewMessage('');
       // Scroll down to the bottom of the list
-      chatSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
+  const handleOnKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handleOnSubmit();
+    }
+  };
+  useEffect(() => {
+    chatSectionRef.current?.scrollIntoView({
+      behavior: 'smooth',
+    });
+  }, [newMessages]);
   return (
-    <div>
+    <ApplicantChatSectionWrapper>
       {chatSectionRef && newMessages && (
         <ApplicantChat
           ref={chatSectionRef}
           newMessages={newMessages as IApplicantChatType[]}
         />
       )}
-      <input onChange={newMessageHandler} value={newMessage} />
-      <button onClick={handleOnSubmit}>보내기</button>
-    </div>
+      <ApplicantChatBottomBar>
+        <ApplicantChatInput
+          onChange={newMessageHandler}
+          value={newMessage}
+          onKeyPress={handleOnKeyPress}
+        />
+        <ApplicantChatSendButton onClick={handleOnSubmit}>
+          전송
+        </ApplicantChatSendButton>
+      </ApplicantChatBottomBar>
+    </ApplicantChatSectionWrapper>
   );
 };
 

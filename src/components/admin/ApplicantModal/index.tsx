@@ -84,7 +84,7 @@ const ApplicantModal = () => {
                 <object
                   type="text/html"
                   data={applicantData?.fileURL}
-                  width="700px"
+                  width="100%"
                   height="100%"
                 />
 
