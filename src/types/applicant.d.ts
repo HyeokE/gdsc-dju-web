@@ -27,3 +27,11 @@ export interface IApplicantCountType {
   isREJECTED: number;
   isHIRED: number;
 }
+export interface IApplicantChatType {
+  text: string;
+  createdAt: number;
+  id: string;
+  uid: string;
+  displayName: string;
+  isRead: boolean;
+}

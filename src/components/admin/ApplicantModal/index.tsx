@@ -1,5 +1,6 @@
 import React, { memo, useCallback, useEffect, useState } from 'react';
 import {
+  ApplicantDataWrapper,
   ApplicantInfoHeader,
   ApplicantInfoInner,
   ApplicantInfoLink,
@@ -78,13 +79,18 @@ const ApplicantModal = () => {
             <ApplicantInfoHeader>
               <ClearButton onClick={closeModal} />
             </ApplicantInfoHeader>
-            <object
-              type="text/html"
-              data={applicantData?.fileURL}
-              width="700px"
-              height="100%"
-            />
-            <ApplicantChat />
+            {applicantData && (
+              <ApplicantDataWrapper>
+                <object
+                  type="text/html"
+                  data={applicantData?.fileURL}
+                  width="700px"
+                  height="100%"
+                />
+
+                <ApplicantChat applicantId={applicantData.id} />
+              </ApplicantDataWrapper>
+            )}
           </ApplicantInfoSection>
         </ApplicantModalInner>
       </OutsideClickHandler>

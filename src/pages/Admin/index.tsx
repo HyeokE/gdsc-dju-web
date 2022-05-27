@@ -5,15 +5,12 @@ import AdminHome from './AdminHome';
 import AdminApplicants from './AdminApplicants';
 import { authService, dbService } from '../../firebase/firebase';
 import { useRecoilState } from 'recoil';
-import { localUserState } from '../../store/localUser';
-import { useLocation } from 'react-router';
+import { adminUserState } from '../../store/localUser';
 import { recruitmentSelector } from '../../store/recruitHandler';
-import API from '../../apis/index';
 import AdminEmail from './AdminEmail';
-import ApplicantModal from '../../components/admin/ApplicantModal';
 
 const Admin = () => {
-  const [adminUser, setAdminUser] = useRecoilState(localUserState);
+  const [adminUser, setAdminUser] = useRecoilState(adminUserState);
   const [selector, setSelector] = useRecoilState(recruitmentSelector);
   const navigate = useNavigate();
   const getAdminUser = (uid: string) => {

@@ -25,7 +25,7 @@ import GithubLogo from '../../../assets/GithubLogo.svg';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { authService, dbService } from '../../../firebase/firebase';
-import { localUserState } from '../../../store/localUser';
+import { adminUserState } from '../../../store/localUser';
 import { loaderState } from '../../../store/loader';
 
 const SignIn = () => {
@@ -33,7 +33,7 @@ const SignIn = () => {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
-  const [adminUser, setAdminUser] = useRecoilState(localUserState);
+  const [adminUser, setAdminUser] = useRecoilState(adminUserState);
   const [loader, setLoader] = useRecoilState(loaderState);
 
   const checkAdminUser = () => {

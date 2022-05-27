@@ -50,6 +50,12 @@ export const ApplicantInfoHeader = styled.div`
   gap: 5px;
   border-bottom: 1px solid ${({ theme }) => theme.colors.grey300};
 `;
+export const ApplicantDataWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+`;
 
 export const ApplicantInfoInner = styled.div`
   padding: 20px 18px;

@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef } from 'react';
-import { AnimatePresence, AnimateSharedLayout } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import { AdminUserMenuWrapper, MenuElement } from './styled';
 import { authService } from '../../../firebase/firebase';
 import { MODAL_KEY, modalState } from '../../../store/modal';

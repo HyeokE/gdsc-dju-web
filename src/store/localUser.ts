@@ -1,13 +1,13 @@
 import { atom } from 'recoil';
 
-export const LocalUser = 'localUser';
-export const LocalUserState = {
+export const AdminUser = 'adminUser';
+export const AdminUserState = {
   uid: '',
   name: '',
   nickname: '',
   phoneNumber: '',
 };
-export const localUserState = atom<typeof LocalUserState>({
-  key: LocalUser,
-  default: LocalUserState,
+export const adminUserState = atom<typeof AdminUserState>({
+  key: AdminUser,
+  default: AdminUserState,
 });

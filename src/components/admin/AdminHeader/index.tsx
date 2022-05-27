@@ -22,12 +22,12 @@ import {
 import GDSCLogo from '../../../assets/GDSCLogo.svg';
 import AdminUserMenu from '../AdminUserMenu';
 import { useRecoilState } from 'recoil';
-import { localUserState } from '../../../store/localUser';
+import { adminUserState } from '../../../store/localUser';
 
 const AdminHeader = () => {
   const location = useLocation();
   const [adminMenuHandler, setAdminMenuHandler] = useState(false);
-  const [adminUser] = useRecoilState(localUserState);
+  const [adminUser] = useRecoilState(adminUserState);
   const [selectedCategory, setSelectedCategory] = useState<string>(
     location.pathname,
   );
