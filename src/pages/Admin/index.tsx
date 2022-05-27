@@ -51,7 +51,7 @@ const Admin = () => {
     setSelector(selector);
     checkAdminUser();
   }, []);
-
+  console.log(1);
   return (
     <>
       <AdminSignUp />

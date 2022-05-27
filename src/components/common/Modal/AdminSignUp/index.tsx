@@ -34,6 +34,7 @@ const AdminSignUp = () => {
       setError(error.message);
     }
   };
+
   return (
     <AnimatePresence>
       {modal.adminSignUp && (

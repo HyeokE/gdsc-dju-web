@@ -65,6 +65,7 @@ const SignIn = () => {
       onEmailLogIn();
     }
   };
+
   const onEmailLogIn = () => {
     try {
       authService.signInWithEmailAndPassword(email, password).catch((error) => {
