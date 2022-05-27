@@ -29,10 +29,10 @@ const AdminSignUp = () => {
   const signUp = () => {
     try {
       firebase.auth().createUserWithEmailAndPassword(email, password);
+      setModal({ ...modal, [MODAL_KEY.ADMIN_SIGN_UP]: false });
     } catch (error: typeof error) {
       setError(error.message);
     }
-    setModal({ ...modal, [MODAL_KEY.ADMIN_SIGN_UP]: false });
   };
   return (
     <AnimatePresence>
