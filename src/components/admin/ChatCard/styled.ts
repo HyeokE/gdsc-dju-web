@@ -1,16 +1,24 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const ChatCardWrapper = styled.div`
+export const ChatCardInner = styled.div<{ isUser: boolean }>`
   padding: 10px;
-  width: 150px;
+  width: fit-content;
+  min-width: 100px;
+  max-width: 200px;
   box-shadow: 0 2px 3px ${({ theme }) => theme.colors.grey300};
   margin-top: 10px;
-  border-radius: 15px;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   row-gap: 4px;
   position: relative;
+  ${({ isUser }) =>
+    isUser &&
+    css`
+      background: ${({ theme }) => theme.colors.blue300};
+      box-shadow: 0 2px 3px ${({ theme }) => theme.colors.blue300};
+    `}
 `;
 export const ChatUser = styled.p`
   font-size: ${({ theme }) => theme.fontSize.body5};
@@ -23,6 +31,4 @@ export const ChatText = styled.p`
 export const ChatDate = styled.p`
   font-size: ${({ theme }) => theme.fontSize.body4};
   color: ${({ theme }) => theme.colors.grey500};
-  position: relative;
-  right: 0;
 `;

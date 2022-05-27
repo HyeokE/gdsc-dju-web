@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const ApplicantChatSectionWrapper = styled.div`
   width: 400px;
@@ -38,4 +38,14 @@ export const ApplicantChatList = styled.div`
   position: relative;
   padding: 10px;
   box-sizing: border-box;
+`;
+export const ChatCardWrapper = styled.div<{ isUser: boolean }>`
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  ${({ isUser }) =>
+    isUser &&
+    css`
+      justify-content: flex-end;
+    `}
 `;

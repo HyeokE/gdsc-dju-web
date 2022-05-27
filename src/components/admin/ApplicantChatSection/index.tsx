@@ -1,8 +1,6 @@
 import React, {
   forwardRef,
-  HTMLProps,
   PropsWithChildren,
-  RefObject,
   useCallback,
   useEffect,
   useRef,
@@ -20,24 +18,30 @@ import {
   ApplicantChatList,
   ApplicantChatSectionWrapper,
   ApplicantChatSendButton,
+  ChatCardWrapper,
 } from './styled';
 
 interface IApplicantChatProps {
   newMessages: IApplicantChatType[];
+  adminUser: string;
 }
 const ApplicantChat = forwardRef<
   HTMLDivElement,
   PropsWithChildren<IApplicantChatProps>
 >((props, ref) => {
-  const { newMessages } = props;
+  const { newMessages, adminUser } = props;
   const reversedMessages = [...newMessages].reverse();
 
   return (
     <ApplicantChatList>
       {reversedMessages.map((message) => (
-        <div ref={ref} key={message.id}>
-          <ChatCard {...message} />
-        </div>
+        <ChatCardWrapper
+          ref={ref}
+          key={message.id}
+          isUser={adminUser === message.uid}
+        >
+          <ChatCard {...message} adminUser={adminUser} />
+        </ChatCardWrapper>
       ))}
     </ApplicantChatList>
   );
@@ -100,6 +104,7 @@ const ApplicantChatSection: React.FC<IApplicantChatSectionProps> = ({
       {chatSectionRef && newMessages && (
         <ApplicantChat
           ref={chatSectionRef}
+          adminUser={adminUser.uid}
           newMessages={newMessages as IApplicantChatType[]}
         />
       )}
