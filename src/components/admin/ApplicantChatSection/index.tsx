@@ -61,7 +61,7 @@ const ApplicantChatSection: React.FC<IApplicantChatSectionProps> = ({
   const chatRef = dbService.collection(`chats-${applicantId}`);
 
   const newMessages = useFirestoreQuery(
-    chatRef.orderBy('createdAt', 'desc').limit(1000),
+    chatRef.orderBy('createdAt', 'desc').limit(100),
   );
 
   const newMessageHandler = useCallback(
@@ -72,6 +72,7 @@ const ApplicantChatSection: React.FC<IApplicantChatSectionProps> = ({
   );
   const handleOnSubmit = async () => {
     // 입력한 채팅 공백 제거
+
     const trimmedMessage = newMessage.trim();
     if (trimmedMessage) {
       // Add new message in Firestore

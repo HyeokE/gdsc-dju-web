@@ -50,22 +50,23 @@ const AdminSignUp = () => {
               animate={'active'}
               initial={'unActive'}
             >
-              <StyledDefaultInput
-                onChange={handleOnChange}
-                name={'email'}
-                placeholder={'이메일'}
-              />
-              <StyledDefaultInput
-                onChange={handleOnChange}
-                name={'password'}
-                placeholder={'비밀번호'}
-              />
+              {/*<StyledDefaultInput*/}
+              {/*  onChange={handleOnChange}*/}
+              {/*  name={'email'}*/}
+              {/*  placeholder={'이메일'}*/}
+              {/*/>*/}
+              {/*<StyledDefaultInput*/}
+              {/*  onChange={handleOnChange}*/}
+              {/*  name={'password'}*/}
+              {/*  placeholder={'비밀번호'}*/}
+              {/*/>*/}
               <div>{error}</div>
-              <GDSCButton
-                text={'회원가입'}
-                color={'tossBlue'}
-                onClick={signUp}
-              />
+              {/*<GDSCButton*/}
+              {/*  text={'회원가입'}*/}
+              {/*  color={'tossBlue'}*/}
+              {/*  onClick={signUp}*/}
+              {/*/>*/}
+              <button>asds</button>
             </AdminSignUpWrapper>
           </OutsideClickHandler>
         </ApplyModalWrapper>
