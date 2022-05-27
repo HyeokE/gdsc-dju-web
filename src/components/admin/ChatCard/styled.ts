@@ -21,14 +21,15 @@ export const ChatCardInner = styled.div<{ isUser: boolean }>`
     `}
 `;
 export const ChatUser = styled.p`
-  font-size: ${({ theme }) => theme.fontSize.body5};
+  font-size: ${({ theme }) => theme.fontSize.body3};
   color: ${({ theme }) => theme.colors.grey900};
+  font-weight: bold;
 `;
 export const ChatText = styled.p`
   font-size: ${({ theme }) => theme.fontSize.body2};
   color: ${({ theme }) => theme.colors.grey900};
 `;
 export const ChatDate = styled.p`
-  font-size: ${({ theme }) => theme.fontSize.body4};
-  color: ${({ theme }) => theme.colors.grey500};
+  font-size: ${({ theme }) => theme.fontSize.body3};
+  color: ${({ theme }) => theme.colors.grey600};
 `;

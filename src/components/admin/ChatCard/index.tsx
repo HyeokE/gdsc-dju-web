@@ -1,6 +1,6 @@
 import React from 'react';
 import { IApplicantChatType } from '../../../types/applicant';
-import { ChatCardInner, ChatText, ChatUser } from './styled';
+import { ChatCardInner, ChatDate, ChatText, ChatUser } from './styled';
 
 interface IChatCardProps extends IApplicantChatType {
   adminUser: string;
@@ -14,15 +14,15 @@ const ChatCard: React.FC<IChatCardProps> = ({
   isRead,
   adminUser,
 }) => {
-  console.log(adminUser);
-  console.log(uid);
+  console.log(createdAt);
+  const uploadDate = new Date(createdAt).toString().split('GMT')[0];
   return (
     <ChatCardInner isUser={adminUser === uid}>
       <ChatUser>{displayName}</ChatUser>
       <ChatText>{text}</ChatText>
       {/*<p>{uid}</p>*/}
       {/*<p>{isRead}</p>*/}
-      {/*<p>{createdAt}</p>*/}
+      <ChatDate>{uploadDate}</ChatDate>
     </ChatCardInner>
   );
 };
