@@ -54,7 +54,7 @@ const Admin = () => {
   console.log(1);
   return (
     <>
-      <AdminSignUp />
+      {/*<AdminSignUp />*/}
       <AdminHeader />
       <Routes>
         <Route path={'/*'} element={<AdminHome />} />

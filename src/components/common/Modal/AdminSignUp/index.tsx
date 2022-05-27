@@ -60,7 +60,7 @@ const AdminSignUp = () => {
               {/*  name={'password'}*/}
               {/*  placeholder={'비밀번호'}*/}
               {/*/>*/}
-              <div>{error}</div>
+              {/*<div>{error}</div>*/}
               {/*<GDSCButton*/}
               {/*  text={'회원가입'}*/}
               {/*  color={'tossBlue'}*/}
