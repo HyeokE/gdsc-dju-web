@@ -15,9 +15,6 @@ const MobileMenu = () => {
   return (
     <ShortNavigation initial={false} animate={menu.appMenu ? 'open' : 'closed'}>
       <MobileNavBackGround variants={sidebar}>
-        <MobileMenuSolarSystemWrapper>
-          <Line1 />
-        </MobileMenuSolarSystemWrapper>
         <MobileMenuCategory />
       </MobileNavBackGround>
     </ShortNavigation>

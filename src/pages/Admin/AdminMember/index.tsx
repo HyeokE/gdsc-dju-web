@@ -16,7 +16,7 @@ import './MemberPage.css';
 import { UserDataState } from '../../../apis/types';
 import { MODAL_KEY, modalState } from '../../../store/modal';
 import { dbService } from '../../../firebase/firebase';
-import AdminEditMemberModal from '../../../components/common/Modal/AdminMemberEditModal';
+
 import { MainText, Title } from '../../../components/common/Title/title';
 import {
   listAnimate,
@@ -122,10 +122,6 @@ const AdminMember = () => {
 
   return (
     <>
-      <AdminEditMemberModal
-        selectMember={selectMember}
-        setSelectMember={setSelectMember}
-      />
 
       {memberData.length > 0 && (
         <>

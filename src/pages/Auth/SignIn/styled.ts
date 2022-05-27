@@ -1,19 +1,28 @@
 import styled from 'styled-components';
 
-export const AuthBackground = styled.div<any>`
-  height: 100vh;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-image: url(${(props) => props.route});
-  background-position: center;
+export const SignInWrapper = styled.div`
+  width: 100%;
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
+  background: ${({ theme }) => theme.colors.grey900};
+`;
+export const SignInLeftSection = styled.div`
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+export const SignInSolarSystemWrapper = styled.div`
+  position: relative;
+  top: -30%;
+  left: -30%;
 `;
 export const AuthBoxWrapper = styled.div`
   width: 50%;
   height: 100vh;
   display: flex;
   align-items: center;
+  justify-content: center;
   @media (max-width: ${(props) => props.theme.windowSize.tablet}px) {
     width: 100%;
     display: flex;
@@ -23,8 +32,10 @@ export const AuthBoxWrapper = styled.div`
 export const AuthBoxInner = styled.div`
   padding: 40px 50px;
   background: white;
-  border: 0 solid;
+  border: 1px solid ${(props) => props.theme.colors.grey300};
   border-radius: 10px;
+  background: ${({ theme }) => theme.colors.white};
+  box-shadow: 0 2px 12px rgba(25, 31, 40, 0.08);
 `;
 export const GDSCLogoImage = styled.img`
   height: 20px;

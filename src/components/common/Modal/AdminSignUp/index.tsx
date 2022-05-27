@@ -1,30 +1,26 @@
+import { AnimatePresence } from 'framer-motion';
 import React, { useState } from 'react';
-import { SubTitle } from '../../Title/title';
-import { StyledInput } from '../../../Input/Input';
-
-import { StyledButton } from '../../Button/styled';
-import { Modal } from 'react-rainbow-components';
 import { useRecoilState } from 'recoil';
-import { modalState, MODAL_KEY } from '../../../../store/modal';
-import { authService } from '../../../../firebase/firebase';
-import {
-  ModalButtonWrapper,
-  ModalElementWrapper,
-  StyledModal,
-} from '../styled';
-import './AdminSignUp.css';
+import { MODAL_KEY, modalState } from '../../../../store/modal';
+import { ApplyModalInner, ApplyModalWrapper } from '../ApplyModal/styled';
+import OutsideClickHandler from '../../../../utils/OutsideClickHandler';
+import { modalVariants } from '../../Variants/modalVariants';
+import TextInput from '../../input/TextInput';
+import { StyledDefaultInput } from '../../input/TextInput/styled';
+import { GDSCButton } from '../../Button';
+import { AdminSignUpWrapper } from './styled';
+import firebase from 'firebase/compat/app';
+import error from '../../../../pages/Error';
+import { authService } from "../../../../firebase/firebase";
 
-const AdminSignUpModal = () => {
+const AdminSignUp = () => {
   const [modal, setModal] = useRecoilState(modalState);
-  const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
-  const [error, setError] = useState('');
 
-  const onChange = (e: any) => {
-    console.log(e.target.name);
-    const {
-      target: { name, value },
-    } = e;
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
     if (name === 'email') {
       setEmail(value);
     } else if (name === 'password') {
@@ -55,45 +51,45 @@ const AdminSignUpModal = () => {
         }
       });
   };
-  return (
-    <>
-      <StyledModal
-        size={'small'}
-        isOpen={modal.adminSignUp}
-        onRequestClose={() =>
-          setModal({ ...modal, [MODAL_KEY.ADMIN_SIGN_UP]: false })
-        }
-      >
-        <ModalElementWrapper>
-          <SubTitle>Admin Signup</SubTitle>
-        </ModalElementWrapper>
-        <ModalElementWrapper>
-          이메일
-          <StyledInput
-            name={'email'}
-            onChange={onChange}
-            placeholder={'Email'}
-          />
-        </ModalElementWrapper>
-        <ModalElementWrapper>
-          비밀번호
-          <StyledInput
-            type={'password'}
-            name={'password'}
-            onChange={onChange}
-            placeholder={'Password'}
-          />
-        </ModalElementWrapper>
 
-        <ModalElementWrapper style={{ colors: '#f44336' }}>
-          {error}
-        </ModalElementWrapper>
-        <ModalButtonWrapper>
-          <StyledButton onClick={onRegisterIn}>Admin Signup</StyledButton>
-        </ModalButtonWrapper>
-      </StyledModal>
-    </>
+  return (
+    <AnimatePresence>
+      {modal.adminSignUp && (
+        <ApplyModalWrapper>
+          <OutsideClickHandler
+            outsideClick={() =>
+              setModal({ ...modal, [MODAL_KEY.ADMIN_SIGN_UP]: false })
+            }
+          >
+            <AdminSignUpWrapper
+              variants={modalVariants}
+              exit={'unActive'}
+              animate={'active'}
+              initial={'unActive'}
+            >
+              <StyledDefaultInput
+                onChange={handleOnChange}
+                name={'email'}
+                placeholder={'이메일'}
+              />
+              <StyledDefaultInput
+                onChange={handleOnChange}
+                name={'password'}
+                placeholder={'비밀번호'}
+              />
+              <div>{error}</div>
+              <GDSCButton
+                text={'회원가입'}
+                color={'tossBlue'}
+                onClick={onRegisterIn}
+              />
+
+            </AdminSignUpWrapper>
+          </OutsideClickHandler>
+        </ApplyModalWrapper>
+      )}
+    </AnimatePresence>
   );
 };
 
-export default AdminSignUpModal;
+export default AdminSignUp;

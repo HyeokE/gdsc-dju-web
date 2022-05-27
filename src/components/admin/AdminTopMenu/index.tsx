@@ -1,7 +1,6 @@
 import React from 'react';
-import { StyledLabel, StyledLi, StyledUl } from './styled';
-import './AdminTopMenu.css';
-import { motion } from 'framer-motion';
+import { StyledLabel, StyledLi, StyledUl, Underline } from './styled';
+
 import { useNavigate } from 'react-router-dom';
 
 type Props = {
@@ -17,31 +16,26 @@ const AdminTopMenu = ({
   const navigate = useNavigate();
 
   return (
-    <>
-      <nav>
-        <StyledUl>
-          {tabs.map((item) => (
-            <StyledLi
-              key={item.label}
-              onClick={() => {
-                setSelectedCategory(item.route);
-                navigate(item.route);
-              }}
-            >
-              <StyledLabel
-                className={item.route === selectedCategory ? 'selected' : ''}
-              >
-                {item.label}
-              </StyledLabel>
-              {item.route === selectedCategory && (
-                <motion.div className="underline" layoutId="underline" />
-              )}
-            </StyledLi>
-          ))}
-        </StyledUl>
-      </nav>
-      {/*<StyledLine />*/}
-    </>
+    <nav>
+      <StyledUl>
+        {tabs.map((item) => (
+          <StyledLi
+            key={item.label}
+            onClick={() => {
+              setSelectedCategory(item.route);
+              navigate(item.route);
+            }}
+          >
+            <StyledLabel selected={item.route == selectedCategory}>
+              {item.label}
+            </StyledLabel>
+            {item.route === selectedCategory && (
+              <Underline layoutId="underline" />
+            )}
+          </StyledLi>
+        ))}
+      </StyledUl>
+    </nav>
   );
 };
 

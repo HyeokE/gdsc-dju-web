@@ -38,9 +38,9 @@ const Home = () => {
       <Suspense fallback={<GoogleSpinner />}>
         <div className={'container'}>
           <HomePageV2 />
-          <SectionIntroduce />
+          {/*<SectionIntroduce />*/}
           {/*<SectionGoal />*/}
-          <SectionManager />
+          {/*<SectionManager />*/}
           <Footer />
         </div>
       </Suspense>

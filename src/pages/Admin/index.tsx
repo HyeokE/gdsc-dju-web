@@ -2,47 +2,44 @@ import React, { useEffect } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import AdminHeader from '../../components/admin/AdminHeader';
 import AdminHome from './AdminHome';
-import AdminMember from './AdminMember';
-import AdminSetting from './AdminSetting';
+import AdminApplicants from './AdminApplicants';
 import { authService, dbService } from '../../firebase/firebase';
 import { useRecoilState } from 'recoil';
-import { localUserState } from '../../store/localUser';
-import { useLocation } from 'react-router';
+import { adminUserState } from '../../store/localUser';
 import { recruitmentSelector } from '../../store/recruitHandler';
-import API from '../../apis/index';
 import AdminEmail from './AdminEmail';
+import AdminSignUp from '../../components/common/Modal/AdminSignUp';
+import AdminMember from "./AdminMember";
 
 const Admin = () => {
-  const [adminUser, setAdminUser] = useRecoilState(localUserState);
+  const [adminUser, setAdminUser] = useRecoilState(adminUserState);
+  const [selector, setSelector] = useRecoilState(recruitmentSelector);
   const navigate = useNavigate();
-  const location = useLocation();
-  const checkAdminUser = async () => {
-    await authService.onAuthStateChanged((user: any) => {
-      if (user) {
+  const getAdminUser = (uid: string) => {
+    dbService
+      .collection('adminUsers')
+      .doc(uid)
+      .get()
+      .then((doc) => {
+        const userData = doc.data();
         setAdminUser({
           ...adminUser,
-          uid: user.uid,
+          uid: uid,
+          nickname: userData?.nickname,
+          name: userData?.name,
+          phoneNumber: userData?.phoneNumber,
         });
+      });
+  };
+
+  const checkAdminUser = async () => {
+    await authService.onAuthStateChanged((user) => {
+      if (user) {
         try {
-          API.getAdminUser(user.uid).then((res) => console.log(res.data));
-          dbService
-            .collection('adminUsers')
-            .doc(user.uid)
-            .get()
-            .then((data) => {
-              const userData = data.data();
-              setAdminUser({
-                ...adminUser,
-                uid: user.uid,
-                nickname: userData?.nickname,
-                name: userData?.name,
-                phoneNumber: userData?.phoneNumber,
-              });
-              location.pathname.includes('/admin') ? null : navigate('/admin');
-            });
-        } catch (e: any) {
+          getAdminUser(user.uid);
+        } catch (error) {
           navigate('/');
-          console.log(e.message);
+          error instanceof Error && console.log(error);
         }
       } else {
         navigate('/');
@@ -51,19 +48,19 @@ const Admin = () => {
     });
   };
 
-  const [selector, setSelector] = useRecoilState(recruitmentSelector);
   useEffect(() => {
     setSelector(selector);
     checkAdminUser();
   }, []);
-
+  console.log(1);
   return (
     <>
+      <AdminSignUp />
       <AdminHeader />
       <Routes>
         <Route path={'/*'} element={<AdminHome />} />
         <Route path={'/member'} element={<AdminMember />} />
-        <Route path={'/recruit'} element={<AdminSetting />} />
+        <Route path={'/recruit'} element={<AdminApplicants />} />
         <Route path={'/email'} element={<AdminEmail />} />
       </Routes>
     </>

@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import styled, { css } from 'styled-components';
+import { theme } from '../../styles/theme';
 
 export const HomeWrapper = styled(motion.div)`
   position: relative;
@@ -50,23 +51,27 @@ export const StyledMainBanner = styled(motion.div)`
 `;
 export const BannerTitleWrapper = styled(motion.section)`
   position: absolute;
-  top: 50%;
-  left: 50%;
+  bottom: 5%;
+  left: 20%;
   transform: translate(-50%, -50%);
   display: flex;
+  box-sizing: border-box;
   align-items: center;
   justify-content: center;
-  width: 70%;
+  @media (max-width: ${({ theme }) => theme.windowSize.tablet}px) {
+    bottom: 0;
+    left: 35%;
+  }
+  @media (max-width: 320px) {
+    bottom: 10%;
+    left: 30%;
+  }
 `;
 export const RecruitingWrapper = styled(motion.div)`
-  position: static;
+  position: relative;
+  justify-content: flex-start;
+  left: 0;
   z-index: 50;
-  max-width: 600px;
-  width: 400px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 `;
 
 export const LeftColorLinesWrapper = styled(motion.div)`
@@ -104,15 +109,30 @@ export const RightColorLinesWrapper = styled(motion.div)`
 `;
 
 export const ButtonWrapper = styled(motion.div)`
-  margin-top: 5rem;
+  margin-top: 30px;
+`;
+
+export const GoogleColorTextWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+export const GoogleColorText = styled.h1<{
+  color?: keyof typeof theme.colors;
+}>`
+  font-size: 80px;
+  font-weight: bold;
+  color: ${({ color }) => (color ? theme.colors[color] : theme.colors.grey900)};
+  @media (max-width: ${({ theme }) => theme.windowSize.tablet}px) {
+    font-size: ${({ theme }) => theme.fontSize.h2};
+  }
+  @media (max-width: 320px) {
+    font-size: ${({ theme }) => theme.fontSize.h3};
+  }
 `;
 export const MainBannerText = styled(motion.p)`
-  margin-top: 3rem;
   display: flex;
-  align-items: center;
-  text-align: center;
-  font-size: 1.8rem;
-
+  margin-top: 10px;
+  font-size: ${({ theme }) => theme.fontSize.h7};
   color: ${({ theme }) => theme.colors.grey500};
   @media (max-width: ${({ theme }) => theme.windowSize.tablet}px) {
     font-size: 1.5rem;
@@ -123,7 +143,7 @@ export const MainBannerText = styled(motion.p)`
 `;
 export const DownArrowWrapper = styled(motion.div)`
   position: absolute;
-  bottom: 9rem;
+  bottom: 5%;
   display: flex;
   width: 100vw;
   justify-content: center;
@@ -134,14 +154,12 @@ export const HomeSolarSystemWrapper = styled.div`
   display: flex;
   flex-direction: column;
   position: absolute;
-  left: 50%;
-  top: -8%;
-  transform: translate(-50%, -50%);
-  transform: scale(1.5, 1.5);
-
+  right: 20%;
+  top: 20%;
+  transform: translate(0%, -50%);
   @media (max-width: 500px) {
     left: 100%;
-    top: 50%;
+    top: 10%;
     transform: scale(0.6, 0.6);
   }
 `;

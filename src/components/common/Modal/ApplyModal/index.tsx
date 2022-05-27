@@ -15,6 +15,7 @@ import { useRecoilState } from 'recoil';
 import OutsideClickHandler from '../../../../utils/OutsideClickHandler';
 import { AnimatePresence } from 'framer-motion';
 import BulletList from '../../BulletList';
+import { modalVariants } from '../../Variants/modalVariants';
 
 interface Props {
   name: string;
@@ -23,18 +24,7 @@ interface Props {
   phoneNumber: string;
   onClick: () => void;
 }
-const variants = {
-  active: {
-    opacity: 1,
-    scale: 1,
-    y: 0,
-  },
-  unActive: {
-    opacity: 0,
-    scale: 0,
-    y: 200,
-  },
-};
+
 const ApplyModal: React.FC<Props> = ({
   name,
   position,
@@ -57,11 +47,10 @@ const ApplyModal: React.FC<Props> = ({
             }
           >
             <ApplyModalInner
-              variants={variants}
+              variants={modalVariants}
               exit={'unActive'}
               animate={'active'}
-              initial={{ opacity: 0, scale: 0, y: 200 }}
-              transition={{ duration: 0.5 }}
+              initial={'unActive'}
             >
               <ApplyModalInnerWrapper>
                 <ApplyModalTitle>최종 제출 전, 확인해주세요.</ApplyModalTitle>
@@ -91,7 +80,7 @@ const ApplyModal: React.FC<Props> = ({
                 <GDSCButton
                   text={'제출하기'}
                   onClick={() => onClick()}
-                  color={'GDSC blue'}
+                  color={'googleBlue'}
                 />
                 <ApplyModalButtonWrapper>
                   <GDSCButton

@@ -52,7 +52,7 @@ export const ApplyModalWrapper = styled(motion.div)`
   align-items: center;
   justify-content: center;
   background: rgba(0, 0, 0, 0.1);
-  z-index: 999;
+  z-index: 1000;
 `;
 export const ApplyModalButtonWrapper = styled.div`
   margin-right: 10px;

@@ -47,6 +47,7 @@ const RecruitForm = () => {
 
   const recruitItem = {
     uploadDate: new Date(),
+    status: 'DOCS',
     name: '',
     phoneNumber: '',
     email: '',
@@ -57,6 +58,7 @@ const RecruitForm = () => {
     link1: '',
     fileURL: '',
     recommender: '',
+    generation: 2,
   };
   const recruitFormik = useFormik({
     initialValues: recruitItem,
@@ -123,9 +125,7 @@ const RecruitForm = () => {
     }
   };
   const onSubmit = async () => {
-    {
-      input.current && (await uploadFiles(input.current));
-    }
+    input.current && (await uploadFiles(input.current));
   };
 
   const requiredSchema = !!(
