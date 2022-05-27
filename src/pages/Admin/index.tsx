@@ -8,6 +8,7 @@ import { useRecoilState } from 'recoil';
 import { adminUserState } from '../../store/localUser';
 import { recruitmentSelector } from '../../store/recruitHandler';
 import AdminEmail from './AdminEmail';
+import AdminSignUp from '../../components/common/Modal/AdminSignUp';
 
 const Admin = () => {
   const [adminUser, setAdminUser] = useRecoilState(adminUserState);
@@ -53,6 +54,7 @@ const Admin = () => {
 
   return (
     <>
+      <AdminSignUp />
       <AdminHeader />
       <Routes>
         <Route path={'/*'} element={<AdminHome />} />

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import {
-  AuthBackground,
   AuthBoxInner,
   AuthBoxWrapper,
   AuthButtonWrapper,
@@ -8,7 +7,6 @@ import {
   AuthErrorText,
   AuthInput,
   AuthLine,
-  AuthLinkText,
   AuthLogoText,
   AuthOtherText,
   AuthSignButton,
@@ -18,6 +16,9 @@ import {
   OAuthButton,
   OAuthImage,
   OAuthText,
+  SignInLeftSection,
+  SignInSolarSystemWrapper,
+  SignInWrapper,
 } from './styled';
 import GDSCImage from '../../../assets/GDSCLogo.svg';
 import GoogleLogo from '../../../assets/GoogleLogo.svg';
@@ -27,6 +28,7 @@ import { useRecoilState } from 'recoil';
 import { authService, dbService } from '../../../firebase/firebase';
 import { adminUserState } from '../../../store/localUser';
 import { loaderState } from '../../../store/loader';
+import SolorSystem from '../../../components/Home/SolorSystem';
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -103,84 +105,97 @@ const SignIn = () => {
   };
 
   return (
-    <>
-      <AuthBackground>
-        <AuthBoxWrapper>
-          <AuthBoxInner>
-            <AuthElementWrapper align={'center'}>
-              <GDSCLogoImage src={GDSCImage} />
-              <AuthLogoText border={'bold'}>GDSC</AuthLogoText>
-              <AuthLogoText>Daejin Univ.</AuthLogoText>
-            </AuthElementWrapper>
-            <AuthElementWrapper align={'center'}>
-              <AuthTitle>로그인</AuthTitle>
-            </AuthElementWrapper>
-            <AuthElementWrapper direction={'column'}>
-              <AuthSubTitle>이메일 주소</AuthSubTitle>
-              <AuthLinkText
-                onClick={() => {
-                  navigate('/');
-                }}
-              >
-                계정 만들기
-              </AuthLinkText>
-              <AuthInput
-                type={'email'}
-                name={'email'}
-                onKeyPress={onKeyPress}
-                onChange={onChange}
-                placeholder={'gdsc@gmail.com'}
-              />
-            </AuthElementWrapper>
-            <AuthElementWrapper direction={'column'}>
-              <AuthSubTitle>비밀번호</AuthSubTitle>
-              <AuthInput
-                type={'password'}
-                name={'password'}
-                onKeyPress={onKeyPress}
-                onChange={onChange}
-              />
-            </AuthElementWrapper>
-            <AuthErrorText>{error}</AuthErrorText>
-            <AuthButtonWrapper>
-              <AuthSignButton
-                onClick={() => {
-                  try {
-                    setLoader({ ...loader, load: true });
-                    onEmailLogIn();
-                    checkAdminUser();
-                  } catch (e) {
-                    console.log(e);
-                  }
-                  setLoader({ ...loader, load: false });
-                }}
-              >
-                로그인
-              </AuthSignButton>
-            </AuthButtonWrapper>
-            <AuthElementWrapper align={'center'}>
-              <AuthLine />
-              <AuthOtherText>또는</AuthOtherText>
-              <AuthLine />
-            </AuthElementWrapper>
-            <AuthElementWrapper>
-              <OAuthButton>
-                <OAuthImage src={GoogleLogo} />
-                <OAuthText weight={'bold'}>Google</OAuthText>
-                <OAuthText>로 계속</OAuthText>
-              </OAuthButton>
-            </AuthElementWrapper>
-            <AuthElementWrapper>
-              <OAuthButton>
-                <OAuthImage src={GithubLogo} />
-                <OAuthText weight={'bold'}>Github</OAuthText>
-                <OAuthText>로 계속</OAuthText>
-              </OAuthButton>
-            </AuthElementWrapper>
-          </AuthBoxInner>
-        </AuthBoxWrapper>
-      </AuthBackground>
-    </>
+    <SignInWrapper>
+      <SignInLeftSection>
+        <SignInSolarSystemWrapper>
+          <SolorSystem />
+        </SignInSolarSystemWrapper>
+      </SignInLeftSection>
+      <AuthBoxWrapper>
+        <AuthBoxInner>
+          <AuthElementWrapper align={'center'}>
+            <GDSCLogoImage src={GDSCImage} />
+            <AuthLogoText border={'bold'}>GDSC</AuthLogoText>
+            <AuthLogoText>Daejin Univ.</AuthLogoText>
+          </AuthElementWrapper>
+          <AuthElementWrapper align={'center'}>
+            <AuthTitle>로그인</AuthTitle>
+          </AuthElementWrapper>
+          <AuthElementWrapper direction={'column'}>
+            <AuthSubTitle>이메일 주소</AuthSubTitle>
+            {/*<AuthLinkText*/}
+            {/*  onClick={() => {*/}
+            {/*    navigate('/');*/}
+            {/*  }}*/}
+            {/*>*/}
+            {/*  계정 만들기*/}
+            {/*</AuthLinkText>*/}
+            <AuthInput
+              type={'email'}
+              name={'email'}
+              onKeyPress={onKeyPress}
+              onChange={onChange}
+              placeholder={'gdsc@gmail.com'}
+            />
+          </AuthElementWrapper>
+          <AuthElementWrapper direction={'column'}>
+            <AuthSubTitle>비밀번호</AuthSubTitle>
+            <AuthInput
+              type={'password'}
+              name={'password'}
+              onKeyPress={onKeyPress}
+              onChange={onChange}
+            />
+          </AuthElementWrapper>
+          <AuthErrorText>{error}</AuthErrorText>
+          <AuthButtonWrapper>
+            <AuthSignButton
+              onClick={() => {
+                try {
+                  setLoader({ ...loader, load: true });
+                  onEmailLogIn();
+                  checkAdminUser();
+                } catch (e) {
+                  console.log(e);
+                }
+                setLoader({ ...loader, load: false });
+              }}
+            >
+              로그인
+            </AuthSignButton>
+          </AuthButtonWrapper>
+          <AuthElementWrapper align={'center'}>
+            <AuthLine />
+            <AuthOtherText>또는</AuthOtherText>
+            <AuthLine />
+          </AuthElementWrapper>
+          <AuthElementWrapper>
+            <GoogleLoginButton />
+          </AuthElementWrapper>
+          <AuthElementWrapper>
+            <GithubLoginButton />
+          </AuthElementWrapper>
+        </AuthBoxInner>
+      </AuthBoxWrapper>
+    </SignInWrapper>
+  );
+};
+const GoogleLoginButton = () => {
+  return (
+    <OAuthButton>
+      <OAuthImage src={GoogleLogo} />
+      <OAuthText weight={'bold'}>Google</OAuthText>
+      <OAuthText>로 계속</OAuthText>
+    </OAuthButton>
+  );
+};
+const GithubLoginButton = () => {
+  return (
+    <OAuthButton>
+      <OAuthImage src={GithubLogo} />
+      <OAuthText weight={'bold'}>Github</OAuthText>
+      <OAuthText>로 계속</OAuthText>
+    </OAuthButton>
   );
 };
 

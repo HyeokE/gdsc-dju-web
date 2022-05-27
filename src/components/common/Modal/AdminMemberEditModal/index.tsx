@@ -17,13 +17,7 @@ import { alertState } from '../../../../store/alert';
 const AdminEditMemberModal = ({ selectMember, setSelectMember }: any) => {
   const [alert, setAlert] = useRecoilState(alertState);
   const [modal, setModal] = useRecoilState(modalState);
-  // const getMember = async () => {
-  //   try {
-  //     await dbService.collection('members').doc(selectMember).get();
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
+
   const editMemberProfile = () => {
     try {
       dbService
