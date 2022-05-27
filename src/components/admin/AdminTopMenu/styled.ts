@@ -1,4 +1,5 @@
-import styled from 'styled-components';
+import { motion } from 'framer-motion';
+import styled, { css } from 'styled-components';
 
 export const StyledTap = styled.div`
   padding: 7px 15px;
@@ -28,11 +29,26 @@ export const StyledUl = styled.ul`
   padding-left: 0;
   justify-content: flex-start;
 `;
-export const StyledLabel = styled.div`
+export const StyledLabel = styled.div<{ selected: boolean }>`
   z-index: 1;
   background: transparent;
-  color: #737d89;
+  color: ${({ theme }) => theme.colors.grey300};
   font-size: ${({ theme }) => theme.fontSize.body2};
+  ${(selected) =>
+    selected &&
+    css`
+      color: ${({ theme }) => theme.colors.grey900};
+    `}
+`;
+export const Underline = styled(motion.div)`
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 40px;
+  z-index: 0;
+  background: ${({ theme }) => theme.colors.blue500};
+  border-radius: 40px;
 `;
 export const StyledLi = styled.li`
   background: transparent;

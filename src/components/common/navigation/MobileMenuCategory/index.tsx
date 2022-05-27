@@ -5,6 +5,7 @@ import { MENU_KEY, menuState } from '../../../../store/menu';
 import {
   CategoryLine,
   MenuInner,
+  MenuLogo,
   MenuRouteWrapper,
   MenuWrapper,
 } from './styled';
@@ -12,6 +13,7 @@ import './MobileMenu.css';
 import { useNavigate } from 'react-router-dom';
 import { navigationAnimate } from '../../Variants/NavigationAnimation';
 import { ROUTES } from '../DeskNavigation';
+import GDSCLogo from '../../../../assets/GDSCLogo.svg';
 
 const MobileMenuCategory = () => {
   const navigate = useNavigate();
@@ -19,6 +21,7 @@ const MobileMenuCategory = () => {
 
   return (
     <MenuWrapper>
+      <MenuLogo src={GDSCLogo} />
       <MenuInner
         variants={navigationAnimate}
         initial={false}

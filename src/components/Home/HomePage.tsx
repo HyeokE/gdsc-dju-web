@@ -1,5 +1,12 @@
 import React from 'react';
 import {
+  bannerItemAnimate,
+  homeBannerAnimate,
+  leftLineItemAnimate,
+  rightLineItemAnimate,
+  titleAnimate,
+} from '../common/Variants/Variants';
+import {
   BannerTitleWrapper,
   ButtonWrapper,
   DownArrowWrapper,
@@ -11,56 +18,29 @@ import {
   StyledMainBanner,
   StyledRecruitmentButton,
 } from '../../pages/Home/styled';
-import {
-  bannerItemAnimate,
-  homeBannerAnimate,
-  leftLineItemAnimate,
-  rightLineItemAnimate,
-  titleAnimate,
-} from '../common/Variants/Variants';
-import ColorLines from '../../assets/ColorLines';
-import Recruiting from '../../assets/Recruiting';
-import DownArrow from '../../assets/DownArrow';
 import { useRecoilState } from 'recoil';
 import { recruitmentState } from '../../store/recruitHandler';
+import ColorLines from '../../assets/ColorLines';
+import Recruiting from '../../assets/Recruiting';
+import DownArrowIcon from '../../assets/DownArrow';
 
 const HomePage = () => {
   const [recruit] = useRecoilState(recruitmentState);
+
   return (
     <HomeWrapper variants={homeBannerAnimate} initial={'start'} animate={'end'}>
-      <StyledMainBanner
-        variants={titleAnimate}
-        initial={'start'}
-        animate={'end'}
-      >
-        <LeftColorLinesWrapper variants={leftLineItemAnimate}>
-          <ColorLines />
-        </LeftColorLinesWrapper>
-        <RightColorLinesWrapper variants={rightLineItemAnimate}>
-          <ColorLines />
-        </RightColorLinesWrapper>
-      </StyledMainBanner>
+      <BackgroundLine />
       <BannerTitleWrapper>
         <RecruitingWrapper variants={bannerItemAnimate}>
           <Recruiting />
           <MainBannerText variants={bannerItemAnimate}>
-            GDSC Daejin Univ. 에서 새로운 식구들을 모집하고 있습니다.
-          </MainBannerText>
-          <ButtonWrapper variants={bannerItemAnimate}>
             {recruit.home ? (
-              <StyledRecruitmentButton
-                onClick={() => {
-                  window.open('https://gdsc-dju.web.app/recruit', '_blank');
-                }}
-              >
-                지원하기
-              </StyledRecruitmentButton>
+              <>GDSC Daejin Univ. 에서 새로운 식구들을 모집하고 있습니다.</>
             ) : (
-              <StyledRecruitmentButton disable={true}>
-                지원기간이 아닙니다.
-              </StyledRecruitmentButton>
+              <>상상의 시작은 GDSC로부터.</>
             )}
-          </ButtonWrapper>
+          </MainBannerText>
+          <HomeRecruitmentButton />
           <MainBannerText variants={bannerItemAnimate}>
             11. 22 ~ 12. 19
           </MainBannerText>
@@ -78,9 +58,41 @@ const HomePage = () => {
           repeat: Infinity,
         }}
       >
-        <DownArrow />
+        <DownArrowIcon />
       </DownArrowWrapper>
     </HomeWrapper>
+  );
+};
+const BackgroundLine = () => {
+  return (
+    <StyledMainBanner variants={titleAnimate} initial={'start'} animate={'end'}>
+      <LeftColorLinesWrapper variants={leftLineItemAnimate}>
+        <ColorLines />
+      </LeftColorLinesWrapper>
+      <RightColorLinesWrapper variants={rightLineItemAnimate}>
+        <ColorLines />
+      </RightColorLinesWrapper>
+    </StyledMainBanner>
+  );
+};
+const HomeRecruitmentButton = () => {
+  const [recruit] = useRecoilState(recruitmentState);
+  return (
+    <ButtonWrapper variants={bannerItemAnimate}>
+      {recruit.home ? (
+        <StyledRecruitmentButton
+          onClick={() => {
+            window.open('https://gdsc-dju.web.app/recruit', '_blank');
+          }}
+        >
+          지원하기
+        </StyledRecruitmentButton>
+      ) : (
+        <StyledRecruitmentButton disable={true}>
+          지원기간이 아닙니다.
+        </StyledRecruitmentButton>
+      )}
+    </ButtonWrapper>
   );
 };
 

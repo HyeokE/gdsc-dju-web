@@ -4,13 +4,13 @@ import API from '../apis/index';
 const RECRUITMENT = 'recruitment';
 const RECRUITMENT_SELECTOR = 'recruitmentSelector';
 export const RecruitmentState = {
+  home: false,
   frontend: false,
   backend: false,
   android: false,
   design: false,
   ml: false,
   beginner: false,
-  home: false,
 };
 export const recruitmentState = atom<typeof RecruitmentState>({
   key: RECRUITMENT,
