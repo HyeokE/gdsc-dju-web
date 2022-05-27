@@ -94,18 +94,15 @@ const ApplicantInfoState: React.FC<{
   setApplicantData: (data: IApplicantTypeWithID) => void;
 }> = ({ applicantData, setApplicantData }) => {
   const applicantRef = dbService.collection('applicants').doc(applicantData.id);
-  const updateStatus = useCallback(
-    async (status: statusType) => {
-      await applicantRef.update({
-        status: status,
-      });
-      setApplicantData({
-        ...applicantData,
-        status: status,
-      });
-    },
-    [applicantData],
-  );
+  const updateStatus = useCallback(async (status: statusType) => {
+    await applicantRef.update({
+      status: status,
+    });
+    setApplicantData({
+      ...applicantData,
+      status: status,
+    });
+  }, []);
 
   return (
     <ApplicantInfoStateWrapper>
