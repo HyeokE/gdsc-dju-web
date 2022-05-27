@@ -15,7 +15,8 @@ jobs:
       url: ${{ steps.run_firebase_preview.outputs.details_url }}
     steps:
       - uses: actions/checkout@v2
-        env: vite build
+      - run: vite build
+        env:
           CI: ""
         # Add additional build steps here
       - name: Get short SHA
