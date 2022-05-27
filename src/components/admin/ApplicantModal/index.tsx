@@ -15,18 +15,10 @@ import {
   ApplicantNameWrapper,
 } from './styled';
 import { dbService } from '../../../firebase/firebase';
-import {
-  IApplicantType,
-  IApplicantTypeWithID,
-  statusType,
-} from '../../../types/applicant';
+import { IApplicantTypeWithID, statusType } from '../../../types/applicant';
 import { useRecoilState } from 'recoil';
 import { MODAL_KEY, modalState } from '../../../store/modal';
-import {
-  ClearButton,
-  LeftArrowButton,
-  RightArrowButton,
-} from '../../common/ModalButton';
+import { ClearButton } from '../../common/ModalButton';
 import { modalVariants } from '../../common/Variants/modalVariants';
 
 import StatusBadge from '../Statusbadge';

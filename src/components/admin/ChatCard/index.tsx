@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { IApplicantChatType } from '../../../types/applicant';
 import { ChatCardInner, ChatDate, ChatText, ChatUser } from './styled';
 
@@ -26,4 +26,4 @@ const ChatCard: React.FC<IChatCardProps> = ({
   );
 };
 
-export default ChatCard;
+export default memo(ChatCard);

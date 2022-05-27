@@ -30,6 +30,7 @@ export const ApplicantChatSendButton = styled.button`
   border-radius: 7px;
   background: ${({ theme }) => theme.colors.blue500};
   padding: 3px 14px;
+  cursor: pointer;
 `;
 export const ApplicantChatList = styled.div`
   width: 100%;
