@@ -1,56 +1,48 @@
 import styled, { css } from 'styled-components';
+import { theme } from '../../../styles/theme';
 
-export const StyledButton = styled.button<{ disable?: boolean }>`
-  color: white;
-  width: 100%;
-  padding: 12px 0px;
-  border-radius: 10px;
-  border-width: 1px;
-  border-color: ${(props) => props.theme.colors.tossBlue};
-  border-style: inherit;
-  margin-bottom: 10px;
-  background: ${(props) => props.theme.colors.tossBlue};
-  font-size: ${(props) => props.theme.fontSize.body2};
-  cursor: pointer;
-  ${(props) =>
-    props.disable &&
-    css`
-      cursor: not-allowed;
-      background: ${(props) => props.theme.colors.tossBlue200};
-    `}
-`;
-
-export const StyledButtonX = styled.button<{
-  color?: string;
-  background?: string;
+export const StyledButton = styled.button<{
+  color?: keyof typeof theme.colors;
+  background?: keyof typeof theme.colors;
   size?: string;
   disable?: boolean;
   border?: string;
 }>`
   display: flex;
   align-items: center;
+  justify-content: center;
   border: 1px solid ${(props) => props.theme.colors.grey300};
-  ${(props) =>
-    props.border &&
-    css`
-      border: 1px solid ${props.border};
-    `}
-  padding: 8px 20px;
-  cursor: pointer;
   font-size: ${(props) => props.theme.fontSize.body2};
-  color: ${(props) => props.color};
-  ${(props) =>
-    props.disable &&
+  padding: 10px 30px;
+  margin-bottom: 6px;
+  cursor: pointer;
+  box-shadow: 0 2px 12px rgba(25, 31, 40, 0.08);
+  border-radius: 10px;
+  color: ${({ theme }) => theme.colors.grey900};
+  ${({ border }) =>
+    border &&
+    css`
+      border: 1px solid ${border};
+    `}
+  ${({ disable }) =>
+    disable &&
     css`
       cursor: not-allowed;
       opacity: 0.5;
     `}
-  ${(props) =>
-    props.size === 'large' &&
+  ${({ size }) =>
+    size === 'large' &&
     css`
       padding: 8px 86px;
     `}
-  box-shadow: 0 2px 12px rgba(25, 31, 40, 0.08);
-  border-radius: 10px;
-  background: ${(props) => props.background};
+  ${({ background }) =>
+    background &&
+    css`
+      background: ${({ theme }) => theme.colors[background]};
+    `}
+  ${({ color }) =>
+    color &&
+    css`
+      color: ${({ theme }) => theme.colors[color]};
+    `}
 `;

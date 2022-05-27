@@ -1,5 +1,5 @@
-import React from 'react';
-import { AnimatePresence, AnimateSharedLayout } from 'framer-motion';
+import React, { useCallback, useEffect, useRef } from 'react';
+import { AnimatePresence } from 'framer-motion';
 import { AdminUserMenuWrapper, MenuElement } from './styled';
 import { authService } from '../../../firebase/firebase';
 import { MODAL_KEY, modalState } from '../../../store/modal';
@@ -13,45 +13,68 @@ const AdminUserMenu = (props: {
   const { isOpen, setIsOpen } = props;
   const [modal, setModal] = useRecoilState(modalState);
   const navigate = useNavigate();
+  const userMenuRef = useRef<HTMLDivElement>(null);
+
   const hoverMotion = {
     cursor: 'pointer',
     backgroundColor: '#E5E8EB',
   };
+
+  const handleClickOutside = useCallback(
+    (e: Event) => {
+      const target = e.target as Node;
+      const username = document.getElementsByClassName('username')[0];
+      if (isOpen && target.contains(username || target)) {
+        setIsOpen(false);
+        document.removeEventListener('click', handleClickOutside);
+      }
+    },
+    [isOpen],
+  );
+
+  useEffect(() => {
+    if (isOpen) {
+      setTimeout(
+        () => document.addEventListener('click', handleClickOutside),
+        0,
+      );
+    }
+  }, [isOpen]);
+
   return (
-    <>
-      <AnimatePresence>
-        {isOpen && (
-          <AdminUserMenuWrapper
+    <AnimatePresence>
+      {isOpen && (
+        <AdminUserMenuWrapper
+          ref={userMenuRef}
+          layout
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        >
+          <MenuElement
             layout
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            whileHover={hoverMotion}
+            onClick={() => {
+              setIsOpen(false);
+              authService.signOut();
+              navigate('/auth');
+            }}
           >
-            <MenuElement
-              layout
-              whileHover={hoverMotion}
-              onClick={() => {
-                setIsOpen(false);
-                authService.signOut();
-                navigate('/auth');
-              }}
-            >
-              로그아웃
-            </MenuElement>
-            <MenuElement
-              layout
-              whileHover={hoverMotion}
-              onClick={() => {
-                setIsOpen(false);
-                setModal({ ...modal, [MODAL_KEY.ADMIN_SIGN_UP]: true });
-              }}
-            >
-              회원가입
-            </MenuElement>
-          </AdminUserMenuWrapper>
-        )}
-      </AnimatePresence>
-    </>
+            로그아웃
+          </MenuElement>
+          <MenuElement
+            layout
+            whileHover={hoverMotion}
+            onClick={() => {
+              setIsOpen(false);
+              setModal({ ...modal, [MODAL_KEY.ADMIN_SIGN_UP]: true });
+            }}
+          >
+            회원가입
+          </MenuElement>
+        </AdminUserMenuWrapper>
+      )}
+    </AnimatePresence>
   );
 };
 

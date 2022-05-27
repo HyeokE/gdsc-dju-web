@@ -1,9 +1,10 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import TextInput from '../../../components/common/input/TextInput';
 import emailjs from '@emailjs/browser';
 import { GDSCButton } from '../../../components/common/Button';
 
 const AdminEmail = () => {
+  const [email, setEmail] = useState('');
   const emailProps = {
     to_email: 'jhjeong00@gmail.com',
     to_name: '정준혁',

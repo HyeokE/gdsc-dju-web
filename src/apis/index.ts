@@ -14,7 +14,11 @@ export class GDSCApi {
   private API: string;
   private FIREBASE_API: string;
   constructor() {
-    this.API = 'https://gdsc-dju.com';
+    if (process.env.NODE_ENV === 'development') {
+      this.API = 'https://gdsc-dju.kro.kr';
+    } else {
+      this.API = 'https://gdsc-dju.com';
+    }
     this.FIREBASE_API =
       'https://firestore.googleapis.com/v1/projects/gdsc-dju/databases/(default)';
   }
@@ -54,6 +58,9 @@ export class GDSCApi {
   };
   getAdminUser = (id: string | null) => {
     return axios.get(`${this.FIREBASE_API}/documents/adminUsers/${id}`);
+  };
+  getApplicants = () => {
+    return axios.get(`${this.FIREBASE_API}/documents/applicants`);
   };
   getChapterEvents = () => {
     return axios.get(`https://gdsc.community.dev/api/event/?chapter=1833`);

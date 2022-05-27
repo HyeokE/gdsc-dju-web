@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import BlueBanner from '../../../assets/BannerImages/BlueBanner.png';
-import RedBanner from '../../../assets/BannerImages/RedBanner.png';
-import YellowBanner from '../../../assets/BannerImages/YellowBanner.png';
-import GreenBanner from '../../../assets/BannerImages/GreenBanner.png';
+import BlueBanner from '../../../assets/BannerImages/BlueBanner.svg';
+import RedBanner from '../../../assets/BannerImages/RedBanner.svg';
+import YellowBanner from '../../../assets/BannerImages/YellowBanner.svg';
+import GreenBanner from '../../../assets/BannerImages/GreenBanner.svg';
 
 interface BannerProps {
   color: 'blue' | 'red' | 'yellow' | 'green';

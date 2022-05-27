@@ -9,13 +9,9 @@ import {
 } from './styled';
 import { useNavigate } from 'react-router-dom';
 
-export const Footer = () => {
-  const location = useLocation();
-  const locate = location.pathname;
-  const navigate = useNavigate();
-
+export const Footer: React.FC<{ disable?: boolean }> = ({ disable = true }) => {
   return (
-    <FooterWrapper className={locate === '/onboarding' ? 'none' : ''}>
+    <FooterWrapper disable={disable}>
       <FooterLogo>
         <FooterText google={true} href={'https://developers.google.com/'}>
           Google
