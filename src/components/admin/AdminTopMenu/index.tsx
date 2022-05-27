@@ -14,7 +14,7 @@ const AdminTopMenu = ({
   selectedCategory,
 }: Props) => {
   const navigate = useNavigate();
-  console.log(selectedCategory);
+
   return (
     <nav>
       <StyledUl>
