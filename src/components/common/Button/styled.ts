@@ -18,7 +18,7 @@ export const StyledButton = styled.button<{
   cursor: pointer;
   box-shadow: 0 2px 12px rgba(25, 31, 40, 0.08);
   border-radius: 10px;
-  color: ${({ theme }) => theme.colors.grey900};
+  color: ${({ theme }) => theme.colors.white};
   ${({ border }) =>
     border &&
     css`
