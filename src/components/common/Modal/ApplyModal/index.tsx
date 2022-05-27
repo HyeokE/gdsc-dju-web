@@ -80,7 +80,7 @@ const ApplyModal: React.FC<Props> = ({
                 <GDSCButton
                   text={'제출하기'}
                   onClick={() => onClick()}
-                  color={'GDSC blue'}
+                  color={'googleBlue'}
                 />
                 <ApplyModalButtonWrapper>
                   <GDSCButton

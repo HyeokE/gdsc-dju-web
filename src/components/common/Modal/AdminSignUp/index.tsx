@@ -11,6 +11,7 @@ import { GDSCButton } from '../../Button';
 import { AdminSignUpWrapper } from './styled';
 import firebase from 'firebase/compat/app';
 import error from '../../../../pages/Error';
+import { authService } from "../../../../firebase/firebase";
 
 const AdminSignUp = () => {
   const [modal, setModal] = useRecoilState(modalState);
@@ -26,13 +27,29 @@ const AdminSignUp = () => {
       setPassword(value);
     }
   };
-  const signUp = () => {
-    try {
-      firebase.auth().createUserWithEmailAndPassword(email, password);
-      setModal({ ...modal, [MODAL_KEY.ADMIN_SIGN_UP]: false });
-    } catch (error: typeof error) {
-      setError(error.message);
-    }
+  const onRegisterIn = async (e: any) => {
+    e.preventDefault();
+    authService
+      .createUserWithEmailAndPassword(email, password)
+      .then((user) => {
+        console.log(user);
+        setModal({ ...modal, [MODAL_KEY.ADMIN_SIGN_UP]: false });
+      })
+      .catch((error) => {
+        if (error.code == 'auth/email-already-in-use') {
+          setError('이미 사용 중인 이메일입니다.');
+        } else if (error.code == 'auth/invalid-email') {
+          setError('유효하지 않은 이메일입니다.');
+        } else if (error.code == 'operation-not-allowed') {
+          setError('이메일 가입이 중지되었습니다.');
+        } else if (error.code == 'auth/weak-password') {
+          setError('비밀번호를 6자리 이상 입력하세요.');
+        } else if (error.code == 'auth/user-not-found') {
+          setError('올바르지 않은 유저정보입니다.');
+        } else if (error.code == 'auth/wrong-password') {
+          setError('올바르지 않은 비밀번호입니다.');
+        }
+      });
   };
 
   return (
@@ -50,23 +67,23 @@ const AdminSignUp = () => {
               animate={'active'}
               initial={'unActive'}
             >
-              {/*<StyledDefaultInput*/}
-              {/*  onChange={handleOnChange}*/}
-              {/*  name={'email'}*/}
-              {/*  placeholder={'이메일'}*/}
-              {/*/>*/}
-              {/*<StyledDefaultInput*/}
-              {/*  onChange={handleOnChange}*/}
-              {/*  name={'password'}*/}
-              {/*  placeholder={'비밀번호'}*/}
-              {/*/>*/}
-              {/*<div>{error}</div>*/}
-              {/*<GDSCButton*/}
-              {/*  text={'회원가입'}*/}
-              {/*  color={'tossBlue'}*/}
-              {/*  onClick={signUp}*/}
-              {/*/>*/}
-              <button>asds</button>
+              <StyledDefaultInput
+                onChange={handleOnChange}
+                name={'email'}
+                placeholder={'이메일'}
+              />
+              <StyledDefaultInput
+                onChange={handleOnChange}
+                name={'password'}
+                placeholder={'비밀번호'}
+              />
+              <div>{error}</div>
+              <GDSCButton
+                text={'회원가입'}
+                color={'tossBlue'}
+                onClick={onRegisterIn}
+              />
+
             </AdminSignUpWrapper>
           </OutsideClickHandler>
         </ApplyModalWrapper>

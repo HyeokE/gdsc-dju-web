@@ -6,7 +6,7 @@ interface ButtonProps {
   text: string;
   color?: keyof typeof theme.colors;
   disable?: boolean;
-  onClick?: () => void;
+  onClick?: (e?: any) => void;
   type?: 'button' | 'submit' | 'reset';
 }
 const GDSCButtonL: React.FC<ButtonProps> = ({
