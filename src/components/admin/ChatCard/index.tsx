@@ -14,7 +14,6 @@ const ChatCard: React.FC<IChatCardProps> = ({
   isRead,
   adminUser,
 }) => {
-  console.log(createdAt);
   const uploadDate = new Date(createdAt).toString().split('GMT')[0];
   return (
     <ChatCardInner isUser={adminUser === uid}>

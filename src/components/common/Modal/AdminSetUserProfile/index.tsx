@@ -8,14 +8,14 @@ import { Modal } from 'react-rainbow-components';
 import { useRecoilState } from 'recoil';
 import { MODAL_KEY, modalState } from '../../../../store/modal';
 import { dbService } from '../../../../firebase/firebase';
-import { localUserState } from '../../../../store/localUser';
+import { adminUserState } from '../../../../store/localUser';
 
 const AdminSetUserProfile = () => {
   const [name, setName] = useState('');
   const [nickname, setNickname] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [modal, setModal] = useRecoilState(modalState);
-  const [adminUser, setAdminUser] = useRecoilState(localUserState);
+  const [adminUser, setAdminUser] = useRecoilState(adminUserState);
 
   const setUserProfile = () => {
     // dbService.collection('adminUsers').doc().get;
