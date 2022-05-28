@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import {
   AlertInner,
@@ -30,6 +30,7 @@ const Alert = () => {
         alertHandle: false,
       });
       clearTimeout(alertTimer);
+      console.log('clear');
     }, 4000);
   }, []);
   const alertStatusColor = {
@@ -39,24 +40,20 @@ const Alert = () => {
   };
 
   return (
-    <AnimatePresence>
-      <AlertWrapper>
-        {alert.alertHandle && (
-          <AlertInner
-            variants={variants}
-            exit={'unActive'}
-            animate={'active'}
-            initial={{ opacity: 0, scale: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <AlertInnerWrapper alertColor={alertStatusColor[alert.alertStatus]}>
-              <AlertText>{alert.alertMessage}</AlertText>
-            </AlertInnerWrapper>
-          </AlertInner>
-        )}
-      </AlertWrapper>
-    </AnimatePresence>
+    <AlertWrapper>
+      <AlertInner
+        variants={variants}
+        exit={'unActive'}
+        animate={'active'}
+        initial={{ opacity: 0, scale: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <AlertInnerWrapper alertColor={alertStatusColor[alert.alertStatus]}>
+          <AlertText>{alert.alertMessage}</AlertText>
+        </AlertInnerWrapper>
+      </AlertInner>
+    </AlertWrapper>
   );
 };
 
-export default Alert;
+export default memo(Alert);

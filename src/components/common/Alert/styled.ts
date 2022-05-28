@@ -14,7 +14,7 @@ export const AlertInnerWrapper = styled.div<{ alertColor: string }>`
   ${({ alertColor }) =>
     alertColor &&
     css`
-      background: ${alertColor};
+      color: ${alertColor};
     `}
 `;
 export const AlertText = styled.div`
@@ -25,7 +25,7 @@ export const AlertText = styled.div`
   align-items: center;
   color: ${(props) => props.theme.colors.grey800};
   @media (max-width: 500px) {
-    font-size: 17px;
+    font-size: 17px;-
   }
   @media (max-width: 320px) {
     font-size: 15px;

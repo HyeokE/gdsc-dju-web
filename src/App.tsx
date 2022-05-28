@@ -12,6 +12,8 @@ import GlobalStyles from './styles/globalStyles';
 import { useLocation } from 'react-router';
 import axios from 'axios';
 import Modal from './components/common/Modal';
+import { alertState } from './store/alert';
+import { AnimatePresence } from 'framer-motion';
 
 function App() {
   const loading = useRecoilValue(loaderState);
@@ -23,11 +25,12 @@ function App() {
   document.cookie = 'safeCookie1=foo; SameSite=Lax';
   document.cookie = 'safeCookie2=foo';
   document.cookie = 'crossCookie=bar; SameSite=None; Secure';
+  const [alert, setAlert] = useRecoilState(alertState);
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
       {loading.load && <GoogleSpinner background={true} />}
-      <Alert />
+      <AnimatePresence>{alert.alertHandle && <Alert />}</AnimatePresence>
       <Modal />
       <Navigation />
       <Layout />
