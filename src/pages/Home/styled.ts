@@ -58,9 +58,17 @@ export const BannerTitleWrapper = styled(motion.section)`
   box-sizing: border-box;
   align-items: center;
   justify-content: center;
+  @media (max-width: ${({ theme }) => theme.windowSize.desk}px) {
+    bottom: 0;
+    left: 28%;
+  }
   @media (max-width: ${({ theme }) => theme.windowSize.tablet}px) {
     bottom: 0;
-    left: 35%;
+    left: 24%;
+  }
+  @media (max-width: ${({ theme }) => theme.windowSize.mobile}px) {
+    bottom: 0;
+    left: 30%;
   }
   @media (max-width: 320px) {
     bottom: 10%;

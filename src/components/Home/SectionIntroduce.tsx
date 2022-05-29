@@ -2,12 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import { HomeSectionContainer, HomeSectionContainerInner } from './styled';
 import { motion } from 'framer-motion';
+import SolorSystem from './SolorSystem';
 
 const SectionTitle = styled.span`
   display: block;
   width: 100%;
   margin-bottom: 25px;
-  font-size: ${({ theme }) => theme.fontSize.h3};
+  font-size: ${({ theme }) => theme.fontSize.h2};
   font-style: normal;
   font-weight: bold;
   font-stretch: normal;
@@ -42,7 +43,7 @@ const ContentTitle = styled.span`
   word-break: keep-all;
   -webkit-font-smoothing: subpixel-antialiased;
   @media (max-width: ${({ theme }) => theme.windowSize.mobile}px) {
-    font-size: ${({ theme }) => theme.fontSize.body1};
+    font-size: ${({ theme }) => theme.fontSize.body2};
   }
 `;
 const ContentText = styled.span`
@@ -50,21 +51,30 @@ const ContentText = styled.span`
   font-style: normal;
   font-weight: bold;
   font-stretch: normal;
-  line-height: 8.013rem;
   color: ${({ theme }) => theme.colors.grey900};
   letter-spacing: normal;
   word-break: keep-all;
   @media (max-width: ${({ theme }) => theme.windowSize.mobile}px) {
-    font-size: ${({ theme }) => theme.fontSize.h3};
+    font-size: ${({ theme }) => theme.fontSize.h4};
     line-height: 1.5;
   }
 `;
 const SectionWrapper = styled(motion.div)`
   max-width: 960px;
-  padding: 0 5rem;
+  padding: 0 3rem;
   display: flex;
   flex-wrap: wrap;
-  margin: 0 auto;
+`;
+const IntroduceSolarSystemWrapper = styled.div`
+  position: absolute;
+  right: -50px;
+  bottom: 0;
+  transform: scale(1.5);
+  z-index: -1;
+  @media (max-width: ${({ theme }) => theme.windowSize.mobile}px) {
+    transform: scale(1);
+    right: -50%;
+  }
 `;
 const SectionAnimation = {
   hidden: {
@@ -89,10 +99,10 @@ const SectionIntroduce = () => {
           whileInView={'visible'}
           viewport={{ once: true }}
         >
-          <SectionTitle>
-            도전을 즐기는 사람들이 모여
-            <br /> 엄청난 문구 추천받습니다.
-          </SectionTitle>
+          <IntroduceSolarSystemWrapper>
+            <SolorSystem />
+          </IntroduceSolarSystemWrapper>
+          <SectionTitle>디자이너와 개발자의 성장을 위해</SectionTitle>
           <ContentWrapper>
             <ContentTitle>누적 지원자 수</ContentTitle>
             <ContentText>90명 +</ContentText>
@@ -116,51 +126,3 @@ const SectionIntroduce = () => {
 };
 
 export default SectionIntroduce;
-
-// import { MainText, SubCategory } from '../common/Title/title';
-// import { introduceText, workWhenCome } from '../../apis/pageData/introduceText';
-// import BulletList from '../common/BulletList';
-// import CircleSvgMotion from '../common/CircleSvgMotion';
-{
-  /*<SubCategory>Google Developer Student Club 소개</SubCategory>*/
-}
-{
-  /*{introduceText.split('\n').map((line, id) => {*/
-}
-{
-  /*  return (*/
-}
-{
-  /*    <MainText key={id}>*/
-}
-{
-  /*      {line}*/
-}
-{
-  /*      <br />*/
-}
-{
-  /*    </MainText>*/
-}
-{
-  /*  );*/
-}
-{
-  /*})}*/
-}
-
-{
-  /*<TopMargin />*/
-}
-{
-  /*<SubCategory>합류하시면 함께할 활동입니다</SubCategory>*/
-}
-{
-  /*<MainText>*/
-}
-{
-  /*  <BulletList text={workWhenCome} />*/
-}
-{
-  /*</MainText>*/
-}

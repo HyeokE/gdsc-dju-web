@@ -6,31 +6,29 @@ import jason from '../../assets/managerProfile/jason.jpeg';
 import { motion } from 'framer-motion';
 
 const ManagerTitle = styled(motion.span)`
-  margin-bottom: 13px;
-  font-size: ${({ theme }) => theme.fontSize.h1};
+  display: block;
+  width: 100%;
+  margin-bottom: 25px;
+  font-size: ${({ theme }) => theme.fontSize.h2};
   font-style: normal;
   font-weight: bold;
   font-stretch: normal;
-  line-height: 1.4em;
-  color: ${({ theme }) => theme.colors.grey900}
-  text-align: center;
+  line-height: 52px;
+  color: ${({ theme }) => theme.colors.grey900};
   letter-spacing: normal;
   word-break: keep-all;
-  -webkit-font-smoothing: subpixel-antialiased;
   @media (max-width: ${({ theme }) => theme.windowSize.mobile}px) {
-  font-size: ${({ theme }) => theme.fontSize.h3};
-}
+    font-size: ${({ theme }) => theme.fontSize.h4};
+  }
 `;
 const ManagerWrapper = styled.div`
+  padding: 0 3rem;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  width: 100%;
+  flex-wrap: wrap;
 `;
 const ManagerSubTitle = styled(motion.div)`
-  margin-bottom: 42px;
-  font-size: ${({ theme }) => theme.fontSize.h5};
+  margin-bottom: 50px;
+  font-size: ${({ theme }) => theme.fontSize.h6};
   font-style: normal;
   font-weight: normal;
   font-stretch: normal;
@@ -48,16 +46,15 @@ const MemberCardSection = styled(motion.section)`
   display: flex;
   flex-wrap: wrap;
   width: 100%;
+  gap: 30px;
 `;
 const MemberCardWrapper = styled.div`
-  width: 25%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 30px;
-  @media (max-width: ${({ theme }) => theme.windowSize.desk}px) {
-    width: 50%;
-  }
+  min-width: 250px;
+  min-height: 300px;
+
   @media (max-width: ${({ theme }) => theme.windowSize.mobile}px) {
     width: 100%;
   }
@@ -84,8 +81,8 @@ const SectionManager = () => {
         viewport={{ once: true }}
       >
         <ManagerWrapper>
-          <ManagerTitle>Management</ManagerTitle>
-          <ManagerSubTitle>GDSC Daejin의 운영진을 소개합니다</ManagerSubTitle>
+          <ManagerTitle>GDSC Daejin 운영진을 소개드려요</ManagerTitle>
+          <ManagerSubTitle>직접적인 운영을 도와주시고 있어요</ManagerSubTitle>
           <MemberCardSection>
             <MemberCardWrapper>
               <MemberCard image={jason} id={1} />

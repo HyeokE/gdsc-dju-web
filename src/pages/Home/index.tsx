@@ -20,6 +20,7 @@ const HomeContainer = styled.div`
     overflow-y: scroll;
     @media (max-width: 500px) {
       scroll-snap-type: none;
+      height: auto;
     }
   }
   .container::-webkit-scrollbar {
@@ -38,9 +39,9 @@ const Home = () => {
       <Suspense fallback={<GoogleSpinner />}>
         <div className={'container'}>
           <HomePageV2 />
-          {/*<SectionIntroduce />*/}
+          <SectionIntroduce />
           {/*<SectionGoal />*/}
-          {/*<SectionManager />*/}
+          <SectionManager />
           <Footer />
         </div>
       </Suspense>
