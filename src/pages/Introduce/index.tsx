@@ -21,7 +21,7 @@ const Introduce = () => {
           <Title>About us</Title>
           <TopMargin />
           <MainText>
-            GDSC와 함께 성장하는 팀원 {memberList.length}명을 소개합니다.
+            GDSC와 함께 성장하는 멋진 {memberList.length}명을 소개해요
           </MainText>
           <TopMargin />
           <MemberCardSection />
