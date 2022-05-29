@@ -34,7 +34,7 @@ const ManagerSubTitle = styled(motion.div)`
   font-stretch: normal;
   line-height: 1.45em;
   color: ${({ theme }) => theme.colors.grey600};
-  text-align: center;
+
   letter-spacing: normal;
   word-break: keep-all;
   -webkit-font-smoothing: subpixel-antialiased;
@@ -82,7 +82,9 @@ const SectionManager = () => {
       >
         <ManagerWrapper>
           <ManagerTitle>GDSC Daejin 운영진을 소개드려요</ManagerTitle>
-          <ManagerSubTitle>직접적인 운영을 도와주시고 있어요</ManagerSubTitle>
+          <ManagerSubTitle>
+            구성원의 도움을 받아 커뮤니티의 문화를 만들어나가고 있어요
+          </ManagerSubTitle>
           <MemberCardSection>
             <MemberCardWrapper>
               <MemberCard image={jason} id={1} />
