@@ -18,7 +18,7 @@ function App() {
   const [footer, setFooter] = useState(true);
   const location = useLocation();
   useEffect(() => {
-    location.pathname === '/' && setFooter(false);
+    location.pathname === '/' ? setFooter(false) : setFooter(true);
   }, [location.pathname]);
   document.cookie = 'safeCookie1=foo; SameSite=Lax';
   document.cookie = 'safeCookie2=foo';
