@@ -4,6 +4,7 @@ import { HomeSectionContainer, HomeSectionContainerInner } from './styled';
 import MemberCard from '../common/MemberCard';
 import jason from '../../assets/managerProfile/jason.jpeg';
 import { motion } from 'framer-motion';
+import { managerData } from '../../apis/pageData/managerData';
 
 const ManagerTitle = styled(motion.span)`
   display: block;
@@ -81,23 +82,16 @@ const SectionManager = () => {
         viewport={{ once: true }}
       >
         <ManagerWrapper>
-          <ManagerTitle>GDSC Daejin 운영진을 소개드려요</ManagerTitle>
+          <ManagerTitle>GDSC Daejin 운영진을 소개해요</ManagerTitle>
           <ManagerSubTitle>
             구성원의 도움을 받아 커뮤니티의 문화를 만들어나가고 있어요
           </ManagerSubTitle>
           <MemberCardSection>
-            <MemberCardWrapper>
-              <MemberCard image={jason} id={1} />
-            </MemberCardWrapper>
-            <MemberCardWrapper>
-              <MemberCard image={jason} id={2} />
-            </MemberCardWrapper>
-            <MemberCardWrapper>
-              <MemberCard image={jason} id={3} />
-            </MemberCardWrapper>
-            <MemberCardWrapper>
-              <MemberCard image={jason} id={4} />
-            </MemberCardWrapper>
+            {managerData.map((member, index) => (
+              <MemberCardWrapper key={index}>
+                <MemberCard {...member} />
+              </MemberCardWrapper>
+            ))}
           </MemberCardSection>
         </ManagerWrapper>
       </HomeSectionContainerInner>

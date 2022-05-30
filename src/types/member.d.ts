@@ -35,3 +35,12 @@ export interface UserDataType {
   userId: string;
   username: string;
 }
+export interface IMemberCardType {
+  image: string;
+  position: string;
+  id: number;
+  nickname: string;
+  name: string;
+  role: string;
+  cardText: string;
+}

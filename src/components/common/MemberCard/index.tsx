@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { AnimatePresence, LayoutGroup, motion } from 'framer-motion';
+import { IMemberCardType } from '../../../types/member';
 
 const MemberCardContainer = styled(motion.div)`
   position: relative;
@@ -25,17 +26,18 @@ const MemberCardImage = styled(motion.div)<{
   top: 0;
   left: 0;
   z-index: -1;
-  width: 100%;
-  height: 100%;
+  width: 250px;
+  height: 300px;
   background-image: url(${({ image }) => image});
   -webkit-background-size: cover;
   background-size: cover;
   border-radius: 16px;
   transition: all 0.2s ease-in-out;
+
   ${({ isClicked }) =>
     isClicked &&
     css`
-      -webkit-filter: blur(10px) brightness(0.7);
+      -webkit-filter: blur(10px) brightness(0.6);
     `}
 `;
 const Position = styled(motion.p)`
@@ -44,7 +46,7 @@ const Position = styled(motion.p)`
   overflow-y: hidden;
   font-size: ${({ theme }) => theme.fontSize.body2};
   line-height: 24px;
-  color: ${({ theme }) => theme.colors.tossBlue};
+  color: ${({ theme }) => theme.colors.googleYellow};
 `;
 const Nickname = styled(motion.p)`
   height: 24px;
@@ -67,7 +69,7 @@ const Role = styled(motion.p)`
   overflow-y: hidden;
   font-size: ${({ theme }) => theme.fontSize.body2};
   line-height: 24px;
-  color: ${({ theme }) => theme.colors.tossBlue200};
+  color: ${({ theme }) => theme.colors.blue400};
 `;
 const CardText = styled(motion.div)`
   margin-top: 8px;
@@ -87,8 +89,15 @@ const memberCardAnimate = {
   },
 };
 
-const MemberCard = (props: { image: string; id: number }) => {
-  const { image, id } = props;
+const MemberCard: React.FC<IMemberCardType> = ({
+  image,
+  position,
+  id,
+  cardText,
+  role,
+  nickname,
+  name,
+}) => {
   const [isClicked, setIsClicked] = useState(false);
   return (
     <AnimatePresence>
@@ -107,10 +116,10 @@ const MemberCard = (props: { image: string; id: number }) => {
                 isClicked={false}
                 layoutId={`member-background-${id}`}
               />
-              <Nickname layoutId={`member-nickname-${id}`}>Jason</Nickname>
-              <Name layoutId={`member-name-${id}`}>정준혁</Name>
+              <Nickname layoutId={`member-nickname-${id}`}>{nickname}</Nickname>
+              <Name layoutId={`member-name-${id}`}>{name}</Name>
               <Role layoutId={`member-role-${id}`} variants={memberCardAnimate}>
-                Lead
+                {role}
               </Role>
             </MemberCardInner>
           ) : (
@@ -124,16 +133,15 @@ const MemberCard = (props: { image: string; id: number }) => {
                 layoutId={`member-position-${id}`}
                 variants={memberCardAnimate}
               >
-                Frontend Lead
+                {position}
               </Position>
-              <Nickname layoutId={`member-nickname-${id}`}>Jason</Nickname>
-              <Name layoutId={`member-name-${id}`}>정준혁</Name>
+              <Nickname layoutId={`member-nickname-${id}`}>{nickname}</Nickname>
+              <Name layoutId={`member-name-${id}`}>{name}</Name>
               <CardText
                 layoutId={`member-text-${id}`}
                 variants={memberCardAnimate}
               >
-                안녕안녕안녕안녕 안녕안녕안녕안녕 안녕안녕안녕안녕
-                안녕안녕안녕안녕
+                {cardText}
               </CardText>
             </MemberCardInner>
           )}
