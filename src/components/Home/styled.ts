@@ -45,7 +45,7 @@ export const HomeSectionWrapper = styled(motion.div)`
     max-width: 330px;
   }
 `;
-export const HomeSectionTitle = styled.h1`
+export const HomeSectionTitle = styled(motion.h1)`
   display: block;
   width: fit-content;
   margin-bottom: 25px;

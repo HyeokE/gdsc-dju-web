@@ -57,13 +57,22 @@ const SectionCulture = () => {
     <HomeSectionContainer>
       <HomeSectionContainerInner>
         <HomeSectionWrapper>
-          <HomeSectionTitle>GDSC DJU만의 문화를 소개해요</HomeSectionTitle>
+          <HomeSectionTitle
+            variants={listItemAnimate}
+            initial={'start'}
+            whileInView={'end'}
+            viewport={{ once: true }}
+          >
+            GDSC DJU만의 문화를 소개해요
+          </HomeSectionTitle>
           <CultureContentSection variants={listItemAnimate}>
             {culture.map((data, index) => (
               <CultureContentWrapper
                 key={index}
                 variants={listAnimate}
-                whileInView={'once'}
+                initial={'start'}
+                whileInView={'end'}
+                viewport={{ once: true }}
               >
                 <CultureTitle>{data.title}</CultureTitle>
                 <CultureText>{data.text}</CultureText>
