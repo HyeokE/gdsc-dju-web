@@ -38,6 +38,9 @@ export const HomeSectionWrapper = styled(motion.div)`
   padding: 0 2rem;
   display: flex;
   flex-wrap: wrap;
+  @media (max-width: ${({ theme }) => theme.windowSize.desk}px) {
+    max-width: 700px;
+  }
   @media (max-width: ${({ theme }) => theme.windowSize.tablet}px) {
     max-width: 600px;
   }
