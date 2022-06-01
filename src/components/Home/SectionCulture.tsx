@@ -21,7 +21,7 @@ const CultureContentSection = styled(motion.section)`
   }
 `;
 const CultureContentWrapper = styled(motion.div)`
-  width: 450px;
+  max-width: 450px;
   display: flex;
   flex-wrap: wrap;
   gap: 30px;
@@ -33,7 +33,7 @@ const CultureTitle = styled.h2`
   font-size: ${({ theme }) => theme.fontSize.h3};
   @media (max-width: ${({ theme }) => theme.windowSize.tablet}px) {
     font-size: ${({ theme }) => theme.fontSize.h4};
-    max-width: 330px;
+    max-width: 370px;
   }
   @media (max-width: ${({ theme }) => theme.windowSize.mobile}px) {
     font-size: ${({ theme }) => theme.fontSize.h5};
@@ -45,6 +45,7 @@ const CultureText = styled.p`
   color: ${({ theme }) => theme.colors.grey600};
   line-height: 1.5;
   word-break: break-all;
+  max-width: 330px;
   @media (max-width: ${({ theme }) => theme.windowSize.tablet}px) {
     font-size: ${({ theme }) => theme.fontSize.body2};
     max-width: 330px;

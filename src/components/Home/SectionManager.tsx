@@ -4,33 +4,12 @@ import {
   HomeSectionContainer,
   HomeSectionContainerInner,
   HomeSectionTitle,
+  HomeSectionWrapper,
 } from './styled';
 import MemberCard from '../common/MemberCard';
-import jason from '../../assets/managerProfile/jason.jpeg';
 import { motion } from 'framer-motion';
 import { managerData } from '../../apis/pageData/managerData';
 
-const ManagerTitle = styled(motion.span)`
-  display: block;
-  width: 100%;
-  margin-bottom: 25px;
-  font-size: ${({ theme }) => theme.fontSize.h2};
-  font-style: normal;
-  font-weight: bold;
-  font-stretch: normal;
-  line-height: 52px;
-  color: ${({ theme }) => theme.colors.grey900};
-  letter-spacing: normal;
-  word-break: keep-all;
-  @media (max-width: ${({ theme }) => theme.windowSize.mobile}px) {
-    font-size: ${({ theme }) => theme.fontSize.h4};
-  }
-`;
-const ManagerWrapper = styled.div`
-  padding: 0 3rem;
-  display: flex;
-  flex-wrap: wrap;
-`;
 const ManagerSubTitle = styled(motion.div)`
   margin-bottom: 50px;
   font-size: ${({ theme }) => theme.fontSize.h6};
@@ -87,7 +66,7 @@ const SectionManager = () => {
         whileInView={'visible'}
         viewport={{ once: true }}
       >
-        <ManagerWrapper>
+        <HomeSectionWrapper>
           <HomeSectionTitle>GDSC DJU 운영진을 소개해요</HomeSectionTitle>
           <ManagerSubTitle>
             구성원의 도움을 받아 커뮤니티의 문화를 만들어나가고 있어요
@@ -99,7 +78,7 @@ const SectionManager = () => {
               </MemberCardWrapper>
             ))}
           </MemberCardSection>
-        </ManagerWrapper>
+        </HomeSectionWrapper>
       </HomeSectionContainerInner>
     </HomeSectionContainer>
   );
