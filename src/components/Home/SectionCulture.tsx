@@ -62,7 +62,7 @@ const SectionCulture = () => {
             whileInView={'end'}
             viewport={{ once: true }}
           >
-            GDSC DJU만의 문화를 소개해요
+            GDSC DJU의 문화를 소개해요
           </HomeSectionTitle>
           <CultureContentSection variants={listItemAnimate}>
             {culture.map((data, index) => (
