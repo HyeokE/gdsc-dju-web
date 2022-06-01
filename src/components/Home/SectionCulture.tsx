@@ -45,11 +45,9 @@ const CultureText = styled.p`
   font-size: ${({ theme }) => theme.fontSize.body1};
   color: ${({ theme }) => theme.colors.grey600};
   line-height: 1.5;
-  word-break: break-all;
-  max-width: 330px;
+  word-break: keep-all;
   @media (max-width: ${({ theme }) => theme.windowSize.tablet}px) {
     font-size: ${({ theme }) => theme.fontSize.body2};
-    max-width: 330px;
   }
 `;
 
