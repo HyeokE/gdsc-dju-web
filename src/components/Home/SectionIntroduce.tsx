@@ -65,19 +65,7 @@ const SectionWrapper = styled(motion.div)`
   display: flex;
   flex-wrap: wrap;
 `;
-const IntroduceSolarSystemWrapper = styled.div`
-  position: relative;
-  right: -50vw;
-  bottom: -70vh;
-  transform: scale(1.5);
-  z-index: -1;
-  height: 100%;
-  width: 100%;
-  @media (max-width: ${({ theme }) => theme.windowSize.mobile}px) {
-    transform: scale(1);
-    right: -50%;
-  }
-`;
+
 const SectionAnimation = {
   hidden: {
     opacity: 0,
@@ -101,9 +89,6 @@ const SectionIntroduce = () => {
           whileInView={'visible'}
           viewport={{ once: true }}
         >
-          <IntroduceSolarSystemWrapper>
-            <SolorSystem />
-          </IntroduceSolarSystemWrapper>
           <SectionTitle>디자이너와 개발자의 성장을 위해</SectionTitle>
           <ContentWrapper>
             <ContentTitle>누적 지원자 수</ContentTitle>

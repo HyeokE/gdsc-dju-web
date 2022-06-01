@@ -20,9 +20,6 @@ import DownArrow from '../common/DownArrow';
 const HomePageV2 = () => {
   return (
     <HomeWrapper>
-      <HomeSolarSystemWrapper>
-        <SolarSystem />
-      </HomeSolarSystemWrapper>
       <BannerTitleWrapper>
         <RecruitingWrapper variants={bannerItemAnimate}>
           <GoogleColorTextWrapper>

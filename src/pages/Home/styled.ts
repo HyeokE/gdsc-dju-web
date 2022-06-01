@@ -164,6 +164,7 @@ export const HomeSolarSystemWrapper = styled.div`
   position: absolute;
   right: 20%;
   top: 20%;
+  z-index: -1;
   transform: translate(0%, -50%);
   @media (max-width: 500px) {
     left: 100%;

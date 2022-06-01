@@ -24,7 +24,7 @@ export const managerData: IMemberCardType[] = [
   {
     nickname: 'Harry',
     name: '박현기',
-    image: Jason,
+    image: 'https://ca.slack-edge.com/T02BE2ERU5A-U02BR888JMT-94c00b918157-512',
     position: 'Android Developer',
     id: 3,
     role: 'Core',
@@ -33,7 +33,7 @@ export const managerData: IMemberCardType[] = [
   {
     nickname: 'Want',
     name: '정소연',
-    image: Jason,
+    image: 'https://ca.slack-edge.com/T02BE2ERU5A-U02CH6KQT8Q-0c56c2e2ad87-512',
     position: 'Backend Developer',
     id: 4,
     role: 'Core',

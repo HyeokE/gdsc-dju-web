@@ -4,6 +4,9 @@ import SectionManager from '../../components/Home/SectionManager';
 import SectionIntroduce from '../../components/Home/SectionIntroduce';
 import GoogleSpinner from '../../components/Lottie/GoogleSpinner';
 import { Footer } from '../../components/common/Footer';
+import SolorSystem from '../../components/Home/SolorSystem';
+import SolarSystem from '../../components/Home/SolorSystem';
+import { HomeSolarSystemWrapper } from './styled';
 
 const HomePageV2 = lazy(() =>
   import('../../components/Home/HomePageV2').then((module) => ({
@@ -13,6 +16,8 @@ const HomePageV2 = lazy(() =>
 
 const HomeContainer = styled.div`
   overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
   .container {
     scroll-behavior: smooth;
     height: 100vh;
@@ -38,6 +43,9 @@ const Home = () => {
     <HomeContainer>
       <Suspense fallback={<GoogleSpinner />}>
         <div className={'container'}>
+          <HomeSolarSystemWrapper>
+            <SolarSystem />
+          </HomeSolarSystemWrapper>
           <HomePageV2 />
           <SectionIntroduce />
           {/*<SectionGoal />*/}
