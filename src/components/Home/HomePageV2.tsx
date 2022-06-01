@@ -27,7 +27,7 @@ const HomePageV2 = () => {
           </GoogleColorTextWrapper>
           <GoogleColorText>Recruit</GoogleColorText>
           <MainBannerText variants={bannerItemAnimate}>
-            상상을 현실로 만들다.
+            2022. 06. 15 ~ 2022. 07. 31
           </MainBannerText>
           <HomeRecruitmentButton />
         </RecruitingWrapper>

@@ -69,7 +69,7 @@ const Role = styled(motion.p)`
   overflow-y: hidden;
   font-size: ${({ theme }) => theme.fontSize.body2};
   line-height: 24px;
-  color: ${({ theme }) => theme.colors.blue400};
+  color: ${({ theme }) => theme.colors.yellow200};
 `;
 const CardText = styled(motion.div)`
   margin-top: 8px;
