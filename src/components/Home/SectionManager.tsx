@@ -1,6 +1,10 @@
-// import React from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { HomeSectionContainer, HomeSectionContainerInner } from './styled';
+import {
+  HomeSectionContainer,
+  HomeSectionContainerInner,
+  HomeSectionTitle,
+} from './styled';
 import MemberCard from '../common/MemberCard';
 import jason from '../../assets/managerProfile/jason.jpeg';
 import { motion } from 'framer-motion';
@@ -35,10 +39,12 @@ const ManagerSubTitle = styled(motion.div)`
   font-stretch: normal;
   line-height: 1.45em;
   color: ${({ theme }) => theme.colors.grey600};
-
   letter-spacing: normal;
   word-break: keep-all;
   -webkit-font-smoothing: subpixel-antialiased;
+  @media (max-width: ${({ theme }) => theme.windowSize.tablet}px) {
+    font-size: ${({ theme }) => theme.fontSize.body1};
+  }
   @media (max-width: ${({ theme }) => theme.windowSize.mobile}px) {
     font-size: ${({ theme }) => theme.fontSize.body1};
   }
@@ -82,7 +88,7 @@ const SectionManager = () => {
         viewport={{ once: true }}
       >
         <ManagerWrapper>
-          <ManagerTitle>GDSC Daejin 운영진을 소개해요</ManagerTitle>
+          <HomeSectionTitle>GDSC DJU 운영진을 소개해요</HomeSectionTitle>
           <ManagerSubTitle>
             구성원의 도움을 받아 커뮤니티의 문화를 만들어나가고 있어요
           </ManagerSubTitle>

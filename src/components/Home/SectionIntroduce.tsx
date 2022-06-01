@@ -1,25 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { HomeSectionContainer, HomeSectionContainerInner } from './styled';
-import { motion } from 'framer-motion';
-import SolorSystem from './SolorSystem';
+import {
+  HomeSectionContainer,
+  HomeSectionContainerInner,
+  HomeSectionTitle,
+  HomeSectionWrapper,
+} from './styled';
 
-const SectionTitle = styled.span`
-  display: block;
-  width: 100%;
-  margin-bottom: 25px;
-  font-size: ${({ theme }) => theme.fontSize.h2};
-  font-style: normal;
-  font-weight: bold;
-  font-stretch: normal;
-  line-height: 52px;
-  color: ${({ theme }) => theme.colors.grey900};
-  letter-spacing: normal;
-  word-break: keep-all;
-  @media (max-width: ${({ theme }) => theme.windowSize.mobile}px) {
-    font-size: ${({ theme }) => theme.fontSize.h4};
-  }
-`;
 const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -42,6 +29,9 @@ const ContentTitle = styled.span`
   letter-spacing: normal;
   word-break: keep-all;
   -webkit-font-smoothing: subpixel-antialiased;
+  @media (max-width: ${({ theme }) => theme.windowSize.tablet}px) {
+    font-size: ${({ theme }) => theme.fontSize.body1};
+  }
   @media (max-width: ${({ theme }) => theme.windowSize.mobile}px) {
     font-size: ${({ theme }) => theme.fontSize.body2};
   }
@@ -54,16 +44,13 @@ const ContentText = styled.span`
   color: ${({ theme }) => theme.colors.grey900};
   letter-spacing: normal;
   word-break: keep-all;
+  @media (max-width: ${({ theme }) => theme.windowSize.tablet}px) {
+    font-size: ${({ theme }) => theme.fontSize.h3};
+  }
   @media (max-width: ${({ theme }) => theme.windowSize.mobile}px) {
     font-size: ${({ theme }) => theme.fontSize.h4};
     line-height: 1.5;
   }
-`;
-const SectionWrapper = styled(motion.div)`
-  max-width: 960px;
-  padding: 0 3rem;
-  display: flex;
-  flex-wrap: wrap;
 `;
 
 const SectionAnimation = {
@@ -83,13 +70,13 @@ const SectionIntroduce = () => {
   return (
     <HomeSectionContainer>
       <HomeSectionContainerInner>
-        <SectionWrapper
+        <HomeSectionWrapper
           variants={SectionAnimation}
           initial={'hidden'}
           whileInView={'visible'}
           viewport={{ once: true }}
         >
-          <SectionTitle>디자이너와 개발자의 성장을 위해</SectionTitle>
+          <HomeSectionTitle>디자이너와 개발자의 성장을 위해</HomeSectionTitle>
           <ContentWrapper>
             <ContentTitle>누적 지원자 수</ContentTitle>
             <ContentText>90명 +</ContentText>
@@ -106,7 +93,7 @@ const SectionIntroduce = () => {
             <ContentTitle>진행한 이벤트</ContentTitle>
             <ContentText>100회 +</ContentText>
           </ContentWrapper>
-        </SectionWrapper>
+        </HomeSectionWrapper>
       </HomeSectionContainerInner>
     </HomeSectionContainer>
   );

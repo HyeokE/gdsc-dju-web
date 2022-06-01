@@ -4,15 +4,12 @@ import {
   ButtonWrapper,
   GoogleColorText,
   GoogleColorTextWrapper,
-  HomeSolarSystemWrapper,
   HomeWrapper,
   MainBannerText,
   RecruitingWrapper,
   StyledRecruitmentButton,
 } from '../../pages/Home/styled';
 import { bannerItemAnimate } from '../common/Variants/Variants';
-import Recruiting from '../../assets/Recruiting';
-import SolarSystem from '../../components/Home/SolorSystem';
 import { useRecoilState } from 'recoil';
 import { recruitmentState } from '../../store/recruitHandler';
 import DownArrow from '../common/DownArrow';

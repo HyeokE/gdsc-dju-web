@@ -161,7 +161,7 @@ export const DownArrowWrapper = styled(motion.div)`
 export const HomeSolarSystemWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  position: absolute;
+  position: fixed;
   right: 20%;
   top: 20%;
   z-index: -1;

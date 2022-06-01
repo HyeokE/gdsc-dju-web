@@ -7,6 +7,7 @@ import { Footer } from '../../components/common/Footer';
 import SolorSystem from '../../components/Home/SolorSystem';
 import SolarSystem from '../../components/Home/SolorSystem';
 import { HomeSolarSystemWrapper } from './styled';
+import SectionCulture from '../../components/Home/SectionCulture';
 
 const HomePageV2 = lazy(() =>
   import('../../components/Home/HomePageV2').then((module) => ({
@@ -48,6 +49,7 @@ const Home = () => {
           </HomeSolarSystemWrapper>
           <HomePageV2 />
           <SectionIntroduce />
+          <SectionCulture />
           {/*<SectionGoal />*/}
           <SectionManager />
           <Footer />

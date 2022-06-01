@@ -31,3 +31,29 @@ export const HomeSectionContainerInner = styled(motion.div)`
   margin: 0 auto;
   min-width: 320px;
 `;
+export const HomeSectionWrapper = styled(motion.div)`
+  max-width: 960px;
+  padding: 0 3rem;
+  display: flex;
+  flex-wrap: wrap;
+`;
+export const HomeSectionTitle = styled.h1`
+  display: block;
+  width: 100%;
+  margin-bottom: 25px;
+  font-size: ${({ theme }) => theme.fontSize.h2};
+  font-style: normal;
+  font-weight: bold;
+  font-stretch: normal;
+  line-height: 52px;
+  color: ${({ theme }) => theme.colors.grey900};
+  letter-spacing: normal;
+  word-break: keep-all;
+  @media (max-width: ${({ theme }) => theme.windowSize.tablet}px) {
+    font-size: ${({ theme }) => theme.fontSize.h3};
+  }
+  @media (max-width: ${({ theme }) => theme.windowSize.mobile}px) {
+    font-size: ${({ theme }) => theme.fontSize.h4};
+    width: 330px;
+  }
+`;
