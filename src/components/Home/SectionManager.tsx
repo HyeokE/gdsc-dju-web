@@ -9,6 +9,7 @@ import {
 import MemberCard from '../common/MemberCard';
 import { motion } from 'framer-motion';
 import { managerData } from '../../apis/pageData/managerData';
+import { listAnimate, listItemAnimate } from '../common/Variants/Variants';
 
 const ManagerSubTitle = styled(motion.div)`
   margin-bottom: 50px;
@@ -34,7 +35,7 @@ const MemberCardSection = styled(motion.section)`
   width: 100%;
   gap: 30px;
 `;
-const MemberCardWrapper = styled.div`
+const MemberCardWrapper = styled(motion.div)`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -45,35 +46,37 @@ const MemberCardWrapper = styled.div`
     width: 100%;
   }
 `;
-const SectionAnimation = {
-  hidden: {
-    opacity: 0,
-  },
-  visible: {
-    opacity: 1,
 
-    transition: {
-      duration: 1,
-    },
-  },
-};
 const SectionManager = () => {
   return (
     <HomeSectionContainer>
-      <HomeSectionContainerInner
-        variants={SectionAnimation}
-        initial={'hidden'}
-        whileInView={'visible'}
-        viewport={{ once: true }}
-      >
+      <HomeSectionContainerInner>
         <HomeSectionWrapper>
-          <HomeSectionTitle>GDSC DJU 운영진을 소개해요</HomeSectionTitle>
-          <ManagerSubTitle>
+          <HomeSectionTitle
+            variants={listItemAnimate}
+            initial={'start'}
+            whileInView={'end'}
+            viewport={{ once: true }}
+          >
+            GDSC DJU 운영진을 소개해요
+          </HomeSectionTitle>
+          <ManagerSubTitle
+            variants={listItemAnimate}
+            initial={'start'}
+            whileInView={'end'}
+            viewport={{ once: true }}
+          >
             구성원의 도움을 받아 커뮤니티의 문화를 만들어나가고 있어요
           </ManagerSubTitle>
-          <MemberCardSection>
+          <MemberCardSection variants={listAnimate}>
             {managerData.map((member, index) => (
-              <MemberCardWrapper key={index}>
+              <MemberCardWrapper
+                key={index}
+                variants={listItemAnimate}
+                initial={'start'}
+                whileInView={'end'}
+                viewport={{ once: true }}
+              >
                 <MemberCard {...member} />
               </MemberCardWrapper>
             ))}

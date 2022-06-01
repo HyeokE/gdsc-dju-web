@@ -6,8 +6,10 @@ import {
   HomeSectionTitle,
   HomeSectionWrapper,
 } from './styled';
+import { listAnimate, listItemAnimate } from '../common/Variants/Variants';
+import { motion } from 'framer-motion';
 
-const ContentWrapper = styled.div`
+const ContentWrapper = styled(motion.div)`
   display: flex;
   flex-direction: column;
   width: 40rem;
@@ -53,43 +55,52 @@ const ContentText = styled.span`
   }
 `;
 
-const SectionAnimation = {
-  hidden: {
-    opacity: 0,
-  },
-  visible: {
-    opacity: 1,
-
-    transition: {
-      duration: 1,
-    },
-  },
-};
-
 const SectionIntroduce = () => {
   return (
     <HomeSectionContainer>
       <HomeSectionContainerInner>
-        <HomeSectionWrapper
-          variants={SectionAnimation}
-          initial={'hidden'}
-          whileInView={'visible'}
-          viewport={{ once: true }}
-        >
-          <HomeSectionTitle>디자이너와 개발자의 성장을 위해</HomeSectionTitle>
-          <ContentWrapper>
+        <HomeSectionWrapper variants={listAnimate}>
+          <HomeSectionTitle
+            variants={listItemAnimate}
+            initial={'start'}
+            whileInView={'end'}
+            viewport={{ once: true }}
+          >
+            디자이너와 개발자의 성장을 위해
+          </HomeSectionTitle>
+          <ContentWrapper
+            variants={listItemAnimate}
+            initial={'start'}
+            whileInView={'end'}
+            viewport={{ once: true }}
+          >
             <ContentTitle>누적 지원자 수</ContentTitle>
             <ContentText>90명 +</ContentText>
           </ContentWrapper>
-          <ContentWrapper>
+          <ContentWrapper
+            variants={listItemAnimate}
+            initial={'start'}
+            whileInView={'end'}
+            viewport={{ once: true }}
+          >
             <ContentTitle>전체 인원</ContentTitle>
             <ContentText>30명 +</ContentText>
           </ContentWrapper>
-          <ContentWrapper>
+          <ContentWrapper
+            variants={listItemAnimate}
+            initial={'start'}
+            whileInView={'end'}
+            viewport={{ once: true }}
+          >
             <ContentTitle>진행한 스터디/프로젝트</ContentTitle>
             <ContentText>10회 +</ContentText>
           </ContentWrapper>
-          <ContentWrapper>
+          <ContentWrapper
+            variants={listItemAnimate}
+            initial={'start'}
+            whileInView={'end'}
+            viewport={{ once: true }}
+          >
             <ContentTitle>진행한 이벤트</ContentTitle>
             <ContentText>100회 +</ContentText>
           </ContentWrapper>
