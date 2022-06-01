@@ -31,6 +31,7 @@ const CultureContentWrapper = styled(motion.div)`
 `;
 const CultureTitle = styled.h2`
   font-size: ${({ theme }) => theme.fontSize.h3};
+  color: ${({ theme }) => theme.colors.grey900};
   @media (max-width: ${({ theme }) => theme.windowSize.tablet}px) {
     font-size: ${({ theme }) => theme.fontSize.h4};
     max-width: 370px;
