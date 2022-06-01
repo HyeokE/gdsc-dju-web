@@ -18,7 +18,7 @@ export const HomeSectionContainer = styled(motion.div)<{
     `}
   @media (max-width: ${({ theme }) => theme.windowSize.mobile}px) {
     min-height: 100vh;
-    padding: 20px 0;
+    padding: 40px 0;
   }
 `;
 export const HomeSectionContainerInner = styled(motion.div)`
@@ -34,7 +34,7 @@ export const HomeSectionContainerInner = styled(motion.div)`
 export const HomeSectionWrapper = styled(motion.div)`
   width: fit-content;
   margin: 0 auto;
-  max-width: 960px;
+  max-width: 1090px;
   padding: 0 2rem;
   display: flex;
   flex-wrap: wrap;
@@ -47,7 +47,7 @@ export const HomeSectionWrapper = styled(motion.div)`
 `;
 export const HomeSectionTitle = styled(motion.h1)`
   display: block;
-  width: fit-content;
+  width: 100%;
   margin-bottom: 25px;
   font-size: ${({ theme }) => theme.fontSize.h2};
   font-style: normal;
