@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import styled from 'styled-components';
 import { HomeSectionContainer, HomeSectionContainerInner } from './styled';
 import MemberCard from '../common/MemberCard';

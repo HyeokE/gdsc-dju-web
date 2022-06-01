@@ -66,11 +66,13 @@ const SectionWrapper = styled(motion.div)`
   flex-wrap: wrap;
 `;
 const IntroduceSolarSystemWrapper = styled.div`
-  position: absolute;
-  right: -50px;
-  bottom: 0;
+  position: relative;
+  right: -50vw;
+  bottom: -70vh;
   transform: scale(1.5);
   z-index: -1;
+  height: 100%;
+  width: 100%;
   @media (max-width: ${({ theme }) => theme.windowSize.mobile}px) {
     transform: scale(1);
     right: -50%;

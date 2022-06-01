@@ -163,6 +163,7 @@ const RecruitForm = () => {
   useLayoutEffect(() => {
     setPosition(positionSelect[id as keyof typeof positionSelect]);
   }, [id]);
+
   return (
     <>
       <ApplyModal {...recruitFormik.values} onClick={onSubmit} />
