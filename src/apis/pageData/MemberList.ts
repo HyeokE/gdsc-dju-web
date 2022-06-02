@@ -29,7 +29,7 @@ export const memberList = [
     role: 'Core Member',
     image: 'https://ca.slack-edge.com/T02BE2ERU5A-U02TWS2TDS5-726b69e0e1c8-512',
     text: '생기가 없다면 먹을 걸 주세요',
-    position: 'Design',
+    position: 'Designer',
   },
   {
     nickname: 'Samjong',
@@ -103,7 +103,7 @@ export const memberList = [
     role: 'Member',
     image: 'https://ca.slack-edge.com/T02BE2ERU5A-U02C9FTGT7H-6573ad607286-512',
     text: '복잡한 걸 좋아하는 사람은 없다',
-    position: 'none',
+    position: 'Beginner',
   },
   {
     nickname: 'Lala	',
@@ -111,7 +111,7 @@ export const memberList = [
     role: 'Member',
     image: 'https://ca.slack-edge.com/T02BE2ERU5A-U02D2RXTP3K-5b98e49b6beb-512',
     text: 'ㅅ..살려주세요..자고싶어요....',
-    position: 'none',
+    position: 'Beginner',
   },
   {
     nickname: 'Lucy	',
@@ -119,7 +119,7 @@ export const memberList = [
     role: 'Member',
     image: 'https://ca.slack-edge.com/T02BE2ERU5A-U02CH3YMBE2-03395b575cae-512',
     text: '저는 아무고토 몰라요..',
-    position: 'none',
+    position: 'Beginner',
   },
   {
     nickname: 'Marine	',
@@ -127,7 +127,7 @@ export const memberList = [
     role: 'Member',
     image: 'https://ca.slack-edge.com/T02BE2ERU5A-U02U886HJPJ-7ed32c3d38b6-512',
     text: '해병 출신 아닙니다..',
-    position: 'none',
+    position: 'Backend',
   },
   {
     nickname: 'Panda	',
@@ -135,7 +135,7 @@ export const memberList = [
     role: 'Member',
     image: 'https://ca.slack-edge.com/T02BE2ERU5A-U02U0C94L1X-ad7ea4fc4fb7-512',
     text: '실력 좋은 개발자가 되고싶어여~~',
-    position: 'none',
+    position: 'Backend',
   },
   {
     nickname: 'Peony	',
@@ -143,7 +143,7 @@ export const memberList = [
     role: 'Member',
     image: 'https://ca.slack-edge.com/T02BE2ERU5A-U02TWSK3RQU-a3e79f8f5148-512',
     text: '응애개발자',
-    position: 'none',
+    position: 'Backend',
   },
   {
     nickname: 'Chois',
@@ -151,7 +151,7 @@ export const memberList = [
     role: 'Member',
     image: 'https://ca.slack-edge.com/T02BE2ERU5A-U02T78C2U07-16c618db6e0b-512',
     text: '우리 모두 성공 기원',
-    position: 'none',
+    position: 'Frontend',
   },
   {
     nickname: 'Chaz',
@@ -159,7 +159,7 @@ export const memberList = [
     role: 'Member',
     image: 'https://ca.slack-edge.com/T02BE2ERU5A-U02T3GSSBRV-55acf03d8b77-512',
     text: '재즈 아니고 차즈 아니고 채즈네',
-    position: 'none',
+    position: 'Frontend',
   },
   {
     nickname: 'Jim',
@@ -167,7 +167,7 @@ export const memberList = [
     role: 'Member',
     image: 'https://ca.slack-edge.com/T02BE2ERU5A-U02TKATKRBN-f7b7e7e1dc15-512',
     text: '돈 많은 백수가 꿈이에요',
-    position: 'none',
+    position: 'Android',
   },
   {
     nickname: 'Purang',
@@ -175,7 +175,7 @@ export const memberList = [
     role: 'Member',
     image: 'https://ca.slack-edge.com/T02BE2ERU5A-U030E9L5VB8-f08e7737022b-512',
     text: '내일은 오늘보다 더 좋은 날 되길',
-    position: 'none',
+    position: 'Android',
   },
   {
     nickname: 'Hazel	',
@@ -183,7 +183,7 @@ export const memberList = [
     role: 'Member',
     image: 'https://ca.slack-edge.com/T02BE2ERU5A-U02TC3GCYDC-7655c573f14a-512',
     text: '나는 으른이다.. 게으른..',
-    position: 'none',
+    position: 'Designer',
   },
   {
     nickname: 'Cindy',
@@ -191,7 +191,7 @@ export const memberList = [
     role: 'Member',
     image: 'https://ca.slack-edge.com/T02BE2ERU5A-U02TMHKQJQ6-6f56b34c34c9-512',
     text: '강하지?강하지! 우리집 강아지는 복슬강아지',
-    position: 'none',
+    position: 'Designer',
   },
   {
     nickname: 'Gunzo',
@@ -199,7 +199,7 @@ export const memberList = [
     role: 'Member',
     image: 'https://ca.slack-edge.com/T02BE2ERU5A-U030NT7MP2Q-ea60c5fb2098-512',
     text: '웹디자인사우르스',
-    position: 'none',
+    position: 'Designer',
   },
   {
     nickname: 'Winnie',
@@ -207,7 +207,7 @@ export const memberList = [
     role: 'Member',
     image: 'https://ca.slack-edge.com/T02BE2ERU5A-U031VV8SS6R-gea0879bc69f-512',
     text: '안녕하세용?',
-    position: 'none',
+    position: 'Designer',
   },
   {
     nickname: 'Soopeach	',
@@ -215,7 +215,7 @@ export const memberList = [
     role: 'Member',
     image: 'https://ca.slack-edge.com/T02BE2ERU5A-U02U7QRL4SC-ac441340652f-512',
     text: '같이...가요...',
-    position: 'none',
+    position: 'Beginner',
   },
   {
     nickname: 'Nox',
@@ -223,7 +223,7 @@ export const memberList = [
     role: 'Member',
     image: 'https://ca.slack-edge.com/T02BE2ERU5A-U02TLNR15PE-g17d802fcdd7-512',
     text: '게으르기 위해 노력하자',
-    position: 'none',
+    position: 'Beginner',
   },
   {
     nickname: 'DD',
@@ -231,7 +231,7 @@ export const memberList = [
     role: 'Member',
     image: 'https://ca.slack-edge.com/T02BE2ERU5A-U02TJH9V38V-b7bf85d0d373-512',
     text: '겸손의 미덕',
-    position: 'none',
+    position: 'Beginner',
   },
   {
     nickname: 'Ben',
@@ -239,7 +239,7 @@ export const memberList = [
     role: 'Member',
     image: 'https://ca.slack-edge.com/T02BE2ERU5A-U02U8SJ1TPB-8e4cb047dab2-512',
     text: '준비됐지,몸? 아니 아직, 뇌',
-    position: 'none',
+    position: 'Beginner',
   },
   {
     nickname: 'Jay',
@@ -247,6 +247,6 @@ export const memberList = [
     role: 'Member',
     image: 'https://ca.slack-edge.com/T02BE2ERU5A-U02UNEQAFFA-g8f794d1bd8e-512',
     text: '무슨 생각을 해… 그냥 하는거지…',
-    position: 'none',
+    position: 'Beginner',
   },
 ];

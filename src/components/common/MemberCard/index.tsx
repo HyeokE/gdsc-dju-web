@@ -1,16 +1,21 @@
-import React, { useState } from 'react';
+import React, { memo, useState } from 'react';
 import styled, { css } from 'styled-components';
 import { AnimatePresence, LayoutGroup, motion } from 'framer-motion';
 import { IMemberCardType } from '../../../types/member';
 import { positionColorHandler } from '../../../utils/positionColorHandler';
 
-const MemberCardContainer = styled(motion.div)`
+const MemberCardContainer = styled(motion.div)<{ isSquare: boolean }>`
   position: relative;
   width: 250px;
   height: 300px;
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 0 5px ${({ theme }) => theme.colors.grey600};
+  ${({ isSquare }) =>
+    isSquare &&
+    css`
+      height: 250px;
+    `}
 `;
 const MemberCardInner = styled(motion.div)`
   position: relative;
@@ -38,11 +43,9 @@ const Position = styled(motion.p)<{ positionColor?: string }>`
   color: ${({ positionColor }) => positionColor};
 `;
 const Nickname = styled(motion.p)`
-  height: 24px;
   margin: 0 0 8px 0;
   overflow-y: hidden;
   font-size: ${({ theme }) => theme.fontSize.h5};
-  line-height: 24px;
   color: ${({ theme }) => theme.colors.white};
 `;
 const Name = styled(motion.p)`
@@ -84,7 +87,7 @@ const CardTextWrapper = styled(motion.div)<{ isClicked?: boolean }>`
           background: linear-gradient(
             0deg,
             rgba(0, 0, 0, 0) 0%,
-            rgba(0, 0, 0, 0) 50%,
+            rgba(0, 0, 0, 0) 40%,
             rgba(0, 0, 0, 0.5) 100%
           );
           transition: background 0.2s ease-in-out;
@@ -101,15 +104,16 @@ const memberCardAnimate = {
     opacity: 0,
   },
 };
+interface IMemberCardProps {
+  member: IMemberCardType;
+  isSquare?: boolean;
+}
 
-const MemberCard: React.FC<IMemberCardType> = ({
-  image,
-  position,
-  text,
-  role,
-  nickname,
-  name,
+const MemberCard: React.FC<IMemberCardProps> = ({
+  member,
+  isSquare = false,
 }) => {
+  const { name, nickname, role, image, position, text } = member;
   const [isClicked, setIsClicked] = useState(false);
   return (
     <AnimatePresence>
@@ -120,6 +124,7 @@ const MemberCard: React.FC<IMemberCardType> = ({
           initial="hidden"
           animate={'visible'}
           exit="exit"
+          isSquare={isSquare}
         >
           <MemberCardInner layoutId={`member-card-inner-${nickname}`}>
             <CardTextWrapper isClicked={isClicked}>
@@ -169,4 +174,4 @@ const MemberCard: React.FC<IMemberCardType> = ({
   );
 };
 
-export default MemberCard;
+export default memo(MemberCard);

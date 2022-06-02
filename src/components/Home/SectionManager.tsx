@@ -77,7 +77,7 @@ const SectionManager = () => {
                 whileInView={'end'}
                 viewport={{ once: true }}
               >
-                <MemberCard {...member} />
+                <MemberCard member={member} />
               </MemberCardWrapper>
             ))}
           </MemberCardSection>
