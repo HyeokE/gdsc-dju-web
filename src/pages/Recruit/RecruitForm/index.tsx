@@ -31,6 +31,7 @@ import { recruitFormSchema } from '../../../components/Validation/profileEdit';
 import FileInput from '../../../components/common/input/FileInput';
 import ApplyModal from '../../../components/common/Modal/ApplyModal';
 import { MODAL_KEY, modalState } from '../../../store/modal';
+import { alertState } from '../../../store/alert';
 
 const RecruitForm = () => {
   const { id } = useParams();
@@ -67,6 +68,7 @@ const RecruitForm = () => {
     },
     validationSchema: recruitFormSchema,
   });
+  const [alert, setAlert] = useRecoilState(alertState);
   const uploadApplicantFile = async (
     storageRef: StorageReference,
     file: File,
@@ -83,19 +85,30 @@ const RecruitForm = () => {
     if (fileList !== null) {
       const file = fileList[0];
       if (!file) return;
-      if (file.size > size) {
-        alert(
-          `${type} 파일 사이즈는 ${Math.floor(
+      else if (file.size > size) {
+        setModal({ ...modal, [MODAL_KEY.APPLY_CHECK]: false });
+        setAlert({
+          ...alert,
+          alertMessage: `지원서 파일 사이즈는 ${Math.floor(
             size / 1000000,
           )}MB 이하로 선택해주세요.`,
-        );
-      }
-      if (file.type !== type) {
+          alertStatus: 'error',
+          alertHandle: true,
+        });
+      } else if (file.type !== type) {
         const typeName = type.replace('application/', '');
-        alert(`${typeName} 파일만 업로드 가능합니다.`);
+        setModal({ ...modal, [MODAL_KEY.APPLY_CHECK]: false });
+        setAlert({
+          ...alert,
+          alertMessage: `${typeName} 파일만 업로드 가능합니다.`,
+          alertStatus: 'error',
+          alertHandle: true,
+        });
         return;
+      } else {
+        return file;
       }
-      return file;
+      return;
     }
   };
 
@@ -119,6 +132,8 @@ const RecruitForm = () => {
           pathname: '/recruit/apply-success',
           search: `?${createSearchParams(params)}`,
         });
+      } else {
+        setLoading({ ...loading, load: false });
       }
     } catch (e) {
       console.log(e);
@@ -148,6 +163,7 @@ const RecruitForm = () => {
   useLayoutEffect(() => {
     setPosition(positionSelect[id as keyof typeof positionSelect]);
   }, [id]);
+
   return (
     <>
       <ApplyModal {...recruitFormik.values} onClick={onSubmit} />

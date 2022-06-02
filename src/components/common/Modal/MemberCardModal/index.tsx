@@ -10,22 +10,28 @@ import { MemberCardModalInner, ModalWrapper, StyledModal } from './styled';
 import { memberDataType } from '../../../../types/member';
 import OutsideClickHandler from '../../../../utils/OutsideClickHandler';
 
-interface Iprops extends memberDataType {
+interface IMemberCardModal extends memberDataType {
   setSelectedId: (num: number | undefined) => void;
   id: number;
 }
 
-const MemberCardModal = (props: Iprops) => {
-  const { name, nickname, role, memberImg, introduce, setSelectedId, id } =
-    props;
+const MemberCardModal: React.FC<IMemberCardModal> = ({
+  name,
+  nickname,
+  role,
+  image,
+  text,
+  setSelectedId,
+  id,
+}) => {
   return (
     <ModalWrapper>
       <OutsideClickHandler outsideClick={() => setSelectedId(undefined)}>
         <StyledModal layoutId={String(id)}>
           <MemberCardModalInner>
-            {memberImg ? (
+            {image ? (
               <MemberImg
-                src={memberImg}
+                src={image}
                 layoutId={`memberImage-section-${String(id)}`}
               />
             ) : (
@@ -36,7 +42,7 @@ const MemberCardModal = (props: Iprops) => {
             </Nickname>
             <Name layoutId={`name-section-${String(id)}`}>{name}</Name>
             <Role layoutId={`role-section-${String(id)}`}>{role}</Role>
-            <Name>{introduce}</Name>
+            <Name>{text}</Name>
           </MemberCardModalInner>
         </StyledModal>
       </OutsideClickHandler>

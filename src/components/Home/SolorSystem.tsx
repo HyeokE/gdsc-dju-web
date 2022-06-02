@@ -15,7 +15,7 @@ const SolarSystemLineWrapper = styled.div`
 
 const SolarSystem = () => {
   return (
-    <>
+    <div>
       <SolarSystemLineWrapper>
         <Line1 />
       </SolarSystemLineWrapper>
@@ -25,7 +25,7 @@ const SolarSystem = () => {
       <SolarSystemLineWrapper>
         <Line3 />
       </SolarSystemLineWrapper>
-    </>
+    </div>
   );
 };
 

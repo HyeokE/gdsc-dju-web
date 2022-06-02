@@ -13,10 +13,12 @@ export const StyledButton = styled.button<{
   justify-content: center;
   border: 1px solid ${(props) => props.theme.colors.grey300};
   font-size: ${(props) => props.theme.fontSize.body2};
-  padding: 8px 30px;
+  padding: 10px 30px;
+  margin-bottom: 6px;
   cursor: pointer;
   box-shadow: 0 2px 12px rgba(25, 31, 40, 0.08);
-  border-radius: 50px;
+  border-radius: 10px;
+  color: ${({ theme }) => theme.colors.white};
   ${({ border }) =>
     border &&
     css`

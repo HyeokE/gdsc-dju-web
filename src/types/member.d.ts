@@ -1,9 +1,9 @@
 export interface memberDataType {
-  memberImg: string;
+  image: string;
   nickname: string;
   name: string;
-  introduce?: string;
-  role?: string;
+  text: string;
+  role: string;
 }
 export interface UserDataType {
   email: string;
@@ -34,4 +34,12 @@ export interface UserDataType {
   uploadDate: string;
   userId: string;
   username: string;
+}
+export interface IMemberCardType {
+  image: string;
+  position: string;
+  nickname: string;
+  name: string;
+  role: string;
+  text: string;
 }

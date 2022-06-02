@@ -26,4 +26,5 @@ export const ContainerInner = styled.div`
 export const CardList = styled(motion.section)`
   display: flex;
   flex-wrap: wrap;
+  row-gap: 30px;
 `;
