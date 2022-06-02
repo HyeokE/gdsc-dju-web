@@ -82,6 +82,7 @@ const CardTextWrapper = styled(motion.div)<{ isClicked?: boolean }>`
   right: 0;
   bottom: 0;
   background: rgba(0, 0, 0, 0.8);
+  border-radius: 16px;
   ${({ isClicked }) =>
     isClicked
       ? css`
