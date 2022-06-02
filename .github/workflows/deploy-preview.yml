@@ -7,6 +7,7 @@ on:
   pull_request:
     branches-ignore:
       - master
+      - develop
 jobs:
   Deploy_preview_channel:
     runs-on: ubuntu-latest
