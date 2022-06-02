@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import { theme } from '../../../styles/theme';
 import styled, { css } from 'styled-components';
 import { AnimatePresence, LayoutGroup, motion } from 'framer-motion';
 import { IMemberCardType } from '../../../types/member';
 import { positionColorHandler } from '../../../utils/positionColorHandler';
-import { colors } from '../../../styles/colors';
 
 const MemberCardContainer = styled(motion.div)`
   position: relative;
