@@ -17,10 +17,10 @@ const MemberCard = lazy(() =>
 const MemberCardSection = () => {
   const [selectedId, setSelectedId] = useState<number | undefined>(undefined);
   const [selectedData, setSelectedData] = useState<memberDataType>({
-    memberImg: '',
+    image: '',
     nickname: '',
     name: '',
-    introduce: '',
+    text: '',
     role: '',
   });
   return (
