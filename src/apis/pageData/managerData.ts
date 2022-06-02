@@ -9,7 +9,7 @@ export const managerData: IMemberCardType[] = [
     position: 'Frontend Developer',
     id: 1,
     role: 'Lead',
-    cardText: '',
+    text: '',
   },
   {
     nickname: 'Blaire',
@@ -18,7 +18,7 @@ export const managerData: IMemberCardType[] = [
     position: 'UX/UI Designer',
     id: 2,
     role: 'Core',
-    cardText: '',
+    text: '',
   },
 
   {
@@ -28,7 +28,7 @@ export const managerData: IMemberCardType[] = [
     position: 'Android Developer',
     id: 3,
     role: 'Core',
-    cardText: '',
+    text: '',
   },
   {
     nickname: 'Want',
@@ -37,6 +37,6 @@ export const managerData: IMemberCardType[] = [
     position: 'Backend Developer',
     id: 4,
     role: 'Core',
-    cardText: '',
+    text: '',
   },
 ];

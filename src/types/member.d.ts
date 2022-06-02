@@ -38,9 +38,9 @@ export interface UserDataType {
 export interface IMemberCardType {
   image: string;
   position: string;
-  id: number;
+  id?: number;
   nickname: string;
   name: string;
   role: string;
-  cardText: string;
+  text: string;
 }
