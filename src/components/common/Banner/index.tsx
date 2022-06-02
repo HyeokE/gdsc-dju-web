@@ -27,7 +27,7 @@ const Banner: React.FC<BannerProps> = ({ color, image }) => {
 
 export default Banner;
 export const BannerInner = styled.img`
-  height: 440px;
+  height: 700px;
   background-position-x: 50%;
   background-position-y: 50%;
   -webkit-background-size: cover;
