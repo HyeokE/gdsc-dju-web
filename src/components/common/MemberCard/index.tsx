@@ -27,12 +27,17 @@ const MemberCardInner = styled(motion.div)`
   align-items: center;
   justify-content: center;
 `;
-const MemberCardImage = styled(motion.img)`
+const MemberCardImage = styled(motion.img)<{ isSquare: boolean }>`
   position: absolute;
   z-index: -1;
   height: 300px;
   background-position-x: 50%;
   background-position-y: 50%;
+  ${({ isSquare }) =>
+    isSquare &&
+    css`
+      height: 250px;
+    `}
 `;
 const Position = styled(motion.p)<{ positionColor?: string }>`
   height: 24px;
@@ -165,6 +170,7 @@ const MemberCard: React.FC<IMemberCardProps> = ({
             </CardTextWrapper>
             <MemberCardImage
               src={image}
+              isSquare={isSquare}
               layoutId={`member-background-${nickname}`}
             />
           </MemberCardInner>
