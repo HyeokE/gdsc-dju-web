@@ -70,8 +70,6 @@ const ApplyModal: React.FC<Props> = ({
                   <ApplyModalP>전화번호</ApplyModalP>
                   <ApplyModalP>{phoneNumber}</ApplyModalP>
                 </ApplyModalContentWrapper>
-
-                {/*<BulletList text={'지원서 내용은 제출 후 수정이 불가능해요.'} />*/}
               </ApplyModalInnerWrapper>
               <ApplyModalP>
                 * 지원서 내용은 제출 후 수정이 불가능해요.

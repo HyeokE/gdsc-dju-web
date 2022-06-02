@@ -58,9 +58,17 @@ export const BannerTitleWrapper = styled(motion.section)`
   box-sizing: border-box;
   align-items: center;
   justify-content: center;
+  @media (max-width: ${({ theme }) => theme.windowSize.desk}px) {
+    bottom: 0;
+    left: 28%;
+  }
   @media (max-width: ${({ theme }) => theme.windowSize.tablet}px) {
     bottom: 0;
-    left: 35%;
+    left: 24%;
+  }
+  @media (max-width: ${({ theme }) => theme.windowSize.mobile}px) {
+    bottom: 0;
+    left: 30%;
   }
   @media (max-width: 320px) {
     bottom: 10%;
@@ -153,9 +161,10 @@ export const DownArrowWrapper = styled(motion.div)`
 export const HomeSolarSystemWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  position: absolute;
+  position: fixed;
   right: 20%;
   top: 20%;
+  z-index: -1;
   transform: translate(0%, -50%);
   @media (max-width: 500px) {
     left: 100%;

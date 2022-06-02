@@ -4,15 +4,12 @@ import {
   ButtonWrapper,
   GoogleColorText,
   GoogleColorTextWrapper,
-  HomeSolarSystemWrapper,
   HomeWrapper,
   MainBannerText,
   RecruitingWrapper,
   StyledRecruitmentButton,
 } from '../../pages/Home/styled';
 import { bannerItemAnimate } from '../common/Variants/Variants';
-import Recruiting from '../../assets/Recruiting';
-import SolarSystem from '../../components/Home/SolorSystem';
 import { useRecoilState } from 'recoil';
 import { recruitmentState } from '../../store/recruitHandler';
 import DownArrow from '../common/DownArrow';
@@ -20,9 +17,6 @@ import DownArrow from '../common/DownArrow';
 const HomePageV2 = () => {
   return (
     <HomeWrapper>
-      <HomeSolarSystemWrapper>
-        <SolarSystem />
-      </HomeSolarSystemWrapper>
       <BannerTitleWrapper>
         <RecruitingWrapper variants={bannerItemAnimate}>
           <GoogleColorTextWrapper>
@@ -33,7 +27,7 @@ const HomePageV2 = () => {
           </GoogleColorTextWrapper>
           <GoogleColorText>Recruit</GoogleColorText>
           <MainBannerText variants={bannerItemAnimate}>
-            상상을 현실로 만들다.
+            2022. 06. 15 ~ 2022. 07. 31
           </MainBannerText>
           <HomeRecruitmentButton />
         </RecruitingWrapper>

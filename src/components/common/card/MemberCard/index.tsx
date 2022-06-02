@@ -18,15 +18,12 @@ const MemberCard: React.FC<IMemberCardType> = ({
   name,
   nickname,
   role,
-  memberImg,
+  image,
 }) => {
   return (
     <StyledMemberCard layoutId={String(id)}>
-      {memberImg ? (
-        <MemberImg
-          src={memberImg}
-          layoutId={`memberImage-section-${String(id)}`}
-        />
+      {image ? (
+        <MemberImg src={image} layoutId={`memberImage-section-${String(id)}`} />
       ) : (
         <Skeleton layoutId={`memberImage-section-${String(id)}`} />
       )}

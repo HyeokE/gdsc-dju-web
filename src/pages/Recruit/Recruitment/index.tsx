@@ -10,8 +10,6 @@ import {
   Category,
   CategoryInner,
   CategoryWrapper,
-  MobileCategoryInner,
-  MobileCategoryWrapper,
   SubCategory,
   TeamCategory,
   TeamCategoryWrapper,

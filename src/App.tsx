@@ -18,19 +18,21 @@ import { AnimatePresence } from 'framer-motion';
 function App() {
   const loading = useRecoilValue(loaderState);
   const [footer, setFooter] = useState(true);
+  const [alert, setAlert] = useRecoilState(alertState);
   const location = useLocation();
   useEffect(() => {
-    location.pathname === '/' && setFooter(false);
+    location.pathname === '/' ? setFooter(false) : setFooter(true);
   }, [location.pathname]);
-  document.cookie = 'safeCookie1=foo; SameSite=Lax';
-  document.cookie = 'safeCookie2=foo';
-  document.cookie = 'crossCookie=bar; SameSite=None; Secure';
-  const [alert, setAlert] = useRecoilState(alertState);
+
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
-      {loading.load && <GoogleSpinner background={true} />}
-      <AnimatePresence>{alert.alertHandle && <Alert />}</AnimatePresence>
+      <AnimatePresence>
+        <>
+          {loading.load && <GoogleSpinner background={true} />}
+          {alert.alertHandle && <Alert />}
+        </>
+      </AnimatePresence>
       <Modal />
       <Navigation />
       <Layout />

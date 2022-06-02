@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from 'react';
+import React, { createRef, memo, useEffect, useRef, useState } from 'react';
 
 import { ErrorBox, StyledInput, StyledInputWrapper } from './styled';
 import { FormikErrors, FormikTouched } from 'formik';
@@ -24,6 +24,7 @@ export interface Iprops {
 const TextInput = (props: Iprops) => {
   const { name, placeholder, onChange, type, disabled, error, touched } = props;
   const errorToggle = error != undefined && error != '필수입력란입니다.';
+
   return (
     <>
       <StyledInputWrapper error={errorToggle} disabled={!disabled}>

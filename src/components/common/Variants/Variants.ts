@@ -4,6 +4,9 @@ export const listItemAnimate = {
   },
   end: {
     opacity: 1,
+    transition: {
+      duration: 1,
+    },
   },
   exit: {
     opacity: 0,
@@ -18,6 +21,7 @@ export const listAnimate = {
     transition: {
       staggerChildren: 0.2,
       delayChildren: 0.2,
+      duration: 0.6,
     },
   },
   exit: {
