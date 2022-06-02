@@ -107,14 +107,12 @@ const memberCardAnimate = {
 const MemberCard: React.FC<IMemberCardType> = ({
   image,
   position,
-  id,
   text,
   role,
   nickname,
   name,
 }) => {
   const [isClicked, setIsClicked] = useState(false);
-  console.log(positionColorHandler('UX/UI Designer'));
   return (
     <AnimatePresence>
       <LayoutGroup>
@@ -125,16 +123,16 @@ const MemberCard: React.FC<IMemberCardType> = ({
           animate={'visible'}
           exit="exit"
         >
-          <MemberCardInner layoutId={`member-card-inner-${id}`}>
+          <MemberCardInner layoutId={`member-card-inner-${nickname}`}>
             <CardTextWrapper isClicked={isClicked}>
               {!isClicked ? (
                 <>
-                  <Nickname layoutId={`member-nickname-${id}`}>
+                  <Nickname layoutId={`member-nickname-${nickname}`}>
                     {nickname}
                   </Nickname>
-                  <Name layoutId={`member-name-${id}`}>{name}</Name>
+                  <Name layoutId={`member-name-${nickname}`}>{name}</Name>
                   <Role
-                    layoutId={`member-role-${id}`}
+                    layoutId={`member-role-${nickname}`}
                     variants={memberCardAnimate}
                   >
                     {role}
@@ -143,18 +141,18 @@ const MemberCard: React.FC<IMemberCardType> = ({
               ) : (
                 <>
                   <Position
-                    layoutId={`member-position-${id}`}
+                    layoutId={`member-position-${nickname}`}
                     variants={memberCardAnimate}
                     positionColor={positionColorHandler(position)}
                   >
                     {position}
                   </Position>
-                  <Nickname layoutId={`member-nickname-${id}`}>
+                  <Nickname layoutId={`member-nickname-${nickname}`}>
                     {nickname}
                   </Nickname>
-                  <Name layoutId={`member-name-${id}`}>{name}</Name>
+                  <Name layoutId={`member-name-${nickname}`}>{name}</Name>
                   <CardText
-                    layoutId={`member-text-${id}`}
+                    layoutId={`member-text-${nickname}`}
                     variants={memberCardAnimate}
                   >
                     {text}
@@ -162,7 +160,10 @@ const MemberCard: React.FC<IMemberCardType> = ({
                 </>
               )}
             </CardTextWrapper>
-            <MemberCardImage src={image} layoutId={`member-background-${id}`} />
+            <MemberCardImage
+              src={image}
+              layoutId={`member-background-${nickname}`}
+            />
           </MemberCardInner>
         </MemberCardContainer>
       </LayoutGroup>
