@@ -36,6 +36,17 @@ export const assetRed = {
   red600: '#F44336',
   tossRed: '#f44336',
 };
+export const assetOrange = {
+  orange100: '#FFF3E0',
+  orange200: '#FFE0B2',
+  orange300: '#FFCC80',
+  orange400: '#FFB74D',
+  orange500: '#FFA726',
+  orange600: '#FF9800',
+  orange700: '#FB8C00',
+  orange800: '#F57C00',
+  orange900: '#FF740F',
+};
 export const assetBlue = {
   blue100: '#E3F2FD',
   blue200: '#BBDEFB',
@@ -60,6 +71,7 @@ export const primaryColor = {
   ...assetYellow,
   ...assetRed,
   ...assetBlue,
+  ...assetOrange,
   ...googleLogoColor,
 };
 

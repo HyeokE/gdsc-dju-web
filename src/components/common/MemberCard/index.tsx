@@ -1,52 +1,42 @@
 import React, { useState } from 'react';
+import { theme } from '../../../styles/theme';
 import styled, { css } from 'styled-components';
 import { AnimatePresence, LayoutGroup, motion } from 'framer-motion';
 import { IMemberCardType } from '../../../types/member';
+import { positionColorHandler } from '../../../utils/positionColorHandler';
+import { colors } from '../../../styles/colors';
 
 const MemberCardContainer = styled(motion.div)`
   position: relative;
   width: 250px;
   height: 300px;
+  border-radius: 16px;
+  overflow: hidden;
 `;
 const MemberCardInner = styled(motion.div)`
   position: relative;
   width: 100%;
   height: 100%;
-  padding: 30px;
   box-sizing: border-box;
-  overflow: hidden;
   cursor: pointer;
-  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
-const MemberCardImage = styled(motion.div)<{
-  image: string;
-  isClicked: boolean;
-}>`
+const MemberCardImage = styled(motion.img)`
   position: absolute;
-  top: 0;
-  left: 0;
   z-index: -1;
-  width: 250px;
   height: 300px;
-  background-image: url(${({ image }) => image});
-  -webkit-background-size: cover;
-  background-size: cover;
-  border-radius: 16px;
-  transition: all 0.2s ease-in-out;
-
-  ${({ isClicked }) =>
-    isClicked &&
-    css`
-      -webkit-filter: blur(10px) brightness(0.6);
-    `}
+  background-position-x: 50%;
+  background-position-y: 50%;
 `;
-const Position = styled(motion.p)`
+const Position = styled(motion.p)<{ positionColor?: string }>`
   height: 24px;
   margin: 0 0 8px 0;
   overflow-y: hidden;
   font-size: ${({ theme }) => theme.fontSize.body2};
   line-height: 24px;
-  color: ${({ theme }) => theme.colors.googleYellow};
+  color: ${({ positionColor }) => positionColor};
 `;
 const Nickname = styled(motion.p)`
   height: 24px;
@@ -69,13 +59,33 @@ const Role = styled(motion.p)`
   overflow-y: hidden;
   font-size: ${({ theme }) => theme.fontSize.body2};
   line-height: 24px;
-  color: ${({ theme }) => theme.colors.yellow200};
+  color: ${({ theme }) => theme.colors.tossBlue};
 `;
 const CardText = styled(motion.div)`
   margin-top: 8px;
   font-size: ${({ theme }) => theme.fontSize.body1};
   color: ${({ theme }) => theme.colors.white};
   display: block;
+`;
+const CardTextWrapper = styled(motion.div)<{ isClicked: boolean }>`
+  position: absolute;
+  padding: 30px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0) 50%,
+    rgba(0, 0, 0, 0.6) 100%
+  );
+  ${({ isClicked }) =>
+    isClicked &&
+    css`
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(2px);
+    `}
 `;
 const memberCardAnimate = {
   hidden: {
@@ -99,6 +109,7 @@ const MemberCard: React.FC<IMemberCardType> = ({
   name,
 }) => {
   const [isClicked, setIsClicked] = useState(false);
+  console.log(positionColorHandler('UX/UI Designer'));
   return (
     <AnimatePresence>
       <LayoutGroup>
@@ -111,38 +122,48 @@ const MemberCard: React.FC<IMemberCardType> = ({
         >
           {!isClicked ? (
             <MemberCardInner layoutId={`member-card-inner-${id}`}>
+              <CardTextWrapper isClicked={isClicked}>
+                <Nickname layoutId={`member-nickname-${id}`}>
+                  {nickname}
+                </Nickname>
+                <Name layoutId={`member-name-${id}`}>{name}</Name>
+                <Role
+                  layoutId={`member-role-${id}`}
+                  variants={memberCardAnimate}
+                >
+                  {role}
+                </Role>
+              </CardTextWrapper>
               <MemberCardImage
-                image={image}
-                isClicked={false}
+                src={image}
                 layoutId={`member-background-${id}`}
               />
-              <Nickname layoutId={`member-nickname-${id}`}>{nickname}</Nickname>
-              <Name layoutId={`member-name-${id}`}>{name}</Name>
-              <Role layoutId={`member-role-${id}`} variants={memberCardAnimate}>
-                {role}
-              </Role>
             </MemberCardInner>
           ) : (
             <MemberCardInner layoutId={`member-card-inner-${id}`}>
+              <CardTextWrapper isClicked={isClicked}>
+                <Position
+                  layoutId={`member-position-${id}`}
+                  variants={memberCardAnimate}
+                  positionColor={positionColorHandler(position)}
+                >
+                  {position}
+                </Position>
+                <Nickname layoutId={`member-nickname-${id}`}>
+                  {nickname}
+                </Nickname>
+                <Name layoutId={`member-name-${id}`}>{name}</Name>
+                <CardText
+                  layoutId={`member-text-${id}`}
+                  variants={memberCardAnimate}
+                >
+                  {cardText}
+                </CardText>
+              </CardTextWrapper>
               <MemberCardImage
-                image={image}
-                isClicked={isClicked}
+                src={image}
                 layoutId={`member-background-${id}`}
               />
-              <Position
-                layoutId={`member-position-${id}`}
-                variants={memberCardAnimate}
-              >
-                {position}
-              </Position>
-              <Nickname layoutId={`member-nickname-${id}`}>{nickname}</Nickname>
-              <Name layoutId={`member-name-${id}`}>{name}</Name>
-              <CardText
-                layoutId={`member-text-${id}`}
-                variants={memberCardAnimate}
-              >
-                {cardText}
-              </CardText>
             </MemberCardInner>
           )}
         </MemberCardContainer>
