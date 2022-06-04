@@ -1,8 +1,9 @@
 import React, { memo } from 'react';
 import styled from 'styled-components';
-import Line1 from '../../assets/HomeAssets/Line1';
-import Line2 from '../../assets/HomeAssets/Line2';
-import Line3 from '../../assets/HomeAssets/Line3';
+import { Line1, Line1ForSafari } from '../../assets/HomeAssets/Line1';
+import { Line2, Line2ForSafari } from '../../assets/HomeAssets/Line2';
+import { Line3, Line3ForSafari } from '../../assets/HomeAssets/Line3';
+import browser from 'browser-detect';
 
 const SolarSystemLineWrapper = styled.div`
   display: flex;
@@ -14,16 +15,19 @@ const SolarSystemLineWrapper = styled.div`
 `;
 
 const SolarSystem = () => {
+  const browserInfo = browser();
+  console.log(browserInfo);
+  const isSafari = browserInfo.name === 'safari';
   return (
     <div>
       <SolarSystemLineWrapper>
-        <Line1 />
+        {isSafari ? <Line1ForSafari /> : <Line1 />}
       </SolarSystemLineWrapper>
       <SolarSystemLineWrapper>
-        <Line2 />
+        {isSafari ? <Line2ForSafari /> : <Line2 />}
       </SolarSystemLineWrapper>
       <SolarSystemLineWrapper>
-        <Line3 />
+        {isSafari ? <Line3ForSafari /> : <Line3 />}
       </SolarSystemLineWrapper>
     </div>
   );
