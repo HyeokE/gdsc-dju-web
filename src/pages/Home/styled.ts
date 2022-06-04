@@ -51,14 +51,14 @@ export const StyledMainBanner = styled(motion.div)`
 `;
 export const BannerTitleWrapper = styled(motion.section)`
   position: absolute;
-  bottom: 10%;
+  bottom: 14%;
   left: 10%;
   display: flex;
   box-sizing: border-box;
   align-items: center;
   justify-content: center;
   @media (max-width: ${({ theme }) => theme.windowSize.desk}px) {
-    bottom: 10%;
+    bottom: 14%;
     left: 10%;
   }
   @media (max-width: ${({ theme }) => theme.windowSize.tablet}px) {
@@ -66,7 +66,7 @@ export const BannerTitleWrapper = styled(motion.section)`
     left: 10%;
   }
   @media (max-width: ${({ theme }) => theme.windowSize.mobile}px) {
-    bottom: 10%;
+    bottom: 12%;
     left: 10%;
   }
   @media (max-width: 320px) {
