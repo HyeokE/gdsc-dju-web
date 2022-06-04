@@ -22,7 +22,7 @@ export const RecruitDetails = [
     preferential: 'React나 Vue 등 SPA에 대한 이해도가 있으신 분이면 좋습니다.',
     activity:
       'GDSC DJU 사이트의 유지 보수를 진행합니다.\n' +
-      '사이트의 신규기능(기술블로그)을 개발합니다.',
+      '사이트의 신규기능(백오피스)을 개발합니다.',
   },
   {
     id: 'backend',
@@ -60,7 +60,6 @@ export const RecruitDetails = [
     people:
       'AdobeXD, Figma, Sketch등 디자인 툴 사용경험이 있는 분\n' +
       'UX,UI 을 고려한 디자인을 고려해 본 경험이 있는 분',
-
     preferential:
       '협업 및 프로젝트 경험이 있는 분이면 좋습니다.\n' +
       '개발자와 협업 경험이 있는 분이면 좋습니다.\n' +
