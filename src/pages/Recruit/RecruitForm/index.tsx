@@ -77,6 +77,7 @@ const RecruitForm = () => {
   ) => {
     await uploadBytesResumable(storageRef, file);
     const url = await getDownloadURL(storageRef);
+    console.log(url);
     await dbService
       .collection('applicants')
       .doc()
@@ -120,13 +121,6 @@ const RecruitForm = () => {
         setLoading({ ...loading, load: true });
         setModal({ ...modal, [MODAL_KEY.APPLY_CHECK]: false });
         const storageRef = ref(storage, `${file.name}`);
-        const uploadTask = uploadBytesResumable(storageRef, file);
-        await uploadTask.on('state_changed', (snapshot: UploadTaskSnapshot) => {
-          setUploadProgress(
-            calculateProgress(snapshot.bytesTransferred, snapshot.totalBytes),
-          );
-        });
-
         await uploadApplicantFile(storageRef, file, recruitFormik.values);
         setLoading({ ...loading, load: false });
         navigate({
@@ -190,7 +184,6 @@ const RecruitForm = () => {
                     error={recruitFormik.errors.name}
                   />
                 </div>
-
                 <div>
                   <FormLabel essential={true}>전화번호</FormLabel>
                   <TextInput
@@ -202,7 +195,6 @@ const RecruitForm = () => {
                     error={recruitFormik.errors.phoneNumber}
                   />
                 </div>
-
                 <div>
                   <FormLabel essential={true}>이메일(gmail)</FormLabel>
                   <TextInput
@@ -245,7 +237,6 @@ const RecruitForm = () => {
                     placeholder={position}
                   />
                 </div>
-
                 <div>
                   <FormLabel essential={true}>지원서</FormLabel>
                   <FileInput
