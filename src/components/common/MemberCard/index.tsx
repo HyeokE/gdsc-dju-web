@@ -174,6 +174,7 @@ const MemberCard: React.FC<IMemberCardProps> = ({
               )}
             </CardTextWrapper>
             <MemberCardImage
+              alt={'profile-image'}
               src={image}
               isSquare={isSquare}
               layoutId={`member-background-${nickname}`}
