@@ -7,6 +7,7 @@ import { Footer } from '../../components/common/Footer';
 import SolarSystem from '../../components/Home/SolorSystem';
 import { HomeSolarSystemWrapper } from './styled';
 import SectionCulture from '../../components/Home/SectionCulture';
+import ReactHelmet from '../../components/common/ReactHelmet';
 
 const HomePageV2 = lazy(() =>
   import('../../components/Home/HomePageV2').then((module) => ({
@@ -40,21 +41,29 @@ const HomeContainer = styled.div`
 
 const Home = () => {
   return (
-    <HomeContainer>
-      <Suspense fallback={<GoogleSpinner />}>
-        <div className={'container'}>
-          <HomeSolarSystemWrapper>
-            <SolarSystem />
-          </HomeSolarSystemWrapper>
-          <HomePageV2 />
-          <SectionIntroduce />
-          <SectionCulture />
-          {/*<SectionGoal />*/}
-          <SectionManager />
-          <Footer />
-        </div>
-      </Suspense>
-    </HomeContainer>
+    <>
+      <ReactHelmet
+        title={'GDSC DJU'}
+        description={
+          'Google Developer Student Clubs Daejin University 챕터입니다. '
+        }
+      />
+      <HomeContainer>
+        <Suspense fallback={<GoogleSpinner />}>
+          <div className={'container'}>
+            <HomeSolarSystemWrapper>
+              <SolarSystem />
+            </HomeSolarSystemWrapper>
+            <HomePageV2 />
+            <SectionIntroduce />
+            <SectionCulture />
+            {/*<SectionGoal />*/}
+            <SectionManager />
+            <Footer />
+          </div>
+        </Suspense>
+      </HomeContainer>
+    </>
   );
 };
 export default Home;
