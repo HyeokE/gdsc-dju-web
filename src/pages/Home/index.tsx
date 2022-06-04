@@ -57,7 +57,6 @@ const Home = () => {
             <HomePageV2 />
             <SectionIntroduce />
             <SectionCulture />
-            {/*<SectionGoal />*/}
             <SectionManager />
             <Footer />
           </div>
