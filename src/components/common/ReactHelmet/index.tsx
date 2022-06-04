@@ -9,19 +9,12 @@ interface IReactHelmetProps {
 const ReactHelmet: React.FC<IReactHelmetProps> = ({ description, title }) => {
   return (
     <Helmet>
-      {title && (
-        <>
-          <title>{title}</title>
-          <meta property="og:title" content={title} />
-        </>
-      )}
-      {description && (
-        <>
-          <meta data-rh="true" name="description" content={description} />
-          <meta property="og:description" content={description} />
-          <meta name="description" content={description} />
-        </>
-      )}
+      <title>{title}</title>
+      <meta property="og:title" content={title} />
+
+      <meta data-rh="true" name="description" content={description} />
+      <meta property="og:description" content={description} />
+      <meta name="description" content={description} />
     </Helmet>
   );
 };

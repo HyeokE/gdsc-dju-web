@@ -9,6 +9,7 @@ import {
 } from '../RecruitForm/styled';
 import { ApplyMargin, ApplyTitle } from './styled';
 import ApplySuccessCard from '../../../components/common/ApplySuccessCard';
+import ReactHelmet from '../../../components/common/ReactHelmet';
 
 const ApplySuccess = () => {
   const [searchParams] = useSearchParams();
@@ -19,6 +20,7 @@ const ApplySuccess = () => {
 
   return (
     <>
+      <ReactHelmet title={'지원 완료'} />
       <LayoutContainer>
         <ContainerInner>
           <RecruitFormWrapper>
