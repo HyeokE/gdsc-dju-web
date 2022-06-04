@@ -6,9 +6,7 @@ import { menuState } from '../../../../store/menu';
 import { sidebar } from '../../Variants/NavigationAnimation';
 import { ShortNavigation } from '../DeskNavigation/styled';
 import MobileMenuCategory from '../MobileMenuCategory';
-import { MobileMenuSolarSystemWrapper, MobileNavBackGround } from './styled';
-import Line1 from '../../../../assets/HomeAssets/Line1';
-import Line2 from '../../../../assets/HomeAssets/Line2';
+import { MobileNavBackGround } from './styled';
 
 const MobileMenu = () => {
   const [menu, setMenu] = useRecoilState(menuState);

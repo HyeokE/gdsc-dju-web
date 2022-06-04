@@ -1,9 +1,10 @@
 import React, { memo } from 'react';
 import styled from 'styled-components';
+
+import browser from 'browser-detect';
 import { Line1, Line1ForSafari } from '../../assets/HomeAssets/Line1';
 import { Line2, Line2ForSafari } from '../../assets/HomeAssets/Line2';
 import { Line3, Line3ForSafari } from '../../assets/HomeAssets/Line3';
-import browser from 'browser-detect';
 
 const SolarSystemLineWrapper = styled.div`
   display: flex;
