@@ -1,8 +1,9 @@
-import React, { memo, useState } from 'react';
+import React, { memo, useMemo, useState } from 'react';
 import styled, { css } from 'styled-components';
 import { AnimatePresence, LayoutGroup, motion } from 'framer-motion';
 import { IMemberCardType } from '../../../types/member';
 import { positionColorHandler } from '../../../utils/positionColorHandler';
+import { useLocation } from 'react-router';
 
 const MemberCardContainer = styled(motion.div)<{ isSquare: boolean }>`
   position: relative;
@@ -28,6 +29,7 @@ const MemberCardInner = styled(motion.div)`
   justify-content: center;
   border-radius: 16px;
   overflow: hidden;
+  z-index: 0;
 `;
 const MemberCardImage = styled(motion.img)<{ isSquare: boolean }>`
   position: absolute;
@@ -125,6 +127,11 @@ const MemberCard: React.FC<IMemberCardProps> = ({
 }) => {
   const { name, nickname, role, image, position, text } = member;
   const [isClicked, setIsClicked] = useState(false);
+  const location = useLocation();
+  const randomKey = useMemo(
+    () => Math.random().toString(),
+    [location.pathname],
+  );
   return (
     <AnimatePresence>
       <LayoutGroup>
@@ -136,16 +143,16 @@ const MemberCard: React.FC<IMemberCardProps> = ({
           exit="exit"
           isSquare={isSquare}
         >
-          <MemberCardInner layoutId={`member-card-inner-${nickname}`}>
+          <MemberCardInner layoutId={`card-inner-${nickname}-${randomKey}`}>
             <CardTextWrapper isClicked={isClicked}>
               {!isClicked ? (
                 <>
-                  <Nickname layoutId={`member-nickname-${nickname}`}>
+                  <Nickname layoutId={`nickname-${nickname}-${randomKey}`}>
                     {nickname}
                   </Nickname>
-                  <Name layoutId={`member-name-${nickname}`}>{name}</Name>
+                  <Name layoutId={`name-${nickname}-${randomKey}`}>{name}</Name>
                   <Role
-                    layoutId={`member-role-${nickname}`}
+                    layoutId={`role-${nickname}-${randomKey}`}
                     variants={memberCardAnimate}
                   >
                     {role}
@@ -154,18 +161,18 @@ const MemberCard: React.FC<IMemberCardProps> = ({
               ) : (
                 <>
                   <Position
-                    layoutId={`member-position-${nickname}`}
+                    layoutId={`position-${nickname}-${randomKey}`}
                     variants={memberCardAnimate}
                     positionColor={positionColorHandler(position)}
                   >
                     {position}
                   </Position>
-                  <Nickname layoutId={`member-nickname-${nickname}`}>
+                  <Nickname layoutId={`nickname-${nickname}-${randomKey}`}>
                     {nickname}
                   </Nickname>
-                  <Name layoutId={`member-name-${nickname}`}>{name}</Name>
+                  <Name layoutId={`name-${nickname}-${randomKey}`}>{name}</Name>
                   <CardText
-                    layoutId={`member-text-${nickname}`}
+                    layoutId={`text-${nickname}-${randomKey}`}
                     variants={memberCardAnimate}
                   >
                     {text}
@@ -177,7 +184,7 @@ const MemberCard: React.FC<IMemberCardProps> = ({
               alt={'profile-image'}
               src={image}
               isSquare={isSquare}
-              layoutId={`member-background-${nickname}`}
+              layoutId={`background-${nickname}-${randomKey}`}
             />
           </MemberCardInner>
         </MemberCardContainer>

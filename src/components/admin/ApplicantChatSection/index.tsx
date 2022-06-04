@@ -72,7 +72,6 @@ const ApplicantChatSection: React.FC<IApplicantChatSectionProps> = ({
   );
   const handleOnSubmit = async () => {
     // 입력한 채팅 공백 제거
-
     const trimmedMessage = newMessage.trim();
     if (trimmedMessage) {
       // Add new message in Firestore

@@ -29,6 +29,7 @@ import ReactHelmet from '../../../components/common/ReactHelmet';
 const RecruitmentDetail: React.FC = () => {
   const { id } = useParams();
   const aboutTeam = RecruitDetails.find((aboutTeam) => aboutTeam.id === id);
+  const defaultText = id?.includes('design') ? 'designer' : 'developer';
   return (
     <>
       <ReactHelmet title={aboutTeam?.name} />
@@ -53,16 +54,16 @@ const RecruitmentDetail: React.FC = () => {
             <SectionWrapper>
               {aboutTeam && (
                 <IntroduceWrapper>
-                  {aboutTeam.activity ? (
+                  {aboutTeam.activity && (
                     <>
                       <SubCategory>합류하시면 함께 할 활동입니다.</SubCategory>
                       <BulletList text={aboutTeam.activity} />
                       <TopMargin />
                     </>
-                  ) : null}
+                  )}
                   <SubCategory>이런 분을 찾습니다</SubCategory>
                   <MainText>
-                    <BulletList text={recruitDefaultText.findMember} />
+                    <BulletList text={recruitDefaultText[defaultText]} />
                     {aboutTeam.people && <BulletList text={aboutTeam.people} />}
                   </MainText>
                   <TopMargin />
