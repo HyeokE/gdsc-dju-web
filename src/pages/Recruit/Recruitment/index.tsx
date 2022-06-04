@@ -21,6 +21,7 @@ import { useNavigate } from 'react-router';
 import { categoryAnimate } from '../../../components/common/Variants/Variants';
 import { RecruitDetails } from '../../../apis/pageData/recruitDetails';
 import Banner from '../../../components/common/Banner';
+import ReactHelmet from '../../../components/common/ReactHelmet';
 
 const removeBracket = (str: string) => {
   return str.replace(/\(.*\)/gi, ''); // ( ) 제거
@@ -29,6 +30,10 @@ const removeBracket = (str: string) => {
 const Recruitment = () => {
   return (
     <>
+      <ReactHelmet
+        title={'모집 중인 포지션'}
+        description={'모집 중인 포지션'}
+      />
       <Banner color={'blue'} />
       <LayoutContainer>
         <ContainerInner>

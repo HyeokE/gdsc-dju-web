@@ -24,12 +24,14 @@ import BulletList from '../../../components/common/BulletList';
 import InformationBar from './InformationBar';
 import RecruitFaqButton from './RecruitFaqButton';
 import Banner from '../../../components/common/Banner';
+import ReactHelmet from '../../../components/common/ReactHelmet';
 
 const RecruitmentDetail: React.FC = () => {
   const { id } = useParams();
   const aboutTeam = RecruitDetails.find((aboutTeam) => aboutTeam.id === id);
   return (
     <>
+      <ReactHelmet title={aboutTeam?.name} />
       <Banner color={'blue'} />
       {aboutTeam && (
         <LayoutContainer>

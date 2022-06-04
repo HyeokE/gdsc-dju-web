@@ -26,6 +26,8 @@ const MemberCardInner = styled(motion.div)`
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 16px;
+  overflow: hidden;
 `;
 const MemberCardImage = styled(motion.img)<{ isSquare: boolean }>`
   position: absolute;
@@ -33,6 +35,7 @@ const MemberCardImage = styled(motion.img)<{ isSquare: boolean }>`
   height: 300px;
   background-position-x: 50%;
   background-position-y: 50%;
+  border-radius: 16px;
   ${({ isSquare }) =>
     isSquare &&
     css`
@@ -82,6 +85,8 @@ const CardTextWrapper = styled(motion.div)<{ isClicked?: boolean }>`
   right: 0;
   bottom: 0;
   background: rgba(0, 0, 0, 0.8);
+  border: 0 solid transparent;
+  border-radius: 16px;
   ${({ isClicked }) =>
     isClicked
       ? css`
@@ -93,7 +98,7 @@ const CardTextWrapper = styled(motion.div)<{ isClicked?: boolean }>`
             0deg,
             rgba(0, 0, 0, 0) 0%,
             rgba(0, 0, 0, 0) 40%,
-            rgba(0, 0, 0, 0.5) 100%
+            rgba(0, 0, 0, 0.25) 100%
           );
           transition: background 0.2s ease-in-out;
         `}
@@ -169,6 +174,7 @@ const MemberCard: React.FC<IMemberCardProps> = ({
               )}
             </CardTextWrapper>
             <MemberCardImage
+              alt={'profile-image'}
               src={image}
               isSquare={isSquare}
               layoutId={`member-background-${nickname}`}

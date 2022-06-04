@@ -32,6 +32,7 @@ import FileInput from '../../../components/common/input/FileInput';
 import ApplyModal from '../../../components/common/Modal/ApplyModal';
 import { MODAL_KEY, modalState } from '../../../store/modal';
 import { alertState } from '../../../store/alert';
+import ReactHelmet from '../../../components/common/ReactHelmet';
 
 const RecruitForm = () => {
   const { id } = useParams();
@@ -166,6 +167,7 @@ const RecruitForm = () => {
 
   return (
     <>
+      <ReactHelmet title={`${position} 지원서 작성 `} />
       <ApplyModal {...recruitFormik.values} onClick={onSubmit} />
       <LayoutContainer>
         <ContainerInner>

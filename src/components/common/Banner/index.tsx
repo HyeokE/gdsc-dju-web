@@ -20,14 +20,17 @@ const Banner: React.FC<BannerProps> = ({ color, image }) => {
   } as const;
   return (
     <BannerWrapper>
-      <BannerInner src={image ? image : bannerImages[color]} />
+      <BannerInner
+        src={image ? image : bannerImages[color]}
+        alt={'banner-image'}
+      />
     </BannerWrapper>
   );
 };
 
 export default Banner;
 export const BannerInner = styled.img`
-  height: 440px;
+  height: 700px;
   background-position-x: 50%;
   background-position-y: 50%;
   -webkit-background-size: cover;

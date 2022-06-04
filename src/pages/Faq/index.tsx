@@ -18,11 +18,13 @@ import { FaqData } from '../../apis/pageData/faq';
 import { QuestionCategoryAnimate } from '../../components/common/Variants/Variants';
 import { AnimatePresence, motion } from 'framer-motion';
 import Banner from '../../components/common/Banner';
+import ReactHelmet from '../../components/common/ReactHelmet';
 
 const Faq = () => {
   const [selected, setSelected] = useState<number | null>(null);
   return (
     <>
+      <ReactHelmet title={'자주 묻는 질문'} description={'자주 묻는 질문'} />
       <Banner color={'green'} />
       <LayoutContainer>
         <ContainerInner>
