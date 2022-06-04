@@ -51,28 +51,27 @@ export const StyledMainBanner = styled(motion.div)`
 `;
 export const BannerTitleWrapper = styled(motion.section)`
   position: absolute;
-  bottom: 5%;
-  left: 20%;
-  transform: translate(-50%, -50%);
+  bottom: 10%;
+  left: 10%;
   display: flex;
   box-sizing: border-box;
   align-items: center;
   justify-content: center;
   @media (max-width: ${({ theme }) => theme.windowSize.desk}px) {
-    bottom: 0;
-    left: 28%;
+    bottom: 10%;
+    left: 10%;
   }
   @media (max-width: ${({ theme }) => theme.windowSize.tablet}px) {
-    bottom: 0;
-    left: 24%;
+    bottom: 10%;
+    left: 10%;
   }
   @media (max-width: ${({ theme }) => theme.windowSize.mobile}px) {
-    bottom: 0;
-    left: 30%;
+    bottom: 10%;
+    left: 10%;
   }
   @media (max-width: 320px) {
     bottom: 10%;
-    left: 30%;
+    left: 10%;
   }
 `;
 export const RecruitingWrapper = styled(motion.div)`
@@ -127,7 +126,7 @@ export const GoogleColorTextWrapper = styled.div`
 export const GoogleColorText = styled.h1<{
   color?: keyof typeof theme.colors;
 }>`
-  font-size: 80px;
+  font-size: 70px;
   font-weight: bold;
   color: ${({ color }) => (color ? theme.colors[color] : theme.colors.grey900)};
   @media (max-width: ${({ theme }) => theme.windowSize.tablet}px) {
@@ -140,7 +139,7 @@ export const GoogleColorText = styled.h1<{
 export const MainBannerText = styled(motion.p)`
   display: flex;
   margin-top: 10px;
-  font-size: ${({ theme }) => theme.fontSize.h7};
+  font-size: ${({ theme }) => theme.fontSize.body1};
   color: ${({ theme }) => theme.colors.grey500};
   @media (max-width: ${({ theme }) => theme.windowSize.tablet}px) {
     font-size: 1.5rem;
