@@ -39,13 +39,8 @@ const RecruitForm = () => {
   const [position, setPosition] = useState('');
   const [loading, setLoading] = useRecoilState(loaderState);
   const [modal, setModal] = useRecoilState(modalState);
-  const [uploadProgress, setUploadProgress] = useState(0);
   const input = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
-
-  const calculateProgress = (progress: number, total: number) => {
-    return Math.round((progress / total) * 100);
-  };
 
   const recruitItem = {
     uploadDate: new Date(),
@@ -137,7 +132,7 @@ const RecruitForm = () => {
   const onSubmit = async () => {
     input.current && (await uploadFiles(input.current));
   };
-
+  const fileInput = !!(input.current?.files && input.current?.files[0]);
   const requiredSchema = !!(
     recruitFormik.values.email &&
     recruitFormik.values.name &&
@@ -146,8 +141,9 @@ const RecruitForm = () => {
     recruitFormik.values.studentID &&
     recruitFormik.values.position &&
     recruitFormik.values.link0.length > 0 &&
-    input.current?.files
+    fileInput
   );
+
   const params = {
     username: recruitFormik.values.name,
     position: position,
@@ -253,7 +249,10 @@ const RecruitForm = () => {
                     * 지원서는 자유 양식이며 아래 항목을 포함하여 제출해주세요.
                   </FormText>
                   <FormArticleWrapper>
-                    <FormLi>활용할 수 있는 기술스택을 알려주세요.</FormLi>
+                    <FormLi>
+                      활용할 수 있는 기술스택(디자이너 분들은 사용가능한 툴)을
+                      알려주세요.
+                    </FormLi>
                     <FormLi>
                       프로젝트 협업 경험이 있다면 자세하게 알려주세요.
                     </FormLi>
@@ -266,8 +265,7 @@ const RecruitForm = () => {
                       알려주세요.
                     </FormLi>
                     <FormLi>
-                      본인만의 공부방법이 있다면 어떤 것이 있나요? 이뤄낸 성과가
-                      있다면 자세히 알려주세요.
+                      본인만의 공부방법이 있다면 어떤 것이 있나요?
                     </FormLi>
                   </FormArticleWrapper>
                 </div>

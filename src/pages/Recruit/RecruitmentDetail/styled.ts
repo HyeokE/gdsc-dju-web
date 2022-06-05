@@ -11,7 +11,7 @@ export const SectionWrapper = styled.div`
     flex-direction: column;
   }
 `;
-export const IntroduceWrapper = styled.div`
+export const IntroduceWrapper = styled.article`
   margin-right: 20px;
   box-sizing: inherit;
   @media (max-width: ${(props) => props.theme.windowSize.mobile}px) {
