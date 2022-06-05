@@ -61,13 +61,20 @@ const CheckBoxCard: React.FC<IApplicantTypeWithID & ICheckBoxCardProps> = ({
   setCheckedList,
   disabled,
 }) => {
+  const ref = React.useRef<HTMLInputElement>(null);
   return (
-    <CheckBoxCardWrapper disabled={disabled}>
+    <CheckBoxCardWrapper
+      disabled={disabled}
+      onClick={() => {
+        setCheckedList && setCheckedList(id, !ref.current?.checked as boolean);
+      }}
+    >
       {!disabled && checkedList && setCheckedList && (
         <CheckBox
           type={'checkbox'}
+          ref={ref}
           checked={checkedList.has(id)}
-          onChange={(e) => setCheckedList(id, e.target.checked)}
+          // onChange={(e) => setCheckedList(id, e.target.checked)}
         />
       )}
       <CheckBoxText>{name}</CheckBoxText>

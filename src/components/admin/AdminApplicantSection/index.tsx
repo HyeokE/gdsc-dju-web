@@ -51,6 +51,7 @@ const AdminApplicantSection = () => {
   useEffect(() => {
     dbService
       .collection('applicants')
+      .orderBy('uploadDate', 'desc')
       .get()
       .then((querySnapshot) => {
         const tempDoc: IApplicantTypeWithID[] = querySnapshot.docs.map(
