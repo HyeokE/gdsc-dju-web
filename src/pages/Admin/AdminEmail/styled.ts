@@ -5,6 +5,7 @@ export const CheckboxSection = styled.section`
   flex-wrap: wrap;
   gap: 10px;
   margin-bottom: 30px;
+  justify-content: space-between;
 `;
 export const SelectedBoxSection = styled.section`
   display: flex;
@@ -28,5 +29,7 @@ export const TemplateText = styled.div`
   font-size: ${({ theme }) => theme.fontSize.h7};
   display: flex;
   align-items: center;
+  justify-content: center;
   text-align: center;
+  width: 200px;
 `;

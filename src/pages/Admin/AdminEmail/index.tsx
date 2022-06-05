@@ -119,7 +119,7 @@ const AdminEmail = () => {
       <ContainerInner>
         <TemplateSelectorWrapper>
           <TemplateText>
-            {template !== '템플릿이 없어요 :(' && '선택한 템플릿: '}
+            {template !== '템플릿이 없어요 :(' && '선택한 템플릿 '}
             {template}
           </TemplateText>
           <TemplateEmailWrapper>
@@ -134,22 +134,20 @@ const AdminEmail = () => {
             onClick={() => setTemplate(templateRef.current?.value ?? '')}
             type={'button'}
           />
-
           <GDSCButton
             color={!isAllChecked ? 'googleGreen' : 'googleRed'}
             text={!isAllChecked ? '모두 선택' : '모두 해제'}
             onClick={() => checkAllHandler(!isAllChecked)}
             type={'button'}
           />
-
-          {selectApplicants && (
-            <GDSCButton
-              color={'googleBlue'}
-              text={'선택 전송'}
-              onClick={() => sendEmail(template, selectApplicants)}
-              type={'button'}
-            />
-          )}
+          <GDSCButton
+            color={'googleBlue'}
+            text={'선택 전송'}
+            onClick={() =>
+              selectApplicants && sendEmail(template, selectApplicants)
+            }
+            type={'button'}
+          />
         </TemplateSelectorWrapper>
         {filteredApplicants && (
           <CheckboxSection>
