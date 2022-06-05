@@ -1,9 +1,14 @@
-import React, { createRef, memo, useEffect, useRef, useState } from 'react';
+import React, { ChangeEvent, forwardRef } from 'react';
 
-import { ErrorBox, StyledInput, StyledInputWrapper } from './styled';
+import {
+  ErrorBox,
+  StyledField,
+  StyledInput,
+  StyledInputWrapper,
+} from './styled';
 import { FormikErrors, FormikTouched } from 'formik';
 
-export interface Iprops {
+export interface TextInputProps {
   name?: string;
   error?:
     | string
@@ -15,20 +20,27 @@ export interface Iprops {
   placeholder?: string;
   image?: string;
   file?: boolean;
-  onChange?: (e: any) => void;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   type?: string;
   value?: string | null;
   checkError?: (props: boolean) => void;
   disabled?: boolean;
 }
-const TextInput = (props: Iprops) => {
-  const { name, placeholder, onChange, type, disabled, error, touched } = props;
+const FormikTextInput: React.FC<TextInputProps> = ({
+  name,
+  placeholder,
+  onChange,
+  type,
+  disabled,
+  error,
+  touched,
+}) => {
   const errorToggle = error != undefined && error != '필수입력란입니다.';
 
   return (
     <>
       <StyledInputWrapper error={errorToggle} disabled={!disabled}>
-        <StyledInput
+        <StyledField
           className={'formInput'}
           name={name}
           type={type}
@@ -41,5 +53,27 @@ const TextInput = (props: Iprops) => {
     </>
   );
 };
+const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
+  ({ name, placeholder, onChange, type, disabled, error, touched }, ref) => {
+    const errorToggle = error != undefined && error != '필수입력란입니다.';
 
-export default memo(TextInput);
+    return (
+      <>
+        <StyledInputWrapper error={errorToggle} disabled={!disabled}>
+          <StyledInput
+            className={'formInput'}
+            name={name}
+            type={type}
+            onChange={onChange && onChange}
+            placeholder={placeholder}
+            disabled={disabled}
+            ref={ref}
+          />
+        </StyledInputWrapper>
+        <ErrorBox>{errorToggle && <>{error}</>}</ErrorBox>
+      </>
+    );
+  },
+);
+
+export { FormikTextInput, TextInput };

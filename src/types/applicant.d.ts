@@ -1,5 +1,7 @@
+import { theme } from '../styles/theme';
+
 export interface IApplicantType {
-  status: statusType;
+  status: StatusType;
   email: string;
   fileURL: string;
   link0: string;
@@ -16,7 +18,12 @@ export interface IApplicantType {
     nanoseconds: number;
   };
 }
-export type statusType = 'DOCS' | 'INTERVIEW' | 'REJECTED' | 'HIRED';
+export type StatusType =
+  | 'DOCS'
+  | 'INTERVIEW'
+  | 'REJECTED_DOCS'
+  | 'REJECTED_INTERVIEW'
+  | 'HIRED';
 
 export interface IApplicantTypeWithID extends IApplicantType {
   id: string;
@@ -24,7 +31,8 @@ export interface IApplicantTypeWithID extends IApplicantType {
 export interface IApplicantCountType {
   isDOCS: number;
   isINTERVIEW: number;
-  isREJECTED: number;
+  isREJECTED_DOCS: number;
+  isREJECTED_INTERVIEW: number;
   isHIRED: number;
 }
 export interface IApplicantChatType {
@@ -35,3 +43,9 @@ export interface IApplicantChatType {
   displayName: string;
   isRead: boolean;
 }
+export type StatusBadgeType = {
+  [key in StatusType]: {
+    color: keyof typeof theme.colors;
+    text: string;
+  };
+};

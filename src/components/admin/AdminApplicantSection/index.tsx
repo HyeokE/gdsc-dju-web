@@ -34,7 +34,8 @@ const AdminApplicantSection = () => {
   const [applicantCount, setApplicantCount] = useState<IApplicantCountType>({
     isDOCS: 0,
     isINTERVIEW: 0,
-    isREJECTED: 0,
+    isREJECTED_DOCS: 0,
+    isREJECTED_INTERVIEW: 0,
     isHIRED: 0,
   });
   const [searchParams] = useSearchParams();
@@ -75,8 +76,11 @@ const AdminApplicantSection = () => {
       const INTERVIEW = filteredApplicants.filter(
         (data) => data.status === 'INTERVIEW',
       );
-      const REJECTED = filteredApplicants.filter(
-        (data) => data.status === 'REJECTED',
+      const REJECTED_DOCS = filteredApplicants.filter(
+        (data) => data.status === 'REJECTED_DOCS',
+      );
+      const REJECTED_INTERVIEW = filteredApplicants.filter(
+        (data) => data.status === 'REJECTED_INTERVIEW',
       );
       const HIRED = filteredApplicants.filter(
         (data) => data.status === 'HIRED',
@@ -84,7 +88,8 @@ const AdminApplicantSection = () => {
       setApplicantCount({
         isDOCS: DOCS.length,
         isINTERVIEW: INTERVIEW.length,
-        isREJECTED: REJECTED.length,
+        isREJECTED_DOCS: REJECTED_DOCS.length,
+        isREJECTED_INTERVIEW: REJECTED_INTERVIEW.length,
         isHIRED: HIRED.length,
       });
     },
@@ -121,7 +126,8 @@ const AdminApplicantSection = () => {
 const ApplicantStatus: React.FC<IApplicantCountType> = ({
   isDOCS,
   isINTERVIEW,
-  isREJECTED,
+  isREJECTED_DOCS,
+  isREJECTED_INTERVIEW,
   isHIRED,
 }) => {
   return (
@@ -133,7 +139,10 @@ const ApplicantStatus: React.FC<IApplicantCountType> = ({
         <StatusBadge status={'INTERVIEW'} /> {isINTERVIEW}
       </ApplicantsBadgeWrapper>
       <ApplicantsBadgeWrapper>
-        <StatusBadge status={'REJECTED'} /> {isREJECTED}
+        <StatusBadge status={'REJECTED_DOCS'} /> {isREJECTED_DOCS}
+      </ApplicantsBadgeWrapper>
+      <ApplicantsBadgeWrapper>
+        <StatusBadge status={'REJECTED_INTERVIEW'} /> {isREJECTED_INTERVIEW}
       </ApplicantsBadgeWrapper>
       <ApplicantsBadgeWrapper>
         <StatusBadge status={'HIRED'} /> {isHIRED}
