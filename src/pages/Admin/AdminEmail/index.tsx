@@ -23,7 +23,7 @@ import { alertState } from '../../../store/alert';
 
 const AdminEmail = () => {
   const [alert, setAlert] = useRecoilState(alertState);
-  const [template, setTemplate] = useState<string>('템플릿을 입력해주세요.');
+  const [template, setTemplate] = useState<string>('템플릿이 없어요 :(');
   const templateRef = useRef<HTMLInputElement>(null);
   const [filteredApplicants, setFilteredApplicants] =
     useState<IApplicantTypeWithID[]>();
@@ -37,6 +37,15 @@ const AdminEmail = () => {
     } else if (!isChecked && checkedApplicants.has(id)) {
       newCheckedApplicants.delete(id);
       setCheckedApplicants(newCheckedApplicants);
+    }
+  };
+  const isAllChecked = checkedApplicants.size === filteredApplicants?.length;
+
+  const checkAllHandler = (isChecked: boolean) => {
+    if (isChecked) {
+      setCheckedApplicants(new Set(filteredApplicants?.map((data) => data.id)));
+    } else {
+      setCheckedApplicants(new Set());
     }
   };
 
@@ -110,11 +119,14 @@ const AdminEmail = () => {
       <ContainerInner>
         <TemplateSelectorWrapper>
           <TemplateText>
-            {template !== '템플릿을 입력해주세요.' && '선택한 템플릿: '}
+            {template !== '템플릿이 없어요 :(' && '선택한 템플릿: '}
             {template}
           </TemplateText>
           <TemplateEmailWrapper>
-            <TextInput ref={templateRef} />
+            <TextInput
+              ref={templateRef}
+              placeholder={'템플릿을 입력해주세요.'}
+            />
           </TemplateEmailWrapper>
           <GDSCButton
             color={'googleBlue'}
@@ -122,6 +134,22 @@ const AdminEmail = () => {
             onClick={() => setTemplate(templateRef.current?.value ?? '')}
             type={'button'}
           />
+
+          <GDSCButton
+            color={!isAllChecked ? 'googleGreen' : 'googleRed'}
+            text={!isAllChecked ? '모두 선택' : '모두 해제'}
+            onClick={() => checkAllHandler(!isAllChecked)}
+            type={'button'}
+          />
+
+          {selectApplicants && (
+            <GDSCButton
+              color={'googleBlue'}
+              text={'선택 전송'}
+              onClick={() => sendEmail(template, selectApplicants)}
+              type={'button'}
+            />
+          )}
         </TemplateSelectorWrapper>
         {filteredApplicants && (
           <CheckboxSection>
@@ -145,27 +173,6 @@ const AdminEmail = () => {
               />
             ))}
         </SelectedBoxSection>
-
-        {filteredApplicants && (
-          <GDSCButton
-            text={'전송'}
-            onClick={() => sendEmail(template, filteredApplicants)}
-            type={'button'}
-          />
-        )}
-        {selectApplicants && (
-          <GDSCButton
-            color={'googleBlue'}
-            text={'선택 전송'}
-            onClick={() => sendEmail(template, selectApplicants)}
-            type={'button'}
-          />
-        )}
-        {/*<GDSCButton*/}
-        {/*  text={'전송'}*/}
-        {/*  onClick={() => sendEmail('template_docs_pass', filteredApplicants)}*/}
-        {/*  type={'button'}*/}
-        {/*/>*/}
       </ContainerInner>
     </LayoutContainer>
   );

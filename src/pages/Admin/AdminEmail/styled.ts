@@ -17,7 +17,7 @@ export const TemplateSelectorWrapper = styled.div`
   display: flex;
   flex-direction: row;
   height: 50px;
-  width: 700px;
+  width: 900px;
   justify-content: space-between;
   margin: 30px 0;
 `;
