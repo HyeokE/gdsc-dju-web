@@ -1,4 +1,4 @@
-import React, { memo, useLayoutEffect, useRef, useState } from 'react';
+import React, { memo, useLayoutEffect, useState } from 'react';
 import { SubTitle, Title } from '../../../components/common/Title/title';
 import { ContainerInner, LayoutContainer } from '../../../styles/layouts';
 import {
@@ -20,7 +20,6 @@ import {
   ref,
   StorageReference,
   uploadBytesResumable,
-  UploadTaskSnapshot,
 } from 'firebase/storage';
 import { storage } from '../../../firebase/firebase.config';
 import { dbService } from '../../../firebase/firebase';
@@ -39,7 +38,7 @@ const RecruitForm = () => {
   const [position, setPosition] = useState('');
   const [loading, setLoading] = useRecoilState(loaderState);
   const [modal, setModal] = useRecoilState(modalState);
-  const input = useRef<HTMLInputElement>(null);
+  const [file, setFile] = useState<null | File>(null);
   const navigate = useNavigate();
 
   const recruitItem = {
@@ -78,11 +77,9 @@ const RecruitForm = () => {
       .doc()
       .set({ ...object, fileURL: url });
   };
-  const checkFile = (fileList: FileList | null, size: number, type: string) => {
-    if (fileList !== null) {
-      const file = fileList[0];
-      if (!file) return;
-      else if (file.size > size) {
+  const checkFile = (file: File | null, size: number, type: string) => {
+    if (file) {
+      if (file.size > size) {
         setModal({ ...modal, [MODAL_KEY.APPLY_CHECK]: false });
         setAlert({
           ...alert,
@@ -109,14 +106,18 @@ const RecruitForm = () => {
     }
   };
 
-  const uploadFiles = async (data: HTMLInputElement) => {
+  const uploadFiles = async (file: File) => {
     try {
-      const file = checkFile(data.files, 50000001, 'application/pdf');
-      if (file instanceof File) {
+      const checkedFile = checkFile(file, 50000001, 'application/pdf');
+      if (checkedFile instanceof File) {
         setLoading({ ...loading, load: true });
         setModal({ ...modal, [MODAL_KEY.APPLY_CHECK]: false });
-        const storageRef = ref(storage, `${file.name}`);
-        await uploadApplicantFile(storageRef, file, recruitFormik.values);
+        const storageRef = ref(storage, `${checkedFile.name}`);
+        await uploadApplicantFile(
+          storageRef,
+          checkedFile,
+          recruitFormik.values,
+        );
         setLoading({ ...loading, load: false });
         navigate({
           pathname: '/recruit/apply-success',
@@ -130,9 +131,9 @@ const RecruitForm = () => {
     }
   };
   const onSubmit = async () => {
-    input.current && (await uploadFiles(input.current));
+    file && (await uploadFiles(file));
   };
-  const fileInput = !!(input.current?.files && input.current?.files[0]);
+
   const requiredSchema = !!(
     recruitFormik.values.email &&
     recruitFormik.values.name &&
@@ -141,7 +142,7 @@ const RecruitForm = () => {
     recruitFormik.values.studentID &&
     recruitFormik.values.position &&
     recruitFormik.values.link0.length > 0 &&
-    fileInput
+    file
   );
 
   const params = {
@@ -237,7 +238,10 @@ const RecruitForm = () => {
                   <FormLabel essential={true}>지원서</FormLabel>
                   <FileInput
                     defaultPlaceholder={'지원서 / 포트폴리오 PDF'}
-                    ref={input}
+                    accept={'application/pdf, .pdf'}
+                    onChange={(e) =>
+                      setFile(e.target.files && e.target.files[0])
+                    }
                   />
                   <FormText>
                     * 파일은 최대 50MB로 업로드 하실 수 있습니다.
