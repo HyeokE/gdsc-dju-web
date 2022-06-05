@@ -1,9 +1,9 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { IApplicantTypeWithID } from '../../../types/applicant';
 import StatusBadge from '../../admin/Statusbadge';
 
-const CheckBoxCardWrapper = styled.div`
+const CheckBoxCardWrapper = styled.div<{ disabled?: boolean }>`
   display: flex;
   align-items: center;
   text-align: center;
@@ -18,10 +18,15 @@ const CheckBoxCardWrapper = styled.div`
     background: ${({ theme }) => theme.colors.grey50};
     cursor: pointer;
   }
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      width: 400px;
+    `}
 `;
 const CheckBoxText = styled.div`
   font-size: ${({ theme }) => theme.fontSize.body2};
-  width: 100px;
+  width: 60px;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -41,16 +46,30 @@ const CheckBox = styled.input`
     background: ${({ theme }) => theme.colors.googleBlue};
   }
 `;
+interface ICheckBoxCardProps {
+  setCheckedList?: (id: string, isChecked: boolean) => void;
+  checkedList?: Set<unknown>;
+  disabled?: boolean;
+}
 
-const CheckBoxCard: React.FC<IApplicantTypeWithID> = ({
+const CheckBoxCard: React.FC<IApplicantTypeWithID & ICheckBoxCardProps> = ({
   id,
   name,
   email,
   status,
+  checkedList,
+  setCheckedList,
+  disabled,
 }) => {
   return (
-    <CheckBoxCardWrapper>
-      <CheckBox type={'checkbox'} />
+    <CheckBoxCardWrapper disabled={disabled}>
+      {!disabled && checkedList && setCheckedList && (
+        <CheckBox
+          type={'checkbox'}
+          checked={checkedList.has(id)}
+          onChange={(e) => setCheckedList(id, e.target.checked)}
+        />
+      )}
       <CheckBoxText>{name}</CheckBoxText>
       <CheckBoxEmailText>{email}</CheckBoxEmailText>
       <StatusBadge status={status} />

@@ -9,7 +9,7 @@ import { adminUserState } from '../../store/localUser';
 import { recruitmentSelector } from '../../store/recruitHandler';
 import AdminEmail from './AdminEmail';
 import AdminSignUp from '../../components/common/Modal/AdminSignUp';
-import AdminMember from "./AdminMember";
+import AdminMember from './AdminMember';
 
 const Admin = () => {
   const [adminUser, setAdminUser] = useRecoilState(adminUserState);
@@ -52,7 +52,6 @@ const Admin = () => {
     setSelector(selector);
     checkAdminUser();
   }, []);
-  console.log(1);
   return (
     <>
       <AdminSignUp />

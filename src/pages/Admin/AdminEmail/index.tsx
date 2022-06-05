@@ -10,18 +10,36 @@ import {
 } from '../../../types/applicant';
 import { ContainerInner, LayoutContainer } from '../../../styles/layouts';
 import CheckBoxCard from '../../../components/common/CheckBoxCard';
-import { CheckboxSection } from './styled';
+import emailjs from '@emailjs/browser';
+import {
+  CheckboxSection,
+  SelectedBoxSection,
+  TemplateEmailWrapper,
+  TemplateSelectorWrapper,
+  TemplateText,
+} from './styled';
+import { useRecoilState } from 'recoil';
+import { alertState } from '../../../store/alert';
 
 const AdminEmail = () => {
-  const [email, setEmail] = useState('');
-  const [template, setTemplate] = useState<undefined | string>('');
+  const [alert, setAlert] = useRecoilState(alertState);
+  const [template, setTemplate] = useState<string>('템플릿을 입력해주세요.');
   const templateRef = useRef<HTMLInputElement>(null);
   const [filteredApplicants, setFilteredApplicants] =
     useState<IApplicantTypeWithID[]>();
-  const testEmail = {
-    email: 'jhjeong00@gmail.com',
-    name: '정준혁',
+  const [checkedApplicants, setCheckedApplicants] = useState(new Set());
+
+  const checkedApplicantHandler = (id: string, isChecked: boolean) => {
+    const newCheckedApplicants = new Set(checkedApplicants);
+    if (isChecked) {
+      newCheckedApplicants.add(id);
+      setCheckedApplicants(newCheckedApplicants);
+    } else if (!isChecked && checkedApplicants.has(id)) {
+      newCheckedApplicants.delete(id);
+      setCheckedApplicants(newCheckedApplicants);
+    }
   };
+
   const getApplicants = async (status?: StatusType) => {
     const res = status
       ? await dbService
@@ -35,9 +53,6 @@ const AdminEmail = () => {
     });
     setFilteredApplicants(applicantsList);
   };
-  useEffect(() => {
-    getApplicants('DOCS');
-  }, []);
 
   const sendLogHandler = async (logs: EmailLogType[]) => {
     logs.map(async (log) => {
@@ -45,21 +60,32 @@ const AdminEmail = () => {
     });
   };
 
-  const testSend = (email: typeof testEmail) => {
-    console.log(email);
-  };
-
   const sendEmail = async (
     template: string,
     applicants: IApplicantTypeWithID[],
   ) => {
     let log: EmailLogType[] = [];
-
     applicants.map((applicant) => {
-      testSend({
-        email: applicant.email,
-        name: applicant.name,
-      });
+      emailjs.init('RsM6o4WUsb5rzJGXG');
+      emailjs
+        .send('default_service', template, {
+          email: applicant.email,
+          name: applicant.name,
+        })
+        .then(
+          (result) => {
+            console.log(result.text);
+            setAlert({
+              ...alert,
+              alertHandle: true,
+              alertMessage: '메일이 전송되었습니다.',
+              alertStatus: 'success',
+            });
+          },
+          (error) => {
+            console.log(error.text);
+          },
+        );
       const emailLog: EmailLogType = {
         email: applicant.email,
         name: applicant.name,
@@ -71,62 +97,78 @@ const AdminEmail = () => {
     });
     await sendLogHandler(log);
   };
+  useEffect(() => {
+    getApplicants('DOCS');
+  }, []);
+
+  const selectApplicants = filteredApplicants?.filter((applicant) => {
+    return checkedApplicants.has(applicant.id);
+  });
 
   return (
     <LayoutContainer>
       <ContainerInner>
-        <TextInput
-          ref={templateRef}
-          onChange={(e) => console.log(e.target.value)}
-        />
-        <div>{template}</div>
+        <TemplateSelectorWrapper>
+          <TemplateText>
+            {template !== '템플릿을 입력해주세요.' && '선택한 템플릿: '}
+            {template}
+          </TemplateText>
+          <TemplateEmailWrapper>
+            <TextInput ref={templateRef} />
+          </TemplateEmailWrapper>
+          <GDSCButton
+            color={'googleBlue'}
+            text={'템플릿 선택'}
+            onClick={() => setTemplate(templateRef.current?.value ?? '')}
+            type={'button'}
+          />
+        </TemplateSelectorWrapper>
         {filteredApplicants && (
           <CheckboxSection>
             {filteredApplicants.map((applicant) => (
-              <CheckBoxCard {...applicant} key={applicant.id} />
+              <CheckBoxCard
+                {...applicant}
+                key={applicant.id}
+                checkedList={checkedApplicants}
+                setCheckedList={checkedApplicantHandler}
+              />
             ))}
           </CheckboxSection>
         )}
+        <SelectedBoxSection>
+          {selectApplicants &&
+            selectApplicants.map((applicant) => (
+              <CheckBoxCard
+                key={`check-${applicant.id}`}
+                {...applicant}
+                disabled={true}
+              />
+            ))}
+        </SelectedBoxSection>
 
-        <GDSCButton
-          color={'googleBlue'}
-          text={'템플릿 선택'}
-          onClick={() => setTemplate(templateRef.current?.value)}
-          type={'button'}
-        />
-        <div>
-          {filteredApplicants?.map((applicant) => (
-            <div key={applicant.id}>
-              <div>{applicant.name}</div>
-              <div>{applicant.email}</div>
-            </div>
-          ))}
-        </div>
-        <GDSCButton
-          text={'리스트 선택'}
-          onClick={() => getApplicants('DOCS')}
-          type={'button'}
-        />
         {filteredApplicants && (
           <GDSCButton
             text={'전송'}
-            onClick={() => sendEmail('template_docs_pass', filteredApplicants)}
+            onClick={() => sendEmail(template, filteredApplicants)}
             type={'button'}
           />
         )}
+        {selectApplicants && (
+          <GDSCButton
+            color={'googleBlue'}
+            text={'선택 전송'}
+            onClick={() => sendEmail(template, selectApplicants)}
+            type={'button'}
+          />
+        )}
+        {/*<GDSCButton*/}
+        {/*  text={'전송'}*/}
+        {/*  onClick={() => sendEmail('template_docs_pass', filteredApplicants)}*/}
+        {/*  type={'button'}*/}
+        {/*/>*/}
       </ContainerInner>
     </LayoutContainer>
   );
 };
 
 export default AdminEmail;
-// testSend(emailProps);
-// emailjs.init('RsM6o4WUsb5rzJGXG');
-// emailjs.send('default_service', template, emailProps).then(
-//   (result) => {
-//     console.log(result.text);
-//   },
-//   (error) => {
-//     console.log(error.text);
-//   },
-// );
