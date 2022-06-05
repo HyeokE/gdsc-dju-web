@@ -29,7 +29,7 @@ export const SubCategory = styled(motion.h3)`
   color: ${(props) => props.theme.colors.grey800};
   margin-bottom: 10px;
   @media (max-width: 500px) {
-    font-size: ${({ theme }) => theme.fontSize.body1};
+    font-size: ${({ theme }) => theme.fontSize.h6};
   }
 `;
 export const MainText = styled(motion.p)`

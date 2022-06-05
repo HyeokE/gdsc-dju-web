@@ -46,6 +46,7 @@ const RecruitmentDetail: React.FC = () => {
               <JoinInner>
                 <InformationBar name={aboutTeam.name} />
               </JoinInner>
+              <TopMargin />
             </MobileTopElementWrapper>
             <SectionWrapper>
               <IntroduceWrapper>
