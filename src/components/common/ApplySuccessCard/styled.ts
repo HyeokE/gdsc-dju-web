@@ -5,19 +5,18 @@ export const ApplyCardWrapper = styled.div`
   flex-direction: column;
   border-radius: 10px;
   box-sizing: border-box;
-  padding: 20px 30px;
-  box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.4);
-  width: fit-content;
+  padding: 20px 40px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
+  align-items: center;
 `;
 export const ApplyCardBlueLine = styled.div`
   position: relative;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
-  height: 5px;
-  width: calc(100% + 60px);
-  left: -30px;
+  height: 10px;
+  width: calc(100% + 80px);
   top: -20px;
-  background: ${(props) => props.theme.colors.tossBlue};
+  background: ${(props) => props.theme.colors.googleBlue};
 `;
 export const ApplyCardInner = styled.div`
   display: flex;

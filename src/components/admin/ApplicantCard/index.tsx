@@ -1,5 +1,5 @@
 import React from 'react';
-import { ApplicantCardWrapper, ApplicantText } from './styled';
+import { ApplicantCardWrapper, ApplicantEmail, ApplicantText } from './styled';
 import { IApplicantTypeWithID } from '../../../types/applicant';
 import StatusBadge from '../Statusbadge';
 
@@ -14,7 +14,7 @@ const ApplicantCard: React.FC<IApplicantTypeWithID> = ({
     <ApplicantCardWrapper layoutId={`card-${id}`}>
       <ApplicantText>{name}</ApplicantText>
       <ApplicantText>{position.split(' ')[0]}</ApplicantText>
-      <ApplicantText>{email}</ApplicantText>
+      <ApplicantEmail>{email}</ApplicantEmail>
       <StatusBadge status={status} />
     </ApplicantCardWrapper>
   );
