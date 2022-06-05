@@ -49,3 +49,11 @@ export type StatusBadgeType = {
     text: string;
   };
 };
+
+export interface EmailLogType {
+  email: string;
+  name: string;
+  applicantID: string;
+  applicantStatus: StatusType;
+  uploadDate: Date;
+}
