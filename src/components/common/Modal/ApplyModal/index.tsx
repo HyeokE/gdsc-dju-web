@@ -14,7 +14,6 @@ import { MODAL_KEY, modalState } from '../../../../store/modal';
 import { useRecoilState } from 'recoil';
 import OutsideClickHandler from '../../../../utils/OutsideClickHandler';
 import { AnimatePresence } from 'framer-motion';
-import BulletList from '../../BulletList';
 import { modalVariants } from '../../Variants/modalVariants';
 
 interface Props {

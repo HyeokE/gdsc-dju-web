@@ -10,7 +10,7 @@ import {
   Title,
 } from '../../components/common/Title/title';
 import { codeOfConduct } from '../../apis/pageData/codeOfConduct';
-import BulletList from '../../components/common/BulletList';
+import { BulletList } from '../../components/common/BulletList';
 
 const CodeOfConduct = () => {
   return (
