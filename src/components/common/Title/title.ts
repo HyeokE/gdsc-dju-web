@@ -34,7 +34,7 @@ export const SubCategory = styled(motion.h3)`
 `;
 export const MainText = styled(motion.p)`
   font-size: ${({ theme }) => theme.fontSize.body1};
-  color: ${(props) => props.theme.colors.grey700};
-  font-weight: 400;
-  padding-bottom: 10px;
+  color: ${(props) => props.theme.colors.grey800};
+  padding-bottom: 20px;
+  line-height: 1.5;
 `;
