@@ -1,6 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { GDSCButton } from '../../../components/common/Button';
-import { TextInput } from '../../../components/common/input/TextInput';
 import { dbService } from '../../../firebase/firebase';
 import {
   EmailLogType,
@@ -8,29 +7,28 @@ import {
   IApplicantTypeWithID,
   StatusType,
 } from '../../../types/applicant';
-import { ContainerInner, LayoutContainer } from '../../../styles/layouts';
 import CheckBoxCard from '../../../components/common/CheckBoxCard';
 import emailjs from '@emailjs/browser';
 import {
   CheckboxSection,
+  CheckboxWrapper,
   EmailCategory,
   EmailLeftInner,
   EmailLeftWrapper,
   EmailRightInner,
   EmailRightWrapper,
   SelectedBoxSection,
-  TemplateEmailWrapper,
   TemplateSelectorWrapper,
-  TemplateText,
 } from './styled';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { alertState } from '../../../store/alert';
 import { AdminSectionWrapper } from '../AdminApplicants/styled';
+import { adminUserState } from '../../../store/localUser';
 
-const AdminEmail = () => {
+const AdminEmail: React.FC<{ template: string }> = ({ template }) => {
   const [alert, setAlert] = useRecoilState(alertState);
-  const [template, setTemplate] = useState<string>('템플릿이 없어요 :(');
-  const templateRef = useRef<HTMLInputElement>(null);
+  const admin = useRecoilValue(adminUserState);
+
   const [filteredApplicants, setFilteredApplicants] =
     useState<IApplicantTypeWithID[]>();
   const [checkedApplicants, setCheckedApplicants] = useState(new Set());
@@ -109,6 +107,7 @@ const AdminEmail = () => {
         name: applicant.name,
         applicantID: applicant.id,
         applicantStatus: applicant.status,
+        sender: admin.name,
         uploadDate: new Date(),
       };
       log = [...log, emailLog];
@@ -128,37 +127,14 @@ const AdminEmail = () => {
       <EmailLeftWrapper>
         <EmailLeftInner>
           <EmailCategory>선택한 이메일</EmailCategory>
-          <SelectedBoxSection>
-            {selectApplicants &&
-              selectApplicants.map((applicant) => (
-                <CheckBoxCard
-                  key={`check-${applicant.id}`}
-                  {...applicant}
-                  disabled={true}
-                />
-              ))}
-          </SelectedBoxSection>
+          {selectApplicants && (
+            <SelectedApplicantsBox selectApplicants={selectApplicants} />
+          )}
         </EmailLeftInner>
       </EmailLeftWrapper>
       <EmailRightWrapper>
         <EmailRightInner>
           <TemplateSelectorWrapper>
-            <TemplateText>
-              {template !== '템플릿이 없어요 :(' && '선택한 템플릿 '}
-              {template}
-            </TemplateText>
-            <TemplateEmailWrapper>
-              <TextInput
-                ref={templateRef}
-                placeholder={'템플릿을 입력해주세요.'}
-              />
-            </TemplateEmailWrapper>
-            <GDSCButton
-              color={'googleBlue'}
-              text={'템플릿 선택'}
-              onClick={() => setTemplate(templateRef.current?.value ?? '')}
-              type={'button'}
-            />
             <GDSCButton
               color={!isAllChecked ? 'googleGreen' : 'googleRed'}
               text={!isAllChecked ? '모두 선택' : '모두 해제'}
@@ -167,28 +143,72 @@ const AdminEmail = () => {
             />
             <GDSCButton
               color={'googleBlue'}
-              text={'선택 전송'}
+              text={'이메일 전송'}
               onClick={() =>
                 selectApplicants && sendEmail(template, selectApplicants)
               }
               type={'button'}
             />
           </TemplateSelectorWrapper>
+          {/*<StatusBadge status={'DOCS'} />*/}
           {filteredApplicants && (
             <CheckboxSection>
               {filteredApplicants.map((applicant) => (
-                <CheckBoxCard
-                  {...applicant}
-                  key={applicant.id}
-                  checkedList={checkedApplicants}
-                  setCheckedList={checkedApplicantHandler}
-                />
+                <CheckboxWrapper key={applicant.id}>
+                  <CheckBoxCard
+                    {...applicant}
+                    checkedList={checkedApplicants}
+                    setCheckedList={checkedApplicantHandler}
+                  />
+                </CheckboxWrapper>
               ))}
             </CheckboxSection>
           )}
         </EmailRightInner>
       </EmailRightWrapper>
     </AdminSectionWrapper>
+  );
+};
+
+const SelectedApplicantsBox: React.FC<{
+  selectApplicants: IApplicantTypeWithID[];
+}> = ({ selectApplicants }) => {
+  return (
+    <SelectedBoxSection>
+      {selectApplicants.map((applicant) => (
+        <CheckBoxCard
+          key={`check-${applicant.id}`}
+          {...applicant}
+          disabled={true}
+        />
+      ))}
+    </SelectedBoxSection>
+  );
+};
+
+const EmailLogBox = () => {
+  const [logs, setLogs] = useState<EmailLogType[]>([]);
+  const getEmailLogs = async () => {
+    const res = await dbService
+      .collection('emailLogs')
+      .orderBy('uploadDate', 'desc')
+      .get();
+    setLogs(
+      res.docs.map((doc) => {
+        return { id: doc.id, ...(doc.data() as EmailLogType) };
+      }),
+    );
+  };
+  useEffect(() => {
+    getEmailLogs();
+  }, []);
+  return (
+    <EmailLeftWrapper>
+      <EmailLeftInner>
+        <EmailCategory>이메일 로그</EmailCategory>
+        <SelectedBoxSection></SelectedBoxSection>
+      </EmailLeftInner>
+    </EmailLeftWrapper>
   );
 };
 

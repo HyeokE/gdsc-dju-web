@@ -56,4 +56,5 @@ export interface EmailLogType {
   applicantID: string;
   applicantStatus: StatusType;
   uploadDate: Date;
+  sender: string;
 }

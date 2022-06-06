@@ -12,7 +12,8 @@ const CheckBoxCardWrapper = styled.div<{ disabled?: boolean }>`
   box-shadow: 0 0 10px ${({ theme }) => theme.colors.grey300};
   padding: 16px 30px;
   border-radius: 10px;
-  width: 500px;
+  flex-wrap: wrap;
+  gap: 10px;
   transition: all 0.3s ease-in-out;
   &:hover {
     background: ${({ theme }) => theme.colors.grey50};
@@ -21,12 +22,12 @@ const CheckBoxCardWrapper = styled.div<{ disabled?: boolean }>`
   ${({ disabled }) =>
     disabled &&
     css`
-      width: 400px;
+      width: 500px;
     `}
 `;
 const CheckBoxText = styled.div`
   font-size: ${({ theme }) => theme.fontSize.body2};
-  width: 60px;
+  width: 70px;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -57,6 +58,7 @@ const CheckBoxCard: React.FC<IApplicantTypeWithID & ICheckBoxCardProps> = ({
   name,
   email,
   status,
+  position,
   checkedList,
   setCheckedList,
   disabled,
@@ -74,12 +76,15 @@ const CheckBoxCard: React.FC<IApplicantTypeWithID & ICheckBoxCardProps> = ({
           type={'checkbox'}
           ref={ref}
           checked={checkedList.has(id)}
-          // onChange={(e) => setCheckedList(id, e.target.checked)}
+          onChange={(e) => setCheckedList(id, e.target.checked)}
         />
       )}
       <CheckBoxText>{name}</CheckBoxText>
+      <CheckBoxText>{position}</CheckBoxText>
       <CheckBoxEmailText>{email}</CheckBoxEmailText>
-      <StatusBadge status={status} />
+      <CheckBoxText>
+        <StatusBadge status={status} />
+      </CheckBoxText>
     </CheckBoxCardWrapper>
   );
 };
