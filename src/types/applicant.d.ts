@@ -35,6 +35,15 @@ export interface IApplicantCountType {
   isREJECTED_INTERVIEW: number;
   isHIRED: number;
 }
+export type ApplicantCountType =
+  | 'isDOCS'
+  | 'isINTERVIEW'
+  | 'isREJECTED_DOCS'
+  | 'isREJECTED_INTERVIEW'
+  | 'isHIRED';
+export type ApplicantListType = {
+  [key in ApplicantCountType]: IApplicantTypeWithID[];
+};
 export interface IApplicantChatType {
   text: string;
   createdAt: number;

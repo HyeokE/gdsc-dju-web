@@ -26,6 +26,8 @@ import { AdminSectionWrapper } from '../AdminApplicants/styled';
 import { adminUserState } from '../../../store/localUser';
 import ApplicantModal from '../../../components/admin/ApplicantModal';
 import { MODAL_KEY, modalState } from '../../../store/modal';
+import { AnimatePresence } from 'framer-motion';
+import StatusBadgeBox from '../../../components/admin/StatusBadgeBox';
 
 const AdminEmail: React.FC<{ template: string }> = ({ template }) => {
   const [alert, setAlert] = useRecoilState(alertState);
@@ -132,54 +134,64 @@ const AdminEmail: React.FC<{ template: string }> = ({ template }) => {
   });
 
   return (
-    <AdminSectionWrapper>
-      {modal.adminApplicant && <ApplicantModal />}
-      <EmailLeftWrapper>
-        <EmailLeftInner>
-          <EmailCategory>선택한 이메일</EmailCategory>
-          {selectApplicants && (
-            <SelectedApplicantsBox selectApplicants={selectApplicants} />
-          )}
-        </EmailLeftInner>
-      </EmailLeftWrapper>
-      <EmailRightWrapper>
-        <EmailRightInner>
-          <TemplateSelectorWrapper>
-            <GDSCButton
-              color={!isAllChecked ? 'tossBlue200' : 'tossBlueActive'}
-              text={!isAllChecked ? '모두 선택' : '모두 해제'}
-              onClick={() => checkAllHandler(!isAllChecked)}
-              type={'button'}
-            />
-            <GDSCButton
-              color={'googleBlue'}
-              text={'이메일 전송'}
-              onClick={() =>
-                selectApplicants && sendEmail(template, selectApplicants)
-              }
-              type={'button'}
-            />
-          </TemplateSelectorWrapper>
-          {/*<StatusBadge status={'DOCS'} />*/}
-          {filteredApplicants && (
-            <CheckboxSection>
-              {filteredApplicants.map((applicant) => (
-                <CheckboxWrapper
-                  key={applicant.id}
-                  onDoubleClick={() => openModal(applicant.id)}
-                >
-                  <CheckBoxCard
-                    {...applicant}
-                    checkedList={checkedApplicants}
-                    setCheckedList={checkedApplicantHandler}
-                  />
-                </CheckboxWrapper>
-              ))}
-            </CheckboxSection>
-          )}
-        </EmailRightInner>
-      </EmailRightWrapper>
-    </AdminSectionWrapper>
+    <AnimatePresence>
+      <AdminSectionWrapper>
+        {modal.adminApplicant && <ApplicantModal />}
+
+        <EmailLeftWrapper>
+          <EmailLeftInner>
+            <EmailCategory>선택한 이메일</EmailCategory>
+            {selectApplicants && (
+              <SelectedApplicantsBox selectApplicants={selectApplicants} />
+            )}
+          </EmailLeftInner>
+        </EmailLeftWrapper>
+        <EmailRightWrapper>
+          <EmailRightInner>
+            {filteredApplicants && (
+              <StatusBadgeBox
+                status={filter}
+                setStatus={setFilter}
+                filteredApplicants={filteredApplicants}
+                setFilteredApplicants={setFilteredApplicants}
+              />
+            )}
+            <TemplateSelectorWrapper>
+              <GDSCButton
+                color={!isAllChecked ? 'tossBlue200' : 'tossBlueActive'}
+                text={!isAllChecked ? '모두 선택' : '모두 해제'}
+                onClick={() => checkAllHandler(!isAllChecked)}
+                type={'button'}
+              />
+              <GDSCButton
+                color={'googleBlue'}
+                text={'이메일 전송'}
+                onClick={() =>
+                  selectApplicants && sendEmail(template, selectApplicants)
+                }
+                type={'button'}
+              />
+            </TemplateSelectorWrapper>
+            {filteredApplicants && (
+              <CheckboxSection>
+                {filteredApplicants.map((applicant) => (
+                  <CheckboxWrapper
+                    key={applicant.id}
+                    onDoubleClick={() => openModal(applicant.id)}
+                  >
+                    <CheckBoxCard
+                      {...applicant}
+                      checkedList={checkedApplicants}
+                      setCheckedList={checkedApplicantHandler}
+                    />
+                  </CheckboxWrapper>
+                ))}
+              </CheckboxSection>
+            )}
+          </EmailRightInner>
+        </EmailRightWrapper>
+      </AdminSectionWrapper>
+    </AnimatePresence>
   );
 };
 

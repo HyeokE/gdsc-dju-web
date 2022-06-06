@@ -8,6 +8,7 @@ const AdminEmailLog: React.FC<{
   setTemplate: (template: string) => void;
 }> = ({ template, setTemplate }) => {
   const templateRef = useRef<HTMLInputElement>(null);
+
   return (
     <div>
       <TemplateText>

@@ -56,10 +56,13 @@ export const EmailRightWrapper = styled.div`
   align-items: center;
   flex-direction: column;
   box-sizing: border-box;
+  width: calc(100% - 440px);
 `;
 export const EmailRightInner = styled.div`
   padding: 30px 20px;
   display: flex;
+  box-sizing: border-box;
+  width: 100%;
   justify-content: center;
   flex-direction: column;
   align-items: center;
