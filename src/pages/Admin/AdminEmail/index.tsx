@@ -24,6 +24,8 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { alertState } from '../../../store/alert';
 import { AdminSectionWrapper } from '../AdminApplicants/styled';
 import { adminUserState } from '../../../store/localUser';
+import ApplicantModal from '../../../components/admin/ApplicantModal';
+import { MODAL_KEY, modalState } from '../../../store/modal';
 
 const AdminEmail: React.FC<{ template: string }> = ({ template }) => {
   const [alert, setAlert] = useRecoilState(alertState);
@@ -33,7 +35,14 @@ const AdminEmail: React.FC<{ template: string }> = ({ template }) => {
     useState<IApplicantTypeWithID[]>();
   const [checkedApplicants, setCheckedApplicants] = useState(new Set());
   const [filter, setFilter] = useState<StatusType | null>(null);
-
+  const [modal, setModal] = useRecoilState(modalState);
+  const openModal = (id: string) => {
+    setModal({
+      ...modal,
+      [MODAL_KEY.ADMIN_APPLICANT]: true,
+      selectedId: id,
+    });
+  };
   const checkedApplicantHandler = (id: string, isChecked: boolean) => {
     const newCheckedApplicants = new Set(checkedApplicants);
     if (isChecked) {
@@ -124,6 +133,7 @@ const AdminEmail: React.FC<{ template: string }> = ({ template }) => {
 
   return (
     <AdminSectionWrapper>
+      {modal.adminApplicant && <ApplicantModal />}
       <EmailLeftWrapper>
         <EmailLeftInner>
           <EmailCategory>선택한 이메일</EmailCategory>
@@ -154,7 +164,10 @@ const AdminEmail: React.FC<{ template: string }> = ({ template }) => {
           {filteredApplicants && (
             <CheckboxSection>
               {filteredApplicants.map((applicant) => (
-                <CheckboxWrapper key={applicant.id}>
+                <CheckboxWrapper
+                  key={applicant.id}
+                  onDoubleClick={() => openModal(applicant.id)}
+                >
                   <CheckBoxCard
                     {...applicant}
                     checkedList={checkedApplicants}
@@ -173,14 +186,23 @@ const AdminEmail: React.FC<{ template: string }> = ({ template }) => {
 const SelectedApplicantsBox: React.FC<{
   selectApplicants: IApplicantTypeWithID[];
 }> = ({ selectApplicants }) => {
+  const [modal, setModal] = useRecoilState(modalState);
+  const openModal = (id: string) => {
+    setModal({
+      ...modal,
+      [MODAL_KEY.ADMIN_APPLICANT]: true,
+      selectedId: id,
+    });
+  };
   return (
     <SelectedBoxSection>
       {selectApplicants.map((applicant) => (
-        <CheckBoxCard
+        <div
+          onDoubleClick={() => openModal(applicant.id)}
           key={`check-${applicant.id}`}
-          {...applicant}
-          disabled={true}
-        />
+        >
+          <CheckBoxCard {...applicant} disabled={true} />
+        </div>
       ))}
     </SelectedBoxSection>
   );
