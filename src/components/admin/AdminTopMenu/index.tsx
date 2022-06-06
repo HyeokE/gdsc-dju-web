@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyledLabel, StyledLi, StyledUl, Underline } from './styled';
 
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 type Props = {
   tabs: { label: string; route: string }[];
@@ -26,7 +26,7 @@ const AdminTopMenu = ({
               navigate(item.route);
             }}
           >
-            <StyledLabel selected={item.route == selectedCategory}>
+            <StyledLabel selected={item.route === selectedCategory}>
               {item.label}
             </StyledLabel>
             {item.route === selectedCategory && (

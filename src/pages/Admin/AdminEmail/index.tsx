@@ -136,7 +136,7 @@ const AdminEmail: React.FC<{ template: string }> = ({ template }) => {
         <EmailRightInner>
           <TemplateSelectorWrapper>
             <GDSCButton
-              color={!isAllChecked ? 'googleGreen' : 'googleRed'}
+              color={!isAllChecked ? 'tossBlue200' : 'tossBlueActive'}
               text={!isAllChecked ? '모두 선택' : '모두 해제'}
               onClick={() => checkAllHandler(!isAllChecked)}
               type={'button'}
