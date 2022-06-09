@@ -12,6 +12,8 @@ export const ApplyModalInnerWrapper = styled.div`
 export const ApplyButtonWrapper = styled.div`
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  column-gap: 6px;
   flex-direction: row-reverse;
   margin-top: 10px;
 `;

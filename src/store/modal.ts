@@ -23,21 +23,9 @@ export const ModalState = {
   [MODAL_KEY.ADMIN_APPLICANT]: false,
   [MODAL_KEY.ADMIN_EMAIL_CHECK]: false,
   selectedId: '',
-  modalBody: '',
 };
-interface ModalStateType {
-  adminSignIn: boolean;
-  adminSignUp: boolean;
-  adminSetProfile: boolean;
-  adminEditMember: boolean;
-  memberCard: boolean;
-  applyCheck: boolean;
-  adminApplicant: boolean;
-  adminEmailCheck: boolean;
-  selectedId: string;
-  modalBody: React.ReactNode;
-}
-export const modalState = atom<ModalStateType>({
+
+export const modalState = atom<typeof ModalState>({
   key: MODAL,
   default: ModalState,
 });

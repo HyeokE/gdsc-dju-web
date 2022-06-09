@@ -1,6 +1,7 @@
+import { motion } from 'framer-motion';
 import styled, { css } from 'styled-components';
 
-export const LoaderBackground = styled.div<{ background?: boolean }>`
+export const LoaderBackground = styled(motion.div)<{ background?: boolean }>`
   display: flex;
   background: rgba(255, 255, 255, 0.7);
   ${(props) =>
@@ -14,8 +15,9 @@ export const LoaderBackground = styled.div<{ background?: boolean }>`
   align-items: center;
   justify-content: center;
   position: fixed;
-  z-index: 999;
+  z-index: 1000;
 `;
 export const GoogleLoader = styled.div`
   width: 100px;
+  z-index: 1001;
 `;
