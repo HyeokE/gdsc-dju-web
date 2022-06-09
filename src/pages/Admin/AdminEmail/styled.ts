@@ -63,7 +63,7 @@ export const EmailRightInner = styled.div`
   display: flex;
   box-sizing: border-box;
   width: 100%;
-  justify-content: center;
+  justify-content: flex-end;
   flex-direction: column;
   align-items: center;
   flex-wrap: wrap;

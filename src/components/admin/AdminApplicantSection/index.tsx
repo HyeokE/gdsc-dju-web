@@ -6,8 +6,6 @@ import {
   ApplicantSection,
 } from './styled';
 import {
-  ApplicantsBadgeWrapper,
-  ApplicantsStatusWrapper,
   Handle,
   InformationHeader,
   Switch,
@@ -16,13 +14,8 @@ import {
 import { useRecoilState } from 'recoil';
 import { recruitmentState } from '../../../store/recruitHandler';
 import { useSearchParams } from 'react-router-dom';
-import {
-  IApplicantCountType,
-  IApplicantTypeWithID,
-  StatusType,
-} from '../../../types/applicant';
+import { IApplicantTypeWithID, StatusType } from '../../../types/applicant';
 import { position } from '../AdminApplicantsSidebar';
-import StatusBadge from '../Statusbadge';
 import { MODAL_KEY, modalState } from '../../../store/modal';
 import ApplicantModal from '../ApplicantModal';
 import { AnimatePresence, LayoutGroup } from 'framer-motion';
@@ -101,34 +94,6 @@ const AdminApplicantSection = () => {
         </ApplicantSection>
       </LayoutGroup>
     </AnimatePresence>
-  );
-};
-
-const ApplicantStatus: React.FC<IApplicantCountType> = ({
-  isDOCS,
-  isINTERVIEW,
-  isREJECTED_DOCS,
-  isREJECTED_INTERVIEW,
-  isHIRED,
-}) => {
-  return (
-    <ApplicantsStatusWrapper>
-      <ApplicantsBadgeWrapper>
-        <StatusBadge status={'DOCS'} /> {isDOCS}
-      </ApplicantsBadgeWrapper>
-      <ApplicantsBadgeWrapper>
-        <StatusBadge status={'INTERVIEW'} /> {isINTERVIEW}
-      </ApplicantsBadgeWrapper>
-      <ApplicantsBadgeWrapper>
-        <StatusBadge status={'REJECTED_DOCS'} /> {isREJECTED_DOCS}
-      </ApplicantsBadgeWrapper>
-      <ApplicantsBadgeWrapper>
-        <StatusBadge status={'REJECTED_INTERVIEW'} /> {isREJECTED_INTERVIEW}
-      </ApplicantsBadgeWrapper>
-      <ApplicantsBadgeWrapper>
-        <StatusBadge status={'HIRED'} /> {isHIRED}
-      </ApplicantsBadgeWrapper>
-    </ApplicantsStatusWrapper>
   );
 };
 

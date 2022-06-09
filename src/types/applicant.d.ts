@@ -67,3 +67,17 @@ export interface EmailLogType {
   uploadDate: Date;
   sender: string;
 }
+export interface getEmailLogType {
+  email: string;
+  name: string;
+  applicantID: string;
+  applicantStatus: StatusType;
+  uploadDate: {
+    seconds: number;
+    nanoseconds: number;
+  };
+  sender: string;
+}
+export interface EmailLogTypeWithID extends getEmailLogType {
+  id: string;
+}

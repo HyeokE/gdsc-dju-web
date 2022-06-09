@@ -70,7 +70,7 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
             ref={ref}
           />
         </StyledInputWrapper>
-        <ErrorBox>{errorToggle && <>{error}</>}</ErrorBox>
+        {/*<ErrorBox>{errorToggle && <>{error}</>}</ErrorBox>*/}
       </>
     );
   },

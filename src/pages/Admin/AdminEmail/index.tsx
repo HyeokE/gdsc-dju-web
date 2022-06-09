@@ -3,7 +3,6 @@ import { GDSCButton } from '../../../components/common/Button';
 import { dbService } from '../../../firebase/firebase';
 import {
   EmailLogType,
-  IApplicantType,
   IApplicantTypeWithID,
   StatusType,
 } from '../../../types/applicant';
@@ -133,15 +132,15 @@ const AdminEmail: React.FC<{ template: string }> = ({ template }) => {
         </EmailLeftWrapper>
         <EmailRightWrapper>
           <EmailRightInner>
-            {filteredApplicants && (
-              <StatusBadgeBox
-                status={filter}
-                setStatus={setFilter}
-                filteredApplicants={filteredApplicants}
-                setFilteredApplicants={setFilteredApplicants}
-              />
-            )}
             <TemplateSelectorWrapper>
+              {filteredApplicants && (
+                <StatusBadgeBox
+                  status={filter}
+                  setStatus={setFilter}
+                  filteredApplicants={filteredApplicants}
+                  setFilteredApplicants={setFilteredApplicants}
+                />
+              )}
               <GDSCButton
                 color={!isAllChecked ? 'tossBlue200' : 'tossBlueActive'}
                 text={!isAllChecked ? '모두 선택' : '모두 해제'}
