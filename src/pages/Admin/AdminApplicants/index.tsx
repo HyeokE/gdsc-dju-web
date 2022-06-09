@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { AdminSectionWrapper } from './styled';
-import { useRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { recruitmentState } from '../../../store/recruitHandler';
 import API from '../../../apis/index';
 import { useSearchParams } from 'react-router-dom';
@@ -9,7 +9,7 @@ import AdminApplicantsSidebar from '../../../components/admin/AdminApplicantsSid
 import AdminApplicantSection from '../../../components/admin/AdminApplicantSection';
 
 const AdminApplicants = () => {
-  const [recruit, setRecruit] = useRecoilState(recruitmentState);
+  const recruit = useRecoilValue(recruitmentState);
   const [searchParams, setSearchParams] = useSearchParams();
   const location = useLocation();
   useEffect(() => {

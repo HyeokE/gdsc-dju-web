@@ -5,7 +5,7 @@ export const RecruitCard = styled.p`
   box-sizing: border-box;
   font-size: ${(props) => props.theme.fontSize.body1};
 `;
-export const RecruitCardWrapper = styled.div`
+export const RecruitCardWrapper = styled.div<{ isInRoute: boolean }>`
   padding: 14px 20px;
   display: flex;
   flex-direction: row;
@@ -14,6 +14,12 @@ export const RecruitCardWrapper = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.grey300};
   border-radius: 10px;
   box-shadow: 0 2px 4px ${({ theme }) => theme.colors.grey300};
+  transition: all 0.3s ease-in-out;
+  ${({ isInRoute }) =>
+    isInRoute &&
+    css`
+      background: ${({ theme }) => theme.colors.blue200};
+    `}
 `;
 export const AdminSidebar = styled.aside`
   background: ${({ theme }) => theme.colors.grey100};

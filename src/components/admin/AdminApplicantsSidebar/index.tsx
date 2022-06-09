@@ -46,8 +46,9 @@ const AnnouncementCard = ({
   const setParams = (key: string) => {
     setSearchParams({ type: key });
   };
+  const isInRoute = searchParams.get('type') === data;
   return (
-    <RecruitCardWrapper onClick={() => setParams(data)}>
+    <RecruitCardWrapper onClick={() => setParams(data)} isInRoute={isInRoute}>
       <StatusCircle status={status} />
       <RecruitCard>{position[data as keyof typeof position]}</RecruitCard>
     </RecruitCardWrapper>

@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useEffect, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import ApplicantCard from '../ApplicantCard';
 import {
   ApplicantCardSection,
@@ -6,8 +6,6 @@ import {
   ApplicantSection,
 } from './styled';
 import {
-  ApplicantsBadgeWrapper,
-  ApplicantsStatusWrapper,
   Handle,
   InformationHeader,
   Switch,
@@ -16,80 +14,53 @@ import {
 import { useRecoilState } from 'recoil';
 import { recruitmentState } from '../../../store/recruitHandler';
 import { useSearchParams } from 'react-router-dom';
-import { dbService } from '../../../firebase/firebase';
-import {
-  IApplicantCountType,
-  IApplicantType,
-  IApplicantTypeWithID,
-} from '../../../types/applicant';
+import { IApplicantTypeWithID, StatusType } from '../../../types/applicant';
 import { position } from '../AdminApplicantsSidebar';
-import StatusBadge from '../Statusbadge';
 import { MODAL_KEY, modalState } from '../../../store/modal';
 import ApplicantModal from '../ApplicantModal';
 import { AnimatePresence, LayoutGroup } from 'framer-motion';
+import StatusBadgeBox from '../StatusBadgeBox';
+import { getApplicants } from '../../../utils/applicantsHandler';
 
 const AdminApplicantSection = () => {
   const [modal, setModal] = useRecoilState(modalState);
   const [applicants, setApplicants] = useState<IApplicantTypeWithID[]>();
-  const [applicantCount, setApplicantCount] = useState<IApplicantCountType>({
-    isDOCS: 0,
-    isINTERVIEW: 0,
-    isREJECTED: 0,
-    isHIRED: 0,
-  });
-  const [searchParams] = useSearchParams();
+  const [status, setStatus] = useState<StatusType | null>(null);
 
+  const [searchParams] = useSearchParams();
   const currentParam = searchParams.get('type') as string;
-  const openModal = (id: string) => {
+
+  const modalHandler = (id: string) => {
     setModal({
       ...modal,
       [MODAL_KEY.ADMIN_APPLICANT]: true,
       selectedId: id,
     });
   };
+
+  const filterApplicantsAsPosition = async () => {
+    await getApplicants(status, setApplicants);
+    const currentPosition =
+      position[currentParam as keyof typeof position].toLowerCase();
+    if (applicants) {
+      const list = [...applicants];
+      const filteredApplicantsByPosition =
+        currentParam !== 'home'
+          ? list.filter((data) =>
+              data.position.toLowerCase().includes(currentPosition),
+            )
+          : list;
+      setApplicants(filteredApplicantsByPosition);
+    }
+  };
+
   useEffect(() => {
-    dbService
-      .collection('applicants')
-      .get()
-      .then((querySnapshot) => {
-        const tempDoc: IApplicantTypeWithID[] = querySnapshot.docs.map(
-          (doc) => {
-            return { id: doc.id, ...(doc.data() as IApplicantType) };
-          },
-        );
-        const currentPosition =
-          position[currentParam as keyof typeof position].toLowerCase();
-        const filteredApplicantsByPosition =
-          currentParam !== 'home'
-            ? tempDoc.filter((data) =>
-                data.position.toLowerCase().includes(currentPosition),
-              )
-            : tempDoc;
-        tempDoc && setApplicants(filteredApplicantsByPosition);
-        countApplicantsHandler(filteredApplicantsByPosition);
-      });
+    filterApplicantsAsPosition();
   }, [currentParam, modal.selectedId]);
-  const countApplicantsHandler = useCallback(
-    (filteredApplicants: IApplicantTypeWithID[]) => {
-      const DOCS = filteredApplicants.filter((data) => data.status === 'DOCS');
-      const INTERVIEW = filteredApplicants.filter(
-        (data) => data.status === 'INTERVIEW',
-      );
-      const REJECTED = filteredApplicants.filter(
-        (data) => data.status === 'REJECTED',
-      );
-      const HIRED = filteredApplicants.filter(
-        (data) => data.status === 'HIRED',
-      );
-      setApplicantCount({
-        isDOCS: DOCS.length,
-        isINTERVIEW: INTERVIEW.length,
-        isREJECTED: REJECTED.length,
-        isHIRED: HIRED.length,
-      });
-    },
-    [currentParam],
-  );
+
+  useEffect(() => {
+    getApplicants(status, setApplicants);
+  }, [status]);
 
   return (
     <AnimatePresence>
@@ -98,14 +69,22 @@ const AdminApplicantSection = () => {
         <ApplicantSection>
           <InformationHeader>
             <AnnouncementToggle currentParam={currentParam} />
-            <ApplicantStatus {...applicantCount} />
+            {applicants && (
+              <StatusBadgeBox
+                status={status}
+                setStatus={setStatus}
+                filteredApplicants={applicants}
+                setFilteredApplicants={setApplicants}
+              />
+            )}
+            {/*<ApplicantStatus {...applicantCount} />*/}
           </InformationHeader>
           {applicants && (
             <ApplicantCardSection>
               {applicants.map((applicant) => (
                 <ApplicantCardWrapper
                   key={applicant.id}
-                  onClick={() => openModal(applicant.id)}
+                  onClick={() => modalHandler(applicant.id)}
                 >
                   <ApplicantCard {...applicant} />
                 </ApplicantCardWrapper>
@@ -115,30 +94,6 @@ const AdminApplicantSection = () => {
         </ApplicantSection>
       </LayoutGroup>
     </AnimatePresence>
-  );
-};
-
-const ApplicantStatus: React.FC<IApplicantCountType> = ({
-  isDOCS,
-  isINTERVIEW,
-  isREJECTED,
-  isHIRED,
-}) => {
-  return (
-    <ApplicantsStatusWrapper>
-      <ApplicantsBadgeWrapper>
-        <StatusBadge status={'DOCS'} /> {isDOCS}
-      </ApplicantsBadgeWrapper>
-      <ApplicantsBadgeWrapper>
-        <StatusBadge status={'INTERVIEW'} /> {isINTERVIEW}
-      </ApplicantsBadgeWrapper>
-      <ApplicantsBadgeWrapper>
-        <StatusBadge status={'REJECTED'} /> {isREJECTED}
-      </ApplicantsBadgeWrapper>
-      <ApplicantsBadgeWrapper>
-        <StatusBadge status={'HIRED'} /> {isHIRED}
-      </ApplicantsBadgeWrapper>
-    </ApplicantsStatusWrapper>
   );
 };
 

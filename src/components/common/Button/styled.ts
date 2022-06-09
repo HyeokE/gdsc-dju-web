@@ -14,7 +14,6 @@ export const StyledButton = styled.button<{
   border: 1px solid ${(props) => props.theme.colors.grey300};
   font-size: ${(props) => props.theme.fontSize.body2};
   padding: 10px 30px;
-  margin-bottom: 6px;
   cursor: pointer;
   box-shadow: 0 2px 12px rgba(25, 31, 40, 0.08);
   border-radius: 10px;
