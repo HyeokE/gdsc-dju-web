@@ -14,7 +14,7 @@ interface IEmailLogProps {
 
 const StyledRowLine = styled.div`
   background: ${({ theme }) => theme.colors.grey400};
-  width: 220px;
+  width: 33%;
   height: 1px;
 `;
 const 구분선 = styled.div`
@@ -23,7 +23,7 @@ const 구분선 = styled.div`
   flex-direction: row;
   justify-content: center;
   box-sizing: border-box;
-  padding: 4px 20px;
+  padding: 6px 0;
   flex-wrap: wrap;
   gap: 20px;
   width: 100%;
@@ -36,7 +36,7 @@ const EmailLogCard = styled.div`
   flex-direction: row;
   font-size: ${({ theme }) => theme.fontSize.body2};
   color: ${({ theme }) => theme.colors.grey700};
-  width: 530px;
+  width: 100%;
   justify-content: space-between;
   box-sizing: border-box;
   padding: 14px 20px;

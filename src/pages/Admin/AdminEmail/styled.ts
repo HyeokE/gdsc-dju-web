@@ -14,13 +14,13 @@ export const CheckboxWrapper = styled.div`
   align-items: center;
   height: fit-content;
   margin-bottom: 10px;
-  @media (min-width: 1200px) {
+  @media (min-width: 1000px) {
     width: 100%;
   }
-  @media (min-width: 1400px) {
+  @media (min-width: 1200px) {
     width: 50%;
   }
-  @media (min-width: 1920px) {
+  @media (min-width: 1700px) {
     width: 33%;
   }
 `;
@@ -29,7 +29,11 @@ export const SelectedBoxSection = styled.section`
   flex-wrap: wrap;
   gap: 10px;
   flex-direction: column;
-  justify-content: space-between;
+  overflow: scroll;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 `;
 export const TemplateSelectorWrapper = styled.div`
   display: flex;
@@ -56,7 +60,7 @@ export const EmailRightWrapper = styled.div`
   align-items: center;
   flex-direction: column;
   box-sizing: border-box;
-  width: calc(100% - 440px);
+  width: calc(100% - 340px);
 `;
 export const EmailRightInner = styled.div`
   padding: 30px 20px;
@@ -77,7 +81,7 @@ export const EmailLeftWrapper = styled.div`
 export const EmailLeftInner = styled.div`
   padding: 30px 20px;
   margin: 0 auto;
-  width: 400px;
+  width: 300px;
   display: flex;
   align-items: center;
   justify-content: center;

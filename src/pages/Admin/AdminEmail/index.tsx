@@ -136,12 +136,20 @@ const AdminEmail: React.FC<{ template: string }> = ({ template }) => {
     <AnimatePresence>
       <AdminSectionWrapper>
         {modal.adminApplicant && <ApplicantModal />}
-
         <EmailLeftWrapper>
           <EmailLeftInner>
             <EmailCategory>선택한 이메일</EmailCategory>
             {selectApplicants && (
-              <SelectedApplicantsBox selectApplicants={selectApplicants} />
+              <SelectedBoxSection>
+                {selectApplicants.map((applicant) => (
+                  <div
+                    onDoubleClick={() => openModal(applicant.id)}
+                    key={`check-${applicant.id}`}
+                  >
+                    <CheckBoxCard {...applicant} disabled={true} />
+                  </div>
+                ))}
+              </SelectedBoxSection>
             )}
           </EmailLeftInner>
         </EmailLeftWrapper>
@@ -191,57 +199,6 @@ const AdminEmail: React.FC<{ template: string }> = ({ template }) => {
         </EmailRightWrapper>
       </AdminSectionWrapper>
     </AnimatePresence>
-  );
-};
-
-const SelectedApplicantsBox: React.FC<{
-  selectApplicants: IApplicantTypeWithID[];
-}> = ({ selectApplicants }) => {
-  const [modal, setModal] = useRecoilState(modalState);
-  const openModal = (id: string) => {
-    setModal({
-      ...modal,
-      [MODAL_KEY.ADMIN_APPLICANT]: true,
-      selectedId: id,
-    });
-  };
-  return (
-    <SelectedBoxSection>
-      {selectApplicants.map((applicant) => (
-        <div
-          onDoubleClick={() => openModal(applicant.id)}
-          key={`check-${applicant.id}`}
-        >
-          <CheckBoxCard {...applicant} disabled={true} />
-        </div>
-      ))}
-    </SelectedBoxSection>
-  );
-};
-
-const EmailLogBox = () => {
-  const [logs, setLogs] = useState<EmailLogType[]>([]);
-  const getEmailLogs = async () => {
-    const res = await dbService
-      .collection('emailLogs')
-      .orderBy('uploadDate', 'desc')
-      .get();
-    setLogs(
-      res.docs.map((doc) => {
-        return { id: doc.id, ...(doc.data() as EmailLogType) };
-      }),
-    );
-  };
-  useEffect(() => {
-    getEmailLogs();
-  }, []);
-  return (
-    <EmailLeftWrapper>
-      <EmailLeftInner>
-        <EmailCategory>이메일 로그</EmailCategory>
-        <SelectedBoxSection></SelectedBoxSection>
-      </EmailLeftInner>
-    </EmailLeftWrapper>
   );
 };
 

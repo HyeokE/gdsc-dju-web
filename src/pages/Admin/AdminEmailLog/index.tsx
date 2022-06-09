@@ -7,6 +7,7 @@ import { useFirestoreQuery } from '../../../hooks/useFirebaseQuery';
 import { dbService } from '../../../firebase/firebase';
 import { EmailLogTypeWithID } from '../../../types/applicant';
 import EmailLogBox from '../../../components/admin/EmailLogBox';
+import { ContainerInner, LayoutContainer } from '../../../styles/layouts';
 
 const AdminEmailLog: React.FC<{
   template: string;
@@ -21,7 +22,7 @@ const AdminEmailLog: React.FC<{
   console.log(emailLogs);
 
   return (
-    <div>
+    <ContainerInner>
       <TemplateSelectWrapper>
         <TemplateText>
           {template !== '템플릿이 없어요 :(' && '선택한 템플릿 '}
@@ -37,7 +38,7 @@ const AdminEmailLog: React.FC<{
         />
       </TemplateSelectWrapper>
       <EmailLogBox emailLogs={emailLogs} />
-    </div>
+    </ContainerInner>
   );
 };
 

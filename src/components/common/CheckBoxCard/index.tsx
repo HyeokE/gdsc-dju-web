@@ -15,7 +15,7 @@ const CheckBoxCardWrapper = styled.div<{ disabled?: boolean }>`
   height: 46px;
   border-radius: 6px;
   transition: all 0.3s ease-in-out;
-  width: 450px;
+  width: 400px;
   &:hover {
     background: ${({ theme }) => theme.colors.grey50};
     cursor: pointer;
@@ -23,12 +23,12 @@ const CheckBoxCardWrapper = styled.div<{ disabled?: boolean }>`
   ${({ disabled }) =>
     disabled &&
     css`
-      width: 400px;
+      width: 300px;
     `}
 `;
 const CheckBoxText = styled.div<{ disabled?: boolean }>`
   font-size: ${({ theme }) => theme.fontSize.body2};
-  width: 80px;
+  width: 70px;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -40,7 +40,10 @@ const CheckBoxText = styled.div<{ disabled?: boolean }>`
 `;
 const CheckBoxEmailText = styled.div`
   font-size: ${({ theme }) => theme.fontSize.body2};
-  width: 200px;
+  width: 130px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 `;
 const CheckBox = styled.input`
   display: inline-block;
@@ -86,7 +89,7 @@ const CheckBoxCard: React.FC<IApplicantTypeWithID & ICheckBoxCardProps> = ({
         />
       )}
       <CheckBoxText>{name}</CheckBoxText>
-      {disabled && <CheckBoxText>{position}</CheckBoxText>}
+      {!disabled && <CheckBoxText>{position}</CheckBoxText>}
       <CheckBoxEmailText>{email}</CheckBoxEmailText>
       {!disabled && <StatusBadge status={status} />}
     </CheckBoxCardWrapper>
