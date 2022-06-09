@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 import styled, { css } from 'styled-components';
 import { EmailLogTypeWithID } from '../../../types/applicant';
 import { uploadDate } from '../../../utils/timeFilter';
@@ -10,7 +10,6 @@ interface IEmailLogBoxProps {
 interface IEmailLogProps {
   emailLog: EmailLogTypeWithID;
   lastDate: string;
-  setLastDate?: (date: string) => void;
 }
 
 const StyledRowLine = styled.div`
@@ -90,11 +89,7 @@ const EmailLogBox: React.FC<IEmailLogBoxProps> = ({ emailLogs }) => {
     </EmailLogSection>
   );
 };
-const EmailLog: React.FC<IEmailLogProps> = ({
-  emailLog,
-  lastDate,
-  setLastDate,
-}) => {
+const EmailLog: React.FC<IEmailLogProps> = ({ emailLog, lastDate }) => {
   const date = uploadDate(emailLog.uploadDate.seconds).Y_M_D;
 
   return (
