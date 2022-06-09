@@ -66,6 +66,7 @@ export interface EmailLogType {
   applicantStatus: StatusType;
   uploadDate: Date;
   sender: string;
+  status: number;
 }
 export interface getEmailLogType {
   email: string;

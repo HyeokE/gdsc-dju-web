@@ -13,11 +13,10 @@ const variants = {
   active: {
     opacity: 1,
     scale: 1,
-    y: 0,
   },
   unActive: {
     opacity: 0,
-    scale: 0,
+    scale: 0.5,
   },
 };
 const Alert = () => {
@@ -30,9 +29,8 @@ const Alert = () => {
         alertHandle: false,
       });
       clearTimeout(alertTimer);
-      console.log('clear');
     }, 4000);
-  }, []);
+  }, [alert.alertHandle]);
   const alertStatusColor = {
     success: '#55af7a',
     error: '#f44336',
@@ -40,19 +38,23 @@ const Alert = () => {
   };
 
   return (
-    <AlertWrapper>
-      <AlertInner
-        variants={variants}
-        exit={'unActive'}
-        animate={'active'}
-        initial={{ opacity: 0, scale: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        <AlertInnerWrapper alertColor={alertStatusColor[alert.alertStatus]}>
-          <AlertText>{alert.alertMessage}</AlertText>
-        </AlertInnerWrapper>
-      </AlertInner>
-    </AlertWrapper>
+    <AnimatePresence>
+      {alert.alertHandle && (
+        <AlertWrapper>
+          <AlertInner
+            variants={variants}
+            exit={'unActive'}
+            animate={'active'}
+            initial={{ opacity: 0, scale: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <AlertInnerWrapper alertColor={alertStatusColor[alert.alertStatus]}>
+              <AlertText>{alert.alertMessage}</AlertText>
+            </AlertInnerWrapper>
+          </AlertInner>
+        </AlertWrapper>
+      )}
+    </AnimatePresence>
   );
 };
 

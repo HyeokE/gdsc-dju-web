@@ -25,6 +25,7 @@ import { modalVariants } from '../../common/Variants/modalVariants';
 import StatusBadge from '../Statusbadge';
 import OutsideClickHandler from '../../../utils/OutsideClickHandler';
 import ApplicantChat from '../ApplicantChatSection';
+import { AnimatePresence } from 'framer-motion';
 
 const ApplicantModal = () => {
   const [applicantData, setApplicantData] = useState<IApplicantTypeWithID>();
@@ -49,45 +50,49 @@ const ApplicantModal = () => {
     });
   };
   useEffect(() => {
-    getApplicant(modal.selectedId);
-  }, []);
+    modal.selectedId && getApplicant(modal.selectedId);
+  }, [modal.selectedId]);
 
   return (
-    <ApplicantModalWrapper>
-      <OutsideClickHandler outsideClick={closeModal}>
-        <ApplicantModalInner
-          variants={modalVariants}
-          layoutId={`card-${modal.selectedId}`}
-        >
-          {applicantData && (
-            <ApplicantInfoWrapper>
-              <ApplicantInfo applicantData={applicantData} />
-              <ApplicantInfoState
-                applicantData={applicantData}
-                setApplicantData={setApplicantData}
-              />
-            </ApplicantInfoWrapper>
-          )}
-          <ApplicantInfoSection>
-            <ApplicantInfoHeader>
-              <ClearButton onClick={closeModal} />
-            </ApplicantInfoHeader>
-            {applicantData && (
-              <ApplicantDataWrapper>
-                <object
-                  type="text/html"
-                  data={applicantData?.fileURL}
-                  width="100%"
-                  height="100%"
-                />
+    <AnimatePresence>
+      {modal.adminApplicant && modal.selectedId && (
+        <ApplicantModalWrapper>
+          <OutsideClickHandler outsideClick={closeModal}>
+            <ApplicantModalInner
+              variants={modalVariants}
+              layoutId={`card-${modal.selectedId}`}
+            >
+              {applicantData && (
+                <ApplicantInfoWrapper>
+                  <ApplicantInfo applicantData={applicantData} />
+                  <ApplicantInfoState
+                    applicantData={applicantData}
+                    setApplicantData={setApplicantData}
+                  />
+                </ApplicantInfoWrapper>
+              )}
+              <ApplicantInfoSection>
+                <ApplicantInfoHeader>
+                  <ClearButton onClick={closeModal} />
+                </ApplicantInfoHeader>
+                {applicantData && (
+                  <ApplicantDataWrapper>
+                    <object
+                      type="text/html"
+                      data={applicantData?.fileURL}
+                      width="100%"
+                      height="100%"
+                    />
 
-                <ApplicantChat applicantId={applicantData.id} />
-              </ApplicantDataWrapper>
-            )}
-          </ApplicantInfoSection>
-        </ApplicantModalInner>
-      </OutsideClickHandler>
-    </ApplicantModalWrapper>
+                    <ApplicantChat applicantId={applicantData.id} />
+                  </ApplicantDataWrapper>
+                )}
+              </ApplicantInfoSection>
+            </ApplicantModalInner>
+          </OutsideClickHandler>
+        </ApplicantModalWrapper>
+      )}
+    </AnimatePresence>
   );
 };
 const ApplicantInfoState: React.FC<{

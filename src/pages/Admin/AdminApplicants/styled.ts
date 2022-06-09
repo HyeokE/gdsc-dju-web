@@ -29,21 +29,12 @@ export const InformationHeader = styled.div`
   display: flex;
   justify-content: flex-end;
   width: 100%;
-  padding: 10px 3%;
-  box-sizing: border-box;
-`;
-export const ApplicantsStatusWrapper = styled.div`
-  display: flex;
   align-items: center;
-`;
-export const ApplicantsBadgeWrapper = styled.div`
-  font-size: ${({ theme }) => theme.fontSize.body2};
-  color: ${({ theme }) => theme.colors.grey700};
-  display: flex;
-  align-items: center;
-  padding: 0 10px;
   flex-wrap: wrap;
-  gap: 0 5px;
+  gap: 10px;
+  height: 70px;
+  box-sizing: border-box;
+  flex-direction: row;
 `;
 
 export const ToggleButton = styled.div`
