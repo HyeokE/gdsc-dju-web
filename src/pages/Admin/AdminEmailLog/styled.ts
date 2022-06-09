@@ -7,4 +7,5 @@ export const TemplateSelectWrapper = styled.div`
   flex-wrap: wrap;
   gap: 10px;
   width: 100%;
+  margin: 20px 0;
 `;
