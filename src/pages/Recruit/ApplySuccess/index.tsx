@@ -62,7 +62,7 @@ const ApplySuccess = () => {
               <ApplyLinkWrapper>
                 - 이메일:
                 <ApplyLink href={'mailto:gdscdju@gmail.com'} target={'_blank'}>
-                  https://open.kakao.com/o/sjN4kDsd
+                  gdscdju@gmail.com
                 </ApplyLink>
               </ApplyLinkWrapper>{' '}
               <ApplyLinkWrapper>
