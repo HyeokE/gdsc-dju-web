@@ -12,7 +12,6 @@ import {
   RecruitFormInner,
   RecruitFormWrapper,
 } from './styled';
-import TextInput from '../../../components/common/input/TextInput';
 import { createSearchParams, useNavigate, useParams } from 'react-router-dom';
 import { positionSelect } from './FormFunctions';
 import {
@@ -32,6 +31,7 @@ import ApplyModal from '../../../components/common/Modal/ApplyModal';
 import { MODAL_KEY, modalState } from '../../../store/modal';
 import { alertState } from '../../../store/alert';
 import ReactHelmet from '../../../components/common/ReactHelmet';
+import { FormikTextInput } from '../../../components/common/input/TextInput';
 
 const RecruitForm = () => {
   const { id } = useParams();
@@ -172,7 +172,7 @@ const RecruitForm = () => {
                 <FormMargin />
                 <div>
                   <FormLabel essential={true}>이름(실명)</FormLabel>
-                  <TextInput
+                  <FormikTextInput
                     placeholder={'김구글'}
                     name={'name'}
                     value={recruitFormik.values.name}
@@ -183,7 +183,7 @@ const RecruitForm = () => {
                 </div>
                 <div>
                   <FormLabel essential={true}>전화번호</FormLabel>
-                  <TextInput
+                  <FormikTextInput
                     placeholder={'010-0000-0000'}
                     name={'phoneNumber'}
                     value={recruitFormik.values.phoneNumber}
@@ -194,7 +194,7 @@ const RecruitForm = () => {
                 </div>
                 <div>
                   <FormLabel essential={true}>이메일(gmail)</FormLabel>
-                  <TextInput
+                  <FormikTextInput
                     placeholder={'googledev@gmail.com'}
                     name={'email'}
                     value={recruitFormik.values.email}
@@ -205,7 +205,7 @@ const RecruitForm = () => {
                 </div>
                 <div>
                   <FormLabel essential={true}>학과</FormLabel>
-                  <TextInput
+                  <FormikTextInput
                     placeholder={'구글개발학과'}
                     name={'major'}
                     value={recruitFormik.values.major}
@@ -217,7 +217,7 @@ const RecruitForm = () => {
 
                 <div>
                   <FormLabel essential={true}>학번</FormLabel>
-                  <TextInput
+                  <FormikTextInput
                     placeholder={'20221234'}
                     name={'studentID'}
                     value={recruitFormik.values.studentID}
@@ -228,7 +228,7 @@ const RecruitForm = () => {
                 </div>
                 <div>
                   <FormLabel essential={true}>포지션</FormLabel>
-                  <TextInput
+                  <FormikTextInput
                     disabled={true}
                     name={'position'}
                     placeholder={position}
@@ -275,7 +275,7 @@ const RecruitForm = () => {
                 </div>
                 <div>
                   <FormLabel essential={true}>링크 1</FormLabel>
-                  <TextInput
+                  <FormikTextInput
                     placeholder={'https://'}
                     name={'link0'}
                     value={recruitFormik.values.link0}
@@ -285,7 +285,7 @@ const RecruitForm = () => {
                   />
                   <FormMarginXS />
                   <FormLabel>링크 2 (선택사항)</FormLabel>
-                  <TextInput
+                  <FormikTextInput
                     placeholder={'https://'}
                     name={'link1'}
                     value={recruitFormik.values.link1}
@@ -305,7 +305,7 @@ const RecruitForm = () => {
                 <FormMarginXS />
                 <div>
                   <FormLabel>추천인</FormLabel>
-                  <TextInput
+                  <FormikTextInput
                     placeholder={'GDSC에 추천인이 있다면 입력해주세요.'}
                     name={'recommender'}
                     value={recruitFormik.values.recommender}

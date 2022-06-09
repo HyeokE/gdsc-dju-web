@@ -31,13 +31,12 @@ export const StyledUl = styled.ul`
 `;
 export const StyledLabel = styled.div<{ selected: boolean }>`
   z-index: 1;
-  background: transparent;
-  color: ${({ theme }) => theme.colors.grey300};
+  color: ${({ theme }) => theme.colors.grey900};
   font-size: ${({ theme }) => theme.fontSize.body2};
-  ${(selected) =>
+  ${({ selected }) =>
     selected &&
     css`
-      color: ${({ theme }) => theme.colors.grey900};
+      color: ${({ theme }) => theme.colors.white};
     `}
 `;
 export const Underline = styled(motion.div)`

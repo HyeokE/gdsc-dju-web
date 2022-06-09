@@ -1,5 +1,6 @@
 import React, { memo, useCallback, useEffect, useState } from 'react';
 import {
+  ApplicantBadgeWrapper,
   ApplicantDataWrapper,
   ApplicantInfoHeader,
   ApplicantInfoInner,
@@ -15,7 +16,7 @@ import {
   ApplicantNameWrapper,
 } from './styled';
 import { dbService } from '../../../firebase/firebase';
-import { IApplicantTypeWithID, statusType } from '../../../types/applicant';
+import { IApplicantTypeWithID, StatusType } from '../../../types/applicant';
 import { useRecoilState } from 'recoil';
 import { MODAL_KEY, modalState } from '../../../store/modal';
 import { ClearButton } from '../../common/ModalButton';
@@ -94,7 +95,7 @@ const ApplicantInfoState: React.FC<{
   setApplicantData: (data: IApplicantTypeWithID) => void;
 }> = ({ applicantData, setApplicantData }) => {
   const applicantRef = dbService.collection('applicants').doc(applicantData.id);
-  const updateStatus = useCallback(async (status: statusType) => {
+  const updateStatus = useCallback(async (status: StatusType) => {
     await applicantRef.update({
       status: status,
     });
@@ -106,30 +107,36 @@ const ApplicantInfoState: React.FC<{
 
   return (
     <ApplicantInfoStateWrapper>
-      <div onClick={() => updateStatus('DOCS')}>
+      <ApplicantBadgeWrapper onClick={() => updateStatus('DOCS')}>
         <StatusBadge
           status={'DOCS'}
           disable={applicantData.status !== 'DOCS'}
         />
-      </div>
-      <div onClick={() => updateStatus('INTERVIEW')}>
+      </ApplicantBadgeWrapper>
+      <ApplicantBadgeWrapper onClick={() => updateStatus('REJECTED_DOCS')}>
+        <StatusBadge
+          status={'REJECTED_DOCS'}
+          disable={applicantData.status !== 'REJECTED_DOCS'}
+        />
+      </ApplicantBadgeWrapper>
+      <ApplicantBadgeWrapper onClick={() => updateStatus('INTERVIEW')}>
         <StatusBadge
           status={'INTERVIEW'}
           disable={applicantData.status !== 'INTERVIEW'}
         />
-      </div>
-      <div onClick={() => updateStatus('HIRED')}>
+      </ApplicantBadgeWrapper>
+      <ApplicantBadgeWrapper onClick={() => updateStatus('REJECTED_INTERVIEW')}>
+        <StatusBadge
+          status={'REJECTED_INTERVIEW'}
+          disable={applicantData.status !== 'REJECTED_INTERVIEW'}
+        />
+      </ApplicantBadgeWrapper>
+      <ApplicantBadgeWrapper onClick={() => updateStatus('HIRED')}>
         <StatusBadge
           status={'HIRED'}
           disable={applicantData.status !== 'HIRED'}
         />
-      </div>
-      <div onClick={() => updateStatus('REJECTED')}>
-        <StatusBadge
-          status={'REJECTED'}
-          disable={applicantData.status !== 'REJECTED'}
-        />
-      </div>
+      </ApplicantBadgeWrapper>
     </ApplicantInfoStateWrapper>
   );
 };

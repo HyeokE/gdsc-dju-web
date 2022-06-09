@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { theme } from '../../../styles/theme';
+import { StatusBadgeType, StatusType } from '../../../types/applicant';
 
 const StatusBadgeWrapper = styled.div<{
   color: keyof typeof theme.colors;
@@ -29,7 +30,7 @@ const StatusBadgeWrapper = styled.div<{
       border: 1px solid ${theme.colors.grey400};
     `}
 `;
-const statusData = {
+const statusData: StatusBadgeType = {
   DOCS: {
     color: 'googleBlue',
     text: '서류심사',
@@ -38,9 +39,13 @@ const statusData = {
     color: 'googleYellow',
     text: '인터뷰',
   },
-  REJECTED: {
+  REJECTED_DOCS: {
+    color: 'orange900',
+    text: '서류 불합격',
+  },
+  REJECTED_INTERVIEW: {
     color: 'googleRed',
-    text: '불합격',
+    text: '면접 불합격',
   },
   HIRED: {
     color: 'googleGreen',
@@ -51,16 +56,13 @@ const StatusBadge = ({
   status,
   disable,
 }: {
-  status?: keyof typeof statusData;
+  status?: StatusType;
   disable?: boolean;
 }) => {
   return (
     <>
       {status && (
-        <StatusBadgeWrapper
-          color={statusData[status].color as keyof typeof theme.colors}
-          disable={disable}
-        >
+        <StatusBadgeWrapper color={statusData[status].color} disable={disable}>
           {statusData[status].text}
         </StatusBadgeWrapper>
       )}

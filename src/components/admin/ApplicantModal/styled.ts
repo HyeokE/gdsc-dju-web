@@ -105,9 +105,12 @@ export const ApplicantInfoLink = styled.a`
 `;
 export const ApplicantInfoStateWrapper = styled.section`
   display: flex;
-  align-items: center;
-  justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 6px;
+  row-gap: 10px;
+  gap: 10px;
+`;
+export const ApplicantBadgeWrapper = styled.div`
+  display: flex;
+  height: fit-content;
 `;

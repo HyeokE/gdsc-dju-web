@@ -2,16 +2,13 @@ import { AnimatePresence } from 'framer-motion';
 import React, { useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { MODAL_KEY, modalState } from '../../../../store/modal';
-import { ApplyModalInner, ApplyModalWrapper } from '../ApplyModal/styled';
+import { ApplyModalWrapper } from '../ApplyModal/styled';
 import OutsideClickHandler from '../../../../utils/OutsideClickHandler';
 import { modalVariants } from '../../Variants/modalVariants';
-import TextInput from '../../input/TextInput';
 import { StyledDefaultInput } from '../../input/TextInput/styled';
 import { GDSCButton } from '../../Button';
 import { AdminSignUpWrapper } from './styled';
-import firebase from 'firebase/compat/app';
-import error from '../../../../pages/Error';
-import { authService } from "../../../../firebase/firebase";
+import { authService } from '../../../../firebase/firebase';
 
 const AdminSignUp = () => {
   const [modal, setModal] = useRecoilState(modalState);
@@ -83,7 +80,6 @@ const AdminSignUp = () => {
                 color={'tossBlue'}
                 onClick={onRegisterIn}
               />
-
             </AdminSignUpWrapper>
           </OutsideClickHandler>
         </ApplyModalWrapper>

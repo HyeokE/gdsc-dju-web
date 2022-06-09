@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import AdminHeader from '../../components/admin/AdminHeader';
 import AdminHome from './AdminHome';
@@ -9,11 +9,13 @@ import { adminUserState } from '../../store/localUser';
 import { recruitmentSelector } from '../../store/recruitHandler';
 import AdminEmail from './AdminEmail';
 import AdminSignUp from '../../components/common/Modal/AdminSignUp';
-import AdminMember from "./AdminMember";
+import AdminMember from './AdminMember';
+import AdminEmailLog from './AdminEmailLog';
 
 const Admin = () => {
   const [adminUser, setAdminUser] = useRecoilState(adminUserState);
   const [selector, setSelector] = useRecoilState(recruitmentSelector);
+  const [template, setTemplate] = useState<string>('템플릿이 없어요 :(');
   const navigate = useNavigate();
   const getAdminUser = (uid: string) => {
     dbService
@@ -38,11 +40,11 @@ const Admin = () => {
         try {
           getAdminUser(user.uid);
         } catch (error) {
-          navigate('/');
+          navigate('/auth');
           error instanceof Error && console.log(error);
         }
       } else {
-        navigate('/');
+        navigate('/auth');
         authService.signOut();
       }
     });
@@ -52,7 +54,6 @@ const Admin = () => {
     setSelector(selector);
     checkAdminUser();
   }, []);
-  console.log(1);
   return (
     <>
       <AdminSignUp />
@@ -61,7 +62,13 @@ const Admin = () => {
         <Route path={'/*'} element={<AdminHome />} />
         <Route path={'/member'} element={<AdminMember />} />
         <Route path={'/recruit'} element={<AdminApplicants />} />
-        <Route path={'/email'} element={<AdminEmail />} />
+        <Route path={'/email'} element={<AdminEmail template={template} />} />
+        <Route
+          path={'/email-log'}
+          element={
+            <AdminEmailLog template={template} setTemplate={setTemplate} />
+          }
+        />
       </Routes>
     </>
   );

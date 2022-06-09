@@ -2,8 +2,12 @@ import { useEffect, useRef, useState } from 'react';
 import firebase from 'firebase/compat';
 import firestore = firebase.firestore;
 
-export function useFirestoreQuery(query: firestore.Query) {
-  const [docs, setDocs] = useState<{ id: string }[]>();
+interface idType {
+  id: string;
+}
+
+export function useFirestoreQuery<T>(query: firestore.Query): T {
+  const [docs, setDocs] = useState<unknown>();
 
   // Store current query in ref
   const queryRef = useRef(query);
@@ -39,5 +43,5 @@ export function useFirestoreQuery(query: firestore.Query) {
     };
   }, [queryRef]);
 
-  return docs;
+  return docs as T;
 }
