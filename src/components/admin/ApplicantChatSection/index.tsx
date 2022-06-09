@@ -101,23 +101,25 @@ const ApplicantChatSection: React.FC<IApplicantChatSectionProps> = ({
   }, [newMessages]);
   return (
     <ApplicantChatSectionWrapper>
-      {chatSectionRef && newMessages && (
-        <ApplicantChat
-          ref={chatSectionRef}
-          adminUser={adminUser.uid}
-          newMessages={newMessages as IApplicantChatType[]}
-        />
-      )}
-      <ApplicantChatBottomBar>
-        <ApplicantChatInput
-          onChange={newMessageHandler}
-          value={newMessage}
-          onKeyPress={handleOnKeyPress}
-        />
-        <ApplicantChatSendButton onClick={handleOnSubmit}>
-          전송
-        </ApplicantChatSendButton>
-      </ApplicantChatBottomBar>
+      <>
+        {chatSectionRef && newMessages && (
+          <ApplicantChat
+            ref={chatSectionRef}
+            adminUser={adminUser.uid}
+            newMessages={newMessages as IApplicantChatType[]}
+          />
+        )}
+        <ApplicantChatBottomBar>
+          <ApplicantChatInput
+            onChange={newMessageHandler}
+            value={newMessage}
+            onKeyPress={handleOnKeyPress}
+          />
+          <ApplicantChatSendButton onClick={handleOnSubmit}>
+            전송
+          </ApplicantChatSendButton>
+        </ApplicantChatBottomBar>
+      </>
     </ApplicantChatSectionWrapper>
   );
 };
