@@ -40,11 +40,11 @@ const Admin = () => {
         try {
           getAdminUser(user.uid);
         } catch (error) {
-          navigate('/');
+          navigate('/auth');
           error instanceof Error && console.log(error);
         }
       } else {
-        navigate('/');
+        navigate('/auth');
         authService.signOut();
       }
     });
