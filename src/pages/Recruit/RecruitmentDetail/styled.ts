@@ -36,6 +36,7 @@ export const JoinInner = styled.div`
   width: 100%;
   top: 100px;
   flex-direction: column;
+
   @media (max-width: 500px) {
     position: initial;
   }

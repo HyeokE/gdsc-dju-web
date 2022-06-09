@@ -19,8 +19,6 @@ const AdminEmailLog: React.FC<{
     emailLogRef.orderBy('uploadDate', 'desc').limit(500),
   );
 
-  console.log(emailLogs);
-
   return (
     <ContainerInner>
       <TemplateSelectWrapper>

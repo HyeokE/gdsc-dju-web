@@ -17,20 +17,27 @@ import {
   EmailRightInner,
   EmailRightWrapper,
   SelectedBoxSection,
-  TemplateSelectorWrapper,
 } from './styled';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { alertState } from '../../../store/alert';
-import { AdminSectionWrapper } from '../AdminApplicants/styled';
+import {
+  AdminSectionWrapper,
+  InformationHeader,
+} from '../AdminApplicants/styled';
 import { adminUserState } from '../../../store/localUser';
 import ApplicantModal from '../../../components/admin/ApplicantModal';
 import { MODAL_KEY, modalState } from '../../../store/modal';
 import { AnimatePresence } from 'framer-motion';
 import StatusBadgeBox from '../../../components/admin/StatusBadgeBox';
 import { getApplicants } from '../../../utils/applicantsHandler';
+import AdminEmailCheckModal from '../../../components/common/Modal/AdminEmailCheckModal';
+import { loaderState } from '../../../store/loader';
+import { Simulate } from 'react-dom/test-utils';
+import load = Simulate.load;
 
 const AdminEmail: React.FC<{ template: string }> = ({ template }) => {
   const [alert, setAlert] = useRecoilState(alertState);
+  const [loading, setLoading] = useRecoilState(loaderState);
   const admin = useRecoilValue(adminUserState);
 
   const [filteredApplicants, setFilteredApplicants] =
@@ -65,65 +72,77 @@ const AdminEmail: React.FC<{ template: string }> = ({ template }) => {
     }
   };
 
-  const sendLogHandler = async (logs: EmailLogType[]) => {
-    logs.map(async (log) => {
-      await dbService.collection('emailLogs').doc().set(log);
+  const sendLogHandler = async (log: EmailLogType) => {
+    await dbService.collection('emailLogs').doc().set(log);
+  };
+  const sendEmailHandler = async (
+    template: string,
+    applicants: IApplicantTypeWithID[],
+  ) => {
+    setModal({
+      ...modal,
+      [MODAL_KEY.ADMIN_EMAIL_CHECK]: false,
     });
+    if (applicants.length === 0) {
+      setAlert({
+        ...alert,
+        alertHandle: true,
+        alertMessage: '지원자를 선택해주세요.',
+      });
+    }
+    if (template === '템플릿이 없어요 :(') {
+      setAlert({
+        ...alert,
+        alertHandle: true,
+        alertMessage: '템플릿을 선택하지 않았어요.',
+      });
+    } else {
+      setLoading({ ...loading, load: true });
+      await sendEmail(template, applicants);
+    }
   };
 
   const sendEmail = async (
     template: string,
     applicants: IApplicantTypeWithID[],
   ) => {
-    let log: EmailLogType[] = [];
-    applicants.map((applicant) => {
-      if (template.length < 1) {
+    applicants.map(async (applicant) => {
+      emailjs.init('RsM6o4WUsb5rzJGXG');
+      try {
+        const result = await emailjs.send('default_service', template, {
+          email: applicant.email,
+          name: applicant.name,
+        });
+        //로그 생성
+        const emailLog: EmailLogType = {
+          email: applicant.email,
+          name: applicant.name,
+          applicantID: applicant.id,
+          applicantStatus: applicant.status,
+          sender: admin.nickname,
+          status: result.status,
+          uploadDate: new Date(),
+        };
+        await sendLogHandler(emailLog);
+
+        if (emailLog) {
+          setAlert({
+            ...alert,
+            alertHandle: true,
+            alertMessage: '메일이 전송되었어요. 로그를 확인해주세요.',
+          });
+          setLoading({ ...loading, load: false });
+        }
+      } catch (e) {
         setAlert({
           ...alert,
           alertHandle: true,
-          alertMessage: '템플릿을 선택해주세요.',
+          alertMessage: '어딘가 문제가 생겼어요. 콘솔을 확인해주세요.',
         });
       }
-      if (applicant.email && applicant.name && template) {
-        emailjs.init('RsM6o4WUsb5rzJGXG');
-        emailjs
-          .send('default_service', template, {
-            email: applicant.email,
-            name: applicant.name,
-          })
-          .then(
-            (result) => {
-              console.log(result.text);
-              setAlert({
-                ...alert,
-                alertHandle: true,
-                alertMessage: '메일이 전송되었어요. 로그를 확인해주세요.',
-              });
-            },
-            (error) => {
-              console.log(error.text);
-            },
-          );
-      } else {
-        setAlert({
-          ...alert,
-          alertHandle: true,
-          alertMessage: '지원자 데이터에 문제가 있어요.',
-          alertStatus: 'success',
-        });
-      }
-      const emailLog: EmailLogType = {
-        email: applicant.email,
-        name: applicant.name,
-        applicantID: applicant.id,
-        applicantStatus: applicant.status,
-        sender: admin.nickname,
-        uploadDate: new Date(),
-      };
-      log = [...log, emailLog];
     });
-    await sendLogHandler(log);
   };
+
   useEffect(() => {
     getApplicants(filter, setFilteredApplicants);
   }, [filter]);
@@ -135,7 +154,14 @@ const AdminEmail: React.FC<{ template: string }> = ({ template }) => {
   return (
     <AnimatePresence>
       <AdminSectionWrapper>
-        {modal.adminApplicant && <ApplicantModal />}
+        <ApplicantModal />
+        {selectApplicants && (
+          <AdminEmailCheckModal
+            applicants={selectApplicants}
+            sendEmail={sendEmailHandler}
+            template={template}
+          />
+        )}
         <EmailLeftWrapper>
           <EmailLeftInner>
             <EmailCategory>선택한 이메일</EmailCategory>
@@ -155,7 +181,7 @@ const AdminEmail: React.FC<{ template: string }> = ({ template }) => {
         </EmailLeftWrapper>
         <EmailRightWrapper>
           <EmailRightInner>
-            <TemplateSelectorWrapper>
+            <InformationHeader>
               {filteredApplicants && (
                 <StatusBadgeBox
                   status={filter}
@@ -174,11 +200,14 @@ const AdminEmail: React.FC<{ template: string }> = ({ template }) => {
                 color={'googleBlue'}
                 text={'이메일 전송'}
                 onClick={() =>
-                  selectApplicants && sendEmail(template, selectApplicants)
+                  setModal(() => ({
+                    ...modal,
+                    adminEmailCheck: true,
+                  }))
                 }
                 type={'button'}
               />
-            </TemplateSelectorWrapper>
+            </InformationHeader>
             {filteredApplicants && (
               <CheckboxSection>
                 {filteredApplicants.map((applicant) => (

@@ -63,7 +63,7 @@ export const EmailRightWrapper = styled.div`
   width: calc(100% - 340px);
 `;
 export const EmailRightInner = styled.div`
-  padding: 30px 20px;
+  padding: 0 20px;
   display: flex;
   box-sizing: border-box;
   width: 100%;
@@ -71,7 +71,7 @@ export const EmailRightInner = styled.div`
   flex-direction: column;
   align-items: center;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 10px;
 `;
 export const EmailLeftWrapper = styled.div`
   align-items: center;

@@ -3,6 +3,17 @@ import { StyledButton } from '../../../../components/common/Button/styled';
 import { useRecoilState } from 'recoil';
 import { recruitmentState } from '../../../../store/recruitHandler';
 import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+
+const RecruitFaqButtonWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 6px;
+`;
 
 const RecruitFaqButton = (props: { name: string }) => {
   const { name } = props;
@@ -10,7 +21,7 @@ const RecruitFaqButton = (props: { name: string }) => {
   const keyTyped = name as keyof typeof recruit;
   const navigate = useNavigate();
   return (
-    <>
+    <RecruitFaqButtonWrapper>
       <StyledButton
         background={'tossBlue'}
         onClick={() => {
@@ -36,7 +47,7 @@ const RecruitFaqButton = (props: { name: string }) => {
           지원기간이 아닙니다.
         </StyledButton>
       )}
-    </>
+    </RecruitFaqButtonWrapper>
   );
 };
 
