@@ -29,7 +29,7 @@ export const applicantFilterByStatus = (
 };
 export const getApplicants = async (
   status: StatusType | null,
-  setApplicants: (list: IApplicantTypeWithID[]) => void,
+  // setApplicants: (list: IApplicantTypeWithID[]) => void,
 ) => {
   const res = status
     ? await dbService
@@ -43,7 +43,7 @@ export const getApplicants = async (
   const applicantsList = res.docs.map((doc) => {
     return { id: doc.id, ...(doc.data() as IApplicantType) };
   });
-  setApplicants(applicantsList);
+  return applicantsList;
 };
 
 // export const applicantFilterByStatus = (

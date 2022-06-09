@@ -142,9 +142,13 @@ const AdminEmail: React.FC<{ template: string }> = ({ template }) => {
       }
     });
   };
+  const applicantHandler = async () => {
+    const applicants = await getApplicants(filter);
+    setFilteredApplicants(applicants);
+  };
 
   useEffect(() => {
-    getApplicants(filter, setFilteredApplicants);
+    applicantHandler();
   }, [filter]);
 
   const selectApplicants = filteredApplicants?.filter((applicant) => {

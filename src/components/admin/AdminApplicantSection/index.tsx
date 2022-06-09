@@ -38,8 +38,10 @@ const AdminApplicantSection = () => {
     });
   };
 
-  const filterApplicantsAsPosition = async () => {
-    await getApplicants(status, setApplicants);
+  const filterApplicantsAsPosition = async (
+    applicants: IApplicantTypeWithID[],
+  ) => {
+    console.log(applicants);
     const currentPosition =
       position[currentParam as keyof typeof position].toLowerCase();
     if (applicants) {
@@ -50,17 +52,17 @@ const AdminApplicantSection = () => {
               data.position.toLowerCase().includes(currentPosition),
             )
           : list;
-      setApplicants(filteredApplicantsByPosition);
+      await setApplicants(filteredApplicantsByPosition);
     }
+  };
+  const applicanthandler = async () => {
+    const applicants = await getApplicants(status);
+    await filterApplicantsAsPosition(applicants);
   };
 
   useEffect(() => {
-    filterApplicantsAsPosition();
-  }, [currentParam, modal.selectedId]);
-
-  useEffect(() => {
-    getApplicants(status, setApplicants);
-  }, [status]);
+    applicanthandler();
+  }, [currentParam, status, modal.selectedId]);
 
   return (
     <AnimatePresence>
