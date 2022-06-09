@@ -127,6 +127,7 @@ const AdminEmail: React.FC<{ template: string }> = ({ template }) => {
     });
     await sendLogHandler(log);
   };
+
   useEffect(() => {
     getApplicants(filter, setFilteredApplicants);
   }, [filter]);
