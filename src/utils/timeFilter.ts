@@ -1,6 +1,6 @@
 export const uploadDate = (seconds: number) => {
   const timeStamp = new Date(seconds * 1000);
-  const month = timeStamp.getMonth();
+  const month = timeStamp.getMonth() + 1;
   const date = timeStamp.getDate();
   const year = timeStamp.getFullYear();
   const hours = timeStamp.getHours();

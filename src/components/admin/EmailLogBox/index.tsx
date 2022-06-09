@@ -1,8 +1,7 @@
-import React, { RefObject, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled, { css } from 'styled-components';
 import { EmailLogTypeWithID } from '../../../types/applicant';
 import { uploadDate } from '../../../utils/timeFilter';
-import ApplicantCard from '../ApplicantCard';
 import StatusBadge from '../Statusbadge';
 
 interface IEmailLogBoxProps {
@@ -11,7 +10,7 @@ interface IEmailLogBoxProps {
 interface IEmailLogProps {
   emailLog: EmailLogTypeWithID;
   lastDate: string;
-  setLastDate: (date: string) => void;
+  setLastDate?: (date: string) => void;
 }
 
 const StyledRowLine = styled.div`
@@ -70,18 +69,24 @@ const EmailLogSection = styled.section`
   gap: 10px;
 `;
 const EmailLogBox: React.FC<IEmailLogBoxProps> = ({ emailLogs }) => {
-  const [lastDate, setLastDate] = useState('');
+  const currentDate = uploadDate(new Date().getTime() / 1000).Y_M_D;
   return (
     <EmailLogSection>
+      <구분선>
+        <StyledRowLine />
+        {currentDate}
+        <StyledRowLine />
+      </구분선>
       {emailLogs &&
-        emailLogs.map((log) => (
-          <EmailLog
-            emailLog={log}
-            lastDate={lastDate}
-            setLastDate={setLastDate}
-            key={log.id}
-          />
-        ))}
+        emailLogs.map((log, index) => {
+          const number = index == 0 ? 0 : index - 1;
+          const lastDate = uploadDate(
+            emailLogs[number].uploadDate.seconds,
+          ).Y_M_D;
+          return (
+            <EmailLog emailLog={log} lastDate={lastDate ?? ''} key={log.id} />
+          );
+        })}
     </EmailLogSection>
   );
 };
@@ -91,16 +96,13 @@ const EmailLog: React.FC<IEmailLogProps> = ({
   setLastDate,
 }) => {
   const date = uploadDate(emailLog.uploadDate.seconds).Y_M_D;
-  useEffect(() => {
-    setLastDate(date);
-  }, []);
 
   return (
     <>
-      {!(date === lastDate) && (
+      {date !== lastDate && (
         <구분선>
           <StyledRowLine />
-          {lastDate}
+          {date}
           <StyledRowLine />
         </구분선>
       )}

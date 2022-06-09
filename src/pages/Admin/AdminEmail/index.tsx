@@ -77,32 +77,47 @@ const AdminEmail: React.FC<{ template: string }> = ({ template }) => {
   ) => {
     let log: EmailLogType[] = [];
     applicants.map((applicant) => {
-      emailjs.init('RsM6o4WUsb5rzJGXG');
-      emailjs
-        .send('default_service', template, {
-          email: applicant.email,
-          name: applicant.name,
-        })
-        .then(
-          (result) => {
-            console.log(result.text);
-            setAlert({
-              ...alert,
-              alertHandle: true,
-              alertMessage: '메일이 전송되었습니다.',
-              alertStatus: 'success',
-            });
-          },
-          (error) => {
-            console.log(error.text);
-          },
-        );
+      if (template.length < 1) {
+        setAlert({
+          ...alert,
+          alertHandle: true,
+          alertMessage: '템플릿을 선택해주세요.',
+        });
+      }
+      if (applicant.email && applicant.name && template) {
+        emailjs.init('RsM6o4WUsb5rzJGXG');
+        emailjs
+          .send('default_service', template, {
+            email: applicant.email,
+            name: applicant.name,
+          })
+          .then(
+            (result) => {
+              console.log(result.text);
+              setAlert({
+                ...alert,
+                alertHandle: true,
+                alertMessage: '메일이 전송되었어요. 로그를 확인해주세요.',
+              });
+            },
+            (error) => {
+              console.log(error.text);
+            },
+          );
+      } else {
+        setAlert({
+          ...alert,
+          alertHandle: true,
+          alertMessage: '지원자 데이터에 문제가 있어요.',
+          alertStatus: 'success',
+        });
+      }
       const emailLog: EmailLogType = {
         email: applicant.email,
         name: applicant.name,
         applicantID: applicant.id,
         applicantStatus: applicant.status,
-        sender: admin.name,
+        sender: admin.nickname,
         uploadDate: new Date(),
       };
       log = [...log, emailLog];
