@@ -23,10 +23,16 @@ export const ApplicantCardSection = styled.section`
   display: flex;
   flex-wrap: wrap;
   width: 100%;
+  box-sizing: border-box;
 `;
 export const ApplicantSection = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  width: 100%;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 0 20px;
+  width: 92%;
+  margin: 0 auto;
+  box-sizing: border-box;
 `;

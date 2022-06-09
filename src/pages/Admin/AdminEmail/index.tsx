@@ -21,7 +21,10 @@ import {
 } from './styled';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { alertState } from '../../../store/alert';
-import { AdminSectionWrapper } from '../AdminApplicants/styled';
+import {
+  AdminSectionWrapper,
+  InformationHeader,
+} from '../AdminApplicants/styled';
 import { adminUserState } from '../../../store/localUser';
 import ApplicantModal from '../../../components/admin/ApplicantModal';
 import { MODAL_KEY, modalState } from '../../../store/modal';
@@ -155,7 +158,7 @@ const AdminEmail: React.FC<{ template: string }> = ({ template }) => {
         </EmailLeftWrapper>
         <EmailRightWrapper>
           <EmailRightInner>
-            <TemplateSelectorWrapper>
+            <InformationHeader>
               {filteredApplicants && (
                 <StatusBadgeBox
                   status={filter}
@@ -178,7 +181,7 @@ const AdminEmail: React.FC<{ template: string }> = ({ template }) => {
                 }
                 type={'button'}
               />
-            </TemplateSelectorWrapper>
+            </InformationHeader>
             {filteredApplicants && (
               <CheckboxSection>
                 {filteredApplicants.map((applicant) => (
