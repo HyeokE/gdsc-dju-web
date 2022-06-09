@@ -1,12 +1,9 @@
 import React, { useEffect } from 'react';
-import {
-  IApplicantCountType,
-  IApplicantTypeWithID,
-  StatusType,
-} from '../../../types/applicant';
+import { IApplicantTypeWithID, StatusType } from '../../../types/applicant';
 import StatusBadge from '../Statusbadge';
 import styled from 'styled-components';
 import { applicantFilterByStatus } from '../../../utils/applicantsHandler';
+
 export const ApplicantsStatusWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -21,6 +18,7 @@ export const ApplicantsBadgeWrapper = styled.div`
   flex-wrap: wrap;
   gap: 0 5px;
 `;
+
 interface IStatusBadgeFilter {
   status: StatusType | null;
   setStatus: (status: StatusType | null) => void;

@@ -28,6 +28,7 @@ import ApplicantModal from '../../../components/admin/ApplicantModal';
 import { MODAL_KEY, modalState } from '../../../store/modal';
 import { AnimatePresence } from 'framer-motion';
 import StatusBadgeBox from '../../../components/admin/StatusBadgeBox';
+import { getApplicants } from '../../../utils/applicantsHandler';
 
 const AdminEmail: React.FC<{ template: string }> = ({ template }) => {
   const [alert, setAlert] = useRecoilState(alertState);
@@ -63,22 +64,6 @@ const AdminEmail: React.FC<{ template: string }> = ({ template }) => {
     } else {
       setCheckedApplicants(new Set());
     }
-  };
-
-  const getApplicants = async (status: StatusType | null) => {
-    const res = status
-      ? await dbService
-          .collection('applicants')
-          .where('status', '==', status)
-          .get()
-      : await dbService
-          .collection('applicants')
-          .orderBy('uploadDate', 'desc')
-          .get();
-    const applicantsList = res.docs.map((doc) => {
-      return { id: doc.id, ...(doc.data() as IApplicantType) };
-    });
-    setFilteredApplicants(applicantsList);
   };
 
   const sendLogHandler = async (logs: EmailLogType[]) => {
@@ -126,7 +111,7 @@ const AdminEmail: React.FC<{ template: string }> = ({ template }) => {
     await sendLogHandler(log);
   };
   useEffect(() => {
-    getApplicants(filter);
+    getApplicants(filter, setFilteredApplicants);
   }, [filter]);
 
   const selectApplicants = filteredApplicants?.filter((applicant) => {
