@@ -49,7 +49,7 @@ export const Navigation: React.FC = () => {
   };
 
   return (
-    <NavDesign background={checkLocation} disable={disableNavigation}>
+    <NavDesign background={checkLocation} disable={disableNavigation()}>
       <NavWrapper>
         <NavInner>
           <NavTaskWrapper>
