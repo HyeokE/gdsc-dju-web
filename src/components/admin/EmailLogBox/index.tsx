@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import { EmailLogTypeWithID } from '../../../types/applicant';
 import { uploadDate } from '../../../utils/timeFilter';
@@ -68,14 +68,22 @@ const EmailLogSection = styled.section`
   gap: 10px;
 `;
 const EmailLogBox: React.FC<IEmailLogBoxProps> = ({ emailLogs }) => {
-  const currentDate = uploadDate(new Date().getTime() / 1000).Y_M_D;
+  const [lastDate, setLastDate] = React.useState('');
+  useEffect(() => {
+    emailLogs && setLastDate(uploadDate(emailLogs[0].uploadDate.seconds).Y_M_D);
+  }, [emailLogs]);
+
   return (
     <EmailLogSection>
-      <구분선>
-        <StyledRowLine />
-        {currentDate}
-        <StyledRowLine />
-      </구분선>
+      <>
+        {lastDate && (
+          <구분선>
+            <StyledRowLine />
+            {lastDate}
+            <StyledRowLine />
+          </구분선>
+        )}
+      </>
       {emailLogs &&
         emailLogs.map((log, index) => {
           const number = index == 0 ? 0 : index - 1;
