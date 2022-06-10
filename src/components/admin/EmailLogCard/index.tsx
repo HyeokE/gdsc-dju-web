@@ -86,11 +86,13 @@ const EmailLogCard: React.FC<IEmailLogBoxProps> = ({ emailLogs }) => {
 
   return (
     <EmailLogSection>
-      <구분선>
-        <StyledRowLine />
-        {lastDate}
-        <StyledRowLine />
-      </구분선>
+      {lastDate && (
+        <구분선>
+          <StyledRowLine />
+          {lastDate}
+          <StyledRowLine />
+        </구분선>
+      )}
       {emailLogs &&
         emailLogs.map((log, index) => {
           const number = index == 0 ? 0 : index - 1;
