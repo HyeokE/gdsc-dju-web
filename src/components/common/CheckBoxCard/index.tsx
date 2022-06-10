@@ -26,17 +26,12 @@ const CheckBoxCardWrapper = styled.div<{ disabled?: boolean }>`
       width: 200px;
     `}
 `;
-const CheckBoxText = styled.div<{ disabled?: boolean }>`
+const CheckBoxText = styled.div`
   font-size: ${({ theme }) => theme.fontSize.body2};
   width: 70px;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
-  ${({ disabled }) =>
-    disabled &&
-    css`
-      width: 120px;
-    `}
 `;
 const CheckBoxName = styled.div`
   font-size: ${({ theme }) => theme.fontSize.body2};
