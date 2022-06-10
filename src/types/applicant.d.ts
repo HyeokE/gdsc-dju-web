@@ -78,6 +78,7 @@ export interface getEmailLogType {
     nanoseconds: number;
   };
   sender: string;
+  status: number;
 }
 export interface EmailLogTypeWithID extends getEmailLogType {
   id: string;

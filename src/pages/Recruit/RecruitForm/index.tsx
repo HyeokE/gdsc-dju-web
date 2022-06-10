@@ -110,8 +110,8 @@ const RecruitForm = () => {
     try {
       const checkedFile = checkFile(file, 50000001, 'application/pdf');
       if (checkedFile instanceof File) {
-        setLoading({ ...loading, load: true });
         setModal({ ...modal, [MODAL_KEY.APPLY_CHECK]: false });
+        setLoading({ ...loading, load: true });
         const storageRef = ref(storage, `${checkedFile.name}`);
         await uploadApplicantFile(
           storageRef,

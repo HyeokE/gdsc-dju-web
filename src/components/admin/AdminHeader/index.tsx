@@ -54,18 +54,10 @@ const AdminHeader = () => {
             </NavTask>
           </NavTaskWrapper>
           <AdminNavCategoryWrapper>
-            <SidebarContainer>
-              <AdminTopMenu
-                tabs={tabs}
-                selectedCategory={selectedCategory}
-                setSelectedCategory={setSelectedCategory}
-              />
-            </SidebarContainer>
             <AdminUserMenu
               isOpen={adminMenuHandler}
               setIsOpen={setAdminMenuHandler}
             />
-
             <StyledUserName
               onClick={() => setAdminMenuHandler(!adminMenuHandler)}
             >

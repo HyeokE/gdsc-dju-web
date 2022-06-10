@@ -27,10 +27,7 @@ export const applicantFilterByStatus = (
     HIRED: HIRED,
   };
 };
-export const getApplicants = async (
-  status: StatusType | null,
-  // setApplicants: (list: IApplicantTypeWithID[]) => void,
-) => {
+export const getApplicants = async (status: StatusType | null) => {
   const res = status
     ? await dbService
         .collection('applicants')

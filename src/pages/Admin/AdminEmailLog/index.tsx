@@ -2,12 +2,11 @@ import React, { useRef } from 'react';
 import { TemplateEmailWrapper, TemplateText } from '../AdminEmail/styled';
 import { TextInput } from '../../../components/common/input/TextInput';
 import { GDSCButton } from '../../../components/common/Button';
-import { TemplateSelectWrapper } from './styled';
+import { LogWrapper, TemplateSelectWrapper } from './styled';
 import { useFirestoreQuery } from '../../../hooks/useFirebaseQuery';
 import { dbService } from '../../../firebase/firebase';
 import { EmailLogTypeWithID } from '../../../types/applicant';
-import EmailLogBox from '../../../components/admin/EmailLogBox';
-import { ContainerInner, LayoutContainer } from '../../../styles/layouts';
+import EmailLogBox from '../../../components/admin/EmailLogCard';
 
 const AdminEmailLog: React.FC<{
   template: string;
@@ -20,7 +19,7 @@ const AdminEmailLog: React.FC<{
   );
 
   return (
-    <ContainerInner>
+    <>
       <TemplateSelectWrapper>
         <TemplateText>
           {template !== '템플릿이 없어요 :(' && '선택한 템플릿 '}
@@ -35,8 +34,10 @@ const AdminEmailLog: React.FC<{
           onClick={() => setTemplate(templateRef.current?.value ?? '')}
         />
       </TemplateSelectWrapper>
-      <EmailLogBox emailLogs={emailLogs} />
-    </ContainerInner>
+      <LogWrapper>
+        <EmailLogBox emailLogs={emailLogs} />
+      </LogWrapper>
+    </>
   );
 };
 

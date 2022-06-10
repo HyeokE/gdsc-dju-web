@@ -1,4 +1,4 @@
-export interface chapterEvent {
+export interface IChapterEvent {
   results: [
     {
       id: number;
@@ -25,4 +25,9 @@ export interface chapterEvent {
     previous: null;
   };
   count: 160;
+}
+export interface IRecruitmentEvent {
+  status: 'OPEN' | 'CLOSED';
+  applicantCount: number;
+  generation: number;
 }
