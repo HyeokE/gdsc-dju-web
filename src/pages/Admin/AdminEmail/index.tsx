@@ -141,6 +141,10 @@ const AdminEmail: React.FC<{ template: string }> = ({ template }) => {
       }
     });
   };
+  const applicantHandler = async () => {
+    const applicants = await getApplicants(filter);
+    setFilteredApplicants(applicants);
+  };
 
   const applicantHandler = async () => {
     const applicants = await getApplicants(filter);

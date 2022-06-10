@@ -50,7 +50,6 @@ const AdminApplicantSection = () => {
   const filterApplicantsAsPosition = async (
     applicants: IApplicantTypeWithID[],
   ) => {
-    console.log(applicants);
     const currentPosition =
       position[currentParam as keyof typeof position].toLowerCase();
     if (applicants) {
