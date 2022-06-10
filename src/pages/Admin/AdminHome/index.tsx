@@ -1,16 +1,9 @@
 import React from 'react';
 import { ContainerInner, LayoutContainer } from '../../../styles/layouts';
+import { AdminContainerWrapper } from '../styled';
 
 const AdminHome = () => {
-  return (
-    <>
-      <LayoutContainer>
-        <ContainerInner>
-          <div>현재 모집 중인 포지션은 </div>
-        </ContainerInner>
-      </LayoutContainer>
-    </>
-  );
+  return <AdminContainerWrapper></AdminContainerWrapper>;
 };
 
 export default AdminHome;
