@@ -17,7 +17,7 @@ export const CheckboxWrapper = styled.div`
   @media (min-width: 1000px) {
     width: 100%;
   }
-  @media (min-width: 1500px) {
+  @media (min-width: 1580px) {
     width: 50%;
   }
   @media (min-width: 1950px) {
@@ -71,7 +71,7 @@ export const EmailLeftWrapper = styled.div`
   background: ${({ theme }) => theme.colors.grey50};
 `;
 export const EmailLeftInner = styled.div`
-  width: 340px;
+  width: 240px;
   display: flex;
   align-items: center;
   justify-content: center;
