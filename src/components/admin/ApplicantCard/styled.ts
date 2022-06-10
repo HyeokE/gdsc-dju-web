@@ -13,6 +13,7 @@ export const ApplicantCardWrapper = styled(motion.div)`
   cursor: pointer;
   height: 50px;
   width: 400px;
+  background: ${({ theme }) => theme.colors.white};
 `;
 export const ApplicantText = styled(motion.div)`
   font-size: ${({ theme }) => theme.fontSize.body2};

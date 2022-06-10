@@ -22,6 +22,7 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { alertState } from '../../../store/alert';
 import {
   AdminSectionWrapper,
+  EmailButtonWrapper,
   InformationHeader,
 } from '../AdminApplicants/styled';
 import { adminUserState } from '../../../store/localUser';
@@ -32,8 +33,6 @@ import StatusBadgeBox from '../../../components/admin/StatusBadgeBox';
 import { getApplicants } from '../../../utils/applicantsHandler';
 import AdminEmailCheckModal from '../../../components/common/Modal/AdminEmailCheckModal';
 import { loaderState } from '../../../store/loader';
-import { Simulate } from 'react-dom/test-utils';
-import load = Simulate.load;
 
 const AdminEmail: React.FC<{ template: string }> = ({ template }) => {
   const [alert, setAlert] = useRecoilState(alertState);
@@ -194,23 +193,25 @@ const AdminEmail: React.FC<{ template: string }> = ({ template }) => {
                   setFilteredApplicants={setFilteredApplicants}
                 />
               )}
-              <GDSCButton
-                color={!isAllChecked ? 'tossBlue200' : 'tossBlueActive'}
-                text={!isAllChecked ? '모두 선택' : '모두 해제'}
-                onClick={() => checkAllHandler(!isAllChecked)}
-                type={'button'}
-              />
-              <GDSCButton
-                color={'googleBlue'}
-                text={'이메일 전송'}
-                onClick={() =>
-                  setModal(() => ({
-                    ...modal,
-                    adminEmailCheck: true,
-                  }))
-                }
-                type={'button'}
-              />
+              <EmailButtonWrapper>
+                <GDSCButton
+                  color={!isAllChecked ? 'tossBlue200' : 'tossBlueActive'}
+                  text={!isAllChecked ? '모두 선택' : '모두 해제'}
+                  onClick={() => checkAllHandler(!isAllChecked)}
+                  type={'button'}
+                />
+                <GDSCButton
+                  color={'googleBlue'}
+                  text={'이메일 전송'}
+                  onClick={() =>
+                    setModal(() => ({
+                      ...modal,
+                      adminEmailCheck: true,
+                    }))
+                  }
+                  type={'button'}
+                />
+              </EmailButtonWrapper>
             </InformationHeader>
             {filteredApplicants && (
               <CheckboxSection>

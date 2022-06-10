@@ -10,3 +10,7 @@ export const TemplateSelectWrapper = styled.div`
   width: 100%;
   margin: 20px 0;
 `;
+export const LogWrapper = styled.div`
+  height: calc(100vh - 70px - 82px - 120px);
+  overflow: scroll;
+`;

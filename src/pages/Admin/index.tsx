@@ -11,6 +11,13 @@ import AdminEmail from './AdminEmail';
 import AdminSignUp from '../../components/common/Modal/AdminSignUp';
 import AdminMember from './AdminMember';
 import AdminEmailLog from './AdminEmailLog';
+import {
+  AdminContainer,
+  AdminContainerInner,
+  AdminContainerWrapper,
+  SidebarContainer,
+} from './styled';
+import AdminSidebar from '../../components/admin/AdminSidebar';
 
 const Admin = () => {
   const [adminUser, setAdminUser] = useRecoilState(adminUserState);
@@ -58,18 +65,31 @@ const Admin = () => {
     <>
       <AdminSignUp />
       <AdminHeader />
-      <Routes>
-        <Route path={'/*'} element={<AdminHome />} />
-        <Route path={'/member'} element={<AdminMember />} />
-        <Route path={'/recruit'} element={<AdminApplicants />} />
-        <Route path={'/email'} element={<AdminEmail template={template} />} />
-        <Route
-          path={'/email-log'}
-          element={
-            <AdminEmailLog template={template} setTemplate={setTemplate} />
-          }
-        />
-      </Routes>
+      <AdminContainerWrapper>
+        <AdminSidebar />
+        <AdminContainer>
+          <AdminContainerInner>
+            <Routes>
+              <Route path={'/*'} element={<AdminHome />} />
+              <Route path={'/member'} element={<AdminMember />} />
+              <Route path={'/recruit'} element={<AdminApplicants />} />
+              <Route
+                path={'/email'}
+                element={<AdminEmail template={template} />}
+              />
+              <Route
+                path={'/email-log'}
+                element={
+                  <AdminEmailLog
+                    template={template}
+                    setTemplate={setTemplate}
+                  />
+                }
+              />
+            </Routes>
+          </AdminContainerInner>
+        </AdminContainer>
+      </AdminContainerWrapper>
     </>
   );
 };
