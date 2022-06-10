@@ -4,6 +4,7 @@ export const AdminContainerInner = styled.div`
   background: ${({ theme }) => theme.colors.grey50};
   min-height: 100%;
   padding: 30px 30px;
+  overflow: scroll;
 `;
 export const AdminContainer = styled.div`
   -webkit-box-flex: 1;
@@ -13,7 +14,7 @@ export const AdminContainer = styled.div`
   overflow: hidden;
 `;
 export const AdminContainerWrapper = styled.div`
-  height: 100vh;
+  height: calc(100vh - 70px - 82px);
   display: flex;
   overflow: hidden;
 `;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import { EmailLogTypeWithID } from '../../../types/applicant';
 import { uploadDate } from '../../../utils/timeFilter';
@@ -30,7 +30,7 @@ const 구분선 = styled.div`
   font-size: ${({ theme }) => theme.fontSize.body2};
   color: ${({ theme }) => theme.colors.grey700};
 `;
-const EmailLogCard = styled.div`
+const EmailLogBox = styled.div`
   display: flex;
   align-items: center;
   flex-direction: row;
@@ -42,6 +42,7 @@ const EmailLogCard = styled.div`
   padding: 14px 20px;
   box-shadow: 0 2px 12px 0 ${({ theme }) => theme.colors.grey300};
   border-radius: 10px;
+  background: ${({ theme }) => theme.colors.white};
 `;
 const EmailLogText = styled.div<{ email?: boolean }>`
   width: 70px;
@@ -56,6 +57,12 @@ const EmailLogText = styled.div<{ email?: boolean }>`
       width: 100px;
     `}
 `;
+const EmailLogBadgeWrapper = styled.div`
+  width: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
 const EmailLogSection = styled.section`
   display: flex;
@@ -66,14 +73,20 @@ const EmailLogSection = styled.section`
   align-items: center;
   margin: 0 auto;
   gap: 10px;
+  height: fit-content;
+  padding: 20px 0;
 `;
-const EmailLogBox: React.FC<IEmailLogBoxProps> = ({ emailLogs }) => {
-  const currentDate = uploadDate(new Date().getTime() / 1000).Y_M_D;
+const EmailLogCard: React.FC<IEmailLogBoxProps> = ({ emailLogs }) => {
+  const [lastDate, setLastDate] = React.useState('');
+  useEffect(() => {
+    emailLogs && setLastDate(uploadDate(emailLogs[0].uploadDate.seconds).Y_M_D);
+  }, [emailLogs]);
+
   return (
     <EmailLogSection>
       <구분선>
         <StyledRowLine />
-        {currentDate}
+        {lastDate}
         <StyledRowLine />
       </구분선>
       {emailLogs &&
@@ -101,17 +114,19 @@ const EmailLog: React.FC<IEmailLogProps> = ({ emailLog, lastDate }) => {
           <StyledRowLine />
         </구분선>
       )}
-      <EmailLogCard key={emailLog.id}>
+      <EmailLogBox key={emailLog.id}>
         <EmailLogText>{emailLog.name}</EmailLogText>
         <EmailLogText email={true}>{emailLog.email}</EmailLogText>
         <EmailLogText>{emailLog.sender}</EmailLogText>
         <EmailLogText>
           {uploadDate(emailLog.uploadDate.seconds).time}
         </EmailLogText>
-        <StatusBadge status={emailLog.applicantStatus} />
-      </EmailLogCard>
+        <EmailLogBadgeWrapper>
+          <StatusBadge status={emailLog.applicantStatus} />
+        </EmailLogBadgeWrapper>
+      </EmailLogBox>
     </>
   );
 };
 
-export default EmailLogBox;
+export default EmailLogCard;

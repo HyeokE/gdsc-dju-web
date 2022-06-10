@@ -22,6 +22,7 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { alertState } from '../../../store/alert';
 import {
   AdminSectionWrapper,
+  EmailButtonWrapper,
   InformationHeader,
 } from '../AdminApplicants/styled';
 import { adminUserState } from '../../../store/localUser';
@@ -33,7 +34,6 @@ import { getApplicants } from '../../../utils/applicantsHandler';
 import AdminEmailCheckModal from '../../../components/common/Modal/AdminEmailCheckModal';
 import { loaderState } from '../../../store/loader';
 import { Simulate } from 'react-dom/test-utils';
-import load = Simulate.load;
 
 const AdminEmail: React.FC<{ template: string }> = ({ template }) => {
   const [alert, setAlert] = useRecoilState(alertState);
@@ -143,8 +143,13 @@ const AdminEmail: React.FC<{ template: string }> = ({ template }) => {
     });
   };
 
+  const applicantHandler = async () => {
+    const applicants = await getApplicants(filter);
+    setFilteredApplicants(applicants);
+  };
+
   useEffect(() => {
-    getApplicants(filter, setFilteredApplicants);
+    applicantHandler();
   }, [filter]);
 
   const selectApplicants = filteredApplicants?.filter((applicant) => {
@@ -190,23 +195,25 @@ const AdminEmail: React.FC<{ template: string }> = ({ template }) => {
                   setFilteredApplicants={setFilteredApplicants}
                 />
               )}
-              <GDSCButton
-                color={!isAllChecked ? 'tossBlue200' : 'tossBlueActive'}
-                text={!isAllChecked ? '모두 선택' : '모두 해제'}
-                onClick={() => checkAllHandler(!isAllChecked)}
-                type={'button'}
-              />
-              <GDSCButton
-                color={'googleBlue'}
-                text={'이메일 전송'}
-                onClick={() =>
-                  setModal(() => ({
-                    ...modal,
-                    adminEmailCheck: true,
-                  }))
-                }
-                type={'button'}
-              />
+              <EmailButtonWrapper>
+                <GDSCButton
+                  color={!isAllChecked ? 'tossBlue200' : 'tossBlueActive'}
+                  text={!isAllChecked ? '모두 선택' : '모두 해제'}
+                  onClick={() => checkAllHandler(!isAllChecked)}
+                  type={'button'}
+                />
+                <GDSCButton
+                  color={'googleBlue'}
+                  text={'이메일 전송'}
+                  onClick={() =>
+                    setModal(() => ({
+                      ...modal,
+                      adminEmailCheck: true,
+                    }))
+                  }
+                  type={'button'}
+                />
+              </EmailButtonWrapper>
             </InformationHeader>
             {filteredApplicants && (
               <CheckboxSection>
