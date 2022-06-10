@@ -15,8 +15,8 @@ export const NavDesign = styled(motion.nav)<{
   ${(props) =>
     props.background
       ? css`
-          background-color: rgba(0, 0, 0, 0.01);
-          backdrop-filter: blur(10px);
+          //background-color: rgba(255, 255, 255, 0.1);
+          backdrop-filter: saturate(50%) blur(8px);
         `
       : css`
           background: white;
@@ -110,7 +110,9 @@ export const StyledLink = styled(motion.div)<{ isRoute?: boolean }>`
       color: ${({ theme }) => theme.colors.tossBlueActive};
     `};
   &:hover {
-    background: #f2f4f6;
+    color: ${({ theme }) => theme.colors.tossBlueActive};
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
     text-decoration: none;
   }
 `;
