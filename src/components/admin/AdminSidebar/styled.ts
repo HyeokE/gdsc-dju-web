@@ -14,6 +14,20 @@ export const SideElementWrapper = styled.div`
     }
   }
 `;
+export const SideElementChildrenWrapper = styled.div`
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  position: relative;
+  padding-left: 60px;
+  height: 40px;
+  cursor: pointer;
+  &:hover {
+    #bar {
+      height: 20px;
+    }
+  }
+`;
 export const SideElementSelectBar = styled.div<{ isCurrent: boolean }>`
   position: absolute;
   left: 0;

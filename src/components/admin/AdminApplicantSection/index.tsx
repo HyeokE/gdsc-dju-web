@@ -15,12 +15,21 @@ import { useRecoilState } from 'recoil';
 import { recruitmentState } from '../../../store/recruitHandler';
 import { useSearchParams } from 'react-router-dom';
 import { IApplicantTypeWithID, StatusType } from '../../../types/applicant';
-import { position } from '../AdminApplicantsSidebar';
 import { MODAL_KEY, modalState } from '../../../store/modal';
 import ApplicantModal from '../ApplicantModal';
 import { AnimatePresence, LayoutGroup } from 'framer-motion';
 import StatusBadgeBox from '../StatusBadgeBox';
 import { getApplicants } from '../../../utils/applicantsHandler';
+
+const position = {
+  home: 'Home',
+  frontend: 'Frontend Developer',
+  backend: 'Backend Developer',
+  android: 'Android Developer',
+  beginner: 'Beginner',
+  design: 'Designer',
+  ml: 'Machine Learning',
+};
 
 const AdminApplicantSection = () => {
   const [modal, setModal] = useRecoilState(modalState);
@@ -56,12 +65,13 @@ const AdminApplicantSection = () => {
 
   useEffect(() => {
     filterApplicantsAsPosition();
-  }, [currentParam, modal.selectedId]);
+  }, [searchParams, modal.selectedId]);
 
   useEffect(() => {
     getApplicants(status, setApplicants);
   }, [status]);
 
+  console.log(applicants);
   return (
     <AnimatePresence>
       <LayoutGroup>
@@ -77,7 +87,6 @@ const AdminApplicantSection = () => {
                 setFilteredApplicants={setApplicants}
               />
             )}
-            {/*<ApplicantStatus {...applicantCount} />*/}
           </InformationHeader>
           {applicants && (
             <ApplicantCardSection>

@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 export const AdminContainerInner = styled.div`
-  background: rgb(242, 243, 245);
+  background: ${({ theme }) => theme.colors.grey50};
   min-height: 100%;
-  padding: 76px;
+  padding: 30px 30px;
 `;
 export const AdminContainer = styled.div`
   -webkit-box-flex: 1;
@@ -20,7 +20,7 @@ export const AdminContainerWrapper = styled.div`
 export const SidebarContainer = styled.div`
   width: 225px;
   height: 100%;
-  border-right: 1px solid rgb(235, 237, 240);
+  border-right: 1px solid ${({ theme }) => theme.colors.grey300};
   flex-shrink: 0;
   padding-top: 35px;
   position: relative;

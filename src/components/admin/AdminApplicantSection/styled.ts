@@ -32,7 +32,7 @@ export const ApplicantSection = styled.div`
   flex-wrap: wrap;
   gap: 10px;
   padding: 0 20px;
-  width: 92%;
+  width: 100%;
   margin: 0 auto;
   box-sizing: border-box;
 `;

@@ -24,7 +24,6 @@ const AdminApplicants = () => {
 
   return (
     <AdminSectionWrapper>
-      <AdminApplicantsSidebar />
       <AdminApplicantSection />
     </AdminSectionWrapper>
   );
