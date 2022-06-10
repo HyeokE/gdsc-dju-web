@@ -48,12 +48,14 @@ const EmailLogText = styled.div<{ email?: boolean }>`
   width: 70px;
   white-space: nowrap;
   overflow: hidden;
-  display: block;
+  display: flex;
   text-overflow: ellipsis;
   font-size: ${({ theme }) => theme.fontSize.body2};
+  justify-content: center;
   ${({ email }) =>
     email &&
     css`
+      display: block;
       width: 100px;
     `}
 `;
@@ -121,6 +123,7 @@ const EmailLog: React.FC<IEmailLogProps> = ({ emailLog, lastDate }) => {
         <EmailLogText>
           {uploadDate(emailLog.uploadDate.seconds).time}
         </EmailLogText>
+        <EmailLogText>{emailLog.status}</EmailLogText>
         <EmailLogBadgeWrapper>
           <StatusBadge status={emailLog.applicantStatus} />
         </EmailLogBadgeWrapper>

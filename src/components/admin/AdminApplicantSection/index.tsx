@@ -64,13 +64,13 @@ const AdminApplicantSection = () => {
       await setApplicants(filteredApplicantsByPosition);
     }
   };
-  const applicanthandler = async () => {
+  const applicantHandler = async () => {
     const applicants = await getApplicants(status);
     await filterApplicantsAsPosition(applicants);
   };
 
   useEffect(() => {
-    applicanthandler();
+    applicantHandler();
   }, [currentParam, status, modal.selectedId]);
 
   return (

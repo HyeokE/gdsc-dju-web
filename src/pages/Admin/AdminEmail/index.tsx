@@ -33,7 +33,6 @@ import StatusBadgeBox from '../../../components/admin/StatusBadgeBox';
 import { getApplicants } from '../../../utils/applicantsHandler';
 import AdminEmailCheckModal from '../../../components/common/Modal/AdminEmailCheckModal';
 import { loaderState } from '../../../store/loader';
-import { Simulate } from 'react-dom/test-utils';
 
 const AdminEmail: React.FC<{ template: string }> = ({ template }) => {
   const [alert, setAlert] = useRecoilState(alertState);
