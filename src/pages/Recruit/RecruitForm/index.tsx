@@ -1,8 +1,9 @@
-import React, { memo, useLayoutEffect, useState } from 'react';
+import React, { memo, useEffect, useLayoutEffect, useState } from 'react';
 import { SubTitle, Title } from '../../../components/common/Title/title';
 import { ContainerInner, LayoutContainer } from '../../../styles/layouts';
 import {
   FormArticleWrapper,
+  FormContentWrapper,
   FormLabel,
   FormLi,
   FormMargin,
@@ -24,46 +25,42 @@ import { storage } from '../../../firebase/firebase.config';
 import { dbService } from '../../../firebase/firebase';
 import { useRecoilState } from 'recoil';
 import { loaderState } from '../../../store/loader';
-import { FormikProvider, useFormik } from 'formik';
-import { recruitFormSchema } from '../../../components/Validation/profileEdit';
-import FileInput from '../../../components/common/input/FileInput';
 import ApplyModal from '../../../components/common/Modal/ApplyModal';
 import { MODAL_KEY, modalState } from '../../../store/modal';
 import { alertState } from '../../../store/alert';
 import ReactHelmet from '../../../components/common/ReactHelmet';
-import { FormikTextInput } from '../../../components/common/input/TextInput';
+import { useForm } from 'react-hook-form';
+import {
+  ErrorBox,
+  StyledInput,
+} from '../../../components/common/input/TextInput/styled';
+import { FieldValues } from 'react-hook-form/dist/types/fields';
+import {
+  IApplicantParams,
+  IInputRegister,
+  IRegisterApplicantType,
+} from '../../../types/applicant';
+import FileInput from '../../../components/common/input/FileInput';
+import { isObjEmpty } from '../../../utils/objectCheck';
+import { formValidation } from '../../../components/Validation/recuitForm';
 
 const RecruitForm = () => {
   const { id } = useParams();
   const [position, setPosition] = useState('');
   const [loading, setLoading] = useRecoilState(loaderState);
   const [modal, setModal] = useRecoilState(modalState);
+  const [alert, setAlert] = useRecoilState(alertState);
   const [file, setFile] = useState<null | File>(null);
   const navigate = useNavigate();
+  const [data, setData] = useState<null | IInputRegister>(null);
 
-  const recruitItem = {
-    uploadDate: new Date(),
-    status: 'DOCS',
-    name: '',
-    phoneNumber: '',
-    email: '',
-    major: '',
-    studentID: '',
-    position: positionSelect[id as keyof typeof positionSelect],
-    link0: '',
-    link1: '',
-    fileURL: '',
-    recommender: '',
-    generation: 2,
-  };
-  const recruitFormik = useFormik({
-    initialValues: recruitItem,
-    onSubmit: () => {
-      return;
-    },
-    validationSchema: recruitFormSchema,
-  });
-  const [alert, setAlert] = useRecoilState(alertState);
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm({ mode: 'onChange' });
+
   const uploadApplicantFile = async (
     storageRef: StorageReference,
     file: File,
@@ -80,7 +77,6 @@ const RecruitForm = () => {
   const checkFile = (file: File | null, size: number, type: string) => {
     if (file) {
       if (file.size > size) {
-        setModal({ ...modal, [MODAL_KEY.APPLY_CHECK]: false });
         setAlert({
           ...alert,
           alertMessage: `지원서 파일 사이즈는 ${Math.floor(
@@ -91,7 +87,6 @@ const RecruitForm = () => {
         });
       } else if (file.type !== type) {
         const typeName = type.replace('application/', '');
-        setModal({ ...modal, [MODAL_KEY.APPLY_CHECK]: false });
         setAlert({
           ...alert,
           alertMessage: `${typeName} 파일만 업로드 가능합니다.`,
@@ -106,22 +101,23 @@ const RecruitForm = () => {
     }
   };
 
-  const uploadFiles = async (file: File) => {
+  const uploadFiles = async (
+    file: File,
+    applicantData: IRegisterApplicantType,
+  ) => {
     try {
+      setModal({ ...modal, [MODAL_KEY.APPLY_CHECK]: false });
       const checkedFile = checkFile(file, 50000001, 'application/pdf');
       if (checkedFile instanceof File) {
-        setModal({ ...modal, [MODAL_KEY.APPLY_CHECK]: false });
         setLoading({ ...loading, load: true });
         const storageRef = ref(storage, `${checkedFile.name}`);
-        await uploadApplicantFile(
-          storageRef,
-          checkedFile,
-          recruitFormik.values,
-        );
+        await uploadApplicantFile(storageRef, checkedFile, applicantData);
         setLoading({ ...loading, load: false });
         navigate({
           pathname: '/recruit/apply-success',
-          search: `?${createSearchParams(params)}`,
+          search: `?${createSearchParams(
+            params as Record<string, string | string[]>,
+          )}`,
         });
       } else {
         setLoading({ ...loading, load: false });
@@ -130,28 +126,37 @@ const RecruitForm = () => {
       console.log(e);
     }
   };
-  const onSubmit = async () => {
-    file && (await uploadFiles(file));
+  const onRegister = async () => {
+    const recruitItem: IRegisterApplicantType = {
+      ...(data as IInputRegister),
+      status: 'DOCS',
+      generation: 2,
+      uploadDate: new Date(),
+      position: position,
+    };
+    file && (await uploadFiles(file, recruitItem));
   };
 
-  const requiredSchema = !!(
-    recruitFormik.values.email &&
-    recruitFormik.values.name &&
-    recruitFormik.values.phoneNumber &&
-    recruitFormik.values.major &&
-    recruitFormik.values.studentID &&
-    recruitFormik.values.position &&
-    recruitFormik.values.link0.length > 0 &&
+  const isBlocked = !(
+    watch('name') &&
+    watch('email') &&
+    watch('link0') &&
+    watch('major') &&
+    watch('phoneNumber') &&
+    watch('studentID') &&
     file
   );
+  const onSubmit = (values: FieldValues) => {
+    setData(JSON.parse(JSON.stringify(values)));
+    isObjEmpty(errors) && setModal({ ...modal, [MODAL_KEY.APPLY_CHECK]: true });
+  };
 
   const params = {
-    username: recruitFormik.values.name,
+    name: data?.name,
     position: position,
-    email: recruitFormik.values.email,
-    phone: recruitFormik.values.phoneNumber,
+    email: data?.email,
+    phoneNumber: data?.phoneNumber,
   };
-  const applyValidation = !(recruitFormik.isValid && requiredSchema);
   useLayoutEffect(() => {
     setPosition(positionSelect[id as keyof typeof positionSelect]);
   }, [id]);
@@ -159,82 +164,74 @@ const RecruitForm = () => {
   return (
     <>
       <ReactHelmet title={`${position} 지원서 작성 `} />
-      <ApplyModal {...recruitFormik.values} onClick={onSubmit} />
+      <ApplyModal {...(params as IApplicantParams)} onClick={onRegister} />
       <LayoutContainer>
         <ContainerInner>
           <FormMargin />
           <FormMargin />
-          <FormikProvider value={recruitFormik}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <RecruitFormWrapper>
               <RecruitFormInner>
                 <Title>지원서 작성하기</Title>
                 <SubTitle>{position}</SubTitle>
                 <FormMargin />
-                <div>
+                <FormContentWrapper>
                   <FormLabel essential={true}>이름(실명)</FormLabel>
-                  <FormikTextInput
+                  <StyledInput
+                    error={errors.name}
                     placeholder={'김구글'}
-                    name={'name'}
-                    value={recruitFormik.values.name}
-                    onChange={recruitFormik.handleChange}
-                    touched={recruitFormik.touched.name}
-                    error={recruitFormik.errors.name}
+                    {...register('name', formValidation.name)}
                   />
-                </div>
-                <div>
+                  <ErrorBox>{errors.name && errors.name.message}</ErrorBox>
+                </FormContentWrapper>
+                <FormContentWrapper>
                   <FormLabel essential={true}>전화번호</FormLabel>
-                  <FormikTextInput
+                  <StyledInput
                     placeholder={'010-0000-0000'}
-                    name={'phoneNumber'}
-                    value={recruitFormik.values.phoneNumber}
-                    onChange={recruitFormik.handleChange}
-                    touched={recruitFormik.touched.phoneNumber}
-                    error={recruitFormik.errors.phoneNumber}
+                    error={errors.phoneNumber}
+                    {...register('phoneNumber', formValidation.phoneNumber)}
                   />
-                </div>
-                <div>
+                  <ErrorBox>
+                    {errors.phoneNumber && errors.phoneNumber.message}
+                  </ErrorBox>
+                </FormContentWrapper>
+                <FormContentWrapper>
                   <FormLabel essential={true}>이메일(gmail)</FormLabel>
-                  <FormikTextInput
+                  <StyledInput
                     placeholder={'googledev@gmail.com'}
-                    name={'email'}
-                    value={recruitFormik.values.email}
-                    onChange={recruitFormik.handleChange}
-                    touched={recruitFormik.touched.email}
-                    error={recruitFormik.errors.email}
+                    error={errors.email}
+                    {...register('email', formValidation.email)}
                   />
-                </div>
-                <div>
+                  <ErrorBox>{errors.email && errors.email.message}</ErrorBox>
+                </FormContentWrapper>
+                <FormContentWrapper>
                   <FormLabel essential={true}>학과</FormLabel>
-                  <FormikTextInput
+                  <StyledInput
                     placeholder={'구글개발학과'}
-                    name={'major'}
-                    value={recruitFormik.values.major}
-                    onChange={recruitFormik.handleChange}
-                    touched={recruitFormik.touched.major}
-                    error={recruitFormik.errors.major}
+                    error={errors.major}
+                    {...register('major', formValidation.major)}
                   />
-                </div>
-
-                <div>
+                  <ErrorBox>{errors.major && errors.major.message}</ErrorBox>
+                </FormContentWrapper>
+                <FormContentWrapper>
                   <FormLabel essential={true}>학번</FormLabel>
-                  <FormikTextInput
+                  <StyledInput
                     placeholder={'20221234'}
-                    name={'studentID'}
-                    value={recruitFormik.values.studentID}
-                    onChange={recruitFormik.handleChange}
-                    touched={recruitFormik.touched.studentID}
-                    error={recruitFormik.errors.studentID}
+                    error={errors.studentID}
+                    {...register('studentID', formValidation.studentID)}
                   />
-                </div>
-                <div>
+                  <ErrorBox>
+                    {errors.studentID && errors.studentID.message}
+                  </ErrorBox>
+                </FormContentWrapper>
+                <FormContentWrapper>
                   <FormLabel essential={true}>포지션</FormLabel>
-                  <FormikTextInput
-                    disabled={true}
-                    name={'position'}
-                    placeholder={position}
-                  />
-                </div>
-                <div>
+                  <StyledInput disabled={true} placeholder={position} />
+                  <ErrorBox>
+                    {errors.position && errors.position.message}
+                  </ErrorBox>
+                </FormContentWrapper>
+                <FormContentWrapper>
                   <FormLabel essential={true}>지원서</FormLabel>
                   <FileInput
                     defaultPlaceholder={'지원서 / 포트폴리오 PDF'}
@@ -272,27 +269,22 @@ const RecruitForm = () => {
                       본인만의 공부방법이 있다면 어떤 것이 있나요?
                     </FormLi>
                   </FormArticleWrapper>
-                </div>
-                <div>
+                </FormContentWrapper>
+                <FormContentWrapper>
                   <FormLabel essential={true}>링크 1</FormLabel>
-                  <FormikTextInput
+                  <StyledInput
                     placeholder={'https://'}
-                    name={'link0'}
-                    value={recruitFormik.values.link0}
-                    onChange={recruitFormik.handleChange}
-                    touched={recruitFormik.touched.link0}
-                    error={recruitFormik.errors.link0}
+                    error={errors.link0}
+                    {...register('link0', formValidation.link0)}
                   />
-                  <FormMarginXS />
+                  <ErrorBox>{errors.link0 && errors.link0.message}</ErrorBox>
                   <FormLabel>링크 2 (선택사항)</FormLabel>
-                  <FormikTextInput
+                  <StyledInput
                     placeholder={'https://'}
-                    name={'link1'}
-                    value={recruitFormik.values.link1}
-                    onChange={recruitFormik.handleChange}
-                    touched={recruitFormik.touched.link1}
-                    error={recruitFormik.errors.link1}
+                    error={errors.link1}
+                    {...register('link1', formValidation.link1)}
                   />
+                  <ErrorBox>{errors.link1 && errors.link1.message}</ErrorBox>
                   <FormText>
                     자신을 잘 나타낼 수 있는 개인블로그, 노션, Github링크 등을
                     입력해주세요.
@@ -301,33 +293,32 @@ const RecruitForm = () => {
                     *포트폴리오를 업로드하셔야할 경우 클라우드/드라이브에 파일을
                     업로드 후 공유링크를 입력해주세요.
                   </FormText>
-                </div>
+                </FormContentWrapper>
                 <FormMarginXS />
-                <div>
+                <FormContentWrapper>
                   <FormLabel>추천인</FormLabel>
-                  <FormikTextInput
+                  <StyledInput
                     placeholder={'GDSC에 추천인이 있다면 입력해주세요.'}
-                    name={'recommender'}
-                    value={recruitFormik.values.recommender}
-                    onChange={recruitFormik.handleChange}
-                    touched={recruitFormik.touched.recommender}
-                    error={recruitFormik.errors.recommender}
+                    {...register('recommender')}
                   />
-                </div>
+                  <ErrorBox>
+                    {errors.recommender && errors.recommender.message}
+                  </ErrorBox>
+                </FormContentWrapper>
                 <FormMargin />
-                <FormSubmitButton
-                  onClick={() => {
-                    !applyValidation &&
-                      setModal({ ...modal, [MODAL_KEY.APPLY_CHECK]: true });
-                  }}
-                  disable={applyValidation}
-                >
-                  제출하기
-                </FormSubmitButton>
+                {!isBlocked ? (
+                  <FormSubmitButton type={'submit'} onClick={onSubmit}>
+                    제출하기
+                  </FormSubmitButton>
+                ) : (
+                  <FormSubmitButton type={'button'} disable={isBlocked}>
+                    제출하기
+                  </FormSubmitButton>
+                )}
                 <FormMargin />
               </RecruitFormInner>
             </RecruitFormWrapper>
-          </FormikProvider>
+          </form>
         </ContainerInner>
       </LayoutContainer>
     </>
