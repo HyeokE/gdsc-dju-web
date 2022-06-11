@@ -31,19 +31,21 @@ V2
 
 <img width="360px" alt="Screen Shot 2021-12-10 at 7 57 55 PM" src="https://user-images.githubusercontent.com/61281239/170768158-76e128da-7841-437b-844f-41dbe31e07ef.png">
 
-### Admin 
+## Admin 
 
-지원자 관리 페이지
-
-![스크린샷 2022-06-11 오후 7 39 52](https://user-images.githubusercontent.com/61281239/173184372-437fa8da-bb5b-4d36-a17c-3529ad3feb56.png)
-
-지원자 코멘트 기능
-![스크린샷 2022-06-11 오후 7 41 37](https://user-images.githubusercontent.com/61281239/173184423-f578a01a-0245-4aa3-beca-3420e9e35719.png)
+### 지원자 관리 페이지
+![스크린샷 2022-06-11 오후 7 43 57](https://user-images.githubusercontent.com/61281239/173184510-446dc9c7-c827-4f2a-b209-d530bd1c0936.png)
 
 
-이메일 전송 페이지
+### 지원자 코멘트 기능
 
-![스크린샷 2022-06-11 오후 7 40 12](https://user-images.githubusercontent.com/61281239/173184383-b0711222-6777-429f-aec9-d64a651c7b66.png)
+![스크린샷 2022-06-11 오후 7 44 12](https://user-images.githubusercontent.com/61281239/173184521-31cea412-e428-4f37-8bab-49364a8e201d.png)
+
+
+### 이메일 전송 페이지
+
+![스크린샷 2022-06-11 오후 7 44 48](https://user-images.githubusercontent.com/61281239/173184540-3b836092-992e-4ae3-ab91-d1759f387f58.png)
+
 
 ## Stack
 
