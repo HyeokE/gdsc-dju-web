@@ -3,8 +3,17 @@ import {
   IApplicantTypeWithID,
   StatusType,
 } from '../types/applicant';
-import { dbService } from '../firebase/firebase';
+import { db } from '../firebase/firebase';
 import { recruitInfo } from '../apis/pageData/recruitInfo';
+import {
+  collection,
+  getDocs,
+  query,
+  where,
+  orderBy,
+  doc,
+  getDoc,
+} from 'firebase/firestore';
 
 export const applicantFilterByStatus = (
   filteredApplicants: IApplicantTypeWithID[],
@@ -28,22 +37,20 @@ export const applicantFilterByStatus = (
     HIRED: HIRED,
   };
 };
+
 export const getApplicants = async (status: StatusType | null) => {
-  const res = status
-    ? await dbService
-        .collection(recruitInfo.COLLECTION)
-        .where('status', '==', status)
-        .get()
-    : await dbService
-        .collection(recruitInfo.COLLECTION)
-        .orderBy('uploadDate', 'desc')
-        .get();
+  const applicantRef = collection(db, recruitInfo.COLLECTION);
+  const q = status
+    ? query(applicantRef, where('status', '==', status))
+    : query(applicantRef, orderBy('uploadDate', 'desc'));
+  const res = await getDocs(q);
+
   const applicantsList = res.docs.map((doc) => {
     return { id: doc.id, ...(doc.data() as IApplicantType) };
   });
   return applicantsList;
 };
 export const getApplicant = async (id: string) => {
-  const res = await dbService.collection(recruitInfo.COLLECTION).doc(id).get();
+  const res = await getDoc(doc(db, recruitInfo.COLLECTION, id));
   return { id: res.id, ...(res.data() as IApplicantType) };
 };

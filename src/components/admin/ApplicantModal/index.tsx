@@ -15,7 +15,6 @@ import {
   ApplicantName,
   ApplicantNameWrapper,
 } from './styled';
-import { dbService } from '../../../firebase/firebase';
 import { IApplicantTypeWithID, StatusType } from '../../../types/applicant';
 import { useRecoilState } from 'recoil';
 import { MODAL_KEY, modalState } from '../../../store/modal';
@@ -29,6 +28,8 @@ import { AnimatePresence } from 'framer-motion';
 import { timeFilter } from '../../../utils/timeFilter';
 import { recruitInfo } from '../../../apis/pageData/recruitInfo';
 import { getApplicant, getApplicants } from '../../../utils/applicantsHandler';
+import { doc, updateDoc } from 'firebase/firestore';
+import { db } from '../../../firebase/firebase';
 
 const ApplicantModal = () => {
   const [applicantData, setApplicantData] = useState<IApplicantTypeWithID>();
@@ -96,11 +97,10 @@ const ApplicantInfoState: React.FC<{
   applicantData: IApplicantTypeWithID;
   setApplicantData: (data: IApplicantTypeWithID) => void;
 }> = ({ applicantData, setApplicantData }) => {
-  const applicantRef = dbService
-    .collection(recruitInfo.COLLECTION)
-    .doc(applicantData.id);
+  const applicantRef = doc(db, recruitInfo.COLLECTION, applicantData.id);
+
   const updateStatus = useCallback(async (status: StatusType) => {
-    await applicantRef.update({
+    await updateDoc(applicantRef, {
       status: status,
     });
     setApplicantData({

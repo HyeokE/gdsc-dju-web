@@ -1,5 +1,6 @@
-export type UserDataState = {
-  id: string;
+import { collection } from 'firebase/firestore';
+
+export interface UserDataState {
   nickName: string;
   name: string;
   role: string;
@@ -10,7 +11,11 @@ export type UserDataState = {
   uploadDate: string;
   phoneNumber: string;
   warning: number;
-};
+}
+export interface UserDataWithID extends UserDataState {
+  id: string;
+}
+
 export type onBoardingMember = {
   email: string;
   nickname: string;
