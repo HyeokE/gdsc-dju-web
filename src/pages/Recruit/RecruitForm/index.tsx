@@ -32,7 +32,7 @@ import ReactHelmet from '../../../components/common/ReactHelmet';
 import { useForm } from 'react-hook-form';
 import {
   ErrorBox,
-  StyledDefaultInput,
+  StyledInput,
 } from '../../../components/common/input/TextInput/styled';
 import { FieldValues } from 'react-hook-form/dist/types/fields';
 import {
@@ -177,7 +177,7 @@ const RecruitForm = () => {
                 <FormMargin />
                 <FormContentWrapper>
                   <FormLabel essential={true}>이름(실명)</FormLabel>
-                  <StyledDefaultInput
+                  <StyledInput
                     error={errors.name}
                     placeholder={'김구글'}
                     {...register('name', formValidation.name)}
@@ -186,7 +186,7 @@ const RecruitForm = () => {
                 </FormContentWrapper>
                 <FormContentWrapper>
                   <FormLabel essential={true}>전화번호</FormLabel>
-                  <StyledDefaultInput
+                  <StyledInput
                     placeholder={'010-0000-0000'}
                     error={errors.phoneNumber}
                     {...register('phoneNumber', formValidation.phoneNumber)}
@@ -197,7 +197,7 @@ const RecruitForm = () => {
                 </FormContentWrapper>
                 <FormContentWrapper>
                   <FormLabel essential={true}>이메일(gmail)</FormLabel>
-                  <StyledDefaultInput
+                  <StyledInput
                     placeholder={'googledev@gmail.com'}
                     error={errors.email}
                     {...register('email', formValidation.email)}
@@ -206,7 +206,7 @@ const RecruitForm = () => {
                 </FormContentWrapper>
                 <FormContentWrapper>
                   <FormLabel essential={true}>학과</FormLabel>
-                  <StyledDefaultInput
+                  <StyledInput
                     placeholder={'구글개발학과'}
                     error={errors.major}
                     {...register('major', formValidation.major)}
@@ -215,7 +215,7 @@ const RecruitForm = () => {
                 </FormContentWrapper>
                 <FormContentWrapper>
                   <FormLabel essential={true}>학번</FormLabel>
-                  <StyledDefaultInput
+                  <StyledInput
                     placeholder={'20221234'}
                     error={errors.studentID}
                     {...register('studentID', formValidation.studentID)}
@@ -226,7 +226,7 @@ const RecruitForm = () => {
                 </FormContentWrapper>
                 <FormContentWrapper>
                   <FormLabel essential={true}>포지션</FormLabel>
-                  <StyledDefaultInput disabled={true} placeholder={position} />
+                  <StyledInput disabled={true} placeholder={position} />
                   <ErrorBox>
                     {errors.position && errors.position.message}
                   </ErrorBox>
@@ -272,14 +272,14 @@ const RecruitForm = () => {
                 </FormContentWrapper>
                 <FormContentWrapper>
                   <FormLabel essential={true}>링크 1</FormLabel>
-                  <StyledDefaultInput
+                  <StyledInput
                     placeholder={'https://'}
                     error={errors.link0}
                     {...register('link0', formValidation.link0)}
                   />
                   <ErrorBox>{errors.link0 && errors.link0.message}</ErrorBox>
                   <FormLabel>링크 2 (선택사항)</FormLabel>
-                  <StyledDefaultInput
+                  <StyledInput
                     placeholder={'https://'}
                     error={errors.link1}
                     {...register('link1', formValidation.link1)}
@@ -297,7 +297,7 @@ const RecruitForm = () => {
                 <FormMarginXS />
                 <FormContentWrapper>
                   <FormLabel>추천인</FormLabel>
-                  <StyledDefaultInput
+                  <StyledInput
                     placeholder={'GDSC에 추천인이 있다면 입력해주세요.'}
                     {...register('recommender')}
                   />

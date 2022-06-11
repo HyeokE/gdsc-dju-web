@@ -1,32 +1,6 @@
-import { Field } from 'formik';
 import styled, { css } from 'styled-components';
 
-export const StyledField = styled(Field)<{ disabled?: boolean }>`
-  padding: 0 18px;
-  margin: 2px 0;
-  border: 0;
-  border-radius: 10px;
-  height: 48px;
-  font-size: ${(props) => props.theme.fontSize.body1};
-  outline: none;
-  width: 100%;
-  flex-grow: 1;
-  background: none;
-  font-weight: 400;
-  box-sizing: border-box;
-  color: ${(props) => props.theme.colors.grey700};
-  &::placeholder {
-    color: ${(props) => props.theme.colors.grey400};
-    font-weight: 300;
-  }
-  ${(props) =>
-    props.disabled &&
-    css`
-      background: ${(props) => props.theme.colors.grey100};
-      color: ${(props) => props.theme.colors.grey400};
-    `}
-`;
-export const StyledInput = styled.input<{ disabled?: boolean }>`
+export const StyledInputInner = styled.input<{ disabled?: boolean }>`
   padding: 0 18px;
   margin: 2px 0;
   border: 0;
@@ -127,7 +101,7 @@ export const ErrorBox = styled.div`
   font-size: ${(props) => props.theme.fontSize.body2};
   padding-left: 5px;
 `;
-export const StyledDefaultInput = styled.input<{
+export const StyledInput = styled.input<{
   color?: string;
   disabled?: boolean;
   error?: boolean;

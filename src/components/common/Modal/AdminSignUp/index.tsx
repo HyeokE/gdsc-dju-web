@@ -5,7 +5,7 @@ import { MODAL_KEY, modalState } from '../../../../store/modal';
 import { ApplyModalWrapper } from '../ApplyModal/styled';
 import OutsideClickHandler from '../../../../utils/OutsideClickHandler';
 import { modalVariants } from '../../Variants/modalVariants';
-import { StyledDefaultInput } from '../../input/TextInput/styled';
+import { StyledInput } from '../../input/TextInput/styled';
 import { GDSCButton } from '../../Button';
 import { AdminSignUpWrapper } from './styled';
 import { authService } from '../../../../firebase/firebase';
@@ -64,12 +64,12 @@ const AdminSignUp = () => {
               animate={'active'}
               initial={'unActive'}
             >
-              <StyledDefaultInput
+              <StyledInput
                 onChange={handleOnChange}
                 name={'email'}
                 placeholder={'이메일'}
               />
-              <StyledDefaultInput
+              <StyledInput
                 onChange={handleOnChange}
                 name={'password'}
                 placeholder={'비밀번호'}
