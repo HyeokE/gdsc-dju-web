@@ -17,7 +17,8 @@ export const LoaderBackground = styled(motion.div)<{ background?: boolean }>`
   position: fixed;
   z-index: 1000;
 `;
-export const GoogleLoader = styled.div`
+export const GoogleLoader = styled(motion.div)`
   width: 100px;
+  height: 100px;
   z-index: 2000;
 `;

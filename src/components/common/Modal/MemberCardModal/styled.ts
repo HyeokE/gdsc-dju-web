@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Modal } from 'react-rainbow-components';
 import { motion } from 'framer-motion';
 
 export const MemberCardModalInner = styled(motion.div)`

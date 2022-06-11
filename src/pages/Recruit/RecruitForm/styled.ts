@@ -55,6 +55,10 @@ export const FormLabel = styled.label<{ essential?: boolean }>`
       `}
   }
 `;
+export const FormContentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 export const FormText = styled.p`
   margin-top: 4px;
   font-size: 15px;

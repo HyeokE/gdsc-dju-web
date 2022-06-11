@@ -19,7 +19,7 @@ const GoogleSpinner = (props: { background?: boolean }) => {
         autoplay: true,
         animationData: googleAnimation,
       }),
-    [],
+    [loading.load],
   );
   return (
     <AnimatePresence>
@@ -30,7 +30,12 @@ const GoogleSpinner = (props: { background?: boolean }) => {
           exit={{ opacity: 0 }}
           animate={{ opacity: 1 }}
         >
-          <GoogleLoader ref={googleContainer} />
+          <GoogleLoader
+            ref={googleContainer}
+            initial={{ opacity: 0 }}
+            exit={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+          />
         </LoaderBackground>
       )}
     </AnimatePresence>
