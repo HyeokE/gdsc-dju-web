@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { GDSCButton } from '../../../components/common/Button';
-import { dbService } from '../../../firebase/firebase';
+
 import {
   EmailLogType,
   IApplicantTypeWithID,
@@ -33,6 +33,8 @@ import StatusBadgeBox from '../../../components/admin/StatusBadgeBox';
 import { getApplicants } from '../../../utils/applicantsHandler';
 import AdminEmailCheckModal from '../../../components/common/Modal/AdminEmailCheckModal';
 import { loaderState } from '../../../store/loader';
+import { addDoc, collection } from 'firebase/firestore';
+import { db } from '../../../firebase/firebase';
 
 const AdminEmail: React.FC<{ template: string }> = ({ template }) => {
   const [alert, setAlert] = useRecoilState(alertState);
@@ -72,7 +74,7 @@ const AdminEmail: React.FC<{ template: string }> = ({ template }) => {
   };
 
   const sendLogHandler = async (log: EmailLogType) => {
-    await dbService.collection('emailLogs').doc().set(log);
+    await addDoc(collection(db, 'emailLogs'), log);
   };
   const sendEmailHandler = async (
     template: string,
