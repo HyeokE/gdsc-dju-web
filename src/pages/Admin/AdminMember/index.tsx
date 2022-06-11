@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useState } from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 
 import {
   MemberPageWrapper,
@@ -15,7 +15,7 @@ import { useRecoilState } from 'recoil';
 import './MemberPage.css';
 import { UserDataState } from '../../../apis/types';
 import { MODAL_KEY, modalState } from '../../../store/modal';
-import { dbService } from '../../../firebase/firebase';
+import { db } from '../../../firebase/firebase';
 
 import { MainText, Title } from '../../../components/common/Title/title';
 import {
@@ -27,10 +27,10 @@ import {
   LayoutContainer,
   TopMargin,
 } from '../../../styles/layouts';
+import { collection, getDocs } from 'firebase/firestore';
 
 const AdminMember = () => {
   const [memberData, setMemberData] = useState<UserDataState[]>([]);
-  const [adminUser, setAdminUser] = useState([]);
   const [selectMember, setSelectMember] = useState<UserDataState>();
   const [modal, setModal] = useRecoilState(modalState);
 
@@ -80,38 +80,19 @@ const AdminMember = () => {
     }
   };
 
-  const getAdminUsers = async () => {
-    try {
-      await dbService
-        .collection('adminUsers')
-        .get()
-        .then((data) => {
-          const memberList: any = data.docs.map((doc) => ({
-            id: doc.id,
-            ...doc.data(),
-          }));
-          setAdminUser(memberList);
-        });
-    } catch (e) {
-      console.log(e);
-    }
-  };
   const memberSortHandler = (id: string) => {
     memberSort(memberData, setMemberData, id);
   };
 
   const getMemberList = async () => {
+    const memberRef = await getDocs(collection(db, 'members'));
+
     try {
-      await dbService
-        .collection('members')
-        .get()
-        .then((data) => {
-          const memberList: any = data.docs.map((doc) => ({
-            id: doc.id,
-            ...doc.data(),
-          }));
-          setMemberData(memberList);
-        });
+      const memberList = memberRef.docs.map((doc) => ({
+        id: doc.id,
+        ...(doc.data() as UserDataState),
+      }));
+      setMemberData(memberList);
     } catch (e) {
       console.log(e);
     }
@@ -122,7 +103,6 @@ const AdminMember = () => {
 
   return (
     <>
-
       {memberData.length > 0 && (
         <>
           <LayoutContainer>

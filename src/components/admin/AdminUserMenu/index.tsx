@@ -1,10 +1,12 @@
 import React, { useCallback, useEffect, useRef } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { AdminUserMenuWrapper, MenuElement } from './styled';
-import { authService } from '../../../firebase/firebase';
+
 import { MODAL_KEY, modalState } from '../../../store/modal';
 import { useRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
+import { signOut } from 'firebase/auth';
+import { auth } from '../../../firebase/firebase';
 
 const AdminUserMenu = (props: {
   isOpen: boolean;
@@ -54,9 +56,9 @@ const AdminUserMenu = (props: {
           <MenuElement
             layout
             whileHover={hoverMotion}
-            onClick={() => {
+            onClick={async () => {
               setIsOpen(false);
-              authService.signOut();
+              await signOut(auth);
               navigate('/auth');
             }}
           >

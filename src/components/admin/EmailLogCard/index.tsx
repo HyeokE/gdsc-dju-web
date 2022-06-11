@@ -81,7 +81,8 @@ const EmailLogSection = styled.section`
 const EmailLogCard: React.FC<IEmailLogBoxProps> = ({ emailLogs }) => {
   const [lastDate, setLastDate] = React.useState('');
   useEffect(() => {
-    emailLogs && setLastDate(timeFilter(emailLogs[0].uploadDate.seconds).Y_M_D);
+    emailLogs.length > 0 &&
+      setLastDate(timeFilter(emailLogs[0].uploadDate.seconds).Y_M_D);
   }, [emailLogs]);
 
   return (

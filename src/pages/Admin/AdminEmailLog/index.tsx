@@ -4,19 +4,24 @@ import { TextInput } from '../../../components/common/input/TextInput';
 import { GDSCButton } from '../../../components/common/Button';
 import { LogWrapper, TemplateSelectWrapper } from './styled';
 import { useFirestoreQuery } from '../../../hooks/useFirebaseQuery';
-import { dbService } from '../../../firebase/firebase';
+
 import { EmailLogTypeWithID } from '../../../types/applicant';
 import EmailLogBox from '../../../components/admin/EmailLogCard';
+import { collection, limit, orderBy, query } from 'firebase/firestore';
+import { db } from '../../../firebase/firebase';
 
 const AdminEmailLog: React.FC<{
   template: string;
   setTemplate: (template: string) => void;
 }> = ({ template, setTemplate }) => {
   const templateRef = useRef<HTMLInputElement>(null);
-  const emailLogRef = dbService.collection('emailLogs');
-  const emailLogs = useFirestoreQuery<EmailLogTypeWithID[]>(
-    emailLogRef.orderBy('uploadDate', 'desc').limit(500),
+  const emailLogQuery = query(
+    collection(db, 'emailLogs'),
+    orderBy('uploadDate', 'desc'),
+    limit(100),
   );
+
+  const emailLogs = useFirestoreQuery<EmailLogTypeWithID[]>(emailLogQuery);
 
   return (
     <>
@@ -34,9 +39,11 @@ const AdminEmailLog: React.FC<{
           onClick={() => setTemplate(templateRef.current?.value ?? '')}
         />
       </TemplateSelectWrapper>
-      <LogWrapper>
-        <EmailLogBox emailLogs={emailLogs} />
-      </LogWrapper>
+      {emailLogs && emailLogs.length > 0 && (
+        <LogWrapper>
+          <EmailLogBox emailLogs={emailLogs} />
+        </LogWrapper>
+      )}
     </>
   );
 };

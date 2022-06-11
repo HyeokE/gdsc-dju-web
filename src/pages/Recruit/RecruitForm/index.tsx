@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useLayoutEffect, useState } from 'react';
+import React, { memo, useLayoutEffect, useState } from 'react';
 import { SubTitle, Title } from '../../../components/common/Title/title';
 import { ContainerInner, LayoutContainer } from '../../../styles/layouts';
 import {
@@ -22,7 +22,6 @@ import {
   uploadBytesResumable,
 } from 'firebase/storage';
 import { storage } from '../../../firebase/firebase.config';
-import { dbService } from '../../../firebase/firebase';
 import { useRecoilState } from 'recoil';
 import { loaderState } from '../../../store/loader';
 import ApplyModal from '../../../components/common/Modal/ApplyModal';
@@ -44,6 +43,8 @@ import FileInput from '../../../components/common/input/FileInput';
 import { isObjEmpty } from '../../../utils/objectCheck';
 import { formValidation } from '../../../components/Validation/recuitForm';
 import { recruitInfo } from '../../../apis/pageData/recruitInfo';
+import { addDoc, collection } from 'firebase/firestore';
+import { db } from '../../../firebase/firebase';
 
 const RecruitForm = () => {
   const { id } = useParams();
@@ -70,10 +71,10 @@ const RecruitForm = () => {
     await uploadBytesResumable(storageRef, file);
     const url = await getDownloadURL(storageRef);
     console.log(url);
-    await dbService
-      .collection(recruitInfo.COLLECTION)
-      .doc()
-      .set({ ...object, fileURL: url });
+    await addDoc(collection(db, recruitInfo.COLLECTION), {
+      ...object,
+      fileURL: url,
+    });
   };
   const checkFile = (file: File | null, size: number, type: string) => {
     if (file) {
