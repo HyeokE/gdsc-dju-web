@@ -43,6 +43,7 @@ import {
 import FileInput from '../../../components/common/input/FileInput';
 import { isObjEmpty } from '../../../utils/objectCheck';
 import { formValidation } from '../../../components/Validation/recuitForm';
+import { recruitInfo } from '../../../apis/pageData/recruitInfo';
 
 const RecruitForm = () => {
   const { id } = useParams();
@@ -70,7 +71,7 @@ const RecruitForm = () => {
     const url = await getDownloadURL(storageRef);
     console.log(url);
     await dbService
-      .collection('applicants')
+      .collection(recruitInfo.COLLECTION)
       .doc()
       .set({ ...object, fileURL: url });
   };

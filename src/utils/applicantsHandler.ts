@@ -4,6 +4,7 @@ import {
   StatusType,
 } from '../types/applicant';
 import { dbService } from '../firebase/firebase';
+import { recruitInfo } from '../apis/pageData/recruitInfo';
 
 export const applicantFilterByStatus = (
   filteredApplicants: IApplicantTypeWithID[],
@@ -30,11 +31,11 @@ export const applicantFilterByStatus = (
 export const getApplicants = async (status: StatusType | null) => {
   const res = status
     ? await dbService
-        .collection('applicants')
+        .collection(recruitInfo.COLLECTION)
         .where('status', '==', status)
         .get()
     : await dbService
-        .collection('applicants')
+        .collection(recruitInfo.COLLECTION)
         .orderBy('uploadDate', 'desc')
         .get();
   const applicantsList = res.docs.map((doc) => {
@@ -42,8 +43,7 @@ export const getApplicants = async (status: StatusType | null) => {
   });
   return applicantsList;
 };
-
-// export const applicantFilterByStatus = (
-//   filteredApplicants: IApplicantTypeWithID[],
-//   status: StatusType,
-// ) => filteredApplicants.filter((data) => data.status === status);
+export const getApplicant = async (id: string) => {
+  const res = await dbService.collection(recruitInfo.COLLECTION).doc(id).get();
+  return { id: res.id, ...(res.data() as IApplicantType) };
+};

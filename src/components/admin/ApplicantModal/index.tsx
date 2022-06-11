@@ -27,21 +27,12 @@ import OutsideClickHandler from '../../../utils/OutsideClickHandler';
 import ApplicantChat from '../ApplicantChatSection';
 import { AnimatePresence } from 'framer-motion';
 import { timeFilter } from '../../../utils/timeFilter';
+import { recruitInfo } from '../../../apis/pageData/recruitInfo';
+import { getApplicant, getApplicants } from '../../../utils/applicantsHandler';
 
 const ApplicantModal = () => {
   const [applicantData, setApplicantData] = useState<IApplicantTypeWithID>();
   const [modal, setModal] = useRecoilState(modalState);
-
-  const getApplicant = (id: string) => {
-    dbService
-      .collection('applicants')
-      .doc(id)
-      .get()
-      .then((doc) => {
-        const data = { ...doc.data(), id: doc.id };
-        setApplicantData(data as IApplicantTypeWithID);
-      });
-  };
 
   const closeModal = () => {
     setModal({
@@ -50,8 +41,13 @@ const ApplicantModal = () => {
       selectedId: '',
     });
   };
+  const applicantHandler = async () => {
+    const applicant = await getApplicant(modal.selectedId);
+    setApplicantData(applicant);
+  };
+
   useEffect(() => {
-    modal.selectedId && getApplicant(modal.selectedId);
+    applicantHandler();
   }, [modal.selectedId]);
 
   return (
@@ -100,7 +96,9 @@ const ApplicantInfoState: React.FC<{
   applicantData: IApplicantTypeWithID;
   setApplicantData: (data: IApplicantTypeWithID) => void;
 }> = ({ applicantData, setApplicantData }) => {
-  const applicantRef = dbService.collection('applicants').doc(applicantData.id);
+  const applicantRef = dbService
+    .collection(recruitInfo.COLLECTION)
+    .doc(applicantData.id);
   const updateStatus = useCallback(async (status: StatusType) => {
     await applicantRef.update({
       status: status,
