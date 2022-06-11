@@ -48,7 +48,7 @@ export const AdminNavigationWrapper = styled.nav`
   z-index: 999;
   height: 60px;
   width: 100%;
-  background: ${(props) => props.theme.colors.grey50};
+  background: ${(props) => props.theme.colors.white};
 `;
 export const AdminNavCategoryWrapper = styled.nav`
   display: flex;

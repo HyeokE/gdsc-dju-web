@@ -36,6 +36,11 @@ export const InformationHeader = styled.div`
   box-sizing: border-box;
   flex-direction: row;
 `;
+export const EmailButtonWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+`;
 
 export const ToggleButton = styled.div`
   display: flex;
