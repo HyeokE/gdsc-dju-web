@@ -8,7 +8,8 @@ import { modalVariants } from '../../Variants/modalVariants';
 import { StyledInput } from '../../input/TextInput/styled';
 import { GDSCButton } from '../../Button';
 import { AdminSignUpWrapper } from './styled';
-import { authService } from '../../../../firebase/firebase';
+import { auth } from '../../../../firebase/firebase';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 const AdminSignUp = () => {
   const [modal, setModal] = useRecoilState(modalState);
@@ -26,10 +27,8 @@ const AdminSignUp = () => {
   };
   const onRegisterIn = async (e: any) => {
     e.preventDefault();
-    authService
-      .createUserWithEmailAndPassword(email, password)
+    createUserWithEmailAndPassword(auth, email, password)
       .then((user) => {
-        console.log(user);
         setModal({ ...modal, [MODAL_KEY.ADMIN_SIGN_UP]: false });
       })
       .catch((error) => {
