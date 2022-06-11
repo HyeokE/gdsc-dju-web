@@ -13,6 +13,7 @@ import { bannerItemAnimate } from '../common/Variants/Variants';
 import { useRecoilState } from 'recoil';
 import { recruitmentState } from '../../store/recruitHandler';
 import DownArrow from '../common/DownArrow';
+import { useNavigate } from 'react-router-dom';
 
 const HomePageV2 = () => {
   return (
@@ -38,12 +39,13 @@ const HomePageV2 = () => {
 };
 const HomeRecruitmentButton = () => {
   const [recruit] = useRecoilState(recruitmentState);
+  const navigate = useNavigate();
   return (
     <ButtonWrapper variants={bannerItemAnimate}>
       {recruit.home ? (
         <StyledRecruitmentButton
           onClick={() => {
-            window.open('https://gdsc-dju.web.app/recruit', '_blank');
+            navigate('/recruit');
           }}
         >
           지원하기
