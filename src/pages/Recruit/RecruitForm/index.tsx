@@ -14,7 +14,7 @@ import {
   RecruitFormWrapper,
 } from './styled';
 import { createSearchParams, useNavigate, useParams } from 'react-router-dom';
-import { formValidation, positionSelect } from './FormFunctions';
+import { positionSelect } from './FormFunctions';
 import {
   getDownloadURL,
   ref,
@@ -42,6 +42,7 @@ import {
 } from '../../../types/applicant';
 import FileInput from '../../../components/common/input/FileInput';
 import { isObjEmpty } from '../../../utils/objectCheck';
+import { formValidation } from '../../../components/Validation/recuitForm';
 
 const RecruitForm = () => {
   const { id } = useParams();
@@ -292,7 +293,6 @@ const RecruitForm = () => {
                     *포트폴리오를 업로드하셔야할 경우 클라우드/드라이브에 파일을
                     업로드 후 공유링크를 입력해주세요.
                   </FormText>
-                  <ErrorBox>{errors.name && errors.name.message}</ErrorBox>
                 </FormContentWrapper>
                 <FormMarginXS />
                 <FormContentWrapper>
@@ -301,7 +301,9 @@ const RecruitForm = () => {
                     placeholder={'GDSC에 추천인이 있다면 입력해주세요.'}
                     {...register('recommender')}
                   />
-                  <ErrorBox>{errors.name && errors.name.message}</ErrorBox>
+                  <ErrorBox>
+                    {errors.recommender && errors.recommender.message}
+                  </ErrorBox>
                 </FormContentWrapper>
                 <FormMargin />
                 {!isBlocked ? (
