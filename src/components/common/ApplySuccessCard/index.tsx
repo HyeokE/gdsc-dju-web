@@ -8,21 +8,21 @@ import {
 } from './styled';
 
 interface Iprops {
-  username?: string;
+  name?: string;
   email?: string;
-  phone?: string;
+  phoneNumber?: string;
   position?: string;
 }
 
 const ApplySuccessCard = (props: Iprops) => {
-  const { username, email, phone, position } = props;
+  const { name, email, phoneNumber, position } = props;
   return (
     <ApplyCardWrapper>
       <ApplyCardBlueLine />
       <ApplyCardInner>
         <ApplyCardContentWrapper>
           <ApplyCardContent>이름</ApplyCardContent>
-          <ApplyCardContent>{username}</ApplyCardContent>
+          <ApplyCardContent>{name}</ApplyCardContent>
         </ApplyCardContentWrapper>
         <ApplyCardContentWrapper>
           <ApplyCardContent>포지션</ApplyCardContent>
@@ -34,7 +34,7 @@ const ApplySuccessCard = (props: Iprops) => {
         </ApplyCardContentWrapper>
         <ApplyCardContentWrapper>
           <ApplyCardContent>전화번호</ApplyCardContent>
-          <ApplyCardContent>{phone}</ApplyCardContent>
+          <ApplyCardContent>{phoneNumber}</ApplyCardContent>
         </ApplyCardContentWrapper>
       </ApplyCardInner>
     </ApplyCardWrapper>

@@ -13,7 +13,7 @@ import ReactHelmet from '../../../components/common/ReactHelmet';
 
 const ApplySuccess = () => {
   const [searchParams] = useSearchParams();
-  const username = searchParams.get('username');
+  const username = searchParams.get('name');
   const position = searchParams.get('position');
 
   const params = Object.fromEntries(new URLSearchParams(location.search));

@@ -136,7 +136,7 @@ export const StyledDefaultInput = styled.input<{
   margin: 2px 0;
   border: 0;
   border-radius: 10px;
-  height: 40px;
+  height: 50px;
   font-size: ${(props) => props.theme.fontSize.body1};
   outline: none;
   flex-grow: 1;
@@ -145,10 +145,13 @@ export const StyledDefaultInput = styled.input<{
   color: ${(props) => props.theme.colors.grey700};
   box-sizing: border-box;
   box-shadow: inset 0 0 0 1px ${(props) => props.theme.colors.grey300};
-  cursor: pointer;
+  cursor: text;
+  &::placeholder {
+    color: ${(props) => props.theme.colors.grey400};
+    font-weight: 300;
+  }
   &:hover {
-    box-shadow: inset 0 0 0 2px
-      ${(props) => props.theme.colors.tossBlue200}!important;
+    box-shadow: inset 0 0 0 2px ${(props) => props.theme.colors.tossBlue200};
     ${(props) =>
       props.error &&
       css`
@@ -165,10 +168,12 @@ export const StyledDefaultInput = styled.input<{
       `}
   }
   ${(props) =>
-    !props.disabled &&
+    props.disabled &&
     css`
+      background: ${(props) => props.theme.colors.grey100};
       &:hover {
-        box-shadow: none;
+        box-shadow: inset 0 0 0 1px ${(props) => props.theme.colors.grey300};
+        cursor: not-allowed;
       }
     `}
   ${(props) =>

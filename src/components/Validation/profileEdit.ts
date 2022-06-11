@@ -1,5 +1,6 @@
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+
 export const nameSchema = {
   name: Yup.string()
     .min(2, '이름 전체를 입력해주세요.')
