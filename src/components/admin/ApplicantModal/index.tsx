@@ -199,7 +199,7 @@ const ApplicantInfo: React.FC<{
       <ApplicantInfoTextWrapper>
         <ApplicantInfoText>지원 일자</ApplicantInfoText>
         <ApplicantInfoText>
-          {timeFilter(applicantData.uploadDate.seconds).Y_M_D}
+          {timeFilter(applicantData.uploadDate.seconds).fullDate}
         </ApplicantInfoText>
       </ApplicantInfoTextWrapper>
     </ApplicantInfoInner>
