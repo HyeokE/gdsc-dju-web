@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import { EmailLogTypeWithID } from '../../../types/applicant';
-import { uploadDate } from '../../../utils/timeFilter';
+import { timeFilter } from '../../../utils/timeFilter';
 import StatusBadge from '../Statusbadge';
 
 interface IEmailLogBoxProps {
@@ -81,7 +81,7 @@ const EmailLogSection = styled.section`
 const EmailLogCard: React.FC<IEmailLogBoxProps> = ({ emailLogs }) => {
   const [lastDate, setLastDate] = React.useState('');
   useEffect(() => {
-    emailLogs && setLastDate(uploadDate(emailLogs[0].uploadDate.seconds).Y_M_D);
+    emailLogs && setLastDate(timeFilter(emailLogs[0].uploadDate.seconds).Y_M_D);
   }, [emailLogs]);
 
   return (
@@ -96,7 +96,7 @@ const EmailLogCard: React.FC<IEmailLogBoxProps> = ({ emailLogs }) => {
       {emailLogs &&
         emailLogs.map((log, index) => {
           const number = index == 0 ? 0 : index - 1;
-          const lastDate = uploadDate(
+          const lastDate = timeFilter(
             emailLogs[number].uploadDate.seconds,
           ).Y_M_D;
           return (
@@ -107,7 +107,7 @@ const EmailLogCard: React.FC<IEmailLogBoxProps> = ({ emailLogs }) => {
   );
 };
 const EmailLog: React.FC<IEmailLogProps> = ({ emailLog, lastDate }) => {
-  const date = uploadDate(emailLog.uploadDate.seconds).Y_M_D;
+  const date = timeFilter(emailLog.uploadDate.seconds).Y_M_D;
 
   return (
     <>
@@ -123,7 +123,7 @@ const EmailLog: React.FC<IEmailLogProps> = ({ emailLog, lastDate }) => {
         <EmailLogText email={true}>{emailLog.email}</EmailLogText>
         <EmailLogText>{emailLog.sender}</EmailLogText>
         <EmailLogText>
-          {uploadDate(emailLog.uploadDate.seconds).time}
+          {timeFilter(emailLog.uploadDate.seconds).time}
         </EmailLogText>
         <EmailLogText>{emailLog.status}</EmailLogText>
         <EmailLogBadgeWrapper>

@@ -1,4 +1,4 @@
-export const uploadDate = (seconds: number) => {
+export const timeFilter = (seconds: number) => {
   const timeStamp = new Date(seconds * 1000);
   const month = timeStamp.getMonth() + 1;
   const date = timeStamp.getDate();

@@ -26,6 +26,7 @@ import StatusBadge from '../Statusbadge';
 import OutsideClickHandler from '../../../utils/OutsideClickHandler';
 import ApplicantChat from '../ApplicantChatSection';
 import { AnimatePresence } from 'framer-motion';
+import { timeFilter } from '../../../utils/timeFilter';
 
 const ApplicantModal = () => {
   const [applicantData, setApplicantData] = useState<IApplicantTypeWithID>();
@@ -153,9 +154,6 @@ const ApplicantInfo: React.FC<{
     return address.replace(/^(https?:\/\/)?(www\.)?/, '');
   }
 
-  const uploadDate = new Date(
-    applicantData.uploadDate.seconds * 1000,
-  ).toString();
   return (
     <ApplicantInfoInner>
       <ApplicantNameWrapper>
@@ -200,7 +198,9 @@ const ApplicantInfo: React.FC<{
       </ApplicantInfoTextWrapper>
       <ApplicantInfoTextWrapper>
         <ApplicantInfoText>지원 일자</ApplicantInfoText>
-        <ApplicantInfoText>{uploadDate}</ApplicantInfoText>
+        <ApplicantInfoText>
+          {timeFilter(applicantData.uploadDate.seconds).Y_M_D}
+        </ApplicantInfoText>
       </ApplicantInfoTextWrapper>
     </ApplicantInfoInner>
   );
