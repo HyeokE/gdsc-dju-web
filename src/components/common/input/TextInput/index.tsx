@@ -1,17 +1,10 @@
 import React, { ChangeEvent, forwardRef } from 'react';
 
 import { StyledInputInner, StyledInputWrapper } from './styled';
-import { FormikErrors, FormikTouched } from 'formik';
 
 export interface TextInputProps {
   name?: string;
-  error?:
-    | string
-    | string[]
-    | FormikErrors<any>
-    | FormikErrors<any>[]
-    | undefined;
-  touched?: boolean | FormikTouched<any> | FormikTouched<any>[] | undefined;
+  error?: string | string[] | undefined;
   placeholder?: string;
   image?: string;
   file?: boolean;
@@ -22,7 +15,7 @@ export interface TextInputProps {
   disabled?: boolean;
 }
 const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
-  ({ name, placeholder, onChange, type, disabled, error, touched }, ref) => {
+  ({ name, placeholder, onChange, type, disabled, error }, ref) => {
     const errorToggle = error != undefined && error != '필수입력란입니다.';
 
     return (
