@@ -22,7 +22,7 @@ import { doc, getDoc } from 'firebase/firestore';
 
 const Admin = () => {
   const [adminUser, setAdminUser] = useRecoilState(adminUserState);
-  const [selector, setSelector] = useRecoilState(recruitmentSelector);
+  // const [selector, setSelector] = useRecoilState(recruitmentSelector);
   const [template, setTemplate] = useState<string>('템플릿이 없어요 :(');
   const navigate = useNavigate();
 
@@ -54,7 +54,7 @@ const Admin = () => {
   };
 
   useEffect(() => {
-    setSelector(selector);
+    // setSelector(selector);
     checkAdminUser();
   }, []);
   return (
