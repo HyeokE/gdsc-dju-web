@@ -22,7 +22,7 @@ export interface IInputRegister {
 export interface IRegisterApplicantType extends IInputRegister {
   status: StatusType;
   position: string;
-  generation: number;
+  generation: string;
   uploadDate: Date;
 }
 

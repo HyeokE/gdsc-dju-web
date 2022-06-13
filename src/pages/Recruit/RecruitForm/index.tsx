@@ -132,7 +132,7 @@ const RecruitForm = () => {
     const recruitItem: IRegisterApplicantType = {
       ...(data as IInputRegister),
       status: 'DOCS',
-      generation: Number(recruitInfo.GENERATION),
+      generation: recruitInfo.GENERATION,
       uploadDate: new Date(),
       position: position,
     };
