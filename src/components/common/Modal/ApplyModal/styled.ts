@@ -35,7 +35,7 @@ export const ApplyModalTitle = styled.h5`
 
 export const ApplyModalInner = styled(motion.div)`
   margin: 0 auto;
-  background: #fff;
+  background: ${({ theme }) => theme.colors.background};
   border-radius: 10px;
   box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.1);
   padding: 20px 30px;
@@ -53,7 +53,7 @@ export const ApplyModalWrapper = styled(motion.div)`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.5);
   z-index: 1000;
 `;
 export const ApplyModalButtonWrapper = styled.div`

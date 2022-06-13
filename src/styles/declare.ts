@@ -1,10 +1,12 @@
 import 'styled-components';
-import { colors } from './colors';
+import { lightColors } from './lightColors';
 import { fontSize } from './fontSize';
 import { windowSize } from './windowSize';
 
-export type myType = {
-  colors: typeof colors;
-  windowSize: typeof windowSize;
-  fontSize: typeof fontSize;
-};
+declare module 'styled-components' {
+  export interface DefaultTheme {
+    colors: typeof lightColors;
+    windowSize: typeof windowSize;
+    fontSize: typeof fontSize;
+  }
+}

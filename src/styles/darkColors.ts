@@ -1,15 +1,15 @@
 export const assetGrey = {
-  white: '#FFF',
-  grey50: '#F9FAFB',
-  grey100: '#F2F4F6',
-  grey200: '#E5E8EB',
-  grey300: '#D1D6DB',
+  white: '#191F28',
+  grey50: '#333D4B',
+  grey100: '#4E5968',
+  grey200: '#6B7684',
+  grey300: '#8B95A1',
   grey400: '#B0B8C1',
-  grey500: '#8B95A1',
-  grey600: '#6B7684',
-  grey700: '#4E5968',
-  grey800: '#333D4B',
-  grey900: '#191F28',
+  grey500: '#D1D6DB',
+  grey600: '#E5E8EB',
+  grey700: '#F2F4F6',
+  grey800: '#F9FAFB',
+  grey900: '#FFF',
 };
 export const assetGreen = {
   green100: '#E8F5E9',
@@ -34,7 +34,7 @@ export const assetRed = {
   red400: '#E57373',
   red500: '#EF5350',
   red600: '#F44336',
-  tossRed: '#f44336',
+  tossRed: '#b71c1c',
 };
 export const assetOrange = {
   orange100: '#FFF3E0',
@@ -65,6 +65,19 @@ export const googleLogoColor = {
   googleYellow: '#FBBC04',
   googleGreen: '#34A853',
 };
+export const themeColor = {
+  background: '#22272E',
+  greyOpacity50: 'rgba(255, 233, 204, 0.02)',
+  greyOpacity100: 'rgba(253, 223, 184, 0.05)',
+  greyOpacity200: 'rgba(255, 228, 200, 0.1)',
+  greyOpacity300: 'rgba(255, 226, 157, 0.18)',
+  greyOpacity400: 'rgba(255, 226, 221, 0.31)',
+  greyOpacity500: 'rgba(252, 231, 205, 0.46)',
+  greyOpacity600: 'rgba(255, 236, 212, 0.58)',
+  greyOpacity700: 'rgba(252, 237, 215, 0.7)',
+  greyOpacity800: 'rgba(255, 243, 225, 0.8)',
+  greyOpacity900: 'rgba(253, 246, 236, 0.91)',
+};
 export const primaryColor = {
   ...assetGrey,
   ...assetGreen,
@@ -73,6 +86,7 @@ export const primaryColor = {
   ...assetBlue,
   ...assetOrange,
   ...googleLogoColor,
+  ...themeColor,
 };
 
-export const colors = { ...primaryColor };
+export const darkColors = { ...primaryColor };

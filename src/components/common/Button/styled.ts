@@ -11,7 +11,7 @@ export const StyledButton = styled.button<{
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid ${(props) => props.theme.colors.grey300};
+  border: 0 solid ${(props) => props.theme.colors.grey300};
   font-size: ${(props) => props.theme.fontSize.body2};
   padding: 10px 30px;
   cursor: pointer;
