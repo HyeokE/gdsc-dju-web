@@ -4,8 +4,8 @@ import { IAlertState } from '../types/alert';
 export const ALERT = 'alert';
 
 export const AlertState = {
-  alertHandle: false,
-  alertMessage: '',
+  alertHandle: true,
+  alertMessage: '테스트테스트테스트',
   alertStatus: 'warning' as const,
 };
 

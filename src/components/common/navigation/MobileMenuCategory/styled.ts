@@ -26,7 +26,7 @@ export const MenuRouteWrapper = styled(motion.div)`
   justify-content: flex-start;
 `;
 export const CategoryLine = styled.div`
-  background: #f5f5f5;
+  background: ${({ theme }) => theme.colors.grey200};
   height: 1px;
   width: 100%;
   opacity: 50;

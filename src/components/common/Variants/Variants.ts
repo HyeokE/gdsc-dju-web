@@ -1,3 +1,5 @@
+import { theme } from '../../../styles/theme';
+
 export const listItemAnimate = {
   start: {
     opacity: 0,
@@ -264,7 +266,7 @@ export const pageAnimate = {
 export const categoryAnimate = {
   unHover: {
     clipPath: 'inset(2% round 1%)',
-    background: '#fff',
+    background: theme.colors.white,
     transition: {
       duration: 0.3,
     },
@@ -272,29 +274,10 @@ export const categoryAnimate = {
   },
   hovered: {
     clipPath: `inset(0% round 1%)`,
-    background: '#f2f4f6',
+    background: theme.colors.grey200,
     transition: {
       duration: 0.3,
     },
-    opacity: 1,
-  },
-};
-export const QuestionCategoryAnimate = {
-  unHover: {
-    clipPath: 'inset(1% round 1%)',
-    background: '#fff',
-    transition: {
-      duration: 0.3,
-    },
-    opacity: 1,
-  },
-  hovered: {
-    clipPath: `inset(0% round 1%)`,
-    // background: '#f2f4f6',
-    transition: {
-      duration: 0.3,
-    },
-    color: '#3886f6',
     opacity: 1,
   },
 };

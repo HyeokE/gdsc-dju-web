@@ -95,8 +95,6 @@ const Announcement: React.FC<AnnouncementProps> = ({
   return (
     <>
       <CategoryWrapper
-        initial={'unHover'}
-        whileHover={'hovered'}
         variants={categoryAnimate}
         onClick={() => navigateToAnnouncement(id)}
       >

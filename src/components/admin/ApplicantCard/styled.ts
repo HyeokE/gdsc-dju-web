@@ -6,7 +6,7 @@ export const ApplicantCardWrapper = styled(motion.div)`
   flex-direction: row;
   padding: 10px 20px;
   justify-content: space-between;
-  box-shadow: 0 2px 12px 0 ${({ theme }) => theme.colors.grey300};
+  box-shadow: 0 2px 12px 0 ${({ theme }) => theme.colors.grey100};
   border-radius: 10px;
   box-sizing: border-box;
   align-items: center;
@@ -17,6 +17,7 @@ export const ApplicantCardWrapper = styled(motion.div)`
 `;
 export const ApplicantText = styled(motion.div)`
   font-size: ${({ theme }) => theme.fontSize.body2};
+  color: ${({ theme }) => theme.colors.grey900};
   min-width: 50px;
   max-width: 70px;
   white-space: nowrap;
@@ -26,6 +27,7 @@ export const ApplicantText = styled(motion.div)`
 `;
 export const ApplicantEmail = styled(motion.div)`
   font-size: ${({ theme }) => theme.fontSize.body2};
+  color: ${({ theme }) => theme.colors.grey900};
   text-overflow: ellipsis;
   width: 150px;
   white-space: nowrap;

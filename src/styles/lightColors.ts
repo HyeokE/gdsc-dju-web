@@ -65,6 +65,21 @@ export const googleLogoColor = {
   googleYellow: '#FBBC04',
   googleGreen: '#34A853',
 };
+export const themeColor = {
+  background: '#fff',
+  backgroundOpacity900: 'rgba(255 ,255 ,255, 1)',
+  backgroundOpacity: 'rgba(255 ,255 ,255, 0)',
+  greyOpacity50: 'rgba(0, 23, 51, 0.02)',
+  greyOpacity100: 'rgba(2, 32, 71, 0.05)',
+  greyOpacity200: 'rgba(0, 27, 55, 0.1)',
+  greyOpacity300: 'rgba(0, 29, 58, 0.18)',
+  greyOpacity400: 'rgba(0, 29, 54, 0.31)',
+  greyOpacity500: 'rgba(3, 24, 50, 0.46)',
+  greyOpacity600: 'rgba(0, 19, 43, 0.58)',
+  greyOpacity700: 'rgba(3, 18, 40, 0.7)',
+  greyOpacity800: 'rgba(0, 12, 30, 0.8)',
+  greyOpacity900: 'rgba(2, 9, 19, 0.91)',
+};
 export const primaryColor = {
   ...assetGrey,
   ...assetGreen,
@@ -73,6 +88,7 @@ export const primaryColor = {
   ...assetBlue,
   ...assetOrange,
   ...googleLogoColor,
+  ...themeColor,
 };
 
-export const colors = { ...primaryColor };
+export const lightColors = { ...primaryColor };

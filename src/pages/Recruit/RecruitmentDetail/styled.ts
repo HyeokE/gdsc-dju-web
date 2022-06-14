@@ -58,8 +58,8 @@ export const MobileBottomElementWrapper = styled.div`
   display: none;
   background: -webkit-linear-gradient(
     bottom,
-    rgba(255, 255, 255, 1) 83%,
-    rgba(255, 255, 255, 0)
+    ${({ theme }) => theme.colors.backgroundOpacity900} 83%,
+    ${({ theme }) => theme.colors.backgroundOpacity}
   );
   padding-top: 20px;
   @media (max-width: 500px) {

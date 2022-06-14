@@ -8,7 +8,7 @@ export const StyledLi = styled(motion.li)`
   font-size: 1.6rem;
   line-height: 24px;
   list-style: none;
-  color: rgb(78, 89, 104);
+  color: ${({ theme }) => theme.colors.grey700};
   &:before {
     position: absolute;
     top: 0;

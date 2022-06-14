@@ -35,6 +35,7 @@ import AdminEmailCheckModal from '../../../components/common/Modal/AdminEmailChe
 import { loaderState } from '../../../store/loader';
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../../../firebase/firebase';
+import { isDevelop } from '../../../apis/pageData/recruitInfo';
 
 const AdminEmail: React.FC<{ template: string }> = ({ template }) => {
   const [alert, setAlert] = useRecoilState(alertState);
@@ -74,7 +75,10 @@ const AdminEmail: React.FC<{ template: string }> = ({ template }) => {
   };
 
   const sendLogHandler = async (log: EmailLogType) => {
-    await addDoc(collection(db, 'emailLogs'), log);
+    await addDoc(
+      collection(db, isDevelop ? 'emailLogs-dev' : 'emailLogs'),
+      log,
+    );
   };
   const sendEmailHandler = async (
     template: string,

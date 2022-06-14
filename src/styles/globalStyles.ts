@@ -1,5 +1,4 @@
 import { createGlobalStyle } from 'styled-components';
-
 const GlobalStyles = createGlobalStyle`
   @font-face {
     font-family: 'Spoqa Han Sans Neo', sans-serif;
@@ -66,6 +65,11 @@ const GlobalStyles = createGlobalStyle`
   article, aside, details, figcaption, figure,
   footer, header, hgroup, menu, nav, section {
     display: block;
+  }
+  @media(prefers-color-scheme: dark){
+    html{
+      background: ${({ theme }) => theme.colors.background};
+    }
   }
 
   a {

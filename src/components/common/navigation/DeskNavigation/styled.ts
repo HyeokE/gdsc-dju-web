@@ -19,7 +19,7 @@ export const NavDesign = styled(motion.nav)<{
           backdrop-filter: saturate(50%) blur(8px);
         `
       : css`
-          background: white;
+          background: ${({ theme }) => theme.colors.white};
           box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
           border-bottom: 1px solid ${(props) => props.theme.colors.grey200};
         `}
@@ -104,6 +104,7 @@ export const StyledLink = styled(motion.div)<{ isRoute?: boolean }>`
   transition-timing-function: ease;
   font-size: ${({ theme }) => theme.fontSize.body2};
   transition-delay: 0s;
+  color: ${({ theme }) => theme.colors.grey900};
   ${({ isRoute }) =>
     isRoute &&
     css`

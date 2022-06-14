@@ -1,22 +1,30 @@
 import { motion } from 'framer-motion';
 import React from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { MENU_KEY, menuState } from '../../../store/menu';
 import { StyledMenuButton } from './styled';
+import { themeState } from '../../../store/theme';
+import { theme } from '../../../styles/theme';
 
 const MenuToggleIcon = () => {
   const [menu, setMenu] = useRecoilState(menuState);
+  // const theme = useRecoilValue(themeState);
   return (
     <StyledMenuButton
       initial={false}
       animate={menu.appMenu ? 'open' : 'closed'}
       onClick={() => setMenu({ ...menu, [MENU_KEY.APPMENU]: !menu.appMenu })}
     >
-      <svg width="23" height="23" viewBox="0 0 23 23">
+      <svg
+        width="23"
+        height="23"
+        viewBox="0 0 23 23"
+        fill={theme.colors.grey900}
+      >
         <motion.path
-          fill="transparent"
+          fill={theme.colors.grey900}
           strokeWidth="3"
-          stroke="hsl(0, 0%, 18%)"
+          stroke={theme.colors.grey900}
           strokeLinecap="round"
           variants={{
             closed: { d: 'M 2 2.5 L 20 2.5' },
@@ -24,9 +32,9 @@ const MenuToggleIcon = () => {
           }}
         />
         <motion.path
-          fill="transparent"
+          fill={theme.colors.grey900}
           strokeWidth="3"
-          stroke="hsl(0, 0%, 18%)"
+          stroke={theme.colors.grey900}
           strokeLinecap="round"
           d="M 2 9.423 L 20 9.423"
           variants={{
@@ -36,9 +44,9 @@ const MenuToggleIcon = () => {
           transition={{ duration: 0.1 }}
         />
         <motion.path
-          fill="transparent"
+          fill={theme.colors.grey900}
           strokeWidth="3"
-          stroke="hsl(0, 0%, 18%)"
+          stroke={theme.colors.grey900}
           strokeLinecap="round"
           variants={{
             closed: { d: 'M 2 16.346 L 20 16.346' },
