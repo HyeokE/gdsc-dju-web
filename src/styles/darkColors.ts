@@ -67,6 +67,8 @@ export const googleLogoColor = {
 };
 export const themeColor = {
   background: '#22272E',
+  backgroundOpacity900: 'rgba(34,39,46, 1)',
+  backgroundOpacity: 'rgba(0 ,0 ,0, 0)',
   greyOpacity50: 'rgba(255, 233, 204, 0.02)',
   greyOpacity100: 'rgba(253, 223, 184, 0.05)',
   greyOpacity200: 'rgba(255, 228, 200, 0.1)',
