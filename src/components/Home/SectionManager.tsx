@@ -6,7 +6,7 @@ import {
   HomeSectionTitle,
   HomeSectionWrapper,
 } from './styled';
-import MemberCard from '../common/MemberCard';
+import MemberCardV2 from '../common/MemberCardV2';
 import { motion } from 'framer-motion';
 import { managerData } from '../../apis/pageData/managerData';
 import { listAnimate, listItemAnimate } from '../common/Variants/Variants';
@@ -29,13 +29,13 @@ const ManagerSubTitle = styled(motion.div)`
     font-size: ${({ theme }) => theme.fontSize.body1};
   }
 `;
-const MemberCardSection = styled(motion.section)`
+const MemberCardV2Section = styled(motion.section)`
   display: flex;
   flex-wrap: wrap;
   width: 100%;
   gap: 30px;
 `;
-const MemberCardWrapper = styled(motion.div)`
+const MemberCardV2Wrapper = styled(motion.div)`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -68,19 +68,19 @@ const SectionManager = () => {
           >
             구성원의 도움을 받아 커뮤니티의 문화를 만들어나가고 있어요
           </ManagerSubTitle>
-          <MemberCardSection variants={listAnimate}>
+          <MemberCardV2Section variants={listAnimate}>
             {managerData.map((member, index) => (
-              <MemberCardWrapper
+              <MemberCardV2Wrapper
                 key={index}
                 variants={listItemAnimate}
                 initial={'start'}
                 whileInView={'end'}
                 viewport={{ once: true }}
               >
-                <MemberCard member={member} />
-              </MemberCardWrapper>
+                <MemberCardV2 member={member} />
+              </MemberCardV2Wrapper>
             ))}
-          </MemberCardSection>
+          </MemberCardV2Section>
         </HomeSectionWrapper>
       </HomeSectionContainerInner>
     </HomeSectionContainer>

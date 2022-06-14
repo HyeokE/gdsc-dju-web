@@ -19,8 +19,8 @@ export const NavDesign = styled(motion.nav)<{
           backdrop-filter: saturate(50%) blur(8px);
         `
       : css`
-          background: ${({ theme }) => theme.colors.white};
-          box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+          background: ${({ theme }) => theme.colors.background};
+          box-shadow: 0 4px 30px ${({ theme }) => theme.colors.greyOpacity100};
           border-bottom: 1px solid ${(props) => props.theme.colors.grey200};
         `}
   ${(props) =>
