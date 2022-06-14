@@ -23,20 +23,19 @@ export const AlertText = styled.div`
   margin-left: 5px;
   display: flex;
   align-items: center;
-  color: ${(props) => props.theme.colors.grey800};
+  color: ${(props) => props.theme.colors.grey900};
   @media (max-width: 500px) {
-    font-size: 17px;-
+    font-size: ${({ theme }) => theme.fontSize.body1};
   }
   @media (max-width: 320px) {
-    font-size: 15px;
+    font-size: ${({ theme }) => theme.fontSize.body2};
   }
 `;
 export const AlertInner = styled(motion.div)`
   position: fixed;
-  background: #fff;
+  background: ${({ theme }) => theme.colors.grey100};
   border-radius: 10px;
-  border: 1px solid ${(props) => props.theme.colors.grey300};
-  box-shadow: inset 0 0 0 1px ${(props) => props.theme.colors.grey300};
+  border: 1px solid ${({ theme }) => theme.colors.grey100};
   padding: 7px 30px;
   top: 100px;
   flex: 1;

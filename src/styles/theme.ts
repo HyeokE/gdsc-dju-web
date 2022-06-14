@@ -1,11 +1,17 @@
-import { colors } from './colors';
 import { windowSize } from './windowSize';
 import { fontSize } from './fontSize';
-import {myType} from "./declare";
 
+import { lightColors } from './lightColors';
+import { darkColors } from './darkColors';
+import { DefaultTheme } from 'styled-components';
 
-export const theme: myType = {
-  colors: colors,
+const isBrowserDarkMode = window.matchMedia(
+  '(prefers-color-scheme: dark)',
+).matches;
+console.log(isBrowserDarkMode);
+
+export const theme: DefaultTheme = {
+  colors: isBrowserDarkMode ? darkColors : lightColors,
   windowSize: windowSize,
   fontSize: fontSize,
 };

@@ -13,13 +13,11 @@ export const MobileNavBackGround = styled(motion.div)`
   position: relative;
   width: 100%;
   height: 100%;
-  background: #fff;
+  background: ${({ theme }) => theme.colors.background};
+  border: 0;
   z-index: 900;
-  border-style: solid;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-width: 0;
-  border-left-width: 1px;
   border-color: ${(props) => props.theme.colors.grey200};
 `;

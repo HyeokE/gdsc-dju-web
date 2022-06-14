@@ -5,7 +5,7 @@ export const ALERT = 'alert';
 
 export const AlertState = {
   alertHandle: false,
-  alertMessage: '',
+  alertMessage: '테스트테스트테스트',
   alertStatus: 'warning' as const,
 };
 

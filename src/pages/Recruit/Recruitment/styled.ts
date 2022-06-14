@@ -6,10 +6,13 @@ export const CategoryWrapper = styled(motion.div)`
   padding: 24px 0px;
   margin-right: 30px;
   cursor: pointer;
-  background: white;
-  border-radius: 10px;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+  clip-path: inset(2% round 1%);
   &:hover {
-    background: ${({ theme }) => theme.colors.grey200};
+    border-radius: 10px;
+    clip-path: inset(0% round 1%);
+    background: ${({ theme }) => theme.colors.grey100};
   }
   @media (max-width: ${(props) => props.theme.windowSize.tablet}px) {
     margin-right: 10px;
@@ -38,7 +41,6 @@ export const CategoryInner = styled.div`
   flex-direction: row;
   align-items: center;
   min-width: 320px;
-
   @media (max-width: 320px) {
     padding-left: 10px;
     min-width: 150px;
@@ -91,6 +93,7 @@ export const Category = styled.div`
   align-items: center;
   width: 500px;
   font-size: 1.8rem;
+  color: ${({ theme }) => theme.colors.grey800};
   @media (max-width: ${(props) => props.theme.windowSize.desk}px) {
     width: 500px;
   }
@@ -105,14 +108,3 @@ export const Category = styled.div`
     padding: 0;
   }
 `;
-export const CategoryList = styled.div`
-  display: flex;
-  align-items: center;
-  min-width: 410px;
-  padding-left: 30px;
-`;
-export const MobileCategoryWrapper = styled.div`
-  display: none;
-  padding: 24px 0px;
-`;
-export const MobileCategoryInner = styled.div``;

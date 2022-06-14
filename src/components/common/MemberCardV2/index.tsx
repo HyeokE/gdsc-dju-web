@@ -86,21 +86,21 @@ const CardTextWrapper = styled(motion.div)<{ isClicked?: boolean }>`
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.8);
+  background: ${({ theme }) => theme.colors.greyOpacity100};
   border: 0 solid transparent;
   border-radius: 16px;
   ${({ isClicked }) =>
     isClicked
       ? css`
-          background: rgba(0, 0, 0, 0.5);
+          background: ${({ theme }) => theme.colors.greyOpacity500};
           backdrop-filter: blur(2px);
         `
       : css`
           background: linear-gradient(
             0deg,
             rgba(0, 0, 0, 0) 0%,
-            rgba(0, 0, 0, 0) 40%,
-            rgba(0, 0, 0, 0.25) 100%
+            ${({ theme }) => theme.colors.greyOpacity50} 40%,
+            ${({ theme }) => theme.colors.greyOpacity400} 100%
           );
           transition: background 0.2s ease-in-out;
         `}
@@ -121,7 +121,7 @@ interface IMemberCardProps {
   isSquare?: boolean;
 }
 
-const MemberCard: React.FC<IMemberCardProps> = ({
+const MemberCardV2: React.FC<IMemberCardProps> = ({
   member,
   isSquare = false,
 }) => {
@@ -193,4 +193,4 @@ const MemberCard: React.FC<IMemberCardProps> = ({
   );
 };
 
-export default memo(MemberCard);
+export default memo(MemberCardV2);

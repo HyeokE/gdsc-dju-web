@@ -47,7 +47,6 @@ export const StyledInputWrapper = styled.div<{
   justify-content: center;
   margin: 1px auto 0;
   height: 48px;
-  background: #fff;
   border: none;
   outline: none;
   appearance: none;
@@ -122,7 +121,7 @@ export const StyledInput = styled.input<{
   cursor: text;
   &::placeholder {
     color: ${(props) => props.theme.colors.grey400};
-    font-weight: 300;
+    font-weight: 400;
   }
   &:hover {
     box-shadow: inset 0 0 0 2px ${(props) => props.theme.colors.tossBlue200};

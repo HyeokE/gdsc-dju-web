@@ -1,15 +1,24 @@
 import { motion } from 'framer-motion';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const QuestionWrapper = styled(motion.a)`
+export const QuestionWrapper = styled(motion.a)<{ isOpen: boolean }>`
   cursor: pointer;
   padding: 24px 10px;
   display: flex;
-  background: white;
   color: ${(props) => props.theme.colors.grey700};
   flex-direction: column;
   border-radius: 10px;
   font-size: ${({ theme }) => theme.fontSize.h6};
+  transition: all 0.3s ease;
+  clip-path: inset(1% round 1%);
+  ${({ isOpen }) =>
+    isOpen &&
+    css`
+      color: ${({ theme }) => theme.colors.googleBlue};
+    `}
+  &:hover {
+    clip-path: inset(0% round 1%);
+  }
   @media (max-width: 500px) {
     font-size: 1.5rem;
   }

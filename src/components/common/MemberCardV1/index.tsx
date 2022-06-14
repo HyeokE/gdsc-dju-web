@@ -7,13 +7,13 @@ import {
   Skeleton,
   StyledMemberCard,
 } from './styled';
-import { memberDataType } from '../../../../types/member';
+import { memberDataType } from '../../../types/member';
 
 interface IMemberCardType extends memberDataType {
   id: number;
 }
 
-const MemberCard: React.FC<IMemberCardType> = ({
+const MemberCardV1: React.FC<IMemberCardType> = ({
   id,
   name,
   nickname,
@@ -35,4 +35,4 @@ const MemberCard: React.FC<IMemberCardType> = ({
     </StyledMemberCard>
   );
 };
-export default MemberCard;
+export default MemberCardV1;
