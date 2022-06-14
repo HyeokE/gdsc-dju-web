@@ -5,7 +5,7 @@ import {
   Nickname,
   Role,
   Skeleton,
-} from '../../card/MemberCard/styled';
+} from '../../MemberCardV1/styled';
 import { MemberCardModalInner, ModalWrapper, StyledModal } from './styled';
 import { memberDataType } from '../../../../types/member';
 import OutsideClickHandler from '../../../../utils/OutsideClickHandler';

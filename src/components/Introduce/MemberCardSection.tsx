@@ -1,29 +1,12 @@
-import React, { lazy, Suspense, useState } from 'react';
+import React, { Suspense } from 'react';
 import { CardList } from '../../styles/layouts';
 import { listAnimate, memberCardAnimate } from '../common/Variants/Variants';
 import { memberList } from '../../apis/pageData/MemberList';
 import { AnimatePresence, LayoutGroup } from 'framer-motion';
 import { MemberCardWrapper } from '../../pages/Introduce/styled';
-
-import MemberCardModal from '../common/Modal/MemberCardModal';
-import { memberDataType } from '../../types/member';
-import MemberCard from '../common/MemberCard';
-
-// const MemberCard = lazy(() =>
-//   import('../../components/common/card/MemberCard').then((module) => ({
-//     default: module.default,
-//   })),
-// );
+import MemberCardV2 from '../common/MemberCardV2';
 
 const MemberCardSection = () => {
-  // const [selectedId, setSelectedId] = useState<number | undefined>(undefined);
-  // const [selectedData, setSelectedData] = useState<memberDataType>({
-  //   image: '',
-  //   nickname: '',
-  //   name: '',
-  //   text: '',
-  //   role: '',
-  // });
   return (
     <LayoutGroup>
       <CardList variants={listAnimate}>
@@ -40,21 +23,12 @@ const MemberCardSection = () => {
               // }}
             >
               <Suspense fallback={<>loading</>}>
-                <MemberCard member={memberInfo} isSquare={true} />
+                <MemberCardV2 member={memberInfo} isSquare={true} />
               </Suspense>
             </MemberCardWrapper>
           </AnimatePresence>
         ))}
       </CardList>
-      {/*<AnimatePresence>*/}
-      {/*  {selectedId && selectedData && (*/}
-      {/*    <MemberCardModal*/}
-      {/*      {...selectedData}*/}
-      {/*      setSelectedId={setSelectedId}*/}
-      {/*      id={selectedId}*/}
-      {/*    />*/}
-      {/*  )}*/}
-      {/*</AnimatePresence>*/}
     </LayoutGroup>
   );
 };

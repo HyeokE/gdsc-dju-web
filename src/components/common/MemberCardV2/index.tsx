@@ -121,7 +121,7 @@ interface IMemberCardProps {
   isSquare?: boolean;
 }
 
-const MemberCard: React.FC<IMemberCardProps> = ({
+const MemberCardV2: React.FC<IMemberCardProps> = ({
   member,
   isSquare = false,
 }) => {
@@ -193,4 +193,4 @@ const MemberCard: React.FC<IMemberCardProps> = ({
   );
 };
 
-export default memo(MemberCard);
+export default memo(MemberCardV2);
