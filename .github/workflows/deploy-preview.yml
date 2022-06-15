@@ -45,9 +45,10 @@ jobs:
             `Event Status` ${{github.event_name}}
             `URL` <${{steps.run_firebase_preview.outputs.details_url}}>
             `Build Time` ${{steps.run_firebase_preview.outputs.expire_time}}
+
       - name: Format lighthouse score
-        id: format_lighthouse_score
         uses: actions/github-script@v3
+        id: format_lighthouse_score
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
