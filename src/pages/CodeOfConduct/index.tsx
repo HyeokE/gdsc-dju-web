@@ -20,7 +20,7 @@ const CodeOfConduct = () => {
           <TopMargin />
           <Title>Code of Conduct (Google)</Title>
           <TopMargin />
-          {codeOfConduct.map((data, id) => (
+          {codeOfConduct.map((data) => (
             <>
               <SubCategory>{data.title}</SubCategory>
               <MainText>

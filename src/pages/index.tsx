@@ -1,9 +1,7 @@
-import React, { lazy, Suspense, useEffect } from 'react';
-import { Route, Routes, useLocation } from 'react-router';
+import React, { lazy } from 'react';
+import { Route, Routes } from 'react-router';
 import ScrollTop from '../components/common/ScrollTop';
-import { useRecoilState } from 'recoil';
-import { recruitmentSelector } from '../store/recruitHandler';
-import GoogleSpinner from '../components/Lottie/GoogleSpinner';
+
 const Home = lazy(() =>
   import('./Home').then((module) => ({
     default: module.default,

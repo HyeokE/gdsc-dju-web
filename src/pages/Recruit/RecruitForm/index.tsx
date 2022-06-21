@@ -1,11 +1,40 @@
+import { addDoc, collection } from 'firebase/firestore';
+import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import React, { memo, useLayoutEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { FieldValues } from 'react-hook-form/dist/types/fields';
+import { createSearchParams, useNavigate, useParams } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
+import {
+  applicationQuestions,
+  recruitInfo,
+} from '../../../apis/pageData/recruitInfo';
+import FileInput from '../../../components/common/input/FileInput';
+import { StyledTextArea } from '../../../components/common/input/TextArea/styled';
+import {
+  ErrorBox,
+  StyledInput,
+} from '../../../components/common/input/TextInput/styled';
+import ApplyModal from '../../../components/common/Modal/ApplyModal';
+import ReactHelmet from '../../../components/common/ReactHelmet';
 import { SubTitle, Title } from '../../../components/common/Title/title';
+import { formValidation } from '../../../components/Validation/recuitForm';
+import { db } from '../../../firebase/firebase';
+import { storage } from '../../../firebase/firebase.config';
+import { alertState } from '../../../store/alert';
+import { loaderState } from '../../../store/loader';
+import { MODAL_KEY, modalState } from '../../../store/modal';
 import { ContainerInner, LayoutContainer } from '../../../styles/layouts';
 import {
-  FormArticleWrapper,
+  IApplicantParams,
+  IInputRegister,
+  IRegisterApplicantType,
+} from '../../../types/applicant';
+import { isObjEmpty } from '../../../utils/objectCheck';
+import { positionSelect } from './FormFunctions';
+import {
   FormContentWrapper,
   FormLabel,
-  FormLi,
   FormMargin,
   FormMarginXS,
   FormSubmitButton,
@@ -13,43 +42,6 @@ import {
   RecruitFormInner,
   RecruitFormWrapper,
 } from './styled';
-import { createSearchParams, useNavigate, useParams } from 'react-router-dom';
-import { positionSelect } from './FormFunctions';
-import {
-  getDownloadURL,
-  ref,
-  StorageReference,
-  uploadBytesResumable,
-} from 'firebase/storage';
-import { storage } from '../../../firebase/firebase.config';
-import { useRecoilState } from 'recoil';
-import { loaderState } from '../../../store/loader';
-import ApplyModal from '../../../components/common/Modal/ApplyModal';
-import { MODAL_KEY, modalState } from '../../../store/modal';
-import { alertState } from '../../../store/alert';
-import ReactHelmet from '../../../components/common/ReactHelmet';
-import { useForm } from 'react-hook-form';
-import {
-  ErrorBox,
-  StyledInput,
-} from '../../../components/common/input/TextInput/styled';
-import { FieldValues } from 'react-hook-form/dist/types/fields';
-import {
-  IApplicantParams,
-  IInputRegister,
-  IRegisterApplicantType,
-} from '../../../types/applicant';
-import FileInput from '../../../components/common/input/FileInput';
-import { isObjEmpty } from '../../../utils/objectCheck';
-import { formValidation } from '../../../components/Validation/recuitForm';
-import {
-  applicationQuestions,
-  recruitInfo,
-} from '../../../apis/pageData/recruitInfo';
-import { addDoc, collection } from 'firebase/firestore';
-import { db } from '../../../firebase/firebase';
-import TextArea from '../../../components/common/input/TextArea';
-import { StyledTextArea } from '../../../components/common/input/TextArea/styled';
 
 const RecruitForm = () => {
   const { id } = useParams();

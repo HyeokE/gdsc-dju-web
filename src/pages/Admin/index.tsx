@@ -1,24 +1,22 @@
+import { onAuthStateChanged } from 'firebase/auth';
+import { doc, getDoc } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
-import AdminHeader from '../../components/admin/AdminHeader';
-import AdminHome from './AdminHome';
-import AdminApplicants from './AdminApplicants';
-import { db, auth } from '../../firebase/firebase';
 import { useRecoilState } from 'recoil';
-import { adminUserState } from '../../store/localUser';
-import { recruitmentSelector } from '../../store/recruitHandler';
-import AdminEmail from './AdminEmail';
+import AdminHeader from '../../components/admin/AdminHeader';
+import AdminSidebar from '../../components/admin/AdminSidebar';
 import AdminSignUp from '../../components/common/Modal/AdminSignUp';
-import AdminMember from './AdminMember';
+import { auth, db } from '../../firebase/firebase';
+import { adminUserState } from '../../store/localUser';
+import AdminApplicants from './AdminApplicants';
+import AdminEmail from './AdminEmail';
 import AdminEmailLog from './AdminEmailLog';
+import AdminHome from './AdminHome';
 import {
   AdminContainer,
   AdminContainerInner,
   AdminContainerWrapper,
 } from './styled';
-import AdminSidebar from '../../components/admin/AdminSidebar';
-import { onAuthStateChanged, signOut } from 'firebase/auth';
-import { doc, getDoc } from 'firebase/firestore';
 
 const Admin = () => {
   const [adminUser, setAdminUser] = useRecoilState(adminUserState);
@@ -47,7 +45,6 @@ const Admin = () => {
           getAdminUser(user.uid);
         } catch (error) {
           navigate('/auth');
-          error instanceof Error && console.log(error);
         }
       }
     });
@@ -67,7 +64,7 @@ const Admin = () => {
           <AdminContainerInner>
             <Routes>
               <Route path={'/*'} element={<AdminHome />} />
-              <Route path={'/member'} element={<AdminMember />} />
+              {/*<Route path={'/member'} element={<AdminMember />} />*/}
               <Route path={'/recruit'} element={<AdminApplicants />} />
               <Route
                 path={'/email'}

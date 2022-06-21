@@ -64,7 +64,6 @@ const SignIn = () => {
         case 'auth/wrong-password':
           return setError('올바르지 않은 비밀번호입니다.');
         default:
-          console.log(e);
       }
     }
   };

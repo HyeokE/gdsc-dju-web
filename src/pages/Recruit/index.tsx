@@ -1,9 +1,9 @@
-import React, { lazy, memo } from 'react';
+import React, { memo } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import ApplySuccess from './ApplySuccess';
 import RecruitForm from './RecruitForm';
-import RecruitmentDetail from './RecruitmentDetail';
 import Recruitment from './Recruitment';
+import RecruitmentDetail from './RecruitmentDetail';
 
 const Recruit = () => {
   return (

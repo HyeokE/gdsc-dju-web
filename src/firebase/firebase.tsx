@@ -1,8 +1,6 @@
 // Import the functions you need from the SDKs you need
-import firebase from 'firebase/compat/app';
-import { initializeApp } from 'firebase/app';
+import { GoogleAuthProvider, getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
-import { getAuth, GoogleAuthProvider } from 'firebase/auth';
 import { app } from './firebase.config';
 
 // TODO: Add SDKs for Firebase products that you want to use

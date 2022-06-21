@@ -1,14 +1,14 @@
+import { collection, limit, orderBy, query } from 'firebase/firestore';
 import React, { useRef } from 'react';
-import { TemplateEmailWrapper, TemplateText } from '../AdminEmail/styled';
-import { TextInput } from '../../../components/common/input/TextInput';
+import EmailLogBox from '../../../components/admin/EmailLogCard';
 import { GDSCButton } from '../../../components/common/Button';
-import { LogWrapper, TemplateSelectWrapper } from './styled';
+import { TextInput } from '../../../components/common/input/TextInput';
+import { db } from '../../../firebase/firebase';
 import { useFirestoreQuery } from '../../../hooks/useFirebaseQuery';
 
 import { EmailLogTypeWithID } from '../../../types/applicant';
-import EmailLogBox from '../../../components/admin/EmailLogCard';
-import { collection, limit, orderBy, query } from 'firebase/firestore';
-import { db } from '../../../firebase/firebase';
+import { TemplateEmailWrapper, TemplateText } from '../AdminEmail/styled';
+import { LogWrapper, TemplateSelectWrapper } from './styled';
 
 const AdminEmailLog: React.FC<{
   template: string;

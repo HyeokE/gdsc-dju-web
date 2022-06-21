@@ -1,13 +1,31 @@
+import emailjs from '@emailjs/browser';
+import { addDoc, collection } from 'firebase/firestore';
+import { AnimatePresence } from 'framer-motion';
 import React, { useEffect, useState } from 'react';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { isDevelop } from '../../../apis/pageData/recruitInfo';
+import ApplicantModal from '../../../components/admin/ApplicantModal';
+import StatusBadgeBox from '../../../components/admin/StatusBadgeBox';
 import { GDSCButton } from '../../../components/common/Button';
+import CheckBoxCard from '../../../components/common/CheckBoxCard';
+import AdminEmailCheckModal from '../../../components/common/Modal/AdminEmailCheckModal';
+import { db } from '../../../firebase/firebase';
+import { alertState } from '../../../store/alert';
+import { loaderState } from '../../../store/loader';
+import { adminUserState } from '../../../store/localUser';
+import { MODAL_KEY, modalState } from '../../../store/modal';
 
 import {
   EmailLogType,
   IApplicantTypeWithID,
   StatusType,
 } from '../../../types/applicant';
-import CheckBoxCard from '../../../components/common/CheckBoxCard';
-import emailjs from '@emailjs/browser';
+import { getApplicants } from '../../../utils/applicantsHandler';
+import {
+  AdminSectionWrapper,
+  EmailButtonWrapper,
+  InformationHeader,
+} from '../AdminApplicants/styled';
 import {
   CheckboxSection,
   CheckboxWrapper,
@@ -18,24 +36,6 @@ import {
   EmailRightWrapper,
   SelectedBoxSection,
 } from './styled';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { alertState } from '../../../store/alert';
-import {
-  AdminSectionWrapper,
-  EmailButtonWrapper,
-  InformationHeader,
-} from '../AdminApplicants/styled';
-import { adminUserState } from '../../../store/localUser';
-import ApplicantModal from '../../../components/admin/ApplicantModal';
-import { MODAL_KEY, modalState } from '../../../store/modal';
-import { AnimatePresence } from 'framer-motion';
-import StatusBadgeBox from '../../../components/admin/StatusBadgeBox';
-import { getApplicants } from '../../../utils/applicantsHandler';
-import AdminEmailCheckModal from '../../../components/common/Modal/AdminEmailCheckModal';
-import { loaderState } from '../../../store/loader';
-import { addDoc, collection } from 'firebase/firestore';
-import { db } from '../../../firebase/firebase';
-import { isDevelop } from '../../../apis/pageData/recruitInfo';
 
 const AdminEmail: React.FC<{ template: string }> = ({ template }) => {
   const [alert, setAlert] = useRecoilState(alertState);
