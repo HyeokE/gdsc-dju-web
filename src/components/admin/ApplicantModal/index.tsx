@@ -14,6 +14,9 @@ import {
   ApplicantModalWrapper,
   ApplicantName,
   ApplicantNameWrapper,
+  ApplicationHeader,
+  ApplicationText,
+  ApplicationWrapper,
 } from './styled';
 import { IApplicantTypeWithID, StatusType } from '../../../types/applicant';
 import { useRecoilState } from 'recoil';
@@ -26,8 +29,12 @@ import OutsideClickHandler from '../../../utils/OutsideClickHandler';
 import ApplicantChat from '../ApplicantChatSection';
 import { AnimatePresence } from 'framer-motion';
 import { timeFilter } from '../../../utils/timeFilter';
-import { recruitInfo } from '../../../apis/pageData/recruitInfo';
-import { getApplicant, getApplicants } from '../../../utils/applicantsHandler';
+import {
+  applicationQuestions,
+  QuestionType,
+  recruitInfo,
+} from '../../../apis/pageData/recruitInfo';
+import { getApplicant } from '../../../utils/applicantsHandler';
 import { doc, updateDoc } from 'firebase/firestore';
 import { db } from '../../../firebase/firebase';
 
@@ -75,12 +82,7 @@ const ApplicantModal = () => {
                 </ApplicantInfoHeader>
                 {applicantData && (
                   <ApplicantDataWrapper>
-                    <object
-                      type="text/html"
-                      data={applicantData?.fileURL}
-                      width="100%"
-                      height="100%"
-                    />
+                    <Application applicantData={applicantData} />
 
                     <ApplicantChat applicantId={applicantData.id} />
                   </ApplicantDataWrapper>
@@ -144,6 +146,32 @@ const ApplicantInfoState: React.FC<{
     </ApplicantInfoStateWrapper>
   );
 };
+const Application: React.FC<{
+  applicantData: IApplicantTypeWithID;
+}> = ({ applicantData }) => {
+  const getQuestions = (applicantData: IApplicantTypeWithID) => {
+    return {
+      question1: applicantData.question1,
+      question2: applicantData.question2,
+      question3: applicantData.question3,
+      question4: applicantData.question4,
+      question5: applicantData.question5,
+    };
+  };
+  const questionArray = Object.keys(
+    getQuestions(applicantData),
+  ) as QuestionType[];
+  return (
+    <ApplicationWrapper>
+      {questionArray.map((key, index) => (
+        <div key={index}>
+          <ApplicationHeader>{applicationQuestions[key]}</ApplicationHeader>
+          <ApplicationText>{getQuestions(applicantData)[key]}</ApplicationText>
+        </div>
+      ))}
+    </ApplicationWrapper>
+  );
+};
 
 const ApplicantInfo: React.FC<{
   applicantData: IApplicantTypeWithID;
@@ -175,7 +203,11 @@ const ApplicantInfo: React.FC<{
         <ApplicantInfoText>{applicantData.studentID}</ApplicantInfoText>
       </ApplicantInfoTextWrapper>
       <ApplicantInfoTextWrapper>
-        <ApplicantInfoText>Link1</ApplicantInfoText>
+        <ApplicantInfoText>첨부파일</ApplicantInfoText>
+        <ApplicantInfoText>{applicantData.fileURL}</ApplicantInfoText>
+      </ApplicantInfoTextWrapper>
+      <ApplicantInfoTextWrapper>
+        <ApplicantInfoText>Link0</ApplicantInfoText>
         <ApplicantInfoLink href={applicantData.link0} target={'_blank'}>
           {removeHttp(applicantData.link0)}
         </ApplicantInfoLink>

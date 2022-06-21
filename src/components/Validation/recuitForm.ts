@@ -1,3 +1,5 @@
+import { applicationQuestions } from '../../apis/pageData/recruitInfo';
+
 export const formValidation = {
   name: {
     required: {
@@ -59,7 +61,7 @@ export const formValidation = {
   },
   position: {},
   question1: {
-    label: '[1] 활용할 수 있는 프레임워크, 라이브러리를 알려주세요.',
+    label: applicationQuestions.question1,
     text: '* 디자이너 분들은 사용가능한 툴에 대해서 알려주세요.',
     required: {
       value: true,
@@ -67,7 +69,7 @@ export const formValidation = {
     },
   },
   question2: {
-    label: '[2] 프로젝트 협업 경험이 있다면 자세하게 알려주세요.',
+    label: applicationQuestions.question2,
     text: ' * 프로젝트 경험이 없다면 본인이 노력해서 보람을 느낀 일에 대해서 알려주세요.',
     required: {
       value: true,
@@ -75,21 +77,21 @@ export const formValidation = {
     },
   },
   question3: {
-    label: '[3] 어떤 리드가 좋은 리드라고 생각하시는지 알려주세요.',
+    label: applicationQuestions.question3,
     required: {
       value: true,
       message: '필수 입력 값이에요.',
     },
   },
   question4: {
-    label: '[4] 팀원과 갈등상황은 어떻게 해결하시나요?',
+    label: applicationQuestions.question4,
     required: {
       value: true,
       message: '필수 입력 값이에요.',
     },
   },
   question5: {
-    label: '[5] 본인만의 공부방법이 있다면 어떤 것이 있나요?',
+    label: applicationQuestions.question5,
     required: {
       value: true,
       message: '필수 입력 값이에요.',

@@ -337,7 +337,10 @@ const RecruitForm = () => {
                     입력해주세요.
                   </FormText>
                   <FormText>
-                    *포트폴리오를 업로드하셔야할 경우 클라우드/드라이브에 파일을
+                    *디자이너 분들은 포트폴리오가 필수사항입니다.
+                  </FormText>
+                  <FormText>
+                    *파일 용량이 50MB를 넘어갈 경우 클라우드/드라이브에 파일을
                     업로드 후 공유링크를 입력해주세요.
                   </FormText>
                 </FormContentWrapper>
