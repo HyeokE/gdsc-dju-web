@@ -1,13 +1,18 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import Logo from '../../../assets/GDSCLogo.svg';
+import Plane from '../../../assets/onBoardingImages/plane-blue.svg';
 import {
   onboardingAnimate,
   pageAnimate,
   pageTransitionAnimate,
 } from '../../../components/common/Variants/Variants';
+import { getCurrentDate } from '../../../store/hooks/getCurrentDate';
 import { OnboardingContainer, OnboardingContainerWrapper } from '../styled';
 import {
-  OnboardingBottomWrapper,
   OnBoardingButton,
+  OnboardingBottomWrapper,
   OnboardingDetailText,
   OnboardingDetailTitle,
   OnboardingDetailWrapper,
@@ -22,11 +27,6 @@ import {
   OnboardingTravelImage,
   OnboardingTravelWrapper,
 } from './styled';
-
-import Logo from '../../../assets/GDSCLogo.svg';
-import Plane from '../../../assets/onBoardingImages/plane-blue.svg';
-import { useNavigate } from 'react-router-dom';
-import { getCurrentDate } from '../../../store/hooks/getCurrentDate';
 
 const OnboardHome = () => {
   const navigate = useNavigate();

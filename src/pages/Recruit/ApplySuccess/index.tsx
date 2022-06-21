@@ -1,6 +1,8 @@
 import React from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { MainText, SubTitle } from '../../../components/common/Title/title';
+import ApplySuccessCard from '../../../components/common/ApplySuccessCard';
+import ReactHelmet from '../../../components/common/ReactHelmet';
+import { MainText } from '../../../components/common/Title/title';
 import { ContainerInner, LayoutContainer } from '../../../styles/layouts';
 import {
   RecruitFormCardWrapper,
@@ -8,8 +10,6 @@ import {
   RecruitFormWrapper,
 } from '../RecruitForm/styled';
 import { ApplyLink, ApplyLinkWrapper, ApplyMargin, ApplyTitle } from './styled';
-import ApplySuccessCard from '../../../components/common/ApplySuccessCard';
-import ReactHelmet from '../../../components/common/ReactHelmet';
 
 const ApplySuccess = () => {
   const [searchParams] = useSearchParams();

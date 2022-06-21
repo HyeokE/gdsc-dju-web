@@ -17,7 +17,6 @@ const SolarSystemLineWrapper = styled.div`
 
 const SolarSystem = () => {
   const browserInfo = browser();
-  console.log(browserInfo);
   const isSafari = browserInfo.name === 'safari';
   return (
     <div>

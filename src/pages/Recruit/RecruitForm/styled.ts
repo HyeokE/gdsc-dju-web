@@ -35,7 +35,7 @@ export const RecruitFormCardWrapper = styled.div`
 export const FormLabel = styled.label<{ essential?: boolean }>`
   padding: 5px 0;
   display: inline-block;
-  font-size: ${(props) => props.theme.fontSize.body2};
+  font-size: ${(props) => props.theme.fontSize.body1};
   font-weight: 400;
   line-height: 1.5;
   color: ${(props) => props.theme.colors.grey700};
@@ -60,10 +60,9 @@ export const FormContentWrapper = styled.div`
   flex-direction: column;
 `;
 export const FormText = styled.p`
-  margin-top: 4px;
-  font-size: 15px;
+  margin-bottom: 4px;
+  font-size: ${({ theme }) => theme.fontSize.body2};
   line-height: 24px;
-  font-weight: 300;
   color: ${(props) => props.theme.colors.grey600};
 `;
 export const FormLi = styled.li`

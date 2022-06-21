@@ -121,7 +121,7 @@ export const StyledInput = styled.input<{
   cursor: text;
   &::placeholder {
     color: ${(props) => props.theme.colors.grey400};
-    font-weight: 400;
+    font-weight: 300;
   }
   &:hover {
     box-shadow: inset 0 0 0 2px ${(props) => props.theme.colors.tossBlue200};

@@ -46,7 +46,7 @@ interface faqProps {
   answer: string;
 }
 
-const FaqElement: React.FC<faqProps> = ({ id, question, answer }) => {
+const FaqElement: React.FC<faqProps> = ({ question, answer }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <motion.div>
