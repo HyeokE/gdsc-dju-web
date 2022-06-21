@@ -35,7 +35,7 @@ export const RecruitFormCardWrapper = styled.div`
 export const FormLabel = styled.label<{ essential?: boolean }>`
   padding: 5px 0;
   display: inline-block;
-  font-size: ${(props) => props.theme.fontSize.body2};
+  font-size: ${(props) => props.theme.fontSize.body1};
   font-weight: 400;
   line-height: 1.5;
   color: ${(props) => props.theme.colors.grey700};

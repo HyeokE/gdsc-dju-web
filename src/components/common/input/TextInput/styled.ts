@@ -110,7 +110,7 @@ export const StyledInput = styled.input<{
   border: 0;
   border-radius: 10px;
   height: 50px;
-  font-size: ${(props) => props.theme.fontSize.body2};
+  font-size: ${(props) => props.theme.fontSize.body1};
   outline: none;
   flex-grow: 1;
   background: none;
