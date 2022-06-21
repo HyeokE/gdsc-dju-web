@@ -166,7 +166,9 @@ const Application: React.FC<{
       {questionArray.map((key, index) => (
         <div key={index}>
           <ApplicationHeader>{applicationQuestions[key]}</ApplicationHeader>
-          <ApplicationText>{getQuestions(applicantData)[key]}</ApplicationText>
+          <ApplicationText>
+            {getQuestions(applicantData)[key] ?? '없음'}
+          </ApplicationText>
         </div>
       ))}
     </ApplicationWrapper>
@@ -177,7 +179,9 @@ const ApplicantInfo: React.FC<{
   applicantData: IApplicantTypeWithID;
 }> = ({ applicantData }) => {
   function removeHttp(address: string) {
-    return address.replace(/^(https?:\/\/)?(www\.)?/, '');
+    return address === ''
+      ? '없음'
+      : address.replace(/^(https?:\/\/)?(www\.)?/, '');
   }
 
   return (
@@ -204,22 +208,22 @@ const ApplicantInfo: React.FC<{
       </ApplicantInfoTextWrapper>
       <ApplicantInfoTextWrapper>
         <ApplicantInfoText>첨부파일</ApplicantInfoText>
-        <ApplicantInfoText>{applicantData.fileURL}</ApplicantInfoText>
+        <ApplicantInfoLink href={applicantData.fileURL} target={'_blank'}>
+          {removeHttp(applicantData.fileURL ?? '')}
+        </ApplicantInfoLink>
       </ApplicantInfoTextWrapper>
       <ApplicantInfoTextWrapper>
         <ApplicantInfoText>Link0</ApplicantInfoText>
         <ApplicantInfoLink href={applicantData.link0} target={'_blank'}>
-          {removeHttp(applicantData.link0)}
+          {removeHttp(applicantData.link0 ?? '')}
         </ApplicantInfoLink>
       </ApplicantInfoTextWrapper>
-      {applicantData.link1 !== '' && (
-        <ApplicantInfoTextWrapper>
-          <ApplicantInfoText>Link2</ApplicantInfoText>
-          <ApplicantInfoLink href={applicantData.link1} target={'_blank'}>
-            {removeHttp(applicantData.link1)}
-          </ApplicantInfoLink>
-        </ApplicantInfoTextWrapper>
-      )}
+      <ApplicantInfoTextWrapper>
+        <ApplicantInfoText>Link1</ApplicantInfoText>
+        <ApplicantInfoLink href={applicantData.link1} target={'_blank'}>
+          {removeHttp(applicantData.link1 ?? '')}
+        </ApplicantInfoLink>
+      </ApplicantInfoTextWrapper>
       <ApplicantInfoTextWrapper>
         <ApplicantInfoText>추천인</ApplicantInfoText>
         <ApplicantInfoText>
