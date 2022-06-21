@@ -60,10 +60,9 @@ export const FormContentWrapper = styled.div`
   flex-direction: column;
 `;
 export const FormText = styled.p`
-  margin-top: 4px;
-  font-size: 15px;
+  margin-bottom: 4px;
+  font-size: ${({ theme }) => theme.fontSize.body2};
   line-height: 24px;
-  font-weight: 300;
   color: ${(props) => props.theme.colors.grey600};
 `;
 export const FormLi = styled.li`

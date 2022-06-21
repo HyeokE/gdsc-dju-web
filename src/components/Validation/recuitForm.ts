@@ -57,15 +57,49 @@ export const formValidation = {
       message: '필수 입력 값이에요.',
     },
   },
+  position: {},
+  question1: {
+    label: '[1] 활용할 수 있는 프레임워크, 라이브러리를 알려주세요.',
+    text: '* 디자이너 분들은 사용가능한 툴에 대해서 알려주세요.',
+    required: {
+      value: true,
+      message: '필수 입력 값이에요.',
+    },
+  },
+  question2: {
+    label: '[2] 프로젝트 협업 경험이 있다면 자세하게 알려주세요.',
+    text: ' * 프로젝트 경험이 없다면 본인이 노력해서 보람을 느낀 일에 대해서 알려주세요.',
+    required: {
+      value: true,
+      message: '필수 입력 값이에요.',
+    },
+  },
+  question3: {
+    label: '[3] 어떤 리드가 좋은 리드라고 생각하시는지 알려주세요.',
+    required: {
+      value: true,
+      message: '필수 입력 값이에요.',
+    },
+  },
+  question4: {
+    label: '[4] 팀원과 갈등상황은 어떻게 해결하시나요?',
+    required: {
+      value: true,
+      message: '필수 입력 값이에요.',
+    },
+  },
+  question5: {
+    label: '[5] 본인만의 공부방법이 있다면 어떤 것이 있나요?',
+    required: {
+      value: true,
+      message: '필수 입력 값이에요.',
+    },
+  },
   link0: {
     pattern: {
       value:
         /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z\d]+([\-\.]{1}[a-z\d]+)*\.[a-z]{2,5}(:\d{1,5})?(\/.*)?$/,
       message: 'URL 형식에 맞춰 입력해주세요',
-    },
-    required: {
-      value: true,
-      message: '필수 입력 값이에요.',
     },
   },
   link1: {
@@ -75,5 +109,5 @@ export const formValidation = {
       message: 'URL 형식에 맞춰 입력해주세요',
     },
   },
-  position: {},
+  recommender: {},
 };

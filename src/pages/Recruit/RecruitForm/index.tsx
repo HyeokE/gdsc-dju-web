@@ -45,6 +45,8 @@ import { formValidation } from '../../../components/Validation/recuitForm';
 import { recruitInfo } from '../../../apis/pageData/recruitInfo';
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../../../firebase/firebase';
+import TextArea from '../../../components/common/input/TextArea';
+import { StyledTextArea } from '../../../components/common/input/TextArea/styled';
 
 const RecruitForm = () => {
   const { id } = useParams();
@@ -63,19 +65,6 @@ const RecruitForm = () => {
     formState: { errors },
   } = useForm({ mode: 'onChange' });
 
-  const uploadApplicantFile = async (
-    storageRef: StorageReference,
-    file: File,
-    object: Record<string, any>,
-  ) => {
-    await uploadBytesResumable(storageRef, file);
-    const url = await getDownloadURL(storageRef);
-    console.log(url);
-    await addDoc(collection(db, recruitInfo.COLLECTION), {
-      ...object,
-      fileURL: url,
-    });
-  };
   const checkFile = (file: File | null, size: number, type: string) => {
     if (file) {
       if (file.size > size) {
@@ -103,29 +92,12 @@ const RecruitForm = () => {
     }
   };
 
-  const uploadFiles = async (
-    file: File,
-    applicantData: IRegisterApplicantType,
-  ) => {
-    try {
-      setModal({ ...modal, [MODAL_KEY.APPLY_CHECK]: false });
-      const checkedFile = checkFile(file, 50000001, 'application/pdf');
-      if (checkedFile instanceof File) {
-        setLoading({ ...loading, load: true });
-        const storageRef = ref(storage, `${checkedFile.name}`);
-        await uploadApplicantFile(storageRef, checkedFile, applicantData);
-        setLoading({ ...loading, load: false });
-        navigate({
-          pathname: '/recruit/apply-success',
-          search: `?${createSearchParams(
-            params as Record<string, string | string[]>,
-          )}`,
-        });
-      } else {
-        setLoading({ ...loading, load: false });
-      }
-    } catch (e) {
-      console.log(e);
+  const uploadFiles = async (file: File) => {
+    const checkedFile = checkFile(file, 50000001, 'application/pdf');
+    if (checkedFile instanceof File) {
+      const storageRef = ref(storage, `${checkedFile.name}`);
+      await uploadBytesResumable(storageRef, file);
+      return await getDownloadURL(storageRef);
     }
   };
   const onRegister = async () => {
@@ -136,17 +108,44 @@ const RecruitForm = () => {
       uploadDate: new Date(),
       position: position,
     };
-    file && (await uploadFiles(file, recruitItem));
+    setLoading({ ...loading, load: true });
+    setModal({ ...modal, [MODAL_KEY.APPLY_CHECK]: false });
+    try {
+      if (file) {
+        const url = await uploadFiles(file);
+        await addDoc(collection(db, recruitInfo.COLLECTION), {
+          ...recruitItem,
+          fileURL: url,
+        });
+      } else {
+        await addDoc(collection(db, recruitInfo.COLLECTION), {
+          ...recruitItem,
+          fileURL: null,
+        });
+      }
+      navigate({
+        pathname: '/recruit/apply-success',
+        search: `?${createSearchParams(
+          params as Record<string, string | string[]>,
+        )}`,
+      });
+      setLoading({ ...loading, load: false });
+    } catch (e) {
+      setLoading({ ...loading, load: false });
+    }
   };
 
   const isBlocked = !(
     watch('name') &&
     watch('email') &&
-    watch('link0') &&
     watch('major') &&
     watch('phoneNumber') &&
     watch('studentID') &&
-    file
+    watch('question1') &&
+    watch('question2') &&
+    watch('question3') &&
+    watch('question4') &&
+    watch('question5')
   );
   const onSubmit = (values: FieldValues) => {
     setData(JSON.parse(JSON.stringify(values)));
@@ -234,9 +233,81 @@ const RecruitForm = () => {
                   </ErrorBox>
                 </FormContentWrapper>
                 <FormContentWrapper>
-                  <FormLabel essential={true}>지원서</FormLabel>
+                  <FormLabel essential={true}>
+                    [1] 활용할 수 있는 프레임워크, 라이브러리를 알려주세요.
+                  </FormLabel>
+                  <FormText>
+                    * 디자이너 분들은 사용가능한 툴에 대해서 알려주세요.
+                  </FormText>
+                  <StyledTextArea
+                    placeholder={
+                      '예) Spring, Vue, Git, Github, NodeJS, Spring, Figma, Adobe XD'
+                    }
+                    error={errors.question1}
+                    {...register('question1', formValidation.question1)}
+                  />
+                  <ErrorBox>
+                    {errors.question1 && errors.question1.message}
+                  </ErrorBox>
+                </FormContentWrapper>
+                <FormContentWrapper>
+                  <FormLabel essential={true}>
+                    [2] 프로젝트 협업 경험이 있다면 자세하게 알려주세요.
+                  </FormLabel>
+                  <FormText>
+                    * 프로젝트 경험이 없다면 본인이 노력해서 보람을 느낀 일에
+                    대해서 알려주세요.
+                  </FormText>
+                  <StyledTextArea
+                    error={errors.question2}
+                    {...register('question2', formValidation.question2)}
+                  />
+                  <ErrorBox>
+                    {errors.question2 && errors.question2.message}
+                  </ErrorBox>
+                </FormContentWrapper>
+                <FormContentWrapper>
+                  <FormLabel essential={true}>
+                    [3] 어떤 리드가 좋은 리드라고 생각하시는지 알려주세요.
+                  </FormLabel>
+                  <StyledTextArea
+                    error={errors.question3}
+                    {...register('question3', formValidation.question3)}
+                  />
+                  <ErrorBox>
+                    {errors.question3 && errors.question3.message}
+                  </ErrorBox>
+                </FormContentWrapper>
+                <FormContentWrapper>
+                  <FormLabel essential={true}>
+                    [4] 팀원과 갈등상황은 어떻게 해결하시나요?
+                  </FormLabel>
+                  <StyledTextArea
+                    error={errors.question4}
+                    {...register('question4', formValidation.question4)}
+                  />
+                  <ErrorBox>
+                    {errors.question4 && errors.question4.message}
+                  </ErrorBox>
+                </FormContentWrapper>
+                <FormContentWrapper>
+                  <FormLabel essential={true}>
+                    [5] 본인만의 공부방법이 있다면 어떤 것이 있나요?
+                  </FormLabel>
+                  <StyledTextArea
+                    error={errors.question5}
+                    {...register('question5', formValidation.question5)}
+                  />
+                  <ErrorBox>
+                    {errors.question5 && errors.question5.message}
+                  </ErrorBox>
+                </FormContentWrapper>
+                <FormContentWrapper>
+                  <FormLabel essential={false}>
+                    참고해야 할 추가적인 자료가 있다면 첨부해주세요
+                  </FormLabel>
                   <FileInput
-                    defaultPlaceholder={'지원서 / 포트폴리오 PDF'}
+                    defaultPlaceholder={'PDF로 업로드 해주세요!'}
                     accept={'application/pdf, .pdf'}
                     onChange={(e) =>
                       setFile(e.target.files && e.target.files[0])
@@ -245,42 +316,16 @@ const RecruitForm = () => {
                   <FormText>
                     * 파일은 최대 50MB로 업로드 하실 수 있습니다.
                   </FormText>
-                  <FormText>
-                    * 원활한 검토를 위해 PDF 형식으로 제출해주세요.
-                  </FormText>
-                  <FormText>
-                    * 지원서는 자유 양식이며 아래 항목을 포함하여 제출해주세요.
-                  </FormText>
-                  <FormArticleWrapper>
-                    <FormLi>
-                      활용할 수 있는 기술스택(디자이너 분들은 사용가능한 툴)을
-                      알려주세요.
-                    </FormLi>
-                    <FormLi>
-                      프로젝트 협업 경험이 있다면 자세하게 알려주세요.
-                    </FormLi>
-                    <FormLi>
-                      팀 리드 해보신 경험과 어떤 리드가 좋은 리드라고
-                      생각하시는지 알려주세요.
-                    </FormLi>
-                    <FormLi>
-                      팀원과 갈등상황은 어떻게 해결하시나요? 커뮤니케이션 방식을
-                      알려주세요.
-                    </FormLi>
-                    <FormLi>
-                      본인만의 공부방법이 있다면 어떤 것이 있나요?
-                    </FormLi>
-                  </FormArticleWrapper>
                 </FormContentWrapper>
                 <FormContentWrapper>
-                  <FormLabel essential={true}>링크 1</FormLabel>
+                  <FormLabel essential={false}>링크 1</FormLabel>
                   <StyledInput
                     placeholder={'https://'}
                     error={errors.link0}
                     {...register('link0', formValidation.link0)}
                   />
                   <ErrorBox>{errors.link0 && errors.link0.message}</ErrorBox>
-                  <FormLabel>링크 2 (선택사항)</FormLabel>
+                  <FormLabel>링크 2 </FormLabel>
                   <StyledInput
                     placeholder={'https://'}
                     error={errors.link1}
