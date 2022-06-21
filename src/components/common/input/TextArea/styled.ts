@@ -53,7 +53,8 @@ export const StyledTextArea = styled.textarea<{
   disabled?: boolean;
   error?: boolean;
 }>`
-  max-height: 234px;
+  min-height: 100px;
+  max-height: 350px;
   max-width: 512px;
   font-family: sans-serif;
   overflow: auto;
