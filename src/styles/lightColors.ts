@@ -67,6 +67,8 @@ export const googleLogoColor = {
 };
 export const themeColor = {
   background: '#fff',
+  CardShadow:
+    '0px 0.8px 2px rgba(0,0,0,.032),0px 2.7px 6.7px rgba(0,0,0,.048),0px 12px 30px rgba(0,0,0,.08)',
   backgroundOpacity900: 'rgba(255 ,255 ,255, 1)',
   backgroundOpacity: 'rgba(255 ,255 ,255, 0)',
   greyOpacity50: 'rgba(0, 23, 51, 0.02)',
