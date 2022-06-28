@@ -96,8 +96,8 @@ export const RecruitDetails: RecruitmentDetailType[] = [
   {
     id: 'ml',
     name: 'Machine Learning Engineer',
-    skill: 'Tensorflow / Pytorch, Python',
-    stack: '',
+    skill: 'Tensorflow / Pytorch, JavaScript',
+    stack: 'Python',
     people:
       '코딩에 대한 남다른 애정을 가지신 분\n' +
       '1년이상 활동이 가능하신 분\n' +
