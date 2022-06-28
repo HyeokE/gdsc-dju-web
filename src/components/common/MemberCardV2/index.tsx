@@ -11,7 +11,7 @@ const MemberCardContainer = styled(motion.div)<{ isSquare: boolean }>`
   height: 300px;
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 0 5px ${({ theme }) => theme.colors.grey600};
+  box-shadow: ${({ theme }) => theme.colors.boxShadow100};
   ${({ isSquare }) =>
     isSquare &&
     css`

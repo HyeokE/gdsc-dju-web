@@ -17,7 +17,7 @@ export const ChatCardInner = styled.div<{ isUser: boolean }>`
     isUser &&
     css`
       background: ${({ theme }) => theme.colors.blue300};
-      box-shadow: 0 2px 3px ${({ theme }) => theme.colors.blue300};
+      box-shadow: ${({ theme }) => theme.colors.boxShadow100};
     `}
 `;
 export const ChatUser = styled.p`
