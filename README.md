@@ -7,7 +7,7 @@ yarn install && yarn
 
 ### Run
 ```angular2html
-yarn run
+vite
 ```
 
 ## Preview
