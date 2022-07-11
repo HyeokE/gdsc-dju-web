@@ -26,7 +26,6 @@ export const Footer: React.FC<{ disable?: boolean }> = ({ disable = true }) => {
           GDSC DJU Shared
         </FooterText>
       </FooterLogo>
-
       <FooterCopyRight>{'Copyright © '}GDSC Daejin 2021</FooterCopyRight>
     </FooterWrapper>
   );
