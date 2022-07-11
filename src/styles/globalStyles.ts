@@ -6,9 +6,9 @@ const GlobalStyles = createGlobalStyle`
     font-family: 'Google Sans Display';
     src:
       local("Google Sans Display"),
-      url('/fonts/GoogleSansDisplay-Regular.ttf') format('truetype'),
+      url('/fonts/GoogleSansDisplay-Regular.woff2') format('woff2'),
       url('/fonts/GoogleSansDisplay-Regular.woff') format('woff'),
-      url('/fonts/GoogleSansDisplay-Regular.woff2') format('woff2');
+      url('/fonts/GoogleSansDisplay-Regular.ttf') format('truetype');
     font-weight: 400;
     font-display: swap;
     unicode-range: U+0041-005A, U+0061-007A, U+0030-0039;
@@ -16,8 +16,8 @@ const GlobalStyles = createGlobalStyle`
     font-family: 'Google Sans Display';
     src:
       local("Google Sans Display"),
-      url('/fonts/GoogleSansDisplay-Medium.woff') format('woff'),
       url('/fonts/GoogleSansDisplay-Medium.woff2') format('woff2'),
+      url('/fonts/GoogleSansDisplay-Medium.woff') format('woff'),
       url('/fonts/GoogleSansDisplay-Medium.ttf') format('truetype');
     font-weight: 500;
     font-display: swap;
@@ -26,8 +26,8 @@ const GlobalStyles = createGlobalStyle`
     font-family: 'Google Sans Display';
     src:
       local("Google Sans Display"),
-      url('/fonts/GoogleSansDisplay-Bold.woff') format('woff'),
       url('/fonts/GoogleSansDisplay-Bold.woff2') format('woff2'),
+      url('/fonts/GoogleSansDisplay-Bold.woff') format('woff'),
       url('/fonts/GoogleSansDisplay-Bold.ttf') format('truetype');
     font-weight: 700;
     font-display: swap;
@@ -46,8 +46,8 @@ const GlobalStyles = createGlobalStyle`
   } @font-face {
     font-family: 'Spoqa Han Sans Neo';
     src:local('Spoqa Han Sans Neo'),
-    url('/fonts/SpoqaHanSansNeo-light.woff') format('woff'),
     url('/fonts/SpoqaHanSansNeo-light.woff2') format('woff2'),
+    url('/fonts/SpoqaHanSansNeo-light.woff') format('woff'),
     url('/fonts/SpoqaHanSansNeo-light.ttf') format('truetype');
     font-weight: 300;
     font-display: swap;
@@ -57,8 +57,8 @@ const GlobalStyles = createGlobalStyle`
     font-family: 'Spoqa Han Sans Neo';
     src:
       local('Spoqa Han Sans Neo'),
+      url('/fonts/SpoqaHanSansNeo-Regular.woff2') format('woff2'),
       url('/fonts/SpoqaHanSansNeo-Regular.woff') format('woff'),
-      url('/fonts/SpoqaHanSansNeo-Regular.woff2') format('woff2'), 
       url('/fonts/SpoqaHanSansNeo-Regular.ttf') format('truetype');
     font-weight: 400;
     font-display: swap;
@@ -66,8 +66,8 @@ const GlobalStyles = createGlobalStyle`
   } @font-face {
     font-family: 'Spoqa Han Sans Neo';
     src:local('Spoqa Han Sans Neo'),
-    url('/fonts/SpoqaHanSansNeo-Medium.woff') format('woff'), 
     url('/fonts/SpoqaHanSansNeo-Medium.woff2') format('woff2'),
+    url('/fonts/SpoqaHanSansNeo-Medium.woff') format('woff'),
     url('/fonts/SpoqaHanSansNeo-Medium.ttf') format('truetype');
     font-weight: 500;
     font-display: swap;
@@ -75,9 +75,9 @@ const GlobalStyles = createGlobalStyle`
 
   }  @font-face {
     font-family: 'Spoqa Han Sans Neo';
-    src:local('Spoqa Han Sans Neo'), 
-    url('/fonts/SpoqaHanSansNeo-Bold.woff') format('woff'),
+    src:local('Spoqa Han Sans Neo'),
     url('/fonts/SpoqaHanSansNeo-Bold.woff2') format('woff2'),
+    url('/fonts/SpoqaHanSansNeo-Bold.woff') format('woff'),
     url('/fonts/SpoqaHanSansNeo-Bold.ttf') format('truetype');
     font-weight: 700;
     font-display: swap;
