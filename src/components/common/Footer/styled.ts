@@ -38,7 +38,6 @@ export const FooterText = styled.a<{ google?: boolean }>`
 export const FooterCopyRight = styled.span`
   display: inline-block;
   position: relative;
-
   font-size: ${(props) => props.theme.fontSize.body3};
   color: ${(props) => props.theme.colors.grey600};
   white-space: nowrap;
@@ -69,6 +68,7 @@ export const FooterLogo = styled.div`
   display: flex;
   align-items: center;
   flex-direction: row;
+  flex: 1;
   @media (max-width: ${(props) => props.theme.windowSize.tablet}px) {
     height: 100%;
     flex-direction: column;
