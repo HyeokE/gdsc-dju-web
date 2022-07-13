@@ -143,50 +143,57 @@ const MemberCardV2: React.FC<IMemberCardProps> = ({
           exit="exit"
           isSquare={isSquare}
         >
-          <MemberCardInner layoutId={`card-inner-${nickname}-${randomKey}`}>
-            <CardTextWrapper isClicked={isClicked}>
-              {!isClicked ? (
-                <>
-                  <Nickname layoutId={`nickname-${nickname}-${randomKey}`}>
-                    {nickname}
-                  </Nickname>
-                  <Name layoutId={`name-${nickname}-${randomKey}`}>{name}</Name>
-                  <Role
-                    layoutId={`role-${nickname}-${randomKey}`}
-                    variants={memberCardAnimate}
-                  >
-                    {role}
-                  </Role>
-                </>
-              ) : (
-                <>
-                  <Position
-                    layoutId={`position-${nickname}-${randomKey}`}
-                    variants={memberCardAnimate}
-                    positionColor={positionColorHandler(position)}
-                  >
-                    {position}
-                  </Position>
-                  <Nickname layoutId={`nickname-${nickname}-${randomKey}`}>
-                    {nickname}
-                  </Nickname>
-                  <Name layoutId={`name-${nickname}-${randomKey}`}>{name}</Name>
-                  <CardText
-                    layoutId={`text-${nickname}-${randomKey}`}
-                    variants={memberCardAnimate}
-                  >
-                    {text}
-                  </CardText>
-                </>
-              )}
-            </CardTextWrapper>
-            <MemberCardImage
-              alt={`${nickname}-profile-image`}
-              src={image}
-              isSquare={isSquare}
-              layoutId={`background-${nickname}-${randomKey}`}
-            />
-          </MemberCardInner>
+          <picture>
+            <MemberCardInner layoutId={`card-inner-${nickname}-${randomKey}`}>
+              <CardTextWrapper isClicked={isClicked}>
+                {!isClicked ? (
+                  <>
+                    <Nickname layoutId={`nickname-${nickname}-${randomKey}`}>
+                      {nickname}
+                    </Nickname>
+                    <Name layoutId={`name-${nickname}-${randomKey}`}>
+                      {name}
+                    </Name>
+                    <Role
+                      layoutId={`role-${nickname}-${randomKey}`}
+                      variants={memberCardAnimate}
+                    >
+                      {role}
+                    </Role>
+                  </>
+                ) : (
+                  <>
+                    <Position
+                      layoutId={`position-${nickname}-${randomKey}`}
+                      variants={memberCardAnimate}
+                      positionColor={positionColorHandler(position)}
+                    >
+                      {position}
+                    </Position>
+                    <Nickname layoutId={`nickname-${nickname}-${randomKey}`}>
+                      {nickname}
+                    </Nickname>
+                    <Name layoutId={`name-${nickname}-${randomKey}`}>
+                      {name}
+                    </Name>
+                    <CardText
+                      layoutId={`text-${nickname}-${randomKey}`}
+                      variants={memberCardAnimate}
+                    >
+                      {text}
+                    </CardText>
+                  </>
+                )}
+              </CardTextWrapper>
+
+              <MemberCardImage
+                alt={`${nickname}-profile-image`}
+                src={image}
+                isSquare={isSquare}
+                layoutId={`background-${nickname}-${randomKey}`}
+              />
+            </MemberCardInner>
+          </picture>
         </MemberCardContainer>
       </LayoutGroup>
     </AnimatePresence>

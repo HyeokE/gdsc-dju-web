@@ -50,7 +50,7 @@ export const StyledLogoWrapper = styled(Link)`
 export const StyledImg = styled.img`
   height: 20px;
   width: 100%;
-  margin: 0 8px;
+  padding: 0 8px;
 `;
 export const StyledLogo = styled.div`
   color: ${(props) => props.theme.colors.grey800};

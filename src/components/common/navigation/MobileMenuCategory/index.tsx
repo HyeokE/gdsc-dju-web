@@ -21,7 +21,9 @@ const MobileMenuCategory = () => {
 
   return (
     <MenuWrapper>
-      <MenuLogo src={GDSCLogo} />
+      <picture>
+        <MenuLogo src={GDSCLogo} />
+      </picture>
       <MenuInner
         variants={navigationAnimate}
         initial={false}
