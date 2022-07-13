@@ -1,9 +1,9 @@
 import styled, { css } from 'styled-components';
-import { theme } from '../../../styles/theme';
+import { lightColors } from '../../../styles/lightColors';
 
 export const StyledButton = styled.button<{
-  color?: keyof typeof theme.colors;
-  background?: keyof typeof theme.colors;
+  color?: keyof typeof lightColors;
+  background?: keyof typeof lightColors;
   size?: string;
   disable?: boolean;
   border?: string;

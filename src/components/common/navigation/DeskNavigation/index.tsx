@@ -19,6 +19,8 @@ import {
 } from './styled';
 import DeskNavCategory from '../DeskNavCategory';
 import MobileMenu from '../MobileMenu';
+import ThemeToggleButton from '../../../ThemeToggleButton';
+import { ThemeType } from '../../../../hooks/useTheme';
 
 export const ROUTES = [
   {
@@ -34,7 +36,10 @@ export const ROUTES = [
     title: 'FAQ',
   },
 ];
-export const Navigation: React.FC = () => {
+export const Navigation: React.FC<{
+  theme: ThemeType | undefined;
+  toggleTheme: () => void;
+}> = ({ theme, toggleTheme }) => {
   const location = useLocation();
   const checkLocation = location.pathname == ('/' || '/main');
   const disableNavigation = () => {
@@ -63,6 +68,7 @@ export const Navigation: React.FC = () => {
               <DeskNavCategory />
             </NavTask>
           </NavTaskWrapper>
+          <ThemeToggleButton theme={theme} toggleButton={toggleTheme} />
           <MenuToggleIcon />
         </NavInner>
       </NavWrapper>

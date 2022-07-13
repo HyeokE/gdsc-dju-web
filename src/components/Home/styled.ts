@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion';
 import styled, { css } from 'styled-components';
-import { theme } from '../../styles/theme';
+import { lightColors } from '../../styles/lightColors';
 
 export const HomeSectionContainer = styled(motion.div)<{
-  color?: keyof typeof theme.colors;
+  color?: keyof typeof lightColors;
 }>`
   flex: 1;
   display: flex;
@@ -15,7 +15,7 @@ export const HomeSectionContainer = styled(motion.div)<{
     color &&
     css`
       background: ${(props) => props.theme.colors[color]};
-    `}
+    `};
   @media (max-width: ${({ theme }) => theme.windowSize.mobile}px) {
     min-height: 100vh;
     padding: 40px 0;

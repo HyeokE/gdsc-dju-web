@@ -1,10 +1,15 @@
 import React from 'react';
+
+import { useNavigate } from 'react-router';
+import { RecruitDetails } from '../../../apis/pageData/recruitDetails';
+import Banner from '../../../components/common/Banner';
+import ReactHelmet from '../../../components/common/ReactHelmet';
+import { MainText, Title } from '../../../components/common/Title/title';
 import {
   ContainerInner,
   LayoutContainer,
   TopMargin,
 } from '../../../styles/layouts';
-import { MainText, Title } from '../../../components/common/Title/title';
 
 import {
   Category,
@@ -15,13 +20,6 @@ import {
   TeamCategoryWrapper,
   TeamSubCategory,
 } from './styled';
-
-import { useNavigate } from 'react-router';
-
-import { categoryAnimate } from '../../../components/common/Variants/Variants';
-import { RecruitDetails } from '../../../apis/pageData/recruitDetails';
-import Banner from '../../../components/common/Banner';
-import ReactHelmet from '../../../components/common/ReactHelmet';
 
 const removeBracket = (str: string) => {
   return str.replace(/\(.*\)/gi, ''); // ( ) 제거
@@ -94,10 +92,7 @@ const Announcement: React.FC<AnnouncementProps> = ({
 
   return (
     <>
-      <CategoryWrapper
-        variants={categoryAnimate}
-        onClick={() => navigateToAnnouncement(id)}
-      >
+      <CategoryWrapper onClick={() => navigateToAnnouncement(id)}>
         <CategoryInner>
           <Category>{removeBracket(name)}</Category>
           <SubCategory>{skill}</SubCategory>

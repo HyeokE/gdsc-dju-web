@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import styled, { css } from 'styled-components';
-import { theme } from '../../styles/theme';
+import { lightColors } from '../../styles/lightColors';
 
 export const HomeWrapper = styled(motion.div)`
   position: relative;
@@ -124,11 +124,12 @@ export const GoogleColorTextWrapper = styled.div`
   flex-direction: row;
 `;
 export const GoogleColorText = styled.h1<{
-  color?: keyof typeof theme.colors;
+  color?: keyof typeof lightColors;
 }>`
   font-size: 70px;
   font-weight: bold;
-  color: ${({ color }) => (color ? theme.colors[color] : theme.colors.grey900)};
+  color: ${({ color, theme }) =>
+    color ? theme.colors[color] : theme.colors.grey900};
   @media (max-width: ${({ theme }) => theme.windowSize.tablet}px) {
     font-size: ${({ theme }) => theme.fontSize.h2};
   }

@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import styled, { css } from 'styled-components';
-import { theme } from '../../../styles/theme';
 
 export const Switch = styled.div`
   width: 36px;
@@ -8,7 +7,7 @@ export const Switch = styled.div`
   background-color: ${(props) => props.theme.colors.grey700};
   display: flex;
   justify-content: flex-start;
-  border: 1px solid;
+  border: 1px solid transparent;
   border-color: ${(props) => props.theme.colors.grey700};
   border-radius: 50px;
   padding: 3px;

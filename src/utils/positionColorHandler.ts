@@ -1,13 +1,17 @@
-import { theme } from '../styles/theme';
+import { lightColors } from '../styles/lightColors';
 
-export const position = {
-  frontend: theme.colors.googleBlue,
-  backend: theme.colors.googleRed,
-  android: theme.colors.googleGreen,
-  beginner: theme.colors.orange900,
-  designer: theme.colors.googleYellow,
+export const position: PositionType = {
+  frontend: lightColors.googleBlue,
+  backend: lightColors.googleRed,
+  android: lightColors.googleGreen,
+  beginner: lightColors.orange900,
+  designer: lightColors.googleYellow,
   // ml: 'Machine Learning',
 } as const;
+interface PositionType {
+  [x: string]: string;
+}
+
 export function positionColorHandler(input: string) {
   const positionKey = Object.keys(position);
   const inputToLowerCase = input.toLowerCase();

@@ -1,10 +1,10 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { theme } from '../../../styles/theme';
+import { lightTheme } from '../../../styles/theme';
 import { StatusBadgeType, StatusType } from '../../../types/applicant';
 
 const StatusBadgeWrapper = styled.div<{
-  color: keyof typeof theme.colors;
+  color?: keyof typeof lightTheme.colors;
   disable?: boolean;
 }>`
   padding: 2px;
@@ -15,9 +15,9 @@ const StatusBadgeWrapper = styled.div<{
   ${({ color }) =>
     color &&
     css`
-      color: ${theme.colors[color]};
-      background: ${theme.colors.white};
-      border: 1px solid ${theme.colors[color]};
+      color: ${({ theme }) => theme.colors[color]};
+      background: ${({ theme }) => theme.colors.white};
+      border: 1px solid ${({ theme }) => theme.colors[color]};
     `}
   font-size: ${({ theme }) => theme.fontSize.body3};
   width: fit-content;
@@ -25,9 +25,9 @@ const StatusBadgeWrapper = styled.div<{
   ${({ disable }) =>
     disable &&
     css`
-      color: ${theme.colors.grey400};
-      background: ${theme.colors.white};
-      border: 1px solid ${theme.colors.grey400};
+      color: ${({ theme }) => theme.colors.grey400};
+      background: ${({ theme }) => theme.colors.white};
+      border: 1px solid ${({ theme }) => theme.colors.grey400};
     `}
 `;
 const statusData: StatusBadgeType = {
@@ -62,7 +62,10 @@ const StatusBadge = ({
   return (
     <>
       {status && (
-        <StatusBadgeWrapper color={statusData[status].color} disable={disable}>
+        <StatusBadgeWrapper
+          color={statusData[status].color as keyof typeof lightTheme.colors}
+          disable={disable}
+        >
           {statusData[status].text}
         </StatusBadgeWrapper>
       )}

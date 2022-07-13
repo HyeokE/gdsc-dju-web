@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 export const CategoryWrapper = styled(motion.div)`
   display: flex;
-  padding: 24px 0px;
+  padding: 24px 0;
   margin-right: 30px;
   cursor: pointer;
   border-radius: 30px;

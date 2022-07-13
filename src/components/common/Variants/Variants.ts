@@ -1,5 +1,3 @@
-import { theme } from '../../../styles/theme';
-
 export const listItemAnimate = {
   start: {
     opacity: 0,
@@ -262,22 +260,4 @@ export const pageAnimate = {
   type: 'tween',
   ease: 'anticipate',
   duration: 0.5,
-};
-export const categoryAnimate = {
-  unHover: {
-    clipPath: 'inset(2% round 1%)',
-    background: theme.colors.white,
-    transition: {
-      duration: 0.3,
-    },
-    opacity: 1,
-  },
-  hovered: {
-    clipPath: `inset(0% round 1%)`,
-    background: theme.colors.grey200,
-    transition: {
-      duration: 0.3,
-    },
-    opacity: 1,
-  },
 };

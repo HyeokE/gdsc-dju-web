@@ -1,14 +1,14 @@
 import { motion } from 'framer-motion';
 import React from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
+import { useTheme } from 'styled-components';
 import { MENU_KEY, menuState } from '../../../store/menu';
+
 import { StyledMenuButton } from './styled';
-import { themeState } from '../../../store/theme';
-import { theme } from '../../../styles/theme';
 
 const MenuToggleIcon = () => {
   const [menu, setMenu] = useRecoilState(menuState);
-  // const theme = useRecoilValue(themeState);
+  const theme = useTheme();
   return (
     <StyledMenuButton
       initial={false}
