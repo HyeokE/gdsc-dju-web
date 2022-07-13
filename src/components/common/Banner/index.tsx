@@ -20,10 +20,12 @@ const Banner: React.FC<BannerProps> = ({ color, image }) => {
   } as const;
   return (
     <BannerWrapper>
-      <BannerInner
-        src={image ? image : bannerImages[color]}
-        alt={'banner-image'}
-      />
+      <picture>
+        <BannerInner
+          src={image ? image : bannerImages[color]}
+          alt={'banner-image'}
+        />
+      </picture>
     </BannerWrapper>
   );
 };
