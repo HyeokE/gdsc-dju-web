@@ -11,10 +11,14 @@ const ReactHelmet: React.FC<IReactHelmetProps> = ({ description, title }) => {
     <Helmet>
       <title>{title}</title>
       <meta property="og:title" content={title} />
-
+      <meta property="og:title" content={title} />
+      <meta property="og:site_name" content={title} />
+      <meta name="twitter:title" content={title} />
       <meta data-rh="true" name="description" content={description} />
       <meta property="og:description" content={description} />
       <meta name="description" content={description} />
+      <meta name="twitter:description" content={description} />
+      <meta name="twitter:image" content={description} />
     </Helmet>
   );
 };
