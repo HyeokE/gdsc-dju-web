@@ -10,6 +10,23 @@ interface BannerProps {
   color: 'blue' | 'red' | 'yellow' | 'green';
   image?: string;
 }
+export const BannerInner = styled.img`
+  height: 700px;
+  background-position-x: 50%;
+  background-position-y: 50%;
+  -webkit-background-size: cover;
+  background-size: cover;
+`;
+export const BannerWrapper = styled.div`
+  height: 200px;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  @media (max-width: 500px) {
+    height: 180px;
+  }
+`;
 
 const Banner: React.FC<BannerProps> = ({ color, image }) => {
   const bannerImages = {
@@ -31,20 +48,3 @@ const Banner: React.FC<BannerProps> = ({ color, image }) => {
 };
 
 export default Banner;
-export const BannerInner = styled.img`
-  height: 700px;
-  background-position-x: 50%;
-  background-position-y: 50%;
-  -webkit-background-size: cover;
-  background-size: cover;
-`;
-export const BannerWrapper = styled.div`
-  height: 200px;
-  width: 100%;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  @media (max-width: 500px) {
-    height: 180px;
-  }
-`;

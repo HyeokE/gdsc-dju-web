@@ -42,10 +42,18 @@ export const memberList = [
   {
     nickname: 'Rocoli',
     name: '유형찬',
-    role: 'Member',
+    role: 'Core Member',
     image: 'https://ca.slack-edge.com/T02BE2ERU5A-U02C8B72LT1-e35fe9b38122-512',
     text: '내 죽음이 내 삶 보다 가취가 있기를',
     position: 'Backend',
+  },
+  {
+    nickname: 'Jim',
+    name: '전병선',
+    role: 'Core Member',
+    image: 'https://ca.slack-edge.com/T02BE2ERU5A-U02TKATKRBN-f7b7e7e1dc15-512',
+    text: '돈 많은 백수가 꿈이에요',
+    position: 'Android',
   },
   {
     nickname: 'Reese',
@@ -161,14 +169,7 @@ export const memberList = [
     text: '재즈 아니고 차즈 아니고 채즈네',
     position: 'Frontend',
   },
-  {
-    nickname: 'Jim',
-    name: '전병선',
-    role: 'Member',
-    image: 'https://ca.slack-edge.com/T02BE2ERU5A-U02TKATKRBN-f7b7e7e1dc15-512',
-    text: '돈 많은 백수가 꿈이에요',
-    position: 'Android',
-  },
+
   {
     nickname: 'Purang',
     name: '손민성',

@@ -17,10 +17,6 @@ const MemberCardSection = () => {
               initial={'start'}
               whileInView={'end'}
               viewport={{ once: true }}
-              // onClick={() => {
-              //   setSelectedId(id + 1);
-              //   setSelectedData(memberInfo);
-              // }}
             >
               <Suspense fallback={<>loading</>}>
                 <MemberCardV2 member={memberInfo} isSquare={true} />
