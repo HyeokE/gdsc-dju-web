@@ -1,6 +1,6 @@
 {
-  "short_name": "GDSC Daejin",
-  "name": "Create React App Sample",
+  "short_name": "GDSC DJU",
+  "name": "GDSC Daejin Web",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,6 +8,10 @@
       "type": "image/x-icon"
     },
     {
+      "src": "logo128.png",
+      "type": "image/png",
+      "sizes": "128x128"
+    }, {
       "src": "logo192.png",
       "type": "image/png",
       "sizes": "192x192"
