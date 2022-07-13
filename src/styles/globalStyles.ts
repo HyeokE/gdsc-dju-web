@@ -115,11 +115,11 @@ const GlobalStyles = createGlobalStyle`
   footer, header, hgroup, menu, nav, section {
     display: block;
   }
-  @media(prefers-color-scheme: dark){
-    html{
-      background: ${({ theme }) => theme.colors.background};
-    }
+  
+  html{
+    background: ${({ theme }) => theme.colors.background};
   }
+  
 
   a {
     text-decoration: none;

@@ -8,9 +8,8 @@ export const StyledMenuButton = styled(motion.button)`
   -moz-user-select: none;
   -ms-user-select: none;
   cursor: pointer;
-  position: absolute;
-  top: 9px;
-  right: 15px;
+  position: relative;
+
   width: 50px;
   height: 50px;
   border-radius: 50%;

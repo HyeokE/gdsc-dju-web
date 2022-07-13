@@ -10,3 +10,4 @@ declare module 'styled-components' {
     fontSize: typeof fontSize;
   }
 }
+// 스타일에 대한 타입 지정

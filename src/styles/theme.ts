@@ -5,13 +5,13 @@ import { lightColors } from './lightColors';
 import { darkColors } from './darkColors';
 import { DefaultTheme } from 'styled-components';
 
-const isBrowserDarkMode = window.matchMedia(
-  '(prefers-color-scheme: dark)',
-).matches;
-console.log(isBrowserDarkMode);
-
-export const theme: DefaultTheme = {
-  colors: isBrowserDarkMode ? darkColors : lightColors,
+export const darkTheme: DefaultTheme = {
+  colors: darkColors,
+  windowSize: windowSize,
+  fontSize: fontSize,
+};
+export const lightTheme: DefaultTheme = {
+  colors: lightColors,
   windowSize: windowSize,
   fontSize: fontSize,
 };
