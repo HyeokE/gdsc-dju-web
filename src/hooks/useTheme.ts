@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 export type ThemeType = 'light' | 'dark';
 export const useTheme = () => {
-  const [theme, setTheme] = useState<ThemeType>('light');
+  const [theme, setTheme] = useState<ThemeType>();
 
   const toggleTheme = () => setMode(theme === 'light' ? 'dark' : 'light');
 
