@@ -52,13 +52,26 @@ const RecruitForm = () => {
   const [file, setFile] = useState<null | File>(null);
   const navigate = useNavigate();
   const [data, setData] = useState<null | IInputRegister>(null);
-
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm({ mode: 'onChange' });
+  interface FormValue {
+    name: string;
+    phoneNumber: string;
+    major: string;
+    email: string;
+    studentID: string;
+    position: string;
+    question1: string;
+    question2: string;
+    question3: string;
+    question4: string;
+    question5: string;
+    link0: string;
+    link1: string;
+    recommender: string;
+  }
+  const { register, handleSubmit, watch, formState } = useForm<FormValue>({
+    mode: 'onChange',
+  });
+  const { errors } = formState;
 
   const checkFile = (file: File | null, size: number, type: string) => {
     if (file) {
@@ -174,28 +187,30 @@ const RecruitForm = () => {
                 <FormContentWrapper>
                   <FormLabel essential={true}>이름(실명)</FormLabel>
                   <StyledInput
-                    error={errors.name}
+                    error={!!errors.name}
                     placeholder={'김구글'}
                     {...register('name', formValidation.name)}
                   />
-                  <ErrorBox>{errors.name && errors.name.message}</ErrorBox>
+                  <ErrorBox>
+                    {!!errors.name && (errors.name.message as string)}
+                  </ErrorBox>
                 </FormContentWrapper>
                 <FormContentWrapper>
                   <FormLabel essential={true}>전화번호</FormLabel>
                   <StyledInput
                     placeholder={'010-0000-0000'}
-                    error={errors.phoneNumber}
+                    error={!!errors.phoneNumber}
                     {...register('phoneNumber', formValidation.phoneNumber)}
                   />
                   <ErrorBox>
-                    {errors.phoneNumber && errors.phoneNumber.message}
+                    {!!errors.phoneNumber && errors.phoneNumber.message}
                   </ErrorBox>
                 </FormContentWrapper>
                 <FormContentWrapper>
                   <FormLabel essential={true}>이메일(gmail)</FormLabel>
                   <StyledInput
                     placeholder={'googledev@gmail.com'}
-                    error={errors.email}
+                    error={!!errors.email}
                     {...register('email', formValidation.email)}
                   />
                   <ErrorBox>{errors.email && errors.email.message}</ErrorBox>
@@ -204,7 +219,7 @@ const RecruitForm = () => {
                   <FormLabel essential={true}>학과</FormLabel>
                   <StyledInput
                     placeholder={'구글개발학과'}
-                    error={errors.major}
+                    error={!!errors.major}
                     {...register('major', formValidation.major)}
                   />
                   <ErrorBox>{errors.major && errors.major.message}</ErrorBox>
@@ -213,7 +228,7 @@ const RecruitForm = () => {
                   <FormLabel essential={true}>학번</FormLabel>
                   <StyledInput
                     placeholder={'20221234'}
-                    error={errors.studentID}
+                    error={!!errors.studentID}
                     {...register('studentID', formValidation.studentID)}
                   />
                   <ErrorBox>
@@ -238,7 +253,7 @@ const RecruitForm = () => {
                     placeholder={
                       '예) Spring, Vue, Git, Github, NodeJS, Spring, Figma, Adobe XD'
                     }
-                    error={errors.question1}
+                    error={!!errors.question1}
                     {...register('question1', formValidation.question1)}
                   />
                   <ErrorBox>
@@ -254,7 +269,7 @@ const RecruitForm = () => {
                     대해서 알려주세요.
                   </FormText>
                   <StyledTextArea
-                    error={errors.question2}
+                    error={!!errors.question2}
                     {...register('question2', formValidation.question2)}
                   />
                   <ErrorBox>
@@ -266,7 +281,7 @@ const RecruitForm = () => {
                     {applicationQuestions.question3}
                   </FormLabel>
                   <StyledTextArea
-                    error={errors.question3}
+                    error={!!errors.question3}
                     {...register('question3', formValidation.question3)}
                   />
                   <ErrorBox>
@@ -278,7 +293,7 @@ const RecruitForm = () => {
                     {applicationQuestions.question4}
                   </FormLabel>
                   <StyledTextArea
-                    error={errors.question4}
+                    error={!!errors.question4}
                     {...register('question4', formValidation.question4)}
                   />
                   <ErrorBox>
@@ -290,7 +305,7 @@ const RecruitForm = () => {
                     {applicationQuestions.question5}
                   </FormLabel>
                   <StyledTextArea
-                    error={errors.question5}
+                    error={!!errors.question5}
                     {...register('question5', formValidation.question5)}
                   />
                   <ErrorBox>
@@ -316,14 +331,14 @@ const RecruitForm = () => {
                   <FormLabel essential={false}>링크 1</FormLabel>
                   <StyledInput
                     placeholder={'https://'}
-                    error={errors.link0}
+                    error={!!errors.link0}
                     {...register('link0', formValidation.link0)}
                   />
                   <ErrorBox>{errors.link0 && errors.link0.message}</ErrorBox>
                   <FormLabel>링크 2 </FormLabel>
                   <StyledInput
                     placeholder={'https://'}
-                    error={errors.link1}
+                    error={!!errors.link1}
                     {...register('link1', formValidation.link1)}
                   />
                   <ErrorBox>{errors.link1 && errors.link1.message}</ErrorBox>
