@@ -99,7 +99,6 @@ const RecruitForm = () => {
       return;
     }
   };
-
   const uploadFiles = async (file: File) => {
     const checkedFile = checkFile(file, 50000001, 'application/pdf');
     if (checkedFile instanceof File) {
