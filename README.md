@@ -1,5 +1,8 @@
 # Google Developer Student Clubs Daejin University Web
 
+[모노레포](https://github.com/GDSC-Daejin/gdsc-dju-frontend) 작업 중입니다.
+
+
 ### Get Started
 ```angular2html
 yarn install && yarn
@@ -13,10 +16,6 @@ vite
 ## Preview
 
 ### WEB
-
-V1
-
-<img width="50%" alt="Screen Shot 2021-12-10 at 7 57 55 PM" src="https://user-images.githubusercontent.com/61281239/145563400-395d4b5d-6e61-4bb3-a36b-a9a53b730938.png">
 
 V2
 
