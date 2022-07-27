@@ -171,7 +171,10 @@ const RecruitForm = () => {
 
   return (
     <>
-      <ReactHelmet title={`${position} 지원서 작성 `} />
+      <ReactHelmet
+        title={`${position} 지원서 작성 `}
+        description={`${position} 지원서 작성 페이지 입니다.`}
+      />
       <ApplyModal {...(params as IApplicantParams)} onClick={onRegister} />
       <LayoutContainer>
         <ContainerInner>
